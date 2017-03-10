@@ -1,0 +1,243 @@
+package com.webcon.wp.utils;
+
+import android.app.ActivityManager;
+import android.app.ActivityManager.RunningTaskInfo;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.DialogInterface.OnClickListener;
+import android.content.DialogInterface.OnKeyListener;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+
+/**
+ * 重复方法工具类
+ */
+public class PublicMethodUtil {
+	
+	private static final String PACKAGE_NAME = "com.webcon.sus.demo";	//程序包名
+	//当前程序的主Activity名
+	private static final String MAIN_ACTIVITY_NAME = "MainActivityCompat";
+	private static final String DETAILED_ACTIVITY_NAME = "AlarmDetailsActivityCompat";
+	private static PublicMethodUtil instance;
+	
+	private PublicMethodUtil(){
+		
+	}
+	
+	public static PublicMethodUtil getInstance(){
+		if(instance == null){
+			synchronized (PublicMethodUtil.class) {
+				if(instance == null){
+					instance = new PublicMethodUtil();
+				}
+			}
+		}
+		return instance;
+	}
+	
+	/**
+	 * float类型保存小数点4位
+	 */
+	public float float4do(float f){
+		f = Math.round(f * 10000);
+		f = f / 10000.0F;
+		return f;
+	}
+	
+	/**
+	 * float类型保存小数点2位
+	 */
+	public float float2do(float f){
+		f = Math.round(f * 100);
+		f = f / 100.0F;
+		return f;
+	}
+	
+	/**
+	 * 将px转换为dip
+	 */
+	public int px2dip(Context context, float value){
+		float scale = context.getResources().getDisplayMetrics().density;
+		return (int)(value * scale + 0.5f);
+	}
+	
+	/**
+	 * 将dip转换为px
+	 */
+	public int dip2px(Context context, float value){
+		float scale = context.getResources().getDisplayMetrics().density;
+		return (int)(value / scale - 0.5f);
+	}
+	
+	/**
+	 * 生成含有两个按钮的AlertDialog弹出框
+	 */
+	public AlertDialog.Builder makeAlertDialogBuilder(Context context, int titleResId, 
+			int messageResId, int positiveButtonResId, int negativeButtonResId, 
+			OnClickListener positiveListener, OnClickListener negativeListener){
+		AlertDialog.Builder builder = new AlertDialog.Builder(context);
+		builder.setTitle(titleResId);
+		builder.setMessage(messageResId);
+		builder.setPositiveButton(context.getString(positiveButtonResId), positiveListener);
+		builder.setNegativeButton(context.getString(negativeButtonResId), negativeListener);
+		builder.create();
+		return builder;
+	}
+	
+	/**
+	 * 生成progressDialog对象(Loading效果)
+	 */
+	public ProgressDialog makeProgressDialog(Context context, int titleResId, int messageResId, 
+			boolean indeterminate, boolean cancelable){
+		ProgressDialog pd = new ProgressDialog(context);
+		pd.setTitle(titleResId);
+		pd.setMessage(context.getString(messageResId));
+		pd.setIndeterminate(indeterminate);	//是否明确进度
+		pd.setCancelable(cancelable);
+		return pd;
+	}
+	
+	/**
+	 * 生成progressDialog对象(Loading效果，带有按键监听)
+	 */
+	public ProgressDialog makeProgressDialog(Context context, int titleResId, int messageResId, 
+			boolean indeterminate, boolean cancelable, OnKeyListener onKeyListener){
+		ProgressDialog pd = new ProgressDialog(context);
+		pd.setTitle(titleResId);
+		pd.setMessage(context.getString(messageResId));
+		pd.setIndeterminate(indeterminate);	//是否明确进度
+		pd.setCancelable(cancelable);
+		pd.setOnKeyListener(onKeyListener);
+		return pd;
+	}
+	
+	/**
+	 * 当时间或者日期小于两位数时在前面加“0”
+	 */
+	public String makeDoubleNumber(int number){
+		if(number < 10){
+			return "0" + number;
+		}
+		return number + "";
+	}
+	
+	/**
+	 * 当时间或者日期小于两位数时在前面加“0”
+	 */
+	public String makeDoubleNumber(String number) throws Exception {
+		int iNum = Integer.parseInt(number);
+		if(iNum < 10){
+			return "0" + number;
+		}
+		return number;
+	}
+	
+	/**
+	 * 将时间字符串保存在数组中
+	 */
+	public void saveStringTimeInArray(String str, 
+			int[] array) throws Exception {
+		array[0] = Integer.parseInt(str.substring(0, 2));
+		array[1] = Integer.parseInt(str.substring(3, 5));
+		array[2] = Integer.parseInt(str.substring(6, 8));
+	}
+	
+	/**
+	 * 将日期字符串保存在数组中
+	 */
+	public void saveStringDataInArray(String str, 
+			int[] array) throws Exception {
+		array[0] = Integer.parseInt(str.substring(0, 4));
+		array[1] = Integer.parseInt(str.substring(5, 7));
+		array[2] = Integer.parseInt(str.substring(8, 10));
+	}
+	
+	/**
+	 * 获取当前系统的日期
+	 */
+	public int[] getSysCurrentDate(){
+		Calendar calendar = Calendar.getInstance();
+		int[] dateArray = new int[3];
+		dateArray[0] = calendar.get(Calendar.YEAR);
+		dateArray[1] = calendar.get(Calendar.MONTH) + 1;
+		dateArray[2] = calendar.get(Calendar.DAY_OF_MONTH);
+		return dateArray;
+	}
+	
+	/**
+	 * 获取系统当前时间
+	 */
+	public int[] getSysCurrentTime(){
+		Calendar calendar = Calendar.getInstance();
+		int[] timeArray = new int[3];
+		timeArray[0] = calendar.get(Calendar.HOUR_OF_DAY);
+		timeArray[1] = calendar.get(Calendar.MINUTE);
+		timeArray[2] = calendar.get(Calendar.SECOND);
+		return timeArray;
+	}
+	
+	/**
+	 * 获取当前星期
+	 */
+	public int getSysCurrentWeek(){
+		Calendar calendar = Calendar.getInstance();
+		int week = calendar.get(Calendar.DAY_OF_WEEK);
+		if(week == 1){
+			week = 7;
+		}else{
+			week -= 1;
+		}
+		return week;
+	}
+	
+	/**
+	 * 判断当前程序是否登陆正运行
+	 * @param context
+	 * @return	0:当前程序没有运行	1:当前程序有运行Main		2：当前程序只运行了AlarmDetailed
+	 */
+	public int getRunningProcess(Context context){
+		ActivityManager am = (ActivityManager) context.getSystemService(
+				Context.ACTIVITY_SERVICE);
+		//获取当前系统正在运行的任务
+		List<RunningTaskInfo> list = am.getRunningTasks(100);
+		//创建一个程序名和主activity的对象集合(将当前所有运行程序的此信息放入集合)
+		List<ComponentName> cnList = new ArrayList<ComponentName>();
+		for(RunningTaskInfo rapi : list){
+			cnList.add(rapi.baseActivity);
+		}
+		
+		//创建一个MainActivity的一个信息对象
+		ComponentName main = new ComponentName(PACKAGE_NAME, MAIN_ACTIVITY_NAME);
+		//已经有过运行MainActivity
+		if(cnList.contains(main)){
+			return 1;
+		}
+		
+		//创建一个AlarmDetailedActivity的一个信息对象
+		ComponentName detailed = new ComponentName(PACKAGE_NAME, DETAILED_ACTIVITY_NAME);
+		//正在运行AlarmDetailedActivity
+		if(cnList.contains(detailed)){
+			return 2;
+		}
+		return 0;
+	}
+	
+	/**
+	 * 报警时间和日期转换为long类型作为notification的ID
+	 */
+	public long dateChangeNotificationId(String date, String time){
+		String idStr = date.replace("-", "") + time.replace(":", "");
+		//除以类型确保唯一性
+		return Long.parseLong(idStr);
+	}
+	
+	public long dateChangeNotificationId(String dateTime){
+		String date = dateTime.substring(0, dateTime.indexOf(" "));
+		String time = dateTime.substring(dateTime.indexOf(" ") + 1);
+		return dateChangeNotificationId(date, time);
+	}
+}

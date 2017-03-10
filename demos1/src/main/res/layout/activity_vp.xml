@@ -1,0 +1,57 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/Purple100"
+    tools:context="test1.nh.com.demos1.activities.matDesign.VPActivity">
+
+    <TextView android:text="view pager support"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/Purple100"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="0dp"
+                android:text="item1"
+                android:background="@color/Purple100"
+                android:id="@+id/b_item1"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"></Button>
+
+            <Button
+                android:layout_width="0dp"
+                android:text="item2"
+                android:background="@color/Purple100"
+                android:id="@+id/b_item2"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"></Button>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/main_iv_cursor"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:layout_gravity="center_horizontal"
+            android:scaleType="matrix"
+            android:src="@drawable/bg_mutual_main_cursorimg"/>
+
+
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></android.support.v4.view.ViewPager>
+
+    </LinearLayout>
+
+</RelativeLayout>

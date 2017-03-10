@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">呼吸信号处理-核心板</string>
+
+    <string name="hello_world">Hello world!</string>
+</resources>

@@ -1,0 +1,1139 @@
+package com.webcon.sus.activities;
+
+import android.app.ActivityManager;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Rect;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.provider.Settings;
+import android.util.Log;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+
+import com.rengwuxian.materialedittext.MaterialEditText;
+import com.webcon.sus.demo.R;
+import com.webcon.sus.entity.AlarmNode;
+import com.webcon.sus.service.CService;
+import com.webcon.sus.utils.CommunicationUtils;
+import com.webcon.sus.utils.SUConstant;
+import com.webcon.wp.utils.ApplicationManager;
+import com.webcon.wp.utils.EncrypAES;
+import com.webcon.wp.utils.PublicMethodUtil;
+import com.webcon.wp.utils.UpdateManager;
+import com.webcon.wp.utils.WPApplication;
+import com.webcon.wp.utils.WPConstant;
+
+import java.io.UnsupportedEncodingException;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+/**
+ * 登录页面
+ * <p>
+ * 1.退出主界面后，点击app会进入这里，然后对app的存在进行判断；<br>
+ * 2.在调用login登录服务器成功后，才会启动后台service；<br>
+ * 3.自动登录好像有问题
+ * </p>
+ */
+public class LoginActivityCompat extends BaseActivity {
+    private static final String TAG = "LoginActivityCompat";
+    private static final String NIL_STR = "";
+
+    private Context mContext;
+
+    private Button bn_login, bn_setting;
+    // 网络设置
+    private LinearLayout linear_setting;
+    private Button bn_setting_submit, bn_setting_recover;
+    private MaterialEditText editm_user, editm_passwd;
+    private EditText edit_ip, edit_port;
+    private Animation animOpen, animClose;
+
+    private boolean isAutoLogin = false; // 是否自动登录
+    private boolean isStartView = true; // 是否是启动画面(用来屏蔽返回键的)
+
+    // 登录等待对话框
+    private ProgressDialog loginLoading;
+
+    // 登录参数
+    private byte[] loginName;
+    private String loginPwd, loginIp;
+    private int loginPort;
+
+    // 登录是否被取消
+    private boolean isCanceled = false;
+    // 登录线程
+    private Thread loginThread;
+    // 登录返回值
+    private int loginResult;
+
+    // 网络连接管理
+    private ConnectivityManager connectivityManager;
+    // 网络状态信息
+    private NetworkInfo mNetworkInfo;
+
+    // 登录跳转的标识 0：正常登录到主页面 1：跳转到报警详细信息页面
+    private int loginIntentType;
+
+
+    /*************
+     * 跳转到报警信息详细页面需要用的的数据
+     *************/
+    /*
+     * 跳转标识 flag
+     * 0:程序未启动的情况下从登录页面直接跳转
+     * 1:点击报警列表跳转
+     * 2:程序在启动状态下点击通知跳转
+     */
+    private int detailedIntentFlag;
+    // 报警保留字段
+    private int alarmTemp;
+    // 报警数据
+    private AlarmNode mAlarm;
+
+    /** 更新管理器 */
+    private UpdateManager mUpdateManager;
+    /** 更新进度对话框 */
+    private ProgressDialog updateProgressDialog;
+
+
+    /* ------------------------ */
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        initState();
+        getAppUid();
+    }
+
+    @Override
+    public void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+    }
+
+
+    private void initState() {
+        //添加到全局activity列表
+        ApplicationManager.getInstance().addActivity(this);
+        mContext = this;
+
+        if(WPApplication.getInstance().serviceExist){
+            intentToNewActivity(mContext, MainActivityCompat.class, LoginActivityCompat.this, true);
+            return;
+        }
+
+        //检查bundle，判定启动状态
+        Bundle bundle = getIntent().getExtras();
+        if (bundle == null) {
+            Log.i(TAG, "bundle is null");
+            /* 初始登录
+             * 检查是否有更新如果有更新提示下载 */
+            mUpdateManager = new UpdateManager(mContext, appUpdateCb);
+            mUpdateManager.checkUpdate();
+        } else {
+            /* 非第一次登录
+             * 跳转到登录页面的标识
+             * 1: 注销登录跳转
+             * 2: 点击报警通知跳转 */
+            int loginFlag = bundle.getInt(WPConstant.INTENT_LOGIN_FLAG, -1);
+            switch (loginFlag) {
+                case 1:
+                    //注销 退出应用 重新登录
+                    isStartView = false;
+                    //显示登陆页面
+                    initLoginView();
+                    setValueInUi();
+                    break;
+                case 2:
+                    // 跳转到成员fragment，报警fragment页面
+                    loginIntentType = bundle.getInt("loginIntentType");
+                    detailedIntentFlag = bundle.getInt(AlarmDetailsActivityCompat.ALARM_DETAIL_FLAG);
+                    alarmTemp = bundle.getInt(AlarmDetailsActivityCompat.ALARM_DETAIL_TEMP);
+                    mAlarm = (AlarmNode) bundle.getSerializable(AlarmDetailsActivityCompat.ALARM_DETAIL_DATA);
+                    // 显示欢迎界面
+                    initWelcomeView();
+                    break;
+                default:
+                    // 显示欢迎界面
+                    initWelcomeView();
+                    break;
+            }
+        }
+
+    }
+
+    /**
+     * 获取当前应用程序的uid
+     */
+    private void getAppUid() {
+        ActivityManager am = (ActivityManager) mContext.getSystemService(ACTIVITY_SERVICE);
+        List<ActivityManager.RunningAppProcessInfo> runnings = am.getRunningAppProcesses();
+
+        for (ActivityManager.RunningAppProcessInfo runn : runnings) {
+            if (runn.processName.equals(WPConstant.TAG_WP)) {
+                WPApplication.getInstance().setAppUid(runn.uid);
+                break;
+            }
+        }
+
+    }
+
+    /**
+     * 初始化欢迎页面
+     */
+    private void initWelcomeView() {
+        getWindow().setAttributes(new WindowManager.LayoutParams(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN));
+
+        setContentView(R.layout.layout_welcome);
+        // 全局变量类实例化
+        WPApplication.getInstance();
+
+        // 是否自动登录 0:不自动登录 1:自动登录
+        isAutoLogin = SUConstant.LOGIN_FLAG_AUTO.equals(
+                EncrypAES.getInstance().decrypt(wpPreferences.getString(
+                        EncrypAES.getInstance().encrypt(WPConstant.AUTO_LOGIN),
+                        EncrypAES.getInstance().encrypt(SUConstant.LOGIN_FLAG_AUTO_NOT))));
+
+        // 等待3秒，跳转到登录界面或者自动登陆
+        pageChangeHandler.postDelayed(autoRun, 3000);
+    }
+
+
+    private Runnable autoRun = new Runnable() {
+        @Override
+        public void run() {
+            isStartView = false;
+            Log.i(TAG, "autoLogin:" + (isAutoLogin ? 1 : 0));
+            pageChangeHandler.sendEmptyMessage(isAutoLogin ? 1 : 0);
+        }
+    };
+
+    /**
+     * 切换启动页面与登录页面的handler
+     */
+    Handler pageChangeHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                // 不自动登录，则显示登录界面
+                case 0:
+                    initLoginView();
+                    setValueInUi();
+                    break;
+                // 自动后台登录
+                case 1:
+                    autoLogin();
+                    break;
+                // 取消登录成功后(关闭正在登录的progressDialog)
+                case 10:
+                    if (loginLoading.isShowing()) {
+                        loginLoading.dismiss();
+                    }
+                    loginLoading.setMessage(mContext.getString(R.string.str_login_loading_message));
+                    break;
+                // 在欢迎画面自动登录时点取消(隐藏欢迎画面进入登录画面) --已废弃
+                case 11:
+                    initLoginView(); // 初始化登录页面UI
+                    setValueInUi(); // 登录页面UI赋值
+                    break;
+                default:
+                    break;
+            }
+        }
+
+    };
+
+
+    /**
+     * 在后台自动登录
+     */
+    private void autoLogin() {
+        //首先检查网络连接
+        if (isNetConnect()) {
+            //登录实现
+            doLogin();
+        } else {
+            isAutoLogin = false;
+            initLoginView();
+            setValueInUi();
+            showToast(mContext, R.string.str_login_dialog_netfaild_message, 1000);
+        }
+    }
+
+    /**
+     * 初始化登录页面
+     */
+    private void initLoginView() {
+        // 清除全屏显示
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        setContentView(R.layout.layout_login_compat);
+
+        // 新建一个等待对话框
+        loginLoading = PublicMethodUtil.getInstance().makeProgressDialog(
+                mContext, R.string.str_null,
+                R.string.str_login_loading_message,
+                false,
+                true,
+                DIOnKeyListener);
+
+        //初始化组件
+        linear_setting = (LinearLayout) findViewById(R.id.login_rl_setting);
+        bn_setting_submit = (Button)findViewById(R.id.login_setting_ib_ok);
+        bn_setting_recover = (Button)findViewById(R.id.login_setting_ib_default);
+        bn_login = (Button)findViewById(R.id.bn_login_login);
+        bn_setting = (Button)findViewById(R.id.bn_login_setting);
+        editm_user = (MaterialEditText)findViewById(R.id.editm_login_user);
+        editm_passwd = (MaterialEditText)findViewById(R.id.editm_login_passwd);
+        edit_ip = (EditText)findViewById(R.id.edit_login_setting_ip);
+        edit_port = (EditText)findViewById(R.id.edit_login_setting_port);
+
+        /* 设置里面的 确定提交 按钮 关闭动画 */
+        bn_setting_submit.setOnClickListener(mClickListener);
+        /* 设置里面的 恢复默认 按钮 恢复默认ip和端口 */
+        bn_setting_recover.setOnClickListener(mClickListener);
+        /* 登入系统按钮 按下效果显示 */
+        bn_login.setOnClickListener(mClickListener);
+        /*  设置按钮 打开动画 设置IP和port */
+        bn_setting.setOnClickListener(mClickListener);
+
+        editm_user.setOnFocusChangeListener(mFocusListener);
+        editm_passwd.setOnFocusChangeListener(mFocusListener);
+
+        // 获取滑动层的高度
+        int h = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
+        linear_setting.measure(0, h);
+        int height = linear_setting.getMeasuredHeight();
+
+        //创建动画
+        animOpen = new TranslateAnimation(0, 0, height, 0);
+        animOpen.setFillAfter(true);
+        animOpen.setDuration(500);
+        animOpen.setAnimationListener(animationOpenListener);
+
+        animClose = new TranslateAnimation(0, 0, 0, height);
+        animClose.setFillAfter(true);
+        animClose.setDuration(500);
+        animClose.setAnimationListener(animationCloseListener);
+
+        // 检查网络，若失败则显示网络连接提示对话框
+        if (!isNetConnect()) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+            builder.setTitle(R.string.str_login_dialog_netfaild_title)
+                    .setMessage(R.string.str_login_dialog_netset)
+                    .setCancelable(true)
+                    .setPositiveButton(
+                            R.string.btn_ok,
+                            new DialogInterface.OnClickListener() {
+
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // 跳转到网络设置页面
+                                    mContext.startActivity(new Intent(Settings.ACTION_WIRELESS_SETTINGS));
+                                }
+                            })
+                    .setNegativeButton(
+                            R.string.btn_cancle,
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    //null
+                                }
+                            })
+                    .create()
+                    .show();
+        }
+    }
+
+    /**
+     * 处理登录结果
+     */
+    private Handler loginMessageHandler = new Handler() {
+
+        @Override
+        public void handleMessage(Message msg) {
+
+            /*
+             * 返回结果
+             * -404:javaInit失败
+             * -1:loginInit失败 false
+             * -4004:用户名不存在 false
+             * -4005:密码错误
+             * 1:端口占用
+             * -7:登录超时
+             * 9:服务器IP填错
+             * 2,3,4:服务器异常
+             * 其他：db错误返回值
+             */
+
+            // 不需要重新init
+            if (msg.what == -4004 || msg.what == -4005 || msg.what == 9) {
+                if (loginLoading != null && loginLoading.isShowing()) {
+                    loginLoading.dismiss();
+                }
+                // 用户名不存在
+                if (msg.what == -4004) {
+                    wpPreferences.edit().putString(
+                            EncrypAES.getInstance().encrypt(WPConstant.USER_PWD),
+                            EncrypAES.getInstance().encrypt("")).apply();
+                    showToast(mContext, R.string.str_login_toast_login_f4004, 1000);
+                }
+                // 密码错误
+                else if (msg.what == -4005) {
+                    wpPreferences.edit().putString(
+                            EncrypAES.getInstance().encrypt(WPConstant.USER_PWD),
+                            EncrypAES.getInstance().encrypt("")).apply();
+                    showToast(mContext, R.string.str_login_toast_login_f4005, 1000);
+                }
+                // 服务器IP填错
+                else if (msg.what == 9) {
+                    showToast(mContext, R.string.str_login_toast_login_9, 1000);
+                }
+
+                // 处理结果：显示登录画面
+                if (isAutoLogin) {
+                    isAutoLogin = false;
+                    // 初始化登录页面UI
+                    initLoginView();
+                    // 登录页面UI赋值
+                    setValueInUi();
+                }
+                // 改变自动登录标识（下次不自动登录）
+                wpPreferences.edit().putString(
+                        EncrypAES.getInstance().encrypt(WPConstant.AUTO_LOGIN),
+                        EncrypAES.getInstance().encrypt("0")).apply();
+            }
+            // 需要重新init
+            else if (msg.what == -404 || msg.what == -1) {
+                //TODO: uninit通信库
+                int unInitResult = CommunicationUtils.getInstance().uninit();
+                Log.i("UnInitResult", "unInitResult------------" + unInitResult);
+                if (loginLoading != null && loginLoading.isShowing()) {
+                    loginLoading.dismiss();
+                }
+                showToast(mContext, R.string.str_login_toast_login_f404, 1000);
+
+                // 显示登录画面
+                if (isAutoLogin) {
+                    isAutoLogin = false;
+                    // 初始化登录页面UI
+                    initLoginView();
+                    // 登录页面UI赋值
+                    setValueInUi();
+                }
+            }
+            // 服务器出错 无法自动登录
+            else if (msg.what == 2 || msg.what == 3 || msg.what == 4) {
+                if (loginLoading != null && loginLoading.isShowing()) {
+                    loginLoading.dismiss();
+                }
+                showToast(mContext, R.string.str_login_toast_login_2, 2000);
+                // 显示登录画面
+                if (isAutoLogin) {
+                    isAutoLogin = false;
+                    // 初始化登录页面UI
+                    initLoginView();
+                    // 登录页面UI赋值
+                    setValueInUi();
+                }
+            }
+            // 可以自动登录的
+            else {
+                if (!isAutoLogin) {
+                    showToast(mContext, R.string.str_login_dialog_faildautologin, 1000);
+                }
+                // 端口被占用
+                if (msg.what == 1) {
+                    loginPort += 10;
+                    wpPreferences.edit().putString(
+                            EncrypAES.getInstance().encrypt(WPConstant.LOCAL_PORT),
+                            EncrypAES.getInstance().encrypt(loginPort + "")).apply();
+                }
+                new Thread(new LoginRunnable(loginName, loginPwd, loginIp, loginPort)).start();
+            }
+        }
+
+    };
+
+    /**
+     * 滑动特效（打开隐藏层）
+     */
+    Animation.AnimationListener animationOpenListener = new Animation.AnimationListener() {
+
+        @Override
+        public void onAnimationStart(Animation animation) {
+            if (linear_setting.getVisibility() != View.VISIBLE) {
+                linear_setting.setVisibility(View.VISIBLE);
+            }
+        }
+
+        @Override
+        public void onAnimationRepeat(Animation animation) {
+
+        }
+
+        @Override
+        public void onAnimationEnd(Animation animation) {
+            linear_setting.clearAnimation();
+        }
+    };
+
+    /**
+     * 滑动特效（关闭隐藏层）
+     */
+    Animation.AnimationListener animationCloseListener = new Animation.AnimationListener() {
+
+        @Override
+        public void onAnimationStart(Animation animation) {
+
+        }
+
+        @Override
+        public void onAnimationRepeat(Animation animation) {
+
+        }
+
+        @Override
+        public void onAnimationEnd(Animation animation) {
+            if (linear_setting.getVisibility() != View.GONE) {
+                linear_setting.setVisibility(View.GONE);
+            }
+            linear_setting.clearAnimation();
+        }
+    };
+
+    /**
+     * 隐藏软键盘
+     */
+    private void hideKeyboard(){
+        View view = getWindow().peekDecorView();
+        if (view != null) {
+            ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE))
+                    .hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+    }
+
+    /**
+     * 按钮点击事件监听器
+     */
+    private View.OnClickListener mClickListener = new View.OnClickListener() {
+
+        @Override
+        public void onClick(View v) {
+            // 设置里的保存按钮
+            if (v == bn_setting_submit) {
+                if (linear_setting.getVisibility() == View.VISIBLE) {
+                    linear_setting.setAnimation(animClose);
+                    hideKeyboard();
+                    animClose.startNow();
+                }
+            }
+            //默认网络参数按钮
+            else if(v == bn_setting_recover){
+                edit_ip.setText(getString(R.string.str_login_default_ip));
+                edit_port.setText(getString(R.string.str_login_default_port));
+                hideKeyboard();
+            }
+
+            // 设置按钮
+            else if (v == bn_setting) {
+                if (linear_setting.getVisibility() != View.VISIBLE) {
+                    linear_setting.setAnimation(animOpen);
+                    animOpen.startNow();
+                }else{
+                    linear_setting.setAnimation(animClose);
+                    animClose.startNow();
+                }
+            }
+            // 登录按钮
+            else if (v == bn_login) {
+                if (!loginLoading.isShowing()) {
+                    if (isNetConnect()) {
+                        isCanceled = false;
+                        doLogin();
+                    } else {
+                        showToast(mContext, R.string.str_login_dialog_netfaild_message, 1000);
+                    }
+                }
+            }
+            // 自动登录取消按钮 ---已废弃
+        }
+    };
+
+    /**
+     * editText焦点改变监听
+     */
+    private EditText.OnFocusChangeListener mFocusListener = new EditText.OnFocusChangeListener(){
+
+        @Override
+        public void onFocusChange(View v, boolean hasFocus) {
+            if(hasFocus){
+                if(linear_setting.getVisibility() == View.VISIBLE){
+                    linear_setting.setVisibility(View.GONE);
+                    hideKeyboard();
+                }
+            }
+        }
+    };
+
+
+    /**
+     * 登录的实现
+     */
+    private void doLogin() {
+
+        String userName;
+        String localPort;
+        // 自动登录
+        if (isAutoLogin) {
+            // 账号
+            userName = EncrypAES.getInstance().decrypt(wpPreferences.getString(
+                    EncrypAES.getInstance().encrypt(WPConstant.USER_NAME),
+                    EncrypAES.getInstance().encrypt("")));
+            // 密码
+            loginPwd = EncrypAES.getInstance().decrypt(wpPreferences.getString(
+                    EncrypAES.getInstance().encrypt(WPConstant.USER_PWD),
+                    EncrypAES.getInstance().encrypt("")));
+            // 服务器IP
+            loginIp = EncrypAES.getInstance().decrypt(wpPreferences.getString(
+                    EncrypAES.getInstance().encrypt(WPConstant.SERVER_IP),
+                    EncrypAES.getInstance().encrypt("")));
+            // 服务器端口
+            localPort = EncrypAES.getInstance().decrypt(wpPreferences.getString(
+                    EncrypAES.getInstance().encrypt(WPConstant.LOCAL_PORT),
+                    EncrypAES.getInstance().encrypt("")));
+        }
+        // 非自动登录
+        else {
+            userName = editm_user.getText().toString();
+            loginPwd = editm_passwd.getText().toString();
+            loginIp = edit_ip.getText().toString();
+            localPort = edit_port.getText().toString();
+            // 保存用户名、Ip、端口
+            saveUiValue(userName, loginIp, localPort);
+        }
+
+        //验证
+        if (loginVerify(userName, loginPwd, loginIp, localPort)) {
+            try {
+                loginPort = Integer.parseInt(localPort);
+                loginName = (userName + "\0").getBytes(WPConstant.STRING_GB2312);
+                if (!isAutoLogin) {
+                    loginLoading.show();
+                }
+                // 判断当前网络连接的类型
+                getNetType();
+                //保存用户名
+                WPApplication.getInstance().getCurrentUser().setUserId(userName);
+
+                // 启动后台登录线程
+                loginThread = new Thread(new LoginRunnable(loginName, loginPwd, loginIp, loginPort));
+                loginThread.start();
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+                showToast(mContext, R.string.str_login_toast_login_error, 1000);
+            }
+        }
+    }
+
+    /**
+     * 根据上次登录保存在SharedPreferences中的值赋予控件中
+     */
+    private void setValueInUi() {
+        // 第一次安装时ip为空
+        String ip = getDecrypt(wpPreferences.getString(
+                getEncrypt(WPConstant.SERVER_IP),
+                getEncrypt(NIL_STR)));
+        if (!ip.equals("")) {
+            editm_user.setText(getDecrypt(wpPreferences.getString(
+                    getEncrypt(WPConstant.USER_NAME),
+                    getEncrypt(NIL_STR))));
+            editm_passwd.setText(getDecrypt(wpPreferences.getString(
+                    getEncrypt(WPConstant.USER_PWD),
+                    getEncrypt(NIL_STR))));
+            edit_ip.setText(ip);
+            edit_port.setText(getDecrypt(wpPreferences.getString(
+                    getEncrypt(WPConstant.LOCAL_PORT),
+                    getEncrypt(NIL_STR))));
+        }
+    }
+
+    /**
+     * 获取解密字符串
+     */
+    private String getDecrypt(String encyptStr){
+        return EncrypAES.getInstance().decrypt(encyptStr);
+    }
+
+    /**
+     * 获取加密字符串
+     */
+    private String getEncrypt(String orignStr){
+        return EncrypAES.getInstance().encrypt(orignStr);
+    }
+
+    /**
+     * 点击登录后保存用户名、服务器IP、本地端口到SharedPreferences中
+     */
+    private void saveUiValue(String name, String ip, String port) {
+        wpPreferences.edit().putString(
+                getEncrypt(WPConstant.USER_NAME),
+                getEncrypt(name)).apply();
+
+        wpPreferences.edit().putString(
+                getEncrypt(WPConstant.SERVER_IP),
+                getEncrypt(ip)).apply();
+
+        wpPreferences.edit().putString(
+                getEncrypt(WPConstant.LOCAL_PORT),
+                getEncrypt(port)).apply();
+    }
+
+    /**
+     * 登录成功后保存是否记住密码、密码到SharedPreferences中
+     */
+    private void loginSuccessSaveValue() {
+        // 保存密码
+        if (!isAutoLogin) {
+            wpPreferences.edit().putString(
+                    getEncrypt(WPConstant.USER_PWD),
+                    getEncrypt(editm_passwd.getText().toString())).apply();
+        }
+
+        // 改变自动登录标识（下次自动登录）
+        wpPreferences.edit().putString(
+                getEncrypt(WPConstant.AUTO_LOGIN),
+                getEncrypt(SUConstant.LOGIN_FLAG_AUTO)).apply();
+    }
+
+    /**
+     * 登录验证(本地)
+     */
+    private boolean loginVerify(String name, String pwd, String ip, String port) {
+        if (name.length() == 0 || pwd.length() == 0) {
+            showToast(mContext, R.string.str_login_toast_a);
+            return false;
+        } else {
+            if (ip.length() == 0 || port.length() == 0) {
+                showToast(mContext, R.string.str_login_toast_d);
+                return false;
+            } else {
+                if (checkIp(ip)) {
+                    if (checkPort(port)) {
+                        return true;
+                    } else {
+                        showToast(mContext, R.string.str_login_toast_c);
+                        return false;
+                    }
+                } else {
+                    showToast(mContext, R.string.str_login_toast_b);
+                    return false;
+                }
+            }
+        }
+    }
+
+    /**
+     * 验证IP：正则
+     */
+    private boolean checkIp(String str) {
+        Pattern pattern = Pattern
+                .compile("\\b((?!\\d\\d\\d)\\d+|1\\d\\d|2[0-4]\\d|25[0-5])\\" +
+                        ".((?!\\d\\d\\d)\\d+|1\\d\\d|2[0-4]\\d|25[0-5])\\" +
+                        ".((?!\\d\\d\\d)\\d+|1\\d\\d|2[0-4]\\d|25[0-5])\\" +
+                        ".((?!\\d\\d\\d)\\d+|1\\d\\d|2[0-4]\\d|25[0-5])\\b");
+        Matcher matcher = pattern.matcher(str);
+        return matcher.matches();
+    }
+
+    /**
+     * 验证端口：是否为偶数
+     */
+    private boolean checkPort(String str) {
+        try {
+            int port = Integer.parseInt(str);
+            return port % 2 == 0;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
+    /**
+     * 启动dowork服务
+     */
+    private void startDoworkServcie() {
+        Intent service = new Intent(mContext, CService.class);
+        startService(service);
+    }
+
+    /**
+     * 停止dowork服务
+     */
+    private void stopDoworkService() {
+        Intent service = new Intent(mContext, CService.class);
+        stopService(service);
+    }
+
+    /**
+     * 登录线程
+     */
+    private class LoginRunnable implements Runnable {
+        /*
+         * statement:
+         * a.之前的程序，后台服务随通信库的启动而启动，退出时停止
+         * 并且，登录锁是要保证在login之前service启动完dowork线程
+         * b.现在，后台服务随login结果而启动，表示相应客户端上线，
+         * 取消了登录锁的作用，service随应用的退出而退出
+         */
+
+        private byte[] byteName;
+        private String strPwd, strIp;
+        private int port;
+
+        private LoginRunnable(byte[] name, String pwd, String ip, int port) {
+            this.byteName = name;
+            this.strPwd = pwd;
+            this.strIp = ip;
+            this.port = port;
+        }
+
+        @Override
+        public void run() {
+            Message msg = loginMessageHandler.obtainMessage();
+            int initResult = 0;
+
+            if (!CommunicationUtils.getInstance().isInitialized()) {
+                initResult = CommunicationUtils.getInstance().init();
+                Log.i(TAG, "InitResult-------------->" + initResult);
+            }
+
+            if (initResult == 0) {
+                loginResult = -77;
+                loginResult = CommunicationUtils.getInstance().login(strIp, port, byteName, strPwd, getNetType());
+
+                Log.i(TAG, "loginResult-------------->" + loginResult);
+                if (!isCanceled) {
+                    // 登录成功
+                    if (loginResult == 0) {
+                        //保存密码
+                        loginSuccessSaveValue();
+
+                        /* 跳转到报警详细信息页面
+                         * 跳转标识 Flag
+                         * 0: 程序未启动的情况下从登录页面直接跳转
+                         * 1: 点击报警列表跳转
+                         * 2: 程序在启动状态下点击通知跳转
+                         */
+                        if (loginIntentType == 1 && mAlarm != null) {
+                            Bundle bundle = new Bundle();
+                            // 标识
+                            bundle.putInt(AlarmDetailsActivityCompat.ALARM_DETAIL_FLAG, detailedIntentFlag);
+                            // 保留字段
+                            bundle.putInt(AlarmDetailsActivityCompat.ALARM_DETAIL_TEMP, alarmTemp);
+                            // 报警数据
+                            bundle.putSerializable(AlarmDetailsActivityCompat.ALARM_DETAIL_DATA, mAlarm);
+                            intentToNewActivity(mContext, AlarmDetailsActivityCompat.class,
+                                    LoginActivityCompat.this, true, bundle);
+                        }
+                        // 跳转到主页面
+                        else {
+                            Log.i(TAG, "startDoworkService!");
+                            // service需要重新启动
+                            startDoworkServcie();
+                            intentToNewActivity(mContext, MainActivityCompat.class, LoginActivityCompat.this, true);
+                            if (!isAutoLogin && loginLoading != null) {
+                                loginLoading.dismiss();
+                            }
+                        }
+                    } else {
+                        msg.what = loginResult;
+                        loginMessageHandler.sendMessage(msg);
+                    }
+                }
+
+            } else {
+                if (!isCanceled) {
+                    msg.what = -404;
+                    loginMessageHandler.sendMessage(msg);
+                }
+            }
+        }
+    }
+
+    /**
+     * 检查当前设备是否连接网络
+     */
+    private boolean isNetConnect() {
+        if (connectivityManager == null) {
+            connectivityManager = (ConnectivityManager) mContext.getSystemService(CONNECTIVITY_SERVICE);
+        }
+        if (connectivityManager != null && mNetworkInfo == null) {
+            mNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        }
+        if (mNetworkInfo != null && mNetworkInfo.isConnected()) {
+            if (mNetworkInfo.getState() == NetworkInfo.State.CONNECTED) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 判断当前网络为WIFI还是Phone
+     * TODO: 获取网络类型，但是值暂时未定
+     */
+    private int getNetType() {
+        int type = 1;
+        if (isNetConnect()) {
+            // 判断是否是手机网络
+            WPApplication.phoneNet = (mNetworkInfo.getType() == ConnectivityManager.TYPE_MOBILE);
+        }
+        return type;
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+            // 在启动画面禁止返回键
+            if (isStartView) {
+                return true;
+            }
+            // 当底部设置栏出现时隐藏设置栏
+            if (linear_setting.getVisibility() == View.VISIBLE) {
+                linear_setting.startAnimation(animClose);
+                return true;
+            }
+//            stopDoworkService();
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    /**
+     * 取消登录
+     */
+    private void cancelLogin() {
+        new Thread() {
+            @Override
+            public void run() {
+                if (loginThread != null) {
+                    loginThread.interrupt();
+                    loginThread = null;
+                }
+                // 登录还没有返回结果
+                if (loginResult == -77) {
+                    LoginCancelLock.getInstatce().getLock(); // 锁住取消
+                }
+                // 如果已经在底层登录成功则调用反实例化
+                if (loginResult == 0) {
+                    int unInitResult = CommunicationUtils.getInstance().uninit();
+                    Log.i("UnInitResult", "unInitResult------------" + unInitResult);
+                }
+
+                if (loginLoading != null) {
+                    // 通知Handler隐藏正在登录的progressDialog
+                    pageChangeHandler.sendEmptyMessage(10);
+                } else {
+                    // 隐藏自动登录页面显示登录画面
+                    pageChangeHandler.sendEmptyMessage(11);
+                }
+            }
+        }.start();
+    }
+
+    /**
+     * progressDialog按键点击监听事件
+     */
+    DialogInterface.OnKeyListener DIOnKeyListener = new DialogInterface.OnKeyListener() {
+
+        @Override
+        public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+            if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+                if (loginLoading.isShowing()) {
+                    if (!isCanceled) {
+                        isCanceled = true;
+                        loginLoading.setMessage(mContext
+                                .getString(R.string.str_login_loading_cancel_message));
+                        cancelLogin(); // 取消登录
+                    }
+                }
+                return true;
+            }
+            return false;
+        }
+    };
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        // 保存获取当前手机的状态栏高度
+        Rect rect = new Rect();
+        getWindow().getDecorView().getWindowVisibleDisplayFrame(rect);
+//        WPApplication.getInstance().setStatusBarHeight(rect.top);
+        super.onWindowFocusChanged(hasFocus);
+    }
+
+    @Override
+    public void releaseHandler() {
+        pageChangeHandler.removeCallbacksAndMessages(null);
+        loginMessageHandler.removeCallbacksAndMessages(null);
+    }
+
+    /**
+     * 登录取消锁，当登录还没有返回结果时，锁住取消的动作，等登录完成后打开锁，判断是否在后台登录成功，是否需要反初始化通信库
+     *
+     * @author Vieboo
+     */
+    private static class LoginCancelLock {
+
+        private static LoginCancelLock lcl;
+
+        private static LoginCancelLock getInstatce() {
+
+            if (lcl == null) {
+                synchronized (LoginCancelLock.class) {
+                    if (lcl == null) {
+                        lcl = new LoginCancelLock();
+                    }
+                }
+
+            }
+            return lcl;
+        }
+
+        /**
+         * 加锁
+         */
+        private synchronized void getLock() {
+            try {
+                lcl.wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        /**
+         * 解锁
+         */
+        private synchronized void getUnlock() {
+            lcl.notifyAll();
+        }
+    }
+
+    /*  `·.·`·.·` 更新相关 `·.·`·.·`·.·` */
+    /**
+     * 更新数据回调
+     */
+    UpdateManager.UpdateCallback appUpdateCb = new UpdateManager.UpdateCallback() {
+
+        public void downloadProgressChanged(int progress) {
+            if (updateProgressDialog != null
+                    && updateProgressDialog.isShowing()) {
+                updateProgressDialog.setProgress(progress);
+            }
+
+        }
+
+        public void downloadCompleted(Boolean sucess, CharSequence errorMsg) {
+            if (updateProgressDialog != null && updateProgressDialog.isShowing()) {
+                updateProgressDialog.dismiss();
+            }
+            if (sucess) {
+                mUpdateManager.installApk();
+            } else {
+                AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+                builder.setTitle("下载失败");
+                builder.setMessage("是否重新下载？");
+                builder.setPositiveButton("确定",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                showProgress();
+                                mUpdateManager.downloadPackage();
+                            }
+                        });
+                builder.setNegativeButton("取消", null);
+                AlertDialog dialog = builder.create();
+                dialog.setCanceledOnTouchOutside(false);
+                dialog.show();
+            }
+        }
+
+        public void downloadCanceled() {
+
+        }
+
+        public void checkUpdateCompleted(Boolean hasUpdate) {
+            if (hasUpdate) {
+                isStartView = false;
+                initLoginView();
+                setValueInUi();
+                AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+                builder.setTitle("版本更新");
+                builder.setMessage("有新版本,是否更新？");
+                builder.setPositiveButton("升级",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                showProgress();
+                                mUpdateManager.downloadPackage();
+                            }
+                        });
+                builder.setNegativeButton("取消", null);
+                builder.create().show();
+            } else {
+                //检查更新结束或者更新结束，跳转到欢迎页面
+                initWelcomeView();
+            }
+
+        }
+
+        public void showProgress() {
+            updateProgressDialog = new ProgressDialog(mContext);
+            updateProgressDialog.setMessage("正在下载更新。。。");
+            updateProgressDialog.setIndeterminate(false);
+            updateProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+            updateProgressDialog.setMax(100);
+            updateProgressDialog.setProgress(0);
+            updateProgressDialog.setButton("取消",
+                    new DialogInterface.OnClickListener() {
+
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            mUpdateManager.cancelDownload();
+                        }
+                    }
+            );
+            updateProgressDialog.setButton2("后台",
+                    new DialogInterface.OnClickListener() {
+
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    }
+            );
+            updateProgressDialog.show();
+
+        }
+
+    };
+
+
+}

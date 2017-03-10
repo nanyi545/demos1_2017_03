@@ -1,0 +1,112 @@
+package com.webcon.sus.adapter;
+
+
+import android.content.Context;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.webcon.sus.demo.R;
+import com.webcon.sus.entity.StationNode;
+import com.webcon.sus.utils.CommonUtils;
+import com.webcon.sus.utils.SUConstant;
+
+import java.util.List;
+
+
+/**
+ * @author m
+ */
+public class StationListAdapter extends BaseAdapter{
+
+    private List<StationNode> mStations;
+    private LayoutInflater mInflater;
+
+    public StationListAdapter(Context context, List<StationNode> list){
+        mStations = list;
+        mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    }
+
+
+    @Override
+    public int getCount() {
+        return mStations.size();
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return mStations.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        Log.i("station list", "adapter get view");
+        ViewHolder holder = null;
+        if(convertView == null){
+            holder = new ViewHolder();
+            convertView = mInflater.inflate(R.layout.list_item_station_list, null);
+            holder.state = (ImageView)convertView.findViewById(R.id.station_item_state);
+            holder.name = (TextView)convertView.findViewById(R.id.station_item_name);
+            holder.msg = (TextView)convertView.findViewById(R.id.station_item_msg);
+            convertView.setTag(holder);
+        }else{
+            holder = (ViewHolder)convertView.getTag();
+        }
+        switchState(holder, mStations.get(position).getState());
+        holder.name.setText(mStations.get(position).getName());
+        //TODO ##关于地址。。getAddress()
+        int alarms = mStations.get(position).getAlarmNewMsg();
+        if(alarms > 0){
+            holder.msg.setText(CommonUtils.placeHolderSwitch(alarms));
+        }else{
+            holder.msg.setText("");
+        }
+
+        return convertView;
+    }
+
+    /**
+     * 切换状态
+     */
+    private void switchState(ViewHolder holder, int stateFlag){
+        switch(stateFlag){
+            case SUConstant.FLAG_STATION_CLOSED:
+                holder.name.setTextColor(SUConstant.COLOR_STATE_CLOSED);
+                holder.state.setImageResource(SUConstant.STATION_STATE_CLOSED);
+                holder.msg.setTextColor(SUConstant.COLOR_ALARM_RED_FADE);
+                break;
+            case SUConstant.FLAG_STATION_OPENED:
+                holder.name.setTextColor(SUConstant.COLOR_STATE_OPENED);
+                holder.state.setImageResource(SUConstant.STATION_STATE_OPENED);
+                holder.msg.setTextColor(SUConstant.COLOR_ALARM_RED);
+                break;
+            case SUConstant.FLAG_STATION_ALARM:
+                holder.name.setTextColor(SUConstant.COLOR_STATE_OPENED);
+                holder.state.setImageResource(SUConstant.STATION_STATE_ALARM_3);
+                holder.msg.setTextColor(SUConstant.COLOR_ALARM_RED);
+                break;
+            default:
+                holder.name.setTextColor(SUConstant.COLOR_STATE_CLOSED);
+                holder.state.setImageResource(SUConstant.STATION_STATE_CLOSED);
+                holder.msg.setTextColor(SUConstant.COLOR_ALARM_RED_FADE);
+                break;
+        }
+    }
+
+
+    //----
+    private class ViewHolder{
+        ImageView state;
+        TextView name;
+        TextView msg;
+    }
+}

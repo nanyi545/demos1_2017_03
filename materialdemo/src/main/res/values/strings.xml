@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">MaterialDemo</string>
+    <string name="title_activity_test_custom_view">TestCustomViewActivity</string>
+</resources>

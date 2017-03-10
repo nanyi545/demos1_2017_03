@@ -1,0 +1,112 @@
+package com.webcon.sus.utils;
+
+import android.media.AudioFormat;
+import android.media.AudioManager;
+import android.media.AudioTrack;
+import android.media.MediaRecorder;
+import android.os.Environment;
+
+import java.io.File;
+
+import vieboo.test.record.utils.IRecordData;
+
+/**
+ * @author m
+ */
+public class AudioUtils {
+    //---------------------------------------------------------------------------
+    public static final String TAG = "AudioUtils";
+    public static final String FILEPATH = Environment.getExternalStorageDirectory().toString() +
+            File.separator + "StationUnattended" + File.separator;    //文件路径
+    public static final String WAV_FILE = FILEPATH + "AlarmVoice_G722.pcm";
+    //音频获取源设备
+    public static final int AUDIO_SOURCE = MediaRecorder.AudioSource.MIC;
+    //设置音频采样率
+    public static final int SAMEPLE_RATE_HZ = 16000;
+    //设置音频录制的声道     CHANNEL_IN_STEREO为双声道，CHANNEL_IN_MONO为单声道
+    public static final int CHANNEL_CONFIG = AudioFormat.CHANNEL_IN_STEREO;
+    //音频数据格式：PCM 16位每个样本
+    public static final int AUDIO_FORMAT = AudioFormat.ENCODING_PCM_16BIT;
+    //音频流的类型
+    public static final int STREAM_TYPE = AudioManager.STREAM_MUSIC;
+    //Track模式
+    public static final int STREAM_MODE = AudioTrack.MODE_STREAM;
+    //输出比特率
+    public static final int BITRATE = 24000;
+    //录音缓冲区大小
+    public static final int RECORD_BUFFER_SIZE  = 640;
+    //读取缓冲区大小
+    public static final int TRACK_BUFFER_SIZE   = 60;
+
+    public static final int APPLY_TYPE_LOCAL = 1;
+    public static final int APPLY_TYPE_ONLINE = 2;
+
+    //-------------------------------------------------------------
+    private IRecordData callback;
+    private AudioRecorder mRecorder;
+    private AudioPlayer mPlayer;
+
+    //----------------------------------------------
+    public AudioUtils(IRecordData callback) {
+        this.callback = callback;
+        initDir();
+    }
+
+    /**
+     * 初始化文件目录
+     */
+    private void initDir() {
+        File dir = new File(FILEPATH);
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
+    }
+
+    //------------调用---------------
+    public boolean checkFile(){
+        File file = new File(WAV_FILE);
+        return file.exists();
+    }
+
+    public void clearFile(){
+        File file = new File(WAV_FILE);
+        if(file.exists()){
+            file.delete();
+        }
+    }
+
+    //---
+    public void startRecord() {
+        stopRecord();
+        mRecorder = new AudioRecorder(callback);
+        mRecorder.start();
+    }
+
+    public void stopRecord() {
+        if(mRecorder != null){
+            mRecorder.stop();
+            mRecorder = null;
+        }
+    }
+
+    public void startPlay() {
+        stopPlay();
+        mPlayer = new AudioPlayer(callback);
+        mPlayer.start();
+    }
+
+    public void stopPlay() {
+        if(mPlayer != null){
+            mPlayer.stop();
+            mPlayer = null;
+        }
+    }
+
+    public void release(){
+        stopPlay();
+        stopRecord();
+        callback = null;
+    }
+
+    //----------------
+}

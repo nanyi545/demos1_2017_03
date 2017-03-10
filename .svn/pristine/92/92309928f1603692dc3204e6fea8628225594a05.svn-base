@@ -1,0 +1,23 @@
+package com.webcon.sus.eventObjects;
+
+/**
+ * @author m
+ */
+public class MessageEvent extends BaseEvent{
+    private final String stationId;
+
+    public static final int MSG_TYPE_REFRESH_NEW = 1;
+
+    public MessageEvent(int type, String id){
+        super(type);
+        this.stationId = id;
+    }
+
+    public String getStationId(){
+        return stationId;
+    }
+
+    public boolean compare(String str){
+        return str.equals(stationId);
+    }
+}

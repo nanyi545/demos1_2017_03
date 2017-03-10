@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <style>
+        .left,
+        .right {
+        width: 300px;
+        height: 120px;
+        }
+
+        .left div,
+        .right div {
+        width: 100px;
+        height: 90px;
+        padding: 5px;
+        margin: 5px;
+        float: left;
+        border: 1px solid #ccc;
+        }
+
+        .newClass{
+        background: #bbffaa;
+        }
+
+        .imoocClass{
+        background: red;
+        }
+
+        .adder,.remover,.toggle{
+        display:inline;
+        }
+
+    </style>
+    <script src="http://libs.baidu.com/jquery/1.9.1/jquery.js"></script>
+</head>
+
+<body>
+<h2>.addClss()方法</h2>
+<div class="left">
+    <div class="aaron">
+        <p>newClass</p>
+    </div>
+    <div class="aaron">
+        <p>newClass</p>
+    </div>
+</div>
+<div class="right">
+    <div class="aa bb imooc">
+        <article>
+            <p>imoocClass</p>
+        </article>
+    </div>
+    <div class="bb cc imooc ">
+        <article>
+            <p>imoocClass</p>
+        </article>
+    </div>
+</div>
+
+
+<div class="bottom">
+    <div class="adder">
+        <button type="button">add class</button>
+    </div>
+    <div class="remover">
+        <button type="button">remove class</button>
+    </div>
+    <div class="toggle">
+        <button type="button">toggle class</button>
+    </div>
+
+</div>
+
+
+
+
+
+    <script type="text/javascript">
+        //class=left下div元素增加一个新的样式，增加背景颜色
+        $('.bottom .adder button').click ( function () {
+            console.log ( '#someButton was clicked' );
+            $('.left div').addClass('newClass')
+
+            //通过className(fucntion)方法
+            //这个函数返回一个或更多用空格隔开的要增加的样式名。
+            //接收index 参数表示元素在匹配集合中的索引位置和html 参数表示元素上原来的 HTML 内容
+            //找到所有的div，然后通过addClass设置颜色，根据返回的className的判断，
+            $("div").addClass(function(index,className) {
+
+                  //  string.indexOf('xx') = -1  --> means the string does not contain 'xx'
+                  //  index: the index in the  $("div") array
+                console.log("className:"+className+"  index:"+index+"--"+className.indexOf('imooc'));
+
+                if(-1 !== className.indexOf('imooc')){         //找到类名中包含了imooc的元素
+                    //this指向匹配元素集合中的当前元素
+                    $(this).addClass('imoocClass')      //  $(this)  -->  the item in the  $("div") array
+                }
+            });
+
+        } );
+
+
+
+
+
+        $('.bottom .remover button').click ( function () {
+            $('.left div').removeClass('newClass')
+
+            $("div").removeClass(function(index,className) {
+                if(-1 !== className.indexOf('imooc')){         //找到类名中包含了imooc的元素
+                    //this指向匹配元素集合中的当前元素
+                    $(this).removeClass('imoocClass')      //  $(this)  -->  the item in the  $("div") array
+                }
+            });
+
+        } );
+
+
+
+        $('.bottom .toggle button').click ( function () {
+            $('.left div').toggleClass('newClass')
+
+            $("div ").addClass(function(index,className) {    // if  use toggleClass here --> has issue...   classNames will be removed ...
+
+                if(-1 !== className.indexOf('imooc')){         //找到类名中包含了imooc的元素
+                    //this指向匹配元素集合中的当前元素
+                    $(this).toggleClass('imoocClass')      //  $(this)  -->  the item in the  $("div") array
+                }
+
+            });
+
+        } );
+
+
+
+
+
+
+
+    </script>
+
+<script type="text/javascript">
+
+
+</script>
+
+
+</body>
+
+</html>

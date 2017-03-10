@@ -1,0 +1,24 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.webcon.sus.activities.MonitorActivityCompat">
+
+    <SurfaceView
+        android:id="@+id/monitor_surface"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible" />
+
+    <ImageButton
+        android:id="@+id/monitor_quit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bg_xml_mutual_video_bottom"
+        android:paddingBottom="12dp"
+        android:paddingTop="12dp"
+        android:src="@drawable/bg_mutual_video_shutdow"
+        android:contentDescription="@string/str_null"/>
+</RelativeLayout>

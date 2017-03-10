@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <ImageView
+        android:id="@+id/equipment_item_img"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/logo" />
+
+    <TextView
+        android:id="@+id/equipment_item_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/equipment_item_img"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
+        android:text="你好我是摄像头" />
+
+    <CheckBox
+        android:id="@+id/equipment_item_chk"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_alignRight="@+id/equipment_item_img"
+        android:layout_alignTop="@+id/equipment_item_img"
+        android:background="@drawable/bg_xml_mutual_invite_check"
+        android:button="@null"
+        android:clickable="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:visibility="gone" />
+
+</RelativeLayout>

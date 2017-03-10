@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="test1.nh.com.demos1.activities.test3d.Test3dActivity">
+
+    <test1.nh.com.demos1.activities.test3d.D3TextView
+        android:id="@+id/test_3d"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
+    <test1.nh.com.demos1.activities.test3d.ShaderTestView
+        android:layout_below="@+id/test_3d"
+        android:id="@+id/test_shader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
+
+</RelativeLayout>

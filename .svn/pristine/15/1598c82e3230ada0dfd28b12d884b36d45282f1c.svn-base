@@ -1,0 +1,78 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.webcon.sus.activities.StationDetailsActivity">
+
+    <include layout="@layout/toolbar_station"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/linear_tab_head"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/Blue400"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/main_bn_tab_userlist"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingBottom="12dp"
+                android:paddingTop="8dp"
+                android:text="@string/str_xml_main_tab_monitoring"
+                android:textColor="@color/White"
+                android:background="@color/Blue400"
+                android:textSize="16sp"/>
+            <Button
+                android:id="@+id/main_bn_tab_alarmlist"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingBottom="12dp"
+                android:paddingTop="8dp"
+                android:text="@string/str_xml_main_tab_alert"
+                android:textColor="@color/White"
+                android:background="@color/Blue400"
+                android:textSize="16sp"/>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/main_iv_cursor"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_alignBottom="@id/linear_tab_head"
+            android:scaleType="matrix"
+            android:src="@drawable/bg_mutual_main_cursorimg"
+            android:contentDescription="@string/str_null"/>
+
+        <TextView
+            android:id="@+id/main_tv_tab_newalarmnum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="4dp"
+            android:layout_marginRight="35dp"
+            android:background="@drawable/bg_main_tab_newalarmnum"
+            android:gravity="center_vertical|center_horizontal"
+            android:paddingLeft="1dp"
+            android:paddingRight="1dp"
+            android:singleLine="true"
+            android:text="@string/alarm_num_init"
+            android:textColor="@android:color/white" />
+    </RelativeLayout>
+
+    <!-- 内容 -->
+    <android.support.v4.view.ViewPager
+        android:id="@+id/main_vp_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

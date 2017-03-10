@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:paddingTop="1dp"
+    android:paddingBottom="1dp" >
+    <TextView 
+        android:id="@+id/cma_msglist_item_tv_number"
+        style="@style/style_camera_monitor_annal_msglist_item_tv"
+        android:layout_weight="1"
+        android:maxLines="1"
+        />
+    <TextView 
+        android:id="@+id/cma_msglist_item_tv_type"
+        style="@style/style_camera_monitor_annal_msglist_item_tv"
+        android:maxLines="2"
+        android:layout_weight="2.0"
+        />
+    <TextView 
+        android:id="@+id/cma_msglist_item_tv_time"
+        style="@style/style_camera_monitor_annal_msglist_item_tv"
+        android:layout_weight="1.5"
+        android:maxLines="2"
+        />
+    <TextView 
+        android:id="@+id/cma_msglist_item_tv_message"
+        style="@style/style_camera_monitor_annal_msglist_item_tv"
+        android:layout_weight="1.5"
+        android:maxLines="2"
+        />
+</LinearLayout>

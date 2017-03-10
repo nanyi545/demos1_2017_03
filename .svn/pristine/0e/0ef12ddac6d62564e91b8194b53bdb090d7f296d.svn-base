@@ -1,0 +1,73 @@
+package com.webcon.wp.utils;
+
+import android.app.Activity;
+import android.util.Log;
+
+import java.util.LinkedList;
+import java.util.List;
+
+/**
+ * Activity管理类
+ * @author Vieboo
+ *
+ */
+public class ApplicationManager {
+
+	private List<Activity> activityList = new LinkedList<Activity>();
+	private List<Activity> otherActivityList = new LinkedList<Activity>();
+	private static ApplicationManager appManager;
+	
+	/**
+	 * 实例化本类
+	 */
+	public static ApplicationManager getInstance(){
+		if(appManager == null){
+			synchronized (ApplicationManager.class) {
+				if(appManager == null){
+					appManager = new ApplicationManager();
+				}
+			}
+		}
+		return appManager;
+	}
+	
+	/**
+	 * 添加Activity
+	 */
+	public void addActivity(Activity activity){
+		activityList.add(activity);
+	}
+	
+	/**
+	 * 添加剩余的Activity
+	 */
+	public void addOtherActivity(Activity activity){
+		otherActivityList.add(activity);
+	}
+	
+	/**
+	 * 程序退出
+	 */
+	public void applicationExit(){
+        if(WPApplication.DEBUG){
+            Log.i("applicationExit", "alist:" + activityList.size());
+        }
+		while(activityList.size() > 0){
+            if(WPApplication.DEBUG){
+                Log.i("applicationExit", "remove--");
+            }
+			activityList.get(0).finish();
+			activityList.remove(0);
+		}
+	}
+	
+	/**
+	 * 程序退出（关闭其他Activity）
+	 */
+	public void applicationOtherExit(){
+		while(otherActivityList.size() > 0){
+			otherActivityList.get(0).finish();
+			otherActivityList.remove(0);
+		}
+	}
+}

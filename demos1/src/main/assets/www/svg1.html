@@ -1,0 +1,83 @@
+<html>
+
+    <head>
+        <meta charset="utf-8"/>
+        <style type="text/css">
+
+        </style>
+
+
+        <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+
+        <script type="text/javascript">
+        </script>
+        
+        
+
+
+
+    </head>
+
+    <script>
+
+    </script>
+
+
+
+    <body>
+
+
+    <h1>svg</h1>
+
+	<svg  xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          width="920" height="900">
+
+	    <rect x="10" y="10" height="110" width="110" style="stroke:#ff0000; fill: #0000ff">
+	        <animateTransform
+	                attributeName="transform"
+	                begin="0s"
+	                dur="10s"
+	                type="rotate"
+	                from="0 60 60"
+	                to="360 60 60"
+	                repeatCount="indefinite"
+	        />
+	    </rect>
+
+        <svg x="10">
+            <rect x="10" y="10" height="100" width="100"
+                  style="stroke:#ff0000; fill: #0000ff"/>
+        </svg>
+
+        <svg x="200">
+            <rect x="10" y="10" height="100" width="100"
+                  style="stroke:#009900; fill: #00cc00"/>
+        </svg>
+
+
+
+<!-- #FDC22D -->
+                <!-- <use xlink:href="#a" stroke="#FEE69E"></use> -->
+
+        <svg width="300" height="300" viewBox="0 0 300 300">
+            <g  transform="matrix(.1 0 0 -.1 0 300)" fill="none" stroke-width="80">
+                <defs>
+                    <path d="M1332 2059c-280-36-499-217-568-469-25-92-23-268 5-373 70-265 248-408 549-439 279-29 495 77 602 295 43 89 65 164 76 257l6 59 64 41c35 22 77 57 94 78 38 45 86 144 95 195 7 35 6 37-20 37-37 0-65 17-65 39 0 11 13 49 30 85 29 65 42 108 54 174l6 32-433-1c-237-1-460-5-495-10z" stroke-linejoin="round" id="a"></path>
+                </defs>
+                <use xlink:href="#a" stroke="#FEE69E"></use>
+                <use xlink:href="#a" stroke-dasharray="4100,700" stroke="#FDC22D">
+                    <animate attributeName="stroke-dashoffset" dur=".7s" to="4800" repeatCount="indefinite" calcMode="spline" keyTimes="0; 1" keySplines=".1,.2,.55,-0.3"></animate>
+                </use>
+
+            </g>
+        </svg>
+
+    </svg>
+
+
+
+    </body>
+</html>
+
+

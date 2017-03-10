@@ -1,0 +1,148 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ripple="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="test1.nh.com.demos1.activities.DrawerActivity$PlaceholderFragment">
+
+    <TextView android:id="@+id/section_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-----------"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="send normal Notification"
+        android:id="@+id/button4_sendNoti"
+        android:layout_alignTop="@+id/section_label"
+        android:layout_toRightOf="@+id/section_label" />
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="cancel normal Notification"
+        android:id="@+id/button4_cancelNoti"
+        android:layout_below="@+id/button4_sendNoti"/>
+
+
+    <Button
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
+        android:text="send large Notification"
+        android:id="@+id/button4_sendLNoti"
+        android:layout_below="@+id/button4_cancelNoti"
+        android:layout_alignParentLeft="true"
+        android:layout_alignRight="@+id/button4_sendNoti" />
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/button4_sendLNoti"
+        android:orientation="vertical"
+        android:id="@+id/linearLayout">
+        <com.andexert.library.RippleView
+            android:id="@+id/rippleview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            ripple:rv_centered="false"
+            >
+
+            <TextView
+                android:id="@+id/red_tv1"
+                android:layout_width="fill_parent"
+                android:layout_height="25dp"
+                android:background="@color/Red50"
+                android:padding="25dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@android:color/white" />
+            <TextView
+                android:id="@+id/red_tv2"
+                android:layout_below="@id/red_tv1"
+                android:layout_width="fill_parent"
+                android:layout_height="25dp"
+                android:background="@color/Red100"
+                android:padding="25dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@android:color/white" />
+            <TextView
+                android:id="@+id/red_tv3"
+                android:layout_below="@id/red_tv2"
+                android:layout_width="fill_parent"
+                android:layout_height="25dp"
+                android:padding="25dp"
+                android:background="@color/Red200"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@android:color/white" />
+            <TextView
+                android:id="@+id/red_tv4"
+                android:layout_below="@id/red_tv3"
+                android:layout_width="fill_parent"
+                android:layout_height="25dp"
+                android:background="@color/Red300"
+                android:padding="25dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@android:color/white" />
+            <TextView
+                android:id="@+id/red_tv5"
+                android:layout_below="@id/red_tv4"
+                android:layout_width="fill_parent"
+                android:layout_height="25dp"
+                android:background="@color/Red400"
+                android:padding="25dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@android:color/white" />
+        </com.andexert.library.RippleView>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="style0">
+        </Button>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="style1"
+            style="@style/style1">
+        </Button>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/style2"
+            android:text="style2">
+        </Button>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/id_setTheme"
+                android:text="Theme">
+            </Button>
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="----"
+        android:id="@+id/textView"
+        android:layout_below="@+id/linearLayout"
+        android:layout_alignParentLeft="true" />
+
+</RelativeLayout>

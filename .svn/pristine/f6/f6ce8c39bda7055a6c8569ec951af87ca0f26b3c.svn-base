@@ -1,0 +1,166 @@
+package com.webcon.sus.utils;
+
+
+import com.webcon.sus.entity.StationNode;
+import com.webcon.wp.utils.JTools;
+
+import java.util.ArrayList;
+
+/**
+ * 数据的打包和解析，主要是子PDU的处理
+ * <p>包括：和系统服务软件的连接，和数据库的连接</p>
+ * @author m
+ */
+public class DataParseUtils {
+    /* ************************* */
+    /* 发送端 */
+
+    /* --数据库-- */
+    public byte[] createDBRequestHead(int subPduType){
+        //TODO ##请求
+        /*
+        1.主要是请求站场列表
+         */
+        return null;
+    }
+
+    /* --站场--   */
+    /**
+     * 创建发送站场请求的头
+     */
+    public byte[] createStationRequestHead(int subPduType, int stationId, String monitorId){
+        //TODO ## 命令的编写：
+        /*
+        1.加入；2.退出；3.开启预览；4.关闭预览
+        5.云台控制；6.播放语音；7.喊话；8.请求；9.修改
+         */
+        return null;
+    }
+
+    /* ************************* */
+    /* 接收端 */
+    /**
+     * 处理新报警消息
+     */
+    public void parseNewAlarm(byte[] data){
+
+    }
+
+    /**
+     * 处理其他消息
+     */
+    public void parseMessage(byte[] data){
+
+    }
+
+    /* --数据库-- */
+    /**
+     * 解析站场ID列表
+     * @param data
+     */
+    public void parseStationList(byte[] data){
+
+    }
+
+
+    /* ************************* *//* ************************* *//* ************************* */
+
+
+
+    //------------------------------------------
+    /**
+     * 解析初始化数据结构
+     * <p> 当前假设以设备为作为划分，再添加到指定的站场下的列表中，最后整理出站场列表 </p>
+     */
+    public static void parseInitialData(byte[] data) throws Exception{
+        ArrayList<StationNode> mList = new ArrayList<>();
+
+        /*
+         * 解析大概步骤：
+         * 1.获取长度
+         * 2......
+         */
+        int offset = 0;
+        int treeNums = JTools.Bytes4ToInt(data, offset);
+        offset += 4;
+
+        // **循环解析所有节点的数据
+//        for (int i = 0; i < treeNums; i++) {
+////            TreeElement treeEle = new TreeElement();
+////            Equipment equipment = new Equipment();
+//            StationNode sn = new StationNode();
+//            // 父节点
+//            int parentIndex = JTools.Bytes4ToInt(data, offset);
+//            offset += 4;
+//            treeEle.setParentIndex(parentIndex);
+//
+//            // 树形表唯一标识
+//            int grantIndex = JTools.Bytes4ToInt(data, offset);
+//            offset += 4;
+//            treeEle.setGrantIndex(grantIndex);
+//
+//            // 用户ID（用户名）
+//            String userId = (String) JTools.toStringList(data, offset,
+//                    WPConstant.STRING_GB2312).get(0);
+//            offset = (Integer) JTools.toStringList(data, offset,
+//                    WPConstant.STRING_GB2312).get(1);
+//            treeEle.setUserId(userId);
+//            equipment.setEqID(userId);
+//
+//            // 昵称
+//            String userName = (String) JTools.toStringList(data, offset,
+//                    WPConstant.STRING_GB2312).get(0);
+//            offset = (Integer) JTools.toStringList(data, offset,
+//                    WPConstant.STRING_GB2312).get(1);
+//            treeEle.setUserName(userName);
+//            equipment.setEqName(userName);
+//            // System.out.println("userName------------>" + userName);
+//
+//            // 用户类型
+//            int userType = JTools.Bytes4ToInt(data, offset);
+//            offset += 4;
+//            if (userType == 8 || userType == 1536 || userType == 1024
+//                    || userType == 1280 || userType == 1792)
+//                treeEle.setUserType(0);
+//            else
+//                treeEle.setUserType(userType);
+//            // 标志用于修改设备昵称
+//            if (parentIndex == 0) {
+//                if (userType == 1792)
+////                    currentUserType = userType;
+//            }
+//            treeEle.setOnlineStatus(0);
+//
+//            mList.add(treeEle);
+//            if (userType == 7) {
+//                mList.add(equipment);
+//            }
+//        }
+
+//        // 关注在线状态的用户Id集合
+//        List<String> lineStatusList = new ArrayList<String>();
+//        // 给所有对象添加各自的子集合
+//        for (int i = 0; i < elementList.size(); i++) {
+//            List<TreeElement> childrenList = new ArrayList<TreeElement>();
+//            for (int j = 0; j < elementList.size(); j++) {
+//                if (elementList.get(j).getParentIndex() == elementList.get(i)
+//                        .getGrantIndex()) {
+//                    childrenList.add(elementList.get(j));
+//                }
+//            }
+//            Collections.sort(childrenList);
+//            elementList.get(i).setChildrenList(childrenList);
+//
+//            if (elementList.get(i).getParentIndex() == 0) {
+//                elementList.get(i).setUserType(-1);
+//                WPApplication.getInstance().setCurrentUser(elementList.get(i));
+//                treeElementsList.addAll(elementList.get(i).getChildrenList());
+//            }
+//
+//            if (elementList.get(i).getUserType() == 0) {
+//                lineStatusList.add(elementList.get(i).getUserId());
+//            }
+//        }
+    }
+
+}

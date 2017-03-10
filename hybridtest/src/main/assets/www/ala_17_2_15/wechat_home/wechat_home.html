@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>首页</title>
+
+
+    <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/wechat_home.css">
+
+
+	<script src="js/myfocus-2.0.4.min.js"></script>
+    <script src="js/mf-pattern/mF_YSlider.js"></script>
+
+    <script type="text/javascript" src="js/wechat_home.js"></script>
+    <link rel="stylesheet" type="text/css" href="js/mf-pattern/mF_YSlider.css">
+
+
+	<script type="text/javascript">
+        $(document).ready(function() {
+        	initPage();
+        });
+	</script>
+
+
+</head>
+
+
+    <body>
+
+    	<div class="main_content">
+    		
+               	<div id="boxID">  <!-- has to be like this to use myFocus -->
+                    <div class="loading"><img src="images/loading.gif" alt="请稍候..." /></div>
+                    <div class="pic">
+                        <ul>
+                            <li><a href="#"><img src="images/banner1.png"/></a></li>
+                            <li><a href="#"><img src="images/red.png"/></a></li>
+                            <li><a href="#"><img src="images/green.png"/></a></li>
+                        </ul>
+                    </div>
+                    <script>
+						myFocus.set({
+						    id:'boxID',//焦点图盒子ID
+						    pattern:'mF_YSlider',//风格应用的名称
+						    time:3,//切换时间间隔(秒)
+						    trigger:'click',//触发切换模式:'click'(点击)/'mouseover'(悬停)
+						    txtHeight:'0'//文字层高度设置(像素),'default'为默认高度，0为隐藏
+						});
+					</script>    <!-- end of myFocus adv lib -->
+                </div>
+
+
+
+                <div class="menuItem item1">
+                	<div class="text1">
+                		日常保洁
+                	</div>
+                	<div class="text2">
+                		给家最细心的呵护
+                	</div>
+                </div>
+
+                <div class="menuItem item2">
+                	<div class="text1">
+                		其他服务
+                	</div>
+                	<div class="text2">
+                		更多家政服务
+                	</div>
+                </div>
+
+    	</div>
+
+
+    	<!-- 弹出提示 -->
+    	<div class="noticeFixed">
+
+    		<div class="centerMessage">
+
+    			<div class="noticeTxt">
+    				<div class="noticeHeader">
+    					提示
+    				</div>
+    				<div class="noticeMsg">
+    					阿拉家政为您提供专业擦玻璃、空调清洗、油烟机清洗、保姆、月嫂、育婴师、搬家、护工等服务，请可前往app端去购买，感谢您的支持！
+    				</div>
+    			</div>
+    			<div class="exitMsg">好的</div>
+
+    		</div>
+
+    		
+    	</div>
+		<!-- end of 弹出提示 -->
+
+
+
+
+    </body>
+
+
+    
+</html>
+
+

@@ -1,0 +1,7 @@
+package rm.module_monitoring;
+
+
+import android.support.v7.app.AppCompatActivity;
+
+public class MonitoringVideoActivity3 extends AppCompatActivity{
+}

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+    <tab
+        id="@+id/tab_1"
+        icon="@drawable/ic_a"
+        title="首页" />
+    <tab
+        id="@+id/tab_2"
+        icon="@drawable/ic_a"
+        title="订单" />
+    <tab
+        id="@+id/tab_3"
+        icon="@drawable/ic_a"
+        title="发现" />
+    <tab
+        id="@+id/tab_4"
+        icon="@drawable/ic_a"
+        title="我的" />
+
+</tabs>

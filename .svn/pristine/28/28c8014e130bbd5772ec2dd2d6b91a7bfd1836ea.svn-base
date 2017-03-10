@@ -1,0 +1,360 @@
+package com.webcon.sus.activities;
+
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
+import android.util.DisplayMetrics;
+import android.util.Log;
+import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.webcon.sus.adapter.StationPagerAdapter;
+import com.webcon.sus.demo.R;
+import com.webcon.sus.entity.StationNode;
+import com.webcon.sus.eventObjects.MessageEvent;
+import com.webcon.sus.eventObjects.StationEvent;
+import com.webcon.sus.utils.BitmapUtil;
+import com.webcon.sus.utils.SUConstant;
+import com.webcon.wp.utils.NotificationCancelManager;
+import com.webcon.wp.utils.WPApplication;
+
+import java.util.ArrayList;
+
+import de.greenrobot.event.EventBus;
+
+public class StationDetailsActivity extends BaseActivity {
+	//-------------
+    private static final String TAG = "StationDetailsActivity";
+
+	//-------------
+	private Context mContext;
+	private int stationId;
+	
+	private ViewPager viewPager;
+	private StationPagerAdapter mAdapter;
+	private ArrayList<Fragment> fragments = new ArrayList<Fragment>();
+
+    private LinearLayout mToolBar;
+    private Button bn_devices, bn_alarms;
+    private ImageButton bn_back;
+    private int initPage = 0;
+	
+	/* 报警信息相关 */
+	// 显示新报警个数
+    private TextView newAlarmNum;
+	// cursorImage
+    private ImageView cursorIV;
+    // 图片偏移量
+    private int cursorOffset = 0;
+    // 当前页卡编号
+    private int cursorIndex = 0;
+    // 图片宽度
+    private int cursorImgWidth = 0;
+	
+	private StationDevicesFragment mDeviceFragment;
+	private AlarmListFragment mAlarmFragment;
+	
+
+	//----------
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+		mContext = this;
+		EventBus.getDefault().register(this);
+        initData(getIntent());
+		initView();
+    }
+
+    private void initData(Intent intent){
+        Log.w(TAG, "init Data");
+        Bundle bundle = intent.getExtras();
+        if(bundle == null){
+            errorQuit(1001);
+        }else{
+            stationId = bundle.getInt(MainStationListFragment.KEY_ID, -1);
+            initPage = bundle.getInt(MainStationListFragment.KEY_PAGE, initPage);
+            if(stationId == -1){
+                errorQuit(1002);
+                finish();
+            }else if(stationId != getNode(stationId).getIdentifier()){
+                errorQuit(1003);
+                finish();
+            }
+        }
+    }
+	
+	private void initView(){
+		setContentView(R.layout.layout_station_details);
+        mToolBar = (LinearLayout)findViewById(R.id.toolbar_station);
+
+        mDeviceFragment = new StationDevicesFragment();
+        mAlarmFragment = new AlarmListFragment();
+        initFragmentArg();
+        fragments.add(mDeviceFragment);
+        fragments.add(mAlarmFragment);
+
+        initCursorImage();
+        initViewPager();
+
+        //##TODO newAlarm
+        newAlarmNum = (TextView) findViewById(R.id.main_tv_tab_newalarmnum);
+        setAlarmText(getNode(stationId).getNewAlarm());
+
+        bn_devices = (Button)findViewById(R.id.main_bn_tab_userlist);
+        bn_alarms = (Button)findViewById(R.id.main_bn_tab_alarmlist);
+        bn_devices.setOnClickListener(mClickListener);
+        bn_alarms.setOnClickListener(mClickListener);
+
+        bn_back = (ImageButton)findViewById(R.id.bn_station_back);
+        bn_back.setOnClickListener(mClickListener);
+
+        ((TextView) findViewById(R.id.tv_station_head_name)).setText(getNode(stationId).getName());
+        ((TextView) findViewById(R.id.tv_station_head_detail)).setText(getNode(stationId).getRemark());
+
+        //---
+        if(!getNode(stationId).isDefend()){
+            changeStateColor(SUConstant.COLOR_HEAD_GREY_SEC);
+        }else{
+            changeStateColor(SUConstant.COLOR_HEAD_BLUE_SEC);
+        }
+    }
+	
+	/**
+     * 初始化动画
+     */
+    private void initCursorImage() {
+        Bitmap mp = BitmapUtil.overlapBitmapColor(
+                BitmapFactory.decodeResource(getResources(), R.drawable.bg_mutual_main_cursorimg),
+                getResources().getColor(R.color.White));
+        cursorIV = (ImageView) findViewById(R.id.main_iv_cursor);
+        cursorIV.setImageBitmap(mp);
+        cursorImgWidth = mp.getWidth();
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+        int screentWidth = dm.widthPixels;
+        cursorOffset = (screentWidth / 2 - cursorImgWidth) / 2;
+        Matrix matrix = new Matrix();
+        matrix.postTranslate(cursorOffset, 0);
+        cursorIV.setImageMatrix(matrix);
+    }
+
+	/**
+     * 初始化界面元素
+     */
+    private void initViewPager() {
+        viewPager = (ViewPager) findViewById(R.id.main_vp_pager);
+        mAdapter = new StationPagerAdapter(getSupportFragmentManager(), fragments);
+        viewPager.setAdapter(mAdapter);
+        viewPager.addOnPageChangeListener(new MyPageChangeListener());
+        viewPager.setCurrentItem(initPage);
+    }
+
+    private void initFragmentArg(){
+        Bundle bundle = new Bundle();
+        bundle.putInt(MainStationListFragment.KEY_ID, stationId);
+        mDeviceFragment.setArguments(bundle);
+        mAlarmFragment.setArguments(bundle);
+    }
+	
+	/**
+     * 头标点击监听
+     */
+    private View.OnClickListener mClickListener = new View.OnClickListener(){
+        @Override
+        public void onClick(View v) {
+            if(v == bn_devices){
+                initPage = 0;
+                viewPager.setCurrentItem(initPage);
+            }else if(v == bn_alarms){
+                initPage = 1;
+                viewPager.setCurrentItem(initPage);
+            }else if(v == bn_back){
+                //##TODO
+//                mAlarmFragment.onBackPressed();
+                mDeviceFragment.onBackPressed();
+                finish();
+            }
+        }
+    };
+
+    private StationNode getNode(int stationId){
+        return WPApplication.getInstance().getStationNode(stationId);
+    }
+
+    private void setAlarmText(int num){
+        if(num > 0){
+            newAlarmNum.setVisibility(View.VISIBLE);
+            newAlarmNum.setText("" + num);
+        }else{
+            newAlarmNum.setVisibility(View.GONE);
+        }
+    }
+	
+	/**
+     * ViewPager滑动监听事件
+     */
+    private class MyPageChangeListener implements ViewPager.OnPageChangeListener {
+
+        int one = cursorOffset * 2 + cursorImgWidth; // 卡1 --> 卡2 偏移量
+
+        @Override
+        public void onPageScrollStateChanged(int arg0) {
+
+        }
+
+        @Override
+        public void onPageScrolled(int arg0, float arg1, int arg2) {
+
+        }
+
+        @Override
+        public void onPageSelected(int arg0) {
+            Animation animation = null;
+            switch (arg0) {
+                // 移动到0
+                case 0:
+                    if (cursorIndex == 1) {
+                        animation = new TranslateAnimation(one, 0, 0, 0);
+                    }
+                    break;
+                // 移动到1
+                case 1:
+                    if (cursorIndex == 0) {
+                        animation = new TranslateAnimation(cursorOffset, one, 0, 0);
+                    }
+                    break;
+            }
+            cursorIndex = arg0;
+            if(animation != null){
+                animation.setFillAfter(true); // 图片停在动画停止位置
+                animation.setDuration(300);
+                cursorIV.startAnimation(animation);
+            }
+        }
+    }
+	
+
+	/**
+     * ##TODO #3 监听按键事件
+     */
+    @Override
+    public boolean dispatchKeyEvent(@NonNull KeyEvent event) {
+        //FIXME: 返回处理，关于保存状态的处理
+        if (event.getAction() == KeyEvent.ACTION_DOWN && event.getRepeatCount() == 0){
+            if (event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
+//                mAlarmFragment.onBackPressed();
+                mDeviceFragment.onBackPressed();
+            }
+        }
+        return super.dispatchKeyEvent(event);
+    }
+	
+	
+	/**
+     * Activity已经存在，再次跳转到当前Activty调用此方法 切换到报警列表标签
+     */
+    @Override
+    protected void onNewIntent(Intent intent) {
+        Log.i(TAG, "----OnNewIntent----");
+        initData(intent);
+        super.onNewIntent(intent);
+    }
+
+    @Override
+    public void releaseHandler(){
+
+    }
+	
+	//--------------------
+	@Override
+	public void onResume(){
+		super.onResume();
+	}
+	
+	@Override
+    public void onPause(){
+		super.onPause();
+	}
+	
+	@Override
+	public void onDestroy(){
+	// 清除所有报警
+        NotificationCancelManager.getInstance().clearAllNotification(mContext);
+        EventBus.getDefault().unregister(this);
+		super.onDestroy();
+	}
+	
+	
+	
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_station_details, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+		switch(item.getItemId()){
+			case R.id.action_settings:
+				break;
+            default:
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    /**
+     * 报警消息事件
+     * @param event
+     */
+	public void onEventMainThread(MessageEvent event){
+		switch(event.getType()){
+            case MessageEvent.ALARM_FLAG_REFRESH_SEC:
+                setAlarmText(event.sum);
+                break;
+            default:
+                break;
+		}
+		
+	}
+
+    /**
+     * 站场消息事件
+     */
+    public void onEventMainThread(StationEvent event){
+        switch(event.getType()){
+            case StationEvent.STATION_EVENT_REFRESH:
+                if(event.msg == SUConstant.FLAG_STATION_OPENED){
+                    changeStateColor(SUConstant.COLOR_HEAD_BLUE_SEC);
+                }else if(event.msg == SUConstant.FLAG_STATION_CLOSED){
+                    changeStateColor(SUConstant.COLOR_HEAD_GREY_SEC);
+                }
+                break;
+            case StationEvent.STATION_EVENT_EXCEPTION:
+                break;
+        }
+    }
+
+    private void changeStateColor(int color){
+        mToolBar.setBackgroundColor(color);
+        bn_alarms.setBackgroundColor(color);
+        bn_devices.setBackgroundColor(color);
+    }
+}

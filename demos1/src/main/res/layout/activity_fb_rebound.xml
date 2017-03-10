@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="test1.nh.com.demos1.activities.FbReboundActivity">
+
+    <ImageView
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="40dp"
+        android:id="@+id/iv_red"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:background="#55ff4455"
+        />
+
+    <ImageView
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="40dp"
+        android:id="@+id/iv_border"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:background="@drawable/window_border2"
+        />
+
+
+    <Button
+        style="@style/button_stly1"
+        android:text="1f"
+        android:id="@+id/b_setEnd1"
+        android:layout_below="@id/iv_border"
+        />
+
+    <Button
+        style="@style/button_stly1"
+        android:text="2f"
+        android:id="@+id/b_setEnd2"
+        android:layout_below="@id/iv_border"
+        android:layout_toRightOf="@id/b_setEnd1"
+        />
+
+    <Button
+        style="@style/button_stly1"
+        android:text="3f"
+        android:id="@+id/b_setEnd3"
+        android:layout_below="@id/iv_border"
+        android:layout_toRightOf="@id/b_setEnd2"
+        />
+
+    <Button
+        style="@style/button_stly1"
+        android:text="4f"
+        android:id="@+id/b_setEnd4"
+        android:layout_below="@id/iv_border"
+        android:layout_toRightOf="@id/b_setEnd3"
+        />
+
+    <Button
+        style="@style/button_stly1"
+        android:text="5f"
+        android:id="@+id/b_setEnd5"
+        android:layout_below="@id/iv_border"
+        android:layout_toRightOf="@id/b_setEnd4"
+        />
+
+    <Button
+        style="@style/button_stly1"
+        android:text="6f"
+        android:id="@+id/b_setEnd6"
+        android:layout_below="@id/iv_border"
+        android:layout_toRightOf="@id/b_setEnd5"
+        />
+
+
+
+    <ImageView
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/b_setEnd1"
+        android:id="@+id/iv_translate"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/basketbal"
+        android:scaleType="fitXY"
+        />
+
+
+
+
+</RelativeLayout>

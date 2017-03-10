@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <SurfaceView
+        android:id="@+id/monitoring_video_sfv_surfaceview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible" />
+
+    <ImageButton
+        android:id="@+id/monitoring_video_ib_shutdown"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bg_xml_mutual_video_bottom"
+        android:paddingBottom="12dp"
+        android:paddingTop="12dp"
+        android:src="@drawable/bg_mutual_video_shutdow" />
+    
+     <Button
+        android:id="@+id/monitoring_voice_send_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/bg_xml_mutual_video_bottom"
+        android:paddingBottom="12dp"
+        android:paddingTop="12dp"
+        android:visibility="gone"
+        android:text="点击开启对讲"
+        android:src="@drawable/bg_button_a" />
+
+    <!--
+    <CCImageButton
+        android:id="@+id/video_monitoring_ccib_cloud_control"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginBottom="20dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/bg_cloud_control"
+        android:background="@color/color_transparent"
+        android:scaleType="centerCrop"
+        android:visibility="visible"
+         />
+    <RelativeLayout 
+        android:id="@+id/video_monitoring_rl_cloud_control"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="30dp">
+        变焦
+        <ImageButton 
+            android:id="@+id/video_monitoring_ib_zoom_plus"
+            style="@style/style_cloud_control_ib"
+            android:src="@drawable/bg_could_control_zoom_plus"
+            />
+        <TextView 
+            android:id="@+id/video_monitoring_tv_zoom"
+            style="@style/style_cloud_control_tv"
+            android:text="@string/str_cloud_control_zoom"
+            android:layout_below="@id/video_monitoring_ib_zoom_plus"
+            android:layout_alignLeft="@id/video_monitoring_ib_zoom_plus"
+            />
+        <ImageButton 
+            android:id="@+id/video_monitoring_ib_zoom_reduce"
+            style="@style/style_cloud_control_ib"
+            android:src="@drawable/bg_could_control_zoom_reduce" 
+            android:layout_below="@id/video_monitoring_tv_zoom"
+            android:layout_alignLeft="@id/video_monitoring_tv_zoom"
+            />
+        
+        聚焦
+        <ImageButton 
+            android:id="@+id/video_monitoring_ib_focus_plus"
+            style="@style/style_cloud_control_ib"
+            android:src="@drawable/bg_could_control_focus_plus"
+            android:layout_toRightOf="@id/video_monitoring_ib_zoom_plus"
+            android:layout_marginLeft="15dp"
+            />
+        <TextView 
+            android:id="@+id/video_monitoring_tv_focus"
+            style="@style/style_cloud_control_tv"
+            android:text="@string/str_cloud_control_focus"
+            android:layout_below="@id/video_monitoring_ib_focus_plus"
+            android:layout_alignLeft="@id/video_monitoring_ib_focus_plus"
+            />
+        <ImageButton 
+            android:id="@+id/video_monitoring_ib_focus_reduce"
+            style="@style/style_cloud_control_ib"
+            android:src="@drawable/bg_could_control_focus_reduce" 
+            android:layout_below="@id/video_monitoring_tv_focus"
+            android:layout_alignLeft="@id/video_monitoring_tv_focus"
+            />
+        
+        光圈
+        <ImageButton 
+            android:id="@+id/video_monitoring_ib_aperture_plus"
+            style="@style/style_cloud_control_ib"
+            android:src="@drawable/bg_could_control_aperture_plus"
+            android:layout_toRightOf="@id/video_monitoring_ib_focus_plus"
+            android:layout_marginLeft="15dp"
+            />
+        <TextView 
+            android:id="@+id/video_monitoring_tv_aperture"
+            style="@style/style_cloud_control_tv"
+            android:text="@string/str_cloud_control_aperture"
+            android:layout_below="@id/video_monitoring_ib_aperture_plus"
+            android:layout_alignLeft="@id/video_monitoring_ib_aperture_plus"
+            />
+        <ImageButton 
+            android:id="@+id/video_monitoring_ib_aperture_reduce"
+            style="@style/style_cloud_control_ib"
+            android:src="@drawable/bg_could_control_aperture_reduce" 
+            android:layout_below="@id/video_monitoring_tv_aperture"
+            android:layout_alignLeft="@id/video_monitoring_tv_aperture"
+            />
+    </RelativeLayout>
+    -->
+
+</RelativeLayout>

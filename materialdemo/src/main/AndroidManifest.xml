@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.nanyi545.www.materialdemo">
+
+    <application
+        android:name=".MyApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".BehaviourActivity1"
+            android:theme="@style/AppTheme.NoTitle.TransparentSystemBar" />
+        <activity
+            android:name=".behaviour2.BehaviourActivity2"
+            android:theme="@style/AppTheme.NoTitle.TransparentSystemBar" />
+        <activity
+            android:name=".testPullToRefresh.TestPullRefreshActivity"
+            android:theme="@style/AppTheme.NoTitle.TransparentSystemBar" />
+        <activity
+            android:name=".testPullToRefresh.TestPullRefreshActivity2"
+            android:theme="@style/AppTheme.NoTitle.TransparentSystemBar" />
+        <activity
+            android:name=".nestedScroll.TestNestedScrollActivity"
+            android:theme="@style/AppTheme.NoTitle" />
+        <activity
+            android:name=".nestedScroll.TestNestedScrollActivity2"
+            android:theme="@style/AppTheme.NoTitle.TransparentSystemBar" />
+        <activity android:name=".quickRet.QuickRetActivity" />
+        <activity
+            android:name=".nestedScroll.use_nested_scrollview.TestNestedScrollActivity3"
+            android:theme="@style/AppTheme.NoTitle.TransparentSystemBar" />
+        <activity android:name=".nestedScroll.no_coordinator_test.NoCoordinatorNestedScrollTestActivity" />
+        <activity android:name=".nestedScroll.no_coordinator_test.testWithCostumView.NoCoorNestedScrollTestActivity" />
+        <activity
+            android:name=".coordinatorWithoutAppbarLO.CoordinatorWithoutCollapsingTLOActivity"
+            android:theme="@style/AppTheme.NoTitle.TransparentSystemBar" />
+        <activity android:name=".collapse_layout.TestCollapseLayoutActivity" />
+        <activity
+            android:name=".customView.TestCustomViewActivity"
+            android:label="@string/title_activity_test_custom_view"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".coordinatorWithoutAppbarLO.CoordinatorWithoutCollapTLOActivity2"
+            android:theme="@style/AppTheme.NoTitle.TransparentSystemBar" />
+        <activity
+            android:name=".coordinatorWithoutAppbarLO.CoordinatorWithoutCollapTLOActivity3"
+            android:theme="@style/AppTheme.NoTitle.TransparentSystemBar" />
+        <activity android:name=".testPullToRefresh.TestPullRefreshActivity3"
+            android:theme="@style/AppTheme.NoTitle.TransparentSystemBar"></activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/nav_linear_header"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/theme_main"
+    android:orientation="vertical"
+    android:paddingBottom="12dp"
+    android:paddingTop="36dp">
+
+    <com.webcon.sus.view.CircleImageView
+        android:id="@+id/nav_user_avatar"
+        android:layout_width="84dp"
+        android:layout_height="84dp"
+        android:layout_gravity="center"
+        android:src="@drawable/icon_user_2"
+        app:border_color="@color/White"
+        app:border_width="2dp"/>
+
+    <LinearLayout
+        android:id="@+id/linear_pos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:gravity="right"
+            android:text="@string/str_userid"
+            android:textColor="@color/Amber200"
+            android:textSize="12sp"/>
+
+        <TextView
+            android:id="@+id/nav_tv_user_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_test"
+            android:textColor="@color/White"
+            android:textSize="16sp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:gravity="right"
+            android:text="@string/str_username"
+            android:textColor="@color/Amber200"
+            android:textSize="12sp"/>
+
+        <TextView
+            android:id="@+id/nav_tv_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_test"
+            android:textColor="@color/White"
+            android:textSize="16sp"/>
+    </LinearLayout>
+</LinearLayout>

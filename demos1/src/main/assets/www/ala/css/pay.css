@@ -1,0 +1,88 @@
+@charset "UTF-8";
+body{background-color: #eee;}
+.pay{overflow: hidden;margin-bottom: 2em;}
+.clearfix{clear: both;}
+.pay .head{width: 100%;height: 3em;position: relative;line-height: 3em;font-size: 4vw;color: #000;text-align: center;;background-color: #fff;border-bottom: 1px solid #ddd;}
+.pay .head .left{position: absolute;left: 4%;top: 1em;width: .8em;height: 1.2em;z-index: 1000;background: url("../images/glass/back-icon.png") no-repeat;background-size: 100% 100%;float: left;}
+.pay .head .center{position: absolute;left: 0;top: 0;height: 3em;width: 100%;}
+
+
+.pay .appoint{height: 2.8em;line-height: 2.8em;font-size: 4.8vw;text-align: center;color: #fff;background-color: #fff;position: fixed;bottom: 0;width: 100%;border-top: 1px solid #ddd;}
+.pay .appoint .left{width: 70%;float: left;color: #f63;font-size: 4.5vw;text-align: left;text-indent: 1em;}
+.pay .appoint .left span{font-size: 4.5vw;color: #333;}
+.pay .appoint .appoint-btn{background-color: #F06520;display: block;width: 28%;float: right;color: #fff;font-size: 4.5vw;letter-spacing: 2px;}
+
+.pay .address{overflow: hidden;background-color: #fff;color: #333;line-height: 2em;display: block;padding: 1em 0 0;position: relative;clear: both;}
+.pay .address .name{float: left;margin-right: .5em;padding-left: 4%;font-size: 3.8vw;}
+.pay .address .sex{float: left;margin-right: .5em;font-size: 3.8vw;}
+.pay .address .tel{float: left;margin-right: .5em;font-size: 3.8vw;}
+.pay .address .type1{float: left;color: #fff;font-size: 3.8vw;padding: .5em;border-radius: .2em;background-color: #308EE9;line-height: .5em;margin: .5em .5em 0 4%;width: 2.2em;height: .5em;text-align: center;}
+.pay .address .type2{float: left;color: #fff;font-size: 3.8vw;padding: .5em;border-radius: .2em;background-color: #f63;line-height: .5em;margin: .5em .5em 0 4%;width: 2.2em;height: .5em;text-align: center;}
+.pay .address .add{float: left;color: #666;font-size: 3.8vw;width: 20em;}
+.pay .address .more-icon{position: absolute;right: 1em;top: 2em;width: .8em;height: 1em;background: url("../images/pay/icon9.png") no-repeat;background-size: 100% 100%;}
+.pay .address .border-b{background: url("../images/pay/border.png") no-repeat;background-size: 100% 100%;width: 100%;height: .5em;margin-top: 5em;clear: both;}
+
+.pay .time{margin-top: .8em;overflow: hidden;background-color: #fff;padding-left: 4%;width: 96%;border-bottom: 1px solid #ddd;border-top: 1px solid #ddd;}
+.pay .time .duration{height: 3em;line-height: 3em;border-bottom: 1px solid #ddd;color: #333;}
+.pay .time .duration .left{width: 30%;float: left;font-size: 3.8vw;}
+.pay .time .duration .right{width: 22%;float: right;font-size: 3.8vw;}
+.pay .time .duration .right .num{display: inline-block;}
+.pay .time .duration .right .more-icon{float: right;margin: 1em 1em 0 0;width: .8em;height: 1em;;background: url("../images/pay/icon9.png") no-repeat;background-size: 100% 100%;}
+
+.pay .time .tips{height: 2em;line-height: 2.6em;color: #308EE9;font-size: 3.5vw;}
+.pay .time .tips .icon{width: 1em;height: 1em;background: url("../images/pay/icon15.png") no-repeat;background-size: 100% 100%;float: left;margin: .5em;}
+
+.pay .choose-time{display: block;margin-top: .8em;overflow: hidden;background-color: #fff;padding-left: 4%;width: 96%;border-bottom: 1px solid #ddd;border-top: 1px solid #ddd;}
+.pay .choose-time .choose{color: #333;height: 3em;line-height: 3em;background-color: #fff;}
+.pay .choose-time .left{width: 30%;float: left;font-size: 3.8vw;}
+.pay .choose-time .right{width: 45%;float: right;font-size: 3.8vw;}
+.pay .choose-time .right .start-time{display: inline-block;line-height: 3.5em;}
+.pay .choose-time .right .more-icon{float: right;margin: 1em 1em 0 0;width: .8em;height: 1em;;background: url("../images/pay/icon9.png") no-repeat;background-size: 100% 100%;}
+
+
+.pay .detail{margin-top: .8em;overflow: hidden;background-color: #fff;padding: .5em 4%;width: 92%;border-bottom: 1px solid #ddd;border-top: 1px solid #ddd;}
+.pay .detail .left{width: 4em;height: 4em;float: left;background-color: #ddd;border-radius: 2em;margin-right: 1em;}
+.pay .detail .right{float: left;}
+.pay .detail .right .title{font-size: 4.2vw;color: #333;margin-top: 1em;}
+.pay .detail .right .title span{color: #f63;}
+.pay .detail .right .company{font-size: 3.8vw;color: #999;}
+
+
+.pay .demo{margin-top: .8em;overflow: hidden;background-color: #fff;padding-left: 4%;width: 96%;border-bottom: 1px solid #ddd;border-top: 1px solid #ddd;}
+.pay .demo input{width: 100% ;height: 1.5em;line-height: 1.5em;font-size: 3.8vw;margin: .75em 0;}
+
+
+.mask{display: none;position: fixed;width: 100%;height: 100%;top:0;left:0;background: #000;filter:alpha(Opacity=50);-moz-opacity:0.5;opacity: 0.5;z-index: 1000;}
+.time-choose{display: none;position: fixed;width: 100%;height: 20em;bottom: 0;left: 0;z-index: 10001;background-color: #eee;}
+.time-choose .title{height: 3em;line-height: 3em;color: #333;text-align: center;}
+.time-choose .title .cancel-btn{display: block;width: 25%;font-size: 4vw;float: left;color: #999;text-decoration: none;}
+.time-choose .title .text{display: block;width: 50%;font-size: 4.8vw;float: left;color: #666;}
+.time-choose .title .sure-btn{display: block;width: 25%;font-size: 4vw;float: left;color: #f63;text-decoration: none;}
+.time-choose .detail{height: 17em;width: 100%;}
+.time-choose .detail .left{width: 100%;float: left;height: 30em;}
+.time-choose .detail .left .left-item{height: 3em;line-height: 3em;text-align: center;color: #666;font-size: 4vw;}
+.time-choose .detail .left .cur{background-color: #fff;}
+.time-choose .detail .right{width: 96%;float: left;background-color: #fff;padding-left: 4%;height: 30em;}
+.time-choose .detail .right .info{font-size: 4vw;height: 3em;line-height: 3em;color: #666;}
+.time-choose .detail .right .right-item{color: #666;height: 3em;line-height: 3em;position: relative;}
+.time-choose .detail .right .right-item .time{color: #999;display: inline-block;float: right;margin-right: 9.5em;font-size: 3.8vw;}
+.time-choose .detail .right .right-item .choosed{position: absolute;top: 1em;right: .5em;width: 1em;height: 1em;background: url("../images/pay/icon37.png") no-repeat;background-size: 100% 100%;}
+#wrapper1{width: 30%;position:absolute; z-index:1;top:3em;left:0;overflow:auto;height: 100%;}
+#wrapper2{width: 70%;position:absolute; z-index:1;top:3em;right:0;overflow:auto;height: 100%;}
+
+.coupon-container #wrapper{position: absolute; z-index: 1; top: 0; left: 0; width: 100%; overflow: hidden; height: 100%;}
+.coupon-container #wrapper #scroller{position: absolute;z-index: 1;-webkit-tap-highlight-color: rgba(0,0,0,0);width: 100%;-webkit-transform: translateZ(0);-moz-transform: translateZ(0);-ms-transform: translateZ(0);-o-transform: translateZ(0);transform: translateZ(0);-webkit-touch-callout: none;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;-webkit-text-size-adjust: none;-moz-text-size-adjust: none;-ms-text-size-adjust: none;-o-text-size-adjust: none;text-size-adjust: none;}
+
+.pay .clean{overflow: hidden;margin-top: .8em;border-bottom: 1px solid #ddd;border-top: 1px solid #ddd;background-color: #fff;}
+.pay .clean .item{height: 3em;line-height: 3em;color: #333;overflow: hidden;}
+.pay .clean .border{border-bottom: 1px solid #ddd;border-top: 1px solid #ddd;}
+.pay .clean .item .left{font-size: 3.8vw;width: 30%;float: left;padding-left: 4%;}
+.pay .clean .item .unit{font-size: 3.5vw;width: 20%;float: left;color: #f63;}
+.pay .clean .item .right{font-size: 3.8vw;width: 20%;float: right;height: 2em;border-radius: .9em;border: 1px solid #bbb;margin: .75em 4%;}
+.pay .clean .item .right .minus{display: block;float: left;font-size: 5vw;color: #f63;width: 30%;line-height: 1.7em;text-align: center;}
+.pay .clean .item .right .num{float: left;width: 35%;line-height: 1.4em;font-size: 3.8vw;height: 1.2em;text-align: center;border: 1px solid #ddd;margin-top: .35em;border-bottom: 0;border-top: 0;}
+.pay .clean .item .right .add{display: block;float: left;width: 30%;font-size: 5vw;color: #f63;line-height: 1.7em;text-align: center;}
+
+#money{color: #f63;}
+.noaddr{width: 100%;text-align: center;margin-top: .7em;}
+.left img{border-radius: 2em;}

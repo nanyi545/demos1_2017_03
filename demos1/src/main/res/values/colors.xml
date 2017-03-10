@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="theme_main">@color/Blue_</color>
+
+    <color name="color_white">#ffffff</color>
+    <color name="color_black">#000000</color>
+    <color name="color_green">#008000</color>
+    <color name="color_transparent">#00000000</color>
+    <color name="color_font_gray">#333333</color>
+    <color name="color_font_lightgray">#666666</color>
+    <color name="color_font_lightwhite">#aaaaaa</color>
+
+    <!-- wheelViewDialog -->
+    <color name="color_wheelview_dialog_bg">#232323</color>
+    <color name="color_wheelview_dialog_title">#121212</color>
+
+    <!-- layout_login_compat.xml -->
+    <color name="color_login_middle">#e5e3e8</color>
+    <color name="color_login_title">#363a5d</color>
+    <color name="color_login_input_et">#656565</color>
+    <color name="color_login_settingdiv_tv">#efefef</color>
+
+    <color name="color_main_tab">#7a7a7a</color>
+
+    <!-- layout_tab_monitoring_expanlv_item_parent.xml -->
+    <color name="color_monitoring_expanlv_item_parent">#b2aead</color>
+
+    <!-- layout_camera_config.xml -->
+    <color name="color_camera_config_bg">#f7f7f7</color>
+    <color name="color_camera_config_et_num">#323232</color>
+    <color name="color_camera_config_time_bg">#3a3d42</color>
+
+    <!-- layout_camera_monitor_annal.xml -->
+    <color name="color_camera_monitor_annal_bg">#f7f7f7</color>
+    <color name="color_camera_monitor_annal_title">#303338</color>
+
+    <!-- layout_camera_config_dialog_week.xml -->
+    <color name="color_camera_config_dialog_week_list_line">#e4e4e4</color>
+
+    <!-- CloudControl -->
+    <color name="color_cloud_control_text_bg">#fefefe</color>
+
+
+    <color name="color_mutual_userlist_tv_videoing">#5bb4e5</color>
+    <color name="color_mutual_video_ll_bottom">#66ffffff</color>
+
+
+    <color name="color_traffic_item_title_bg">#00b8e4</color>
+    <color name="color_alarm_light">#FFFF00</color>
+    <color name="color_alarm_weight">#FF8000</color>
+    <color name="color_alarm_crash">#FF0000</color>
+    <color name="color_back_gray">#EFEFEF</color>
+    
+    <!-- bg_xml_mutual_video_bottom2.xml -->
+    <color name="bg_quit_pressed">#AAFF7F00</color>
+    <color name="bg_quit_unpressed">#88000000</color>
+    
+    <!-- bg_xml_mutual_video_rotate.xml -->
+    <color name="bg_normal_pressed">#88000000</color>
+    
+    <!-- constants color -->
+    <color name="bg_common">#88000000</color>
+
+
+    <!-- 0000000000000000000000000000000000000 -->
+    <color name="bg_glass_white_0">#11FFFFFF</color>
+    <color name="bg_glass_white_1">#22FFFFFF</color>
+    <color name="bg_glass_white_2">#44FFFFFF</color>
+    <color name="bg_glass_white_3">#66FFFFFF</color>
+    <color name="bg_glass_white_4">#88FFFFFF</color>
+    <color name="bg_glass_white_5">#AAFFFFFF</color>
+    <color name="bg_glass_white_6">#CCFFFFFF</color>
+    <color name="bg_glass_white_7">#EEFFFFFF</color>
+
+    <!-- pure -->
+    <color name="White">#FFFFFFFF</color>
+    <color name="Black">#FF000000</color>
+
+    <!-- Material design   Reds -->
+    <color name="Red50">#fde0dc</color>
+    <color name="Red100">#f9bdbb</color>
+    <color name="Red200">#f69988</color>
+    <color name="Red300">#f36c60</color>
+    <color name="Red400">#e84e40</color>
+    <color name="Red500">#e51c23</color>
+    <color name="Red600">#dd191d</color>
+    <color name="Red700">#d01716</color>
+    <color name="Red800">#c41411</color>
+    <color name="Red900">#b0120a</color>
+    <color name="RedA100">#ff7997</color>
+    <color name="RedA200">#ff5177</color>
+    <color name="RedA400">#ff2d6f</color>
+    <color name="RedA700">#e00032</color>
+
+    <color name="Red400T">#44e84e40</color>
+
+    <!-- Material design   Teals -->
+    <color name="Teal50">#e0f2f1</color>
+    <color name="Teal100">#b2dfdb</color>
+    <color name="Teal200">#80cbc4</color>
+    <color name="Teal300">#4db6ac</color>
+    <color name="Teal400">#26a69a</color>
+    <color name="Teal500">#009688</color>
+    <color name="Teal600">#00897b</color>
+    <color name="Teal700">#00796b</color>
+    <color name="Teal800">#00695c</color>
+    <color name="Teal900">#004d40</color>
+    <color name="TealA100">#a7ffeb</color>
+    <color name="TealA200">#64ffda</color>
+    <color name="TealA400">#1de9b6</color>
+    <color name="TealA700">#00bfa5</color>
+    <color name="Teal400T">#4426a69a</color>
+
+    <!-- Material design   Purple -->
+    <color name="Purple50">#f3e5f5</color>
+    <color name="Purple100">#e1bee7</color>
+    <color name="Purple200">#ce93d8</color>
+    <color name="Purple300">#ba68c8</color>
+    <color name="Purple400">#ab47bc</color>
+    <color name="Purple500">#9c27b0</color>
+    <color name="Purple600">#8e24aa</color>
+    <color name="Purple700">#7b1fa2</color>
+    <color name="Purple800">#6a1b9a</color>
+    <color name="Purple900">#4a148c</color>
+    <color name="PurpleA100">#ea80fc</color>
+    <color name="PurpleA200">#e040fb</color>
+    <color name="PurpleA400">#d500f9</color>
+    <color name="PurpleA700">#aa00ff</color>
+    <!-- Material design   Blue -->
+    <color name="Blue50">#e7e9fd</color>
+    <color name="Blue100">#d0d9ff</color>
+    <color name="Blue200">#afbfff</color>
+    <color name="Blue300">#91a7ff</color>
+    <color name="Blue400">#738FFE</color>
+    <color name="Blue500">#5677FC</color>
+    <color name="Blue600">#4E6CEF</color>
+    <color name="Blue700">#455EDE</color>
+    <color name="Blue800">#3B50CE</color>
+    <color name="Blue900">#2A36B1</color>
+    <color name="BlueA100">#a6baff</color>
+    <color name="BlueA200">#6889ff</color>
+    <color name="BlueA400">#4d73ff</color>
+    <color name="BlueA700">#4d69ff</color>
+    <color name="Blue900trans">#112A36B1</color>
+    <color name="Blue_">@color/Blue400</color>
+
+    <!-- Material design   gray -->
+    <color name="Gray50">#FAFAFA</color>
+    <color name="Gray100">#F5F5F5</color>
+    <color name="Gray200">#EEEEEE</color>
+    <color name="Gray300">#E0E0E0</color>
+    <color name="Gray400">#BDBDBD</color>
+    <color name="Gray450">#BBBBBB</color>
+    <color name="Gray500">#9E9E9E</color>
+    <color name="Gray600">#757575</color>
+    <color name="Gray700">#616161</color>
+    <color name="Gray800">#424242</color>
+    <color name="Gray900">#212121</color>
+    <color name="Gray200T">#22EEEEEE</color>
+
+    <!-- in custom piechart -->
+    <color name="seafoam">#ffc6f9e5</color>
+    <color name="chartreuse">#ffb6e9b5</color>
+    <color name="emerald">#ffa6d9b5</color>
+    <color name="bluegrass">#ff96c9b5</color>
+    <color name="turquoise">#ff86b9b5</color>
+    <color name="slate">#ff76a9b5</color>
+
+
+    <!-- station list -->
+    <color name="station_list_name_Cyan700">#0097A7</color>
+
+    <!-- Grey -->
+    <color name="Grey50">#FAFAFA</color>
+    <color name="Grey100">#F5F5F5</color>
+    <color name="Grey200">#EEEEEE</color>
+    <color name="Grey300">#E0E0E0</color>
+    <color name="Grey400">#BDBDBD</color>
+    <color name="Grey500">#9E9E9E</color>
+    <color name="Grey600">#757575</color>
+    <color name="Grey700">#616161</color>
+    <color name="Grey800">#424242</color>
+    <color name="Grey900">#212121</color>
+    <color name="Grey1000">#000000</color>
+    <color name="Grey_">@color/Grey500</color>
+
+    <!-- other -->
+    <color name="Indigo50">#E8EAF6</color>
+    <color name="LightGreenA200">#B2FF59</color>
+    <color name="Orange400">#FFA726</color>
+    <color name="Red_">#E51C23</color>
+    <color name="Yellow800">#F9A825</color>
+    <color name="Yellow_">#FFEB3B</color>
+    <color name="Amber200">#FFE082</color>
+    <color name="DeepPurple200">#B39DDB</color>
+
+    <!-- -->
+    <color name="login_bn_BlueGrey300">#90A4AE</color>
+
+    <!-- -->
+    <color name="Transparent">#00FFFFFF</color>
+    <color name="Bg_semi_1">#CCFFF176</color>
+
+    <!-- monitor -->
+    <color name="monitor_text">@color/Yellow_</color>
+    <color name="monitor_text_dim">#77FFEB3B</color>
+    <color name="monitor_text_on">#CCFFFFFF</color>
+    <!--<color name="monitor_text">#CC9E9E9E</color>-->
+    <color name="monitor_voice_pressed">#AA455EDE</color>
+    <color name="monitor_voice_pressed_2">#EE455EDE</color>
+    <color name="monitor_bn_outline">#55FFEA00</color>
+    <color name="monitor_bn_outline_">#AAFFEA00</color>
+
+    <!-- remote -->
+    <color name="dim_purple_1">#669575CD</color>
+    <color name="dim_white_1">#33FFFFFF</color>
+    <color name="dim_white_2">#44FFFFFF</color>
+    <color name="dim_white_8">#AAFFFFFF</color>
+    <color name="dim_grey400">#66BDBDBD</color>
+    <color name="dim_blue_1">#885677FC</color>
+    <color name="dim_bg_press_1">#3390A4AE</color>
+    <color name="dim_profile">#44CCCCCC</color>
+    <color name="dim_bg_avatar">@color/Blue_</color>
+    <color name="color_text_purple_1">#CC673AB3</color>
+    <color name="profile_press_golden">#CCFFEE58</color>
+    <color name="profile_press_blue">#AA29B6F6</color>
+    <color name="profile_longpress_blue">#AA0277BD</color>
+    <color name="bg_wallpaper_color_p">#752d30</color>
+
+
+    <!-- cpb -->
+    <!-- CircularProgressButton -->
+    <color name="cpb_grey">#ffdedede</color>
+    <color name="cpb_blue">#ff0099cc</color>
+    <color name="cpb_blue_dark">#ff00719b</color>
+    <color name="cpb_red">#ffff4444</color>
+    <color name="cpb_red_dark">#ffcd3a3a</color>
+    <color name="cpb_green">#ff99cc00</color>
+    <color name="cpb_green_dark">#ff6d9b00</color>
+    <color name="cpb_white">@android:color/white</color>
+
+    <!-- defence button switch color -->
+    <color name="color_bn_open_defence_unpressed">#FFC1CDC1</color>
+    <color name="color_bn_open_defence_pressed">#FF819881</color>
+    <color name="color_bn_close_defence_unpressed">@color/Blue400</color>
+    <color name="color_bn_close_defence_pressed">#FF4768eb</color>
+
+
+
+</resources>

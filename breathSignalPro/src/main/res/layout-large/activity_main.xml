@@ -1,0 +1,48 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.webcon.breath.freescale.ui.MainActivity">
+
+    <TextView
+        android:background="@color/color_blue"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="large"
+        android:textSize="20sp"
+        android:visibility="invisible"
+        ></TextView>
+
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/chart1"
+        android:layout_width="450dp"
+        android:layout_height="350dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp" />
+
+
+
+    <TextView
+        android:id="@+id/tv_timer"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:textSize="30sp"
+        ></TextView>
+
+
+    <Button
+        android:layout_marginTop="10dp"
+        android:id="@+id/bn_printFile"
+        android:onClick="printFile"
+        android:text="printFile()--large"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:textSize="20sp"
+        ></Button>
+
+
+
+</LinearLayout>

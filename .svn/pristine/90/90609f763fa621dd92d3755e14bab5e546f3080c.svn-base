@@ -1,0 +1,23 @@
+package com.webcon.sus.eventObjects;
+
+/**
+ * @author m
+ */
+public class StationInformEvent extends BaseEvent{
+    public static final int DEVICE_EVENT_ALARM = 1;
+    public static final int DEVICE_EVENT_REFRESH = 2;
+	public static final int DEVICE_EVENT_DEFENCE_OPEN = 3;
+	public static final int DEVICE_EVENT_DEFENCE_CLOSE = 4;
+
+    private final int stationId;
+    public StationInformEvent(int type, int id){
+        super(type);
+        stationId = id;
+    }
+
+    public int getStationId(){
+        return stationId;
+    }
+
+
+}

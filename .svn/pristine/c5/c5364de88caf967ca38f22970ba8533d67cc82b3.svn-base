@@ -1,0 +1,436 @@
+package com.webcon.sus.receiver;
+
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
+import android.os.Bundle;
+import android.util.Log;
+
+import com.baidu.frontia.api.FrontiaPushMessageReceiver;
+import com.webcon.sus.db.AlarmDao;
+import com.webcon.sus.demo.R;
+import com.webcon.sus.entity.AlarmInfo;
+import com.webcon.sus.http.HttpRequestUtil;
+import com.webcon.sus.http.JsonResolve;
+import com.webcon.wp.utils.EncrypAES;
+import com.webcon.wp.utils.NotificationCancelManager;
+import com.webcon.wp.utils.PublicMethodUtil;
+import com.webcon.wp.utils.WPConstant;
+
+import org.json.JSONObject;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.util.List;
+
+public class MyPushMessageReceiver extends FrontiaPushMessageReceiver {
+	/** TAG to Log */
+	public static final String TAG = MyPushMessageReceiver.class
+			.getSimpleName();
+	private SharedPreferences mSP;
+
+	/**
+	 * 调用PushManager.startWork后，sdk将对push
+	 * server发起绑定请求，这个过程是异步的。绑定请求的结果通过onBind返回。 如果您需要用单播推送，需要把这里获取的channel
+	 * id和user id上传到应用server中，再调用server接口用channel id和user id给单个手机或者用户推送。
+	 * 
+	 * @param context
+	 *            BroadcastReceiver的执行Context
+	 * @param errorCode
+	 *            绑定接口返回值，0 - 成功
+	 * @param appid
+	 *            应用id。errorCode非0时为null
+	 * @param userId
+	 *            应用user id。errorCode非0时为null
+	 * @param channelId
+	 *            应用channel id。errorCode非0时为null
+	 * @param requestId
+	 *            向服务端发起的请求id。在追查问题时有用；
+	 * @return none
+	 */
+	@Override
+	public void onBind(Context context, int errorCode, String appid,
+			String userId, String channelId, String requestId) {
+		String responseString = "onBind errorCode=" + errorCode + " appid="
+				+ appid + " userId=" + userId + " channelId=" + channelId
+				+ " requestId=" + requestId;
+		Log.d(TAG, responseString);
+
+		if (mSP == null) {
+			mSP = context.getSharedPreferences(WPConstant.WP_SETTING, 0);
+		}
+		if (errorCode == 0) {
+//			PushUtils.setBind(context, true);
+		}
+
+		// 判断启动发送手机推送配置信息的线程
+		if (null != mSP) {
+			String userName = EncrypAES.getInstance().decrypt(
+					mSP.getString(
+							EncrypAES.getInstance().encrypt(
+									WPConstant.USER_NAME), EncrypAES
+									.getInstance().encrypt("")));
+			if (null != userName && !userName.equals("")) {
+				new Thread(new SendPushInfoToPushServer(userName, userId,
+						channelId)).start();
+			}
+		}
+
+	}
+
+	/**
+	 * 接收透传消息的函数。
+	 * 
+	 * @param context
+	 *            上下文
+	 * @param message
+	 *            推送的消息
+	 * @param customContentString
+	 *            自定义内容,为空或者json字符串
+	 */
+	@Override
+	public void onMessage(Context context, String message,
+			String customContentString) {
+		String messageString = "透传消息 message=\"" + message
+				+ "\" customContentString=" + customContentString;
+		Log.d(TAG, messageString);
+
+		// 解析报警信息并发送通知
+		resolveAlarmMessage(context, message);
+
+	}
+
+	/**
+	 * 接收通知点击的函数。注：推送通知被用户点击前，应用无法通过接口获取通知的内容。
+	 * 
+	 * @param context
+	 *            上下文
+	 * @param title
+	 *            推送的通知的标题
+	 * @param description
+	 *            推送的通知的描述
+	 * @param customContentString
+	 *            自定义内容，为空或者json字符串
+	 */
+	@Override
+	public void onNotificationClicked(Context context, String title,
+			String description, String customContentString) {
+		String notifyString = "通知点击 title=\"" + title + "\" description=\""
+				+ description + "\" customContent=" + customContentString;
+		Log.d(TAG, notifyString);
+
+	}
+
+	/**
+	 * setTags() 的回调函数。
+	 * 
+	 * @param context
+	 *            上下文
+	 * @param errorCode
+	 *            错误码。0表示某些tag已经设置成功；非0表示所有tag的设置均失败。
+	 * @param successTags
+	 *            设置成功的tag
+	 * @param failTags
+	 *            设置失败的tag
+	 * @param requestId
+	 *            分配给对云推送的请求的id
+	 */
+	@Override
+	public void onSetTags(Context context, int errorCode,
+			List<String> successTags, List<String> failTags, String requestId) {
+		String responseString = "onSetTags errorCode=" + errorCode
+				+ " sucessTags=" + successTags + " failTags=" + failTags
+				+ " requestId=" + requestId;
+		Log.d(TAG, responseString);
+
+	}
+
+	/**
+	 * delTags() 的回调函数。
+	 * 
+	 * @param context
+	 *            上下文
+	 * @param errorCode
+	 *            错误码。0表示某些tag已经删除成功；非0表示所有tag均删除失败。
+	 * @param successTags
+	 *            成功删除的tag
+	 * @param failTags
+	 *            删除失败的tag
+	 * @param requestId
+	 *            分配给对云推送的请求的id
+	 */
+	@Override
+	public void onDelTags(Context context, int errorCode,
+			List<String> successTags, List<String> failTags, String requestId) {
+		String responseString = "onDelTags errorCode=" + errorCode
+				+ " sucessTags=" + successTags + " failTags=" + failTags
+				+ " requestId=" + requestId;
+		Log.d(TAG, responseString);
+
+	}
+
+	/**
+	 * listTags() 的回调函数。
+	 * 
+	 * @param context
+	 *            上下文
+	 * @param errorCode
+	 *            错误码。0表示列举tag成功；非0表示失败。
+	 * @param tags
+	 *            当前应用设置的所有tag。
+	 * @param requestId
+	 *            分配给对云推送的请求的id
+	 */
+	@Override
+	public void onListTags(Context context, int errorCode, List<String> tags,
+			String requestId) {
+		String responseString = "onListTags errorCode=" + errorCode + " tags="
+				+ tags;
+		Log.d(TAG, responseString);
+
+	}
+
+	/**
+	 * PushManager.stopWork() 的回调函数。
+	 * 
+	 * @param context
+	 *            上下文
+	 * @param errorCode
+	 *            错误码。0表示从云推送解绑定成功；非0表示失败。
+	 * @param requestId
+	 *            分配给对云推送的请求的id
+	 */
+	@Override
+	public void onUnbind(Context context, int errorCode, String requestId) {
+		String responseString = "onUnbind errorCode=" + errorCode
+				+ " requestId = " + requestId;
+		Log.d(TAG, responseString);
+		if (errorCode == 0) {
+//			PushUtils.setBind(context, false);
+		}
+
+	}
+
+	/**
+	 * 发送用户ID、手机唯一标识、通道Id给推送服务器的线程
+	 * 
+	 * @author Vieboo
+	 * 
+	 */
+	class SendPushInfoToPushServer implements Runnable {
+
+		String userName;
+		String userId;
+		String channelId;
+
+		SendPushInfoToPushServer(String userName, String userId,
+				String channelId) {
+			this.userName = userName;
+			this.channelId = channelId;
+			this.userId = userId;
+		}
+
+		@Override
+		public void run() {
+			try {
+				//JsonResolve jr = new JsonResolve();
+				HttpRequestUtil hru = new HttpRequestUtil();
+				// flag 注册:1 注销:0
+				String url = "http://"
+						+ EncrypAES.getInstance().decrypt(
+								mSP.getString(
+										EncrypAES.getInstance().encrypt(
+												WPConstant.SERVER_IP),
+										EncrypAES.getInstance().encrypt("")))
+						+ WPConstant.PHONE_PUSH_INFO_ADDRESS + "flag=1"
+						+ "&userId=" + userName + "&phoneChannelID="
+						+ channelId + "&phoneUserId=" + userId;
+				// http请求的返回结果
+				boolean httpResult = false;
+				// 请求次数
+				int requestNum = 0;
+				// 如果请求不成功反复请求三次
+				while (!httpResult && requestNum < 3) {
+					httpResult = hru.requestFromHttpGet(url);
+					requestNum++;
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+	}
+
+	/**
+	 * 解析报警信息并发送报警通知
+	 */
+	private void resolveAlarmMessage(Context context, String message) {
+		try {
+			/**
+			 * 报警信息解析字段 pMid: 设置处理后的标识 deviceId: 摄像头Id watchNick: 摄像头昵称
+			 * alarmType: 报警类型 alarmTime: 报警时间 alarmDay: 报警日期 alarmLen: 报警长度
+			 * alarmValue: 报警内容（强度）
+			 */
+			// 报警信息(传送到报警详细信息页面)
+			AlarmInfo alarmInfo = new AlarmInfo();
+			JsonResolve jr = new JsonResolve();
+			JSONObject jsonObject = new JSONObject(message);
+			// 预留字段
+			int pMid = Integer.parseInt((String) jr.resolveJsonToObject(
+					jsonObject, "pMid")); // pMid
+			// 设备ID
+			alarmInfo.setAlarmEqId((String) jr.resolveJsonToObject(jsonObject,
+					"deviceId")); // deviceId
+			// 设备昵称
+			alarmInfo.setAlarmEqName((String) jr.resolveJsonToObject(
+					jsonObject, "watchNick")); // watchNick
+			// 报警类型
+			alarmInfo.setAlarmType(Short.parseShort((String) jr
+					.resolveJsonToObject(jsonObject, "alarmType"))); // alarmType
+			// 报警时间日期
+			String alarmTime = (String) jr.resolveJsonToObject(jsonObject,
+					"alarmTime"); // alarmTime
+			String alarmDate = (String) jr.resolveJsonToObject(jsonObject,
+					"alarmDay"); // alarmDay
+			alarmInfo.setAlarmDateTime(alarmDate + " " + alarmTime);
+			// 报警信息
+			alarmInfo.setAlarmInfo((String) jr.resolveJsonToObject(jsonObject,
+					"alarmValue")); // alarmValue
+			// 是否处理
+			alarmInfo.setIsSolve((short) 0);
+
+			// 保存报警信息到数据库
+			if (mSP == null) {
+				mSP = context.getSharedPreferences(WPConstant.WP_SETTING, 0);
+			}
+			String currentUserName = EncrypAES.getInstance().decrypt(
+					mSP.getString(
+							EncrypAES.getInstance().encrypt(
+									WPConstant.USER_NAME), EncrypAES
+									.getInstance().encrypt("")));
+			if (!"".equals(currentUserName)) {
+				AlarmDao alarmDao = new AlarmDao(context);
+				alarmDao.alarmInsertOrRelaceData(currentUserName, alarmInfo);
+				// 如果程序正在运行，更新报警列表
+				// 0:当前程序没有运行 1:当前程序有运行Main 2：当前程序只运行了AlarmDetailed
+				if (PublicMethodUtil.getInstance().getRunningProcess(context) == 1) {
+					// 发送更新报警列表的广播
+					Intent updateIntent = new Intent();
+					updateIntent.setAction(WPConstant.ALARM_INFO_UPDATE_ATION);
+					Bundle bundle = new Bundle();
+					// 标识，0：处理状态更新 1：新增报警信息
+					bundle.putInt("alarmUpdateFlag", 1);
+					updateIntent.putExtras(bundle);
+					context.sendBroadcast(updateIntent);
+
+					// 发送未处理报警条数更新的广播
+					Intent numIntent = new Intent();
+					// 未处理报警数目更新
+					numIntent.setAction(WPConstant.NEW_ALARM_NUM_ACTION);
+					context.sendBroadcast(numIntent);
+				}
+			}
+
+			// 通知的id
+			int notificationID = (int) PublicMethodUtil.getInstance()
+					.dateChangeNotificationId(alarmDate, alarmTime);
+//					.dateChangeNotificationId(alarmDate, alarmTime, alarmInfo.getAlarmType());
+
+			// 报警声音文件(默认为轻度吧)
+			File notifSound = new File(WPConstant.SOUND_PATH
+					+ "notification_sound_light");
+			InputStream is = context.getAssets().open("light.mp3");
+			switch (alarmInfo.getAlarmType()) {
+			case 1:
+				notifSound = new File(WPConstant.SOUND_PATH
+						+ "notification_sound_light");
+				is = context.getAssets().open("light.mp3");
+				makeSoundFile(context, notifSound, is);
+				break;
+			case 2:
+				notifSound = new File(WPConstant.SOUND_PATH
+						+ "notification_sound_weight");
+				is = context.getAssets().open("weight.mp3");
+				makeSoundFile(context, notifSound, is);
+				break;
+			case 3:
+				notifSound = new File(WPConstant.SOUND_PATH
+						+ "notification_sound_crash");
+				is = context.getAssets().open("crash.mp3");
+				makeSoundFile(context, notifSound, is);
+				break;
+			}
+
+			Intent mIntent = new Intent();
+			Bundle bundle = new Bundle();
+			// 保留字段
+			bundle.putInt("alarmTemp", pMid);
+			// 报警数据
+			bundle.putSerializable("alarmData", alarmInfo);
+			mIntent.putExtras(bundle);
+			mIntent.setAction(WPConstant.ALARM_NOTIFICATION_CLICK_ACTION);
+			PendingIntent mPendingIntent = PendingIntent.getBroadcast(context,
+					notificationID, mIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+			// 报警通知内容
+			String alarmMessage = context
+					.getString(R.string.alarm_notification_info1)
+					+ alarmInfo.getAlarmEqName()
+					+ context.getString(R.string.alarm_notification_info2);
+
+			Notification notifi = new Notification();
+			long when = System.currentTimeMillis();//时间
+			//默认闪光提示 或者手机震动
+			notifi.defaults = Notification.DEFAULT_LIGHTS | Notification.DEFAULT_VIBRATE;
+			notifi.sound = Uri.fromFile(notifSound);
+//			notifi.sound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+			//可以被通知状态栏清楚掉
+			notifi.flags = Notification.FLAG_AUTO_CANCEL;
+			notifi.icon = R.drawable.icon_notifi_alarm;
+			notifi.tickerText = alarmMessage;
+//			notifi.wait(3*1000);
+			notifi.flags = Notification.FLAG_ONLY_ALERT_ONCE;
+			
+			notifi.setLatestEventInfo(context,
+					context.getString(R.string.alarm_notification_title),
+					alarmMessage, mPendingIntent);
+			
+			NotificationManager mNotificationManager = (NotificationManager) context
+					.getSystemService(Context.NOTIFICATION_SERVICE);
+
+			// 保存报警通知ID
+			NotificationCancelManager.getInstance().addNewNotification(
+					notificationID, NotificationCancelManager.TAG_ALARM);
+
+			mNotificationManager.notify(notificationID, notifi);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	private void makeSoundFile(Context context, File notifSound, InputStream is) {
+		if (!notifSound.exists()) {
+			try {
+				File soundDir = new File(WPConstant.SOUND_PATH);
+				soundDir.mkdirs();
+				notifSound.createNewFile();
+				FileOutputStream fos = new FileOutputStream(notifSound);
+				byte[] data = new byte[1024];
+				int length = 0;
+				while ((length = is.read(data)) != -1) {
+					fos.write(data, 0, length);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+}

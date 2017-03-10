@@ -1,0 +1,181 @@
+package com.webcon.wp.utils;
+
+import android.content.Context;
+import android.content.ContextWrapper;
+import android.util.Log;
+
+import com.webcon.sus.utils.CallbackBuffer;
+import com.webcon.sus.utils.SUConstant;
+
+/**
+ * 通信库-回调处理类
+ * 主要用于处理回调数据这块
+ */
+public class CCallbackMethod extends ContextWrapper {
+
+	private static CCallbackMethod me;
+	private boolean isResolve;
+    private CallbackBuffer mBuffer;
+	private ParseCallbackDataRunnable mParser;
+
+//    // 判断被挤下线时是否已经发送了msgType=5的广播，如果发送了就不会再发送msgType=3的广播
+//	private int exitFlag = 0;
+
+    /*  ------------------------------ */
+    private CCallbackMethod(Context base) {
+        super(base);
+        isResolve = true;
+        mBuffer = CallbackBuffer.getInstance();
+        mParser = new ParseCallbackDataRunnable();
+        new Thread(mParser).start();
+    }
+
+	public static CCallbackMethod getInstancs(Context context) {
+		if (me == null) {
+			synchronized (CCallbackMethod.class) {
+				if (me == null) {
+					me = new CCallbackMethod(context);
+				}
+			}
+		}
+		return me;
+	}
+
+    /**
+     * 回调数据
+     */
+    private byte[] callbackBuffer;
+
+    /**
+     * 回   调:
+     * 1.新报警消息
+     * 2.视频数据
+     * 3.其他通知（状态改变信息等）
+     */
+    public void onCallback(){
+        Log.w("Callback", "onCallback");
+        mBuffer.enQueue(callbackBuffer);
+        if (mParser != null) {
+            mParser.inDataOpen();
+        }
+    }
+
+    /* ------------------- */
+    /**
+     * 读取缓冲区中的数据并解析
+     */
+    private class ParseCallbackDataRunnable implements Runnable {
+
+        @Override
+        public void run() {
+            try {
+                while (isResolve) {
+                    if(mBuffer == null || mBuffer.getSize() <= 0){
+                        synchronized (this) {
+                            wait();
+                        }
+                    }else{
+                        byte[] data = mBuffer.deQueue();
+                        if(data != null){
+                            parseHeader(data);
+                        }
+                    }
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        public void inDataOpen() {
+            synchronized (this) {
+                notify();
+            }
+        }
+    }
+
+    /**
+     * 解析头部：
+     * | length(4) | pdu(2) | msgType(2) | dataType(2) |
+     * | datalength(4) | 子PDU... |
+     */
+    private void parseHeader(byte[] data){
+        int offset = 0;
+        int length = JTools.Bytes4ToInt(data, offset); // 回调数据长度
+        offset += 4;
+        short pdu = JTools.Bytes2ToShort(data, offset);// 回调数据的pdu
+        offset += 2;
+        short msgType = JTools.Bytes2ToShort(data, offset);
+        offset += 2;
+        short dataType = JTools.Bytes2ToShort(data, offset);
+        offset += 2;
+        Log.i("parseHeader>>>>", "length: " + length + ", pdu: " + pdu
+                + ", msgType: " + msgType + ", dataType: " + dataType);
+        if(msgType == SUConstant.CALLBACK_PDU_MSG_TYPE_DATA){
+            switch (pdu){
+                case SUConstant.PDU_B_WIN_SEND_CLI:
+                    int subLen = JTools.Bytes4ToInt(data, offset);
+                    offset += 4;
+                    if(subLen != length - offset){
+                        throw new ArithmeticException();
+                    }else{
+                        byte[] subData = new byte[subLen];
+                        System.arraycopy(data, offset, subData, 0, subLen);
+                        parseData(subLen, subData);
+                    }
+                    break;
+                default:
+                    Log.e("Callback>>>", "unkown pdu");
+                    break;
+            }
+        }else{
+            Log.e("Callback>>>", "unkown data type");
+        }
+    }
+
+    /**
+     * 解析子pdu，主要来自系统服务软件
+     */
+    private void parseData(int length, byte[] data){
+        int offset = 0;
+
+        //// FIXME: 15-7-24
+        short pdu = JTools.Bytes2ToShort(data, offset);
+        offset += 2;
+        switch (pdu){
+            //视频预览
+            case SUConstant.SUB_PREVIEW_DATA:
+//                CommunicationUtils.getInstance().onVideoData();
+                break;
+            //报警消息
+
+            //其他状态变化
+
+            //
+            default:
+
+                break;
+        }
+
+
+    }
+
+    /* --------------- native ---------------- */
+    /**
+     * 提供回调函数的类
+     * @return 0成功 <0 失败
+     */
+    public native int setCallBackObj();
+
+
+    /**
+     * 后台开始工作
+     * 调用java回调函数返回数据，
+     * note:在FCNetACLogin成功之后才能调用
+     *
+     * @param javaPath      java回调函数的路径
+     * @param javaMethod    java回调函数的方法名称
+     * @param bufName       返回数据存放的数组名称
+     * @return              0成功 <0 失败
+     */
+    public native int doWork(String javaPath, String javaMethod, String bufName);
+}

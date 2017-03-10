@@ -1,0 +1,15 @@
+package com.webcon.sus.utils;
+
+import java.text.MessageFormat;
+
+/**
+ * @author m
+ */
+public class CommonUtils {
+    public static String ORIGINAL_ALRAM = "！{0}条警报";
+
+    public static String placeHolderSwitch(int num){
+        return MessageFormat.format(ORIGINAL_ALRAM, num);
+    }
+
+}

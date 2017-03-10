@@ -1,0 +1,171 @@
+package com.webcon.sus.activities;
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
+import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.Toast;
+
+import com.webcon.wp.utils.PublicMethodUtil;
+import com.webcon.wp.utils.WPApplication;
+import com.webcon.wp.utils.WPConstant;
+
+/**
+ * Activity模版类
+ * @author Vieboo
+ *
+ */
+public abstract class BaseActivity extends AppCompatActivity {
+	
+	protected SharedPreferences wpPreferences;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		init();
+	}
+	
+	private void init(){
+		wpPreferences = getSharedPreferences(WPConstant.WP_SETTING, 0);
+	}
+
+    protected abstract void releaseHandler();
+	
+	@Override
+	protected void onResume() {
+        super.onResume();
+    }
+	
+	@Override
+	protected void onPause() {
+		super.onPause();
+	}
+
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+        releaseHandler();
+    }
+	
+	/**
+	 * Toast对象
+	 */
+	protected void showToast(Context context, int rsId){
+		Toast.makeText(context, rsId, Toast.LENGTH_SHORT).show();
+	}
+	
+	/**
+	 * Toast对象
+	 */
+	protected void showToast(Context context, int rsId, int time){
+		Toast.makeText(context, rsId, time).show();
+	}
+	
+	/**
+	 * Toast对象
+	 */
+	protected void showToastLong(Context context, int rsId){
+		Toast.makeText(context, rsId, Toast.LENGTH_LONG).show();
+	}
+	
+	
+	/**
+	 * Activity跳转
+	 */
+	protected void intentToNewActivity(Context context, Class<?> classes, 
+			Activity activity, boolean isFinish){
+		Intent intent = new Intent(context, classes);
+		activity.startActivity(intent);
+		if(isFinish){
+			activity.finish();
+		}
+	}
+	
+	/**
+	 * Activity跳转
+	 */
+	protected void intentToNewActivity(Context context, Class<?> classes, 
+			Activity activity, boolean isFinish, Bundle bundle){
+		Intent intent = new Intent(context, classes);
+		intent.putExtras(bundle);
+		activity.startActivity(intent);
+		if(isFinish){
+			activity.finish();
+		}
+	}
+	
+	/**
+	 * 不同分辨率设置不同的高度
+	 */
+	protected void setViewHeight(View view, int l, int m, int h, int xh, Context context){
+		int screenHeight = getScreenHeight();
+		LayoutParams lp = view.getLayoutParams();
+		lp.width = LayoutParams.MATCH_PARENT;
+		if(screenHeight <= 320){
+			lp.height = PublicMethodUtil.getInstance().px2dip(context, l);
+		}else if(screenHeight > 320 && screenHeight <= 480){
+			lp.height = PublicMethodUtil.getInstance().px2dip(context, m);
+		}else if(screenHeight > 480 && screenHeight <= 800){
+			lp.height = PublicMethodUtil.getInstance().px2dip(context, h);
+		}else if(screenHeight > 800 && screenHeight <= 1000){
+			lp.height = PublicMethodUtil.getInstance().px2dip(context, xh);
+		}else{
+			return ;
+		}
+		view.setLayoutParams(lp);
+	}
+	
+	/**
+	 * 获取保存手机屏幕的高度
+	 */
+	protected int getScreenHeight(){
+		DisplayMetrics dm = new DisplayMetrics();
+		getWindowManager().getDefaultDisplay().getMetrics(dm);
+		return dm.heightPixels;
+	}
+	
+	/**
+	 * 获取保存手机屏幕的宽度
+	 */
+	protected int getScreenWidth(){
+		DisplayMetrics dm = new DisplayMetrics();
+		getWindowManager().getDefaultDisplay().getMetrics(dm);
+		return dm.widthPixels;
+	}
+
+    protected void errorQuit(int code){
+        Log.e("ERROR", "code:" + code);
+        Toast.makeText(this, "error: " + code, Toast.LENGTH_SHORT).show();
+    }
+
+    protected void log(int grade, String t, String m){
+        if(WPApplication.DEBUG){
+            switch (grade){
+                case 1:
+                    Log.v(t, m);
+                    break;
+                case 2:
+                    Log.d(t, m);
+                    break;
+                case 3:
+                    Log.i(t, m);
+                    break;
+                case 4:
+                    Log.w(t, m);
+                    break;
+                case 5:
+                    Log.e(t, m);
+                    break;
+                default:
+                    Log.i(t, m);
+                    break;
+            }
+        }
+    }
+}

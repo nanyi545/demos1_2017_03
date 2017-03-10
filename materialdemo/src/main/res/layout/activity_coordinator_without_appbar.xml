@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+
+    <!--app:layout_behavior="@string/appbar_scrolling_view_behavior"-->
+    <!--app:layout_behavior="com.nanyi545.www.materialdemo.coordinatorWithoutAppbarLO.CustomOffsetBehavior"-->
+    <!--app:layout_behavior="com.nanyi545.www.materialdemo.coordinatorWithoutAppbarLO.CustomHeaderScrollingViewBehavior"-->
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvToDoList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="com.nanyi545.www.materialdemo.coordinatorWithoutAppbarLO.CustomHeaderScrollingViewBehavior"
+        />
+
+    <!-- below line on AppBarLayout will disable the scroll_flag behavior, which  means codes are in AppBarLayout.Behavior -->
+    <!--app:layout_behavior="com.nanyi545.www.materialdemo.nestedScroll.EmptyBehavior"-->
+    <!--<android.support.design.widget.AppBarLayout-->
+        <!--android:id="@+id/app_bar"-->
+        <!--android:orientation="vertical"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
+
+        <!--<TextView-->
+                <!--app:layout_scrollFlags="scroll|enterAlways"-->
+                <!--android:id="@+id/tv_title"-->
+                <!--android:textColor="#ffffff"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="title"-->
+                <!--android:padding="10dp"/>-->
+
+        <!--<ImageView-->
+            <!--android:layout_width="100dp"-->
+            <!--android:layout_height="100dp"-->
+            <!--android:src="@drawable/grad_red"/>-->
+
+            <!--<TextView-->
+                <!--app:layout_scrollFlags="scroll|enterAlways"-->
+                <!--android:id="@+id/tv_subtitle"-->
+                <!--android:textColor="#ffffff"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="subtitle"-->
+                <!--/>-->
+
+    <!--</android.support.design.widget.AppBarLayout>-->
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.nanyi545.www.materialdemo.collapse_layout.CollapsHolder
+            android:background="@color/Teal100"
+            android:id="@+id/collapse_holder1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="heheda"
+                android:textSize="30sp"
+                />
+
+            <ImageView
+                android:src="@android:drawable/ic_media_play"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+        </com.nanyi545.www.materialdemo.collapse_layout.CollapsHolder>
+
+
+        <ImageView
+            android:layout_below="@id/collapse_holder1"
+            android:id="@+id/gap"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:src="@drawable/side_nav_bar"/>
+
+
+
+        <com.nanyi545.www.materialdemo.collapse_layout.CollapsHolder
+            android:layout_below="@id/gap"
+            android:background="@color/Teal100"
+            android:id="@+id/collapse_holder2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="hahada"
+                android:textSize="30sp"
+                />
+
+        </com.nanyi545.www.materialdemo.collapse_layout.CollapsHolder>
+
+
+
+    </RelativeLayout>
+
+
+
+</android.support.design.widget.CoordinatorLayout>

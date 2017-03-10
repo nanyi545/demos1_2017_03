@@ -1,0 +1,53 @@
+
+
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+
+    <test1.nh.com.demos1.activities.interactive_chart.InteractiveLineGraphView
+        android:id="@+id/chart"
+        android:padding="@dimen/chart_padding"
+        android:layout_width="match_parent"
+        android:layout_height="420dp"
+        app:labelSeparation="10dp"
+        app:labelTextSize="14sp"
+        app:labelTextColor="#d000"
+        app:axisThickness="2dp"
+        app:axisColor="#d000"
+        app:gridThickness="1dp"
+        app:gridColor="#2000"
+        app:dataColor="#a6c"
+        app:dataThickness="8dp" />
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="action1"
+        android:text="zoom in"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="action2"
+        android:text="zoom out"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="action3"
+        android:text="left"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="action4"
+        android:text="right"
+        />
+
+</LinearLayout>

@@ -1,0 +1,329 @@
+package com.webcon.wp.utils;
+
+import android.app.Application;
+import android.util.Log;
+
+import com.webcon.sus.entity.AlarmNode;
+import com.webcon.sus.entity.BaseDevice;
+import com.webcon.sus.entity.StationNode;
+import com.webcon.sus.entity.UserNode;
+import com.webcon.sus.handler.CrashHandler;
+import com.webcon.sus.receiver.MyPushMessageReceiver;
+import com.webcon.sus.utils.SUConstant;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+
+/**
+ * 应用
+ * <p>应用的全局变量的处理</p>
+ * @author m
+ */
+public class WPApplication extends Application {
+    /** 测试标记 */
+    public static final boolean DEBUG = true;
+    public static final boolean DEBUG_NO_LOGIN = true;
+    //
+    private static WPApplication wpApplication;
+	// 当前网络是否为移动网络
+	public static boolean phoneNet;
+	// 返回按键重写标识
+	private int keyBackFlag;// 0为主界面退出行为，1为用户列表后退行为，2为报警列表退出删除行为
+	// 当前退出动作是否为注销
+	public static boolean flag_logout = false;
+    // 是否被动退出，是则不再注销，防止意外
+    public static boolean flag_exit = false;
+	// 当前程序的Uid
+	private int appUid;
+
+    /*  -------------- New ------------------ */
+    /** 报警序号种子 --- 已弃用 */
+    public int alarmSeqSeed = 0;
+
+    /** 注：
+     * ·这不是一个好的办法，暂时用来取代{@link PublicMethodUtil#getRunningProcess}进行标记，
+     * ·这么做是因为：1.系统方法已过时，本人没有用过、也没有测试过效果，
+     *   2.时间有限，3.时间有限，4.时间有限
+     * ·主要的问题在于不知道会发生什么意外`^·.(;¬_¬)
+     * ·如果有bug，参考并改回{@link MyPushMessageReceiver#resolveAlarmMessage} line 316
+     *   之后的处理方式，如果有时间我就自己改辣...(｡･_･｡)ﾉ~
+     */
+    public int appFlag = SUConstant.APP_NOT_EXIST;
+
+    /** 后台服务启动标识 */
+    public boolean serviceExist = false;
+
+    /** 用户结点 */
+    private UserNode user = new UserNode();
+    /** 全部站场列表 */
+    private List<StationNode> mStationList;
+    /** 全部报警消息列表 */
+    private List<AlarmNode> mAlarmList;
+    /** 全部报警消息数量 */
+    private int mNewAlarms = 0;
+    /** 映射表(stationId, pos)         将StationId转换为Station列表的下标 */
+    private HashMap<Integer, Integer> mStationReflect;
+    /** 映射表(deviceName, staitonId)  将设备名称转换为StationId */
+    private HashMap<String, Integer> mDeviceReflect;
+
+
+/* ===========================================================  */
+    public static WPApplication getInstance() {
+        return wpApplication;
+    }
+
+    @Override
+    public void onCreate() {
+        Log.w("<<Application>>", "--------onCreate-------");
+        CrashHandler crashHandler = CrashHandler.getInstance();
+        crashHandler.init(this);
+        //
+        wpApplication = this;
+        appFlag = SUConstant.APP_EXIT_MAIN;
+        mStationReflect = new HashMap<>();
+        mDeviceReflect = new HashMap<>();
+        mAlarmList = new ArrayList<>();
+        super.onCreate();
+    }
+
+    /**
+     * 设置全部站场列表
+     */
+    public void setStationList(List<StationNode> list){
+        this.mStationList = list;
+        refreshReflectMap();
+    }
+
+    /**
+     * 获取全部站场列表
+     * <p>如果要获取指定节点，请调用{@link WPApplication#getStationNode(int)}获取</p>
+     */
+    public List<StationNode> getStationList(){
+        refreshStationList();
+        return mStationList;
+    }
+
+
+    /**
+     * 根据站场Id，获取stationNode结点
+     * @param stationId 站场id
+     */
+    public StationNode getStationNode(int stationId){
+        if(mStationReflect != null && mStationList != null){
+            return mStationList.get(mStationReflect.get(stationId));
+        }else{
+            return null;
+        }
+    }
+
+
+    /**
+     * 根据本地站场标识，获取战场服务器id
+     * @param stationId 本地站场标识
+     * @return serverId
+     */
+    public String getServerId(int stationId){
+        if(mStationReflect != null && mStationList != null){
+            return mStationList.get(mStationReflect.get(stationId)).getServerId();
+        }else{
+            return null;
+        }
+    }
+
+    /**
+     * 刷新站场列表，重排序
+     */
+    public void refreshStationList(){
+        Collections.sort((ArrayList) mStationList);
+        refreshReflectMap();
+    }
+
+    /*
+     * 说明：
+     * 全局消息列表的操作暂定如下：
+     * 1.设置列表：对报警消息的任何操作，都在子Station中处理，然后重新组合成全部列表
+     * 2.处理消息包括：添加新消息、设置消息数量、减少新消息
+     */
+
+    /**
+     * 刷新报警消息列表，重排序
+     */
+    public void refreshAlarmList(){
+        Collections.sort((ArrayList) mAlarmList);
+    }
+
+    /**
+     * ★重建全局消息列表★
+     */
+    public void rebuildAlarmList(){
+        if(mAlarmList != null && mStationList != null){
+            mAlarmList.clear();
+            mNewAlarms = 0;
+            for(StationNode node : mStationList){
+                if(node.isOnline()){    // 只添加在线的站场的消息列表
+                    mAlarmList.addAll(node.getAlarmList());
+                    mNewAlarms += node.getNewAlarm();
+                }
+            }
+            refreshAlarmList();
+        }
+    }
+
+    /**
+     * 获取全部消息列表
+     */
+    public List<AlarmNode> getAllAlarmList(){
+        refreshAlarmList();
+        return mAlarmList;
+    }
+
+    /**
+     * 获取全部新消息的数量
+     */
+    public int getNewAlarms(){
+        return mNewAlarms;
+    }
+
+    /**
+     * 设置全部新消息的数量 ☆重要
+     */
+    public void setNewAlarms(int newAlarms){
+        this.mNewAlarms = newAlarms;
+    }
+
+    /**
+     * 减少一条新消息的数量
+     */
+    public void substractNewAlarm(){
+        if(mNewAlarms <= 0){
+            throw new UnsupportedOperationException();
+        }
+        mNewAlarms--;
+        refreshAlarmList();
+    }
+
+    /**
+     * 增加一条新消息的数量
+     */
+    public void addNewAlarm(){
+        mNewAlarms++;
+    }
+
+    /**
+     * 刷新站场id和站场pos的映射关系
+     */
+    private void refreshReflectMap(){
+        mStationReflect.clear();
+        if(mStationList != null){
+            int i = 0;
+            for(StationNode n : mStationList){
+                mStationReflect.put(n.getId(), i++);
+            }
+        }
+    }
+
+    /**
+     * 刷新设备名和站场id的映射
+     */
+    public void refreshReflectDevice(){
+        mDeviceReflect.clear();
+        if(mStationList != null){
+            for(StationNode n : mStationList){
+                for(BaseDevice d : n.getDeviceList()){
+                    mDeviceReflect.put(d.getName(), n.getId());
+                }
+            }
+        }
+    }
+
+    /**
+     * 增加一条设备名和站场id的映射
+     * @param device 设备名
+     * @param stationId 站场id
+     */
+    public void addDeviceReflect(String device, int stationId){
+        if(mDeviceReflect != null){
+            mDeviceReflect.put(device, stationId);
+        }
+    }
+
+
+    /**
+     * 根据设备名，获取所属stationNode结点
+     * @param deviceName 设备名
+     */
+    public StationNode getStationNode(String deviceName){
+        if(mDeviceReflect != null && mDeviceReflect.get(deviceName) != null){
+            return getStationNode(mDeviceReflect.get(deviceName));
+        }else{
+            return null;
+        }
+    }
+
+    /**
+     * 根据设备名，获取所属的stationNode的Id
+     * @param deviceName 设备名
+     */
+    public int getStationId(String deviceName){
+        if(mDeviceReflect != null){
+            return mDeviceReflect.get(deviceName);
+        }else{
+            return -1;
+        }
+    }
+
+    //----for test-----
+    /**
+     * 检查新的报警消息
+     */
+    public boolean checkNewAlarms(){
+        int sum = 0;
+        for(StationNode sn : mStationList){
+            sum += sn.getNewAlarm();
+        }
+        return mNewAlarms == sum;
+    }
+
+    /**
+     * 遍历检查全部的未处理报警消息（耗时）
+     */
+    public int correctNewAlarms(){
+        mNewAlarms = 0;
+        for(StationNode sn : mStationList){
+            mNewAlarms += sn.correctNewAlarms();
+        }
+        return mNewAlarms;
+    }
+
+    /* -------------------------------- */
+
+    public int getKeyBackFlag() {
+        return keyBackFlag;
+    }
+
+    public void setKeyBackFlag(int keyBackFlag) {
+        if(keyBackFlag == 0){
+            this.keyBackFlag = keyBackFlag;
+        }else{
+            this.keyBackFlag |= keyBackFlag;
+        }
+
+    }
+
+	public int getAppUid() {
+		return appUid;
+	}
+
+	public void setAppUid(int appUid) {
+		this.appUid = appUid;
+	}
+
+
+	public UserNode getCurrentUser() {
+		return this.user;
+	}
+
+
+}

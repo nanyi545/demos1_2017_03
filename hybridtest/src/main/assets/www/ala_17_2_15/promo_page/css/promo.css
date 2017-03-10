@@ -1,0 +1,198 @@
+
+.main_content{
+	width:100vw;
+    min-height: 1em;
+    overflow: hidden;
+}
+
+
+img.headerImg{
+	width:100vw;
+}
+
+/* --------活动流程--------*/
+.process{
+	position:relative;
+	padding-bottom:2vh;
+	background:rgb(254,229,199);   
+}
+
+
+img.processTxt{
+	width:16vw;
+	margin:2vh 42vw;
+}
+
+.steps{
+	width:70vw;
+	height:15vw;
+	margin:0 15vw;
+	overflow: hidden;
+}
+
+img.step{
+	width:13vw;
+	height:13vw;
+}
+img.next{
+	width:2.3vw;
+	height:4vw;
+	margin:0 5.5vw 4vw 5.5vw;
+}
+
+.topModification{
+	z-index:-20;
+	position:absolute;
+	top:-30px;
+	width:100vw;
+	height:10vh;
+	background:rgb(254,229,199); 
+}
+
+.bottomModification{
+	z-index:-20;
+	position:absolute;
+	bottom:-30px;
+	width:100vw;
+	height:10vh;
+	background:rgb(254,229,199); 
+}
+
+
+
+/*--------end of 活动流程--------*/
+
+
+
+/* --------活动规则--------*/
+.rules{
+	width:100vw;
+	height:68vh;
+	background:url("../images/background1.png") no-repeat; 
+	background-size:100vw 70vh;  /*  background-size > height  to hide the zig-zag boundary  */
+
+	/*  border:solid 1px rgba(0,0,0,0); */
+	/* ---   when background-size > than width/height
+	   set the border will enlarge  width/height  ???  ---*/
+
+
+}
+
+img.rulesHeader{
+	width:32vw;
+	margin:3vh 34vw;
+}
+
+.ruleTxt1{
+	width:76vw;
+	margin:0 12vw;
+	color:yellow;
+	font-size:140%;
+	font-weight:bold;
+}
+
+img.content{
+	width:14vw;
+	margin-top:3vh;
+	margin-left:43vw;
+	margin-bottom:1vh;
+}
+
+
+.parcelTable{
+	background-image: url("../images/tableBg.png"); 
+	background-size:75.8vw 38vh;
+    background-repeat:   no-repeat;
+	width:76vw ;
+    margin:0 12vw 3vh 12vw;
+    font-size:140%;
+    color:white;
+    padding-top: 4vh;
+    padding-bottom: 3vh;
+}
+
+th.column1{
+	width: 40%
+}
+
+th.column2{
+	width: 30%
+}
+
+
+.parcelTable tr.height1 { 
+	line-height: 5vh; 
+}
+
+.parcelTable tr.height2 { 
+	line-height: 3vh; 
+}
+
+.parcelTable td{
+	text-align: center;
+}
+
+
+.parcelTable .yellow{
+	color:yellow;
+}
+.parcelTable .small{
+	font-size:70%;
+}
+
+
+.tableHolder{
+	position:relative;
+}
+
+.fudai{
+	position:absolute;
+	width:30vw;
+	bottom:-15vw;
+	right:5vw;
+}
+
+/*--------end of 活动规则--------*/
+
+
+
+/*--------活动说明--------*/
+.explain{
+	width:100vw;
+	height:50vh;
+	background:url("../images/background2.png") no-repeat;
+	background-size:100vw 50vh;
+}
+
+
+img.explainHeader{
+	width:32vw;
+	margin:3vh 34vw;
+}
+
+
+.explainTxt1{
+	width:84vw;
+	margin:0vw 8vw;
+	color:red;
+}
+
+
+.explainTxt1 ol{
+	list-style-type:decimal; 
+}  
+
+.explainTxt1 ol li{ 
+	list-style: decimal;
+	display:list-item;
+  	list-style-position: inside;
+	font-size:140%;
+}  
+
+img.register{
+	width:20vw;
+	margin:2.5vh 40vw;
+}
+
+
+/*--------nd of 活动说明--------*/

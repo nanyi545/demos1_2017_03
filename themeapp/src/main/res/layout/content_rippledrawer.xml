@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/Red50"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".activities.MainActivity"
+    tools:showIn="@layout/app_bar_main">
+
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:id="@+id/container1"
+        android:layout_width="match_parent"
+        android:background="@color/Teal200"
+        android:layout_height="wrap_content">
+
+        <Switch
+            android:id="@+id/open"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textOff="蓝牙关闭中"
+            android:textOn="蓝牙开启中" />
+
+        <com.kyleduo.switchbutton.SwitchButton
+            android:id="@+id/sb_md"
+            style="@style/SwitchButtonStyleMD"
+            android:layout_below="@+id/open"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"/>
+
+        <!--app:kswBackDrawable="@drawable/miui_back_drawable"-->
+        <!--app:kswThumbDrawable="@drawable/miui_thumb_drawable"-->
+        <com.kyleduo.switchbutton.SwitchButton
+            style="@style/SwitchButtonStyle"
+            android:id="@+id/sb2"
+            android:layout_below="@+id/sb_md"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:kswBackMeasureRatio="2.2"
+            app:kswBackRadius="12dp"
+            app:kswThumbRadius="12dp"
+            app:kswTintColor="@color/Blue500" />
+
+        <android.support.v7.widget.SwitchCompat
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            ></android.support.v7.widget.SwitchCompat>
+
+    </RelativeLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_below="@+id/container1"
+        android:id="@+id/div1"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
+
+
+    <!--the colorAccent in the theme is applied to -->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_below="@id/div1"
+        android:layout_width="match_parent"
+        android:background="@color/Teal200"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:layout_width="60dp"
+            android:id="@+id/text1"
+            android:layout_height="wrap_content"
+            ></EditText>
+
+        <EditText
+            android:layout_width="60dp"
+            android:id="@+id/text2"
+            android:layout_height="wrap_content"
+            ></EditText>
+
+
+
+    </LinearLayout>
+
+
+
+
+
+
+
+
+</RelativeLayout>

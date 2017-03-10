@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">module_monitoring</string>
+
+    <string name="hello_world">测试监控摄像头</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- -->
+    <string name="open_monitoring1">测试-局域网直连</string>
+    <string name="open_monitoring2">测试监控视频2</string>
+    <string name="open_monitoring3">测试监控视频3</string>
+
+    <string name="bn_left">←</string>
+    <string name="bn_right">→</string>
+    <string name="bn_up">↑</string>
+    <string name="bn_down">↓</string>
+    <string name="bn_magnify">+</string>
+    <string name="bn_shrink">-</string>
+
+</resources>

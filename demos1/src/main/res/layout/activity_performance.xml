@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="test1.nh.com.demos1.activities.PerformanceActivity">
+
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="performance test"
+        android:background="@color/Teal100"
+        />
+
+    <Button
+        android:id="@+id/b_dofib"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv1"
+        android:text="calculate fibonacci"
+        android:onClick="cal_fib"
+        />
+
+
+    <Button
+        android:id="@+id/b_dowork"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/b_dofib"
+        android:text="do work"
+        android:onClick="dowork"
+        />
+
+
+    <Button
+        android:id="@+id/b_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/b_dowork"
+        android:text="list compare"
+        android:onClick="testList"
+        />
+
+
+
+</RelativeLayout>

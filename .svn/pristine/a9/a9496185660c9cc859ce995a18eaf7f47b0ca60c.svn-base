@@ -1,0 +1,115 @@
+package com.webcon.sus.activities;
+
+import android.content.Context;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.ImageButton;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import com.webcon.sus.demo.R;
+import com.webcon.wp.utils.ModifyDialogUtil;
+
+public class PersonalInformationActivity extends BaseActivity implements
+		OnClickListener {
+
+	private Context mContext;
+	private RelativeLayout userNameRL, passwordRL;
+	private TextView title, userNameTxt, userIDTxt;
+	private ImageButton back;
+
+	Handler RefreshHandler = new Handler() {
+		public void handleMessage(Message msg) {
+//			switch (msg.what) {
+//			case 0:// 昵称修改成功
+//				TreeElement user = WPApplication.getInstance().getCurrentUser();
+//				String newName = msg.getData().getString("name");
+//				userNameTxt.setText(newName);
+//				List<TreeElement> list = WPApplication.getInstance()
+//						.getTreeElementLists();
+//				for (TreeElement treeElement : list) {
+//					if (treeElement.getUserId().equals(user.getUserId())) {
+//						treeElement.setUserName(newName);
+//					}
+//				}
+//				WPApplication.getInstance().setTreeElementLists(list);
+//				user.setUserName(newName);
+//				WPApplication.getInstance().setCurrentUser(user);
+//				break;
+//
+//			case 1:
+//				Toast.makeText(mContext, "您的登陆密码已成功修改！", Toast.LENGTH_SHORT)
+//						.show();
+//				break;
+//			case -1:
+//				Toast.makeText(mContext, "修改失败，请稍后重试！", Toast.LENGTH_SHORT)
+//						.show();
+//				break;
+//			default:
+//				break;
+//			}
+		}
+	};
+
+    @Override
+    public void releaseHandler(){
+        RefreshHandler.removeCallbacksAndMessages(null);
+    }
+
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.layout_usermsg);
+		mContext = this;
+		initView();
+	}
+
+	private void initView() {
+
+		title = (TextView) findViewById(R.id.title_tv);
+		back = (ImageButton) findViewById(R.id.usermsg_back);
+		userNameRL = (RelativeLayout) findViewById(R.id.usermsg_ll_username);
+		passwordRL = (RelativeLayout) findViewById(R.id.usermsg_ll_password);
+		userNameTxt = (TextView) findViewById(R.id.usermsg_txt_username);
+		userIDTxt = (TextView) findViewById(R.id.usermsg_txt_userid);
+
+		title.setText("个人信息");
+        //##TODO ####--
+//        userIDTxt.setText(WPApplication.getInstance().getCurrentUser().getUserId());
+//        userNameTxt.setText(WPApplication.getInstance().getCurrentUser().getUserName());
+
+        back.setOnClickListener(this);
+        userNameRL.setOnClickListener(this);
+        passwordRL.setOnClickListener(this);
+
+        }
+
+        @Override
+        protected void onResume() {
+            super.onResume();
+        }
+
+
+        @Override
+        public void onClick(View v) {
+            if (v == back) {
+                PersonalInformationActivity.this.finish();
+            } else if (v == userNameRL) {
+			// showModifyDialog(0);
+			(new ModifyDialogUtil()).showModifyDialog(mContext,
+					ModifyDialogUtil.MODIFY_USERNAME, RefreshHandler, null)
+					.show();
+		} else if (v == passwordRL) {
+			(new ModifyDialogUtil()).showModifyDialog(mContext,
+					ModifyDialogUtil.MODIFY_PASSWORD, RefreshHandler, null)
+					.show();
+			// showModifyDialog(1);
+		}
+	}
+
+}

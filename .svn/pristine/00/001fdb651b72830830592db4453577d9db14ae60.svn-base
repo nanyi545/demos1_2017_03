@@ -1,0 +1,402 @@
+package com.webcon.wp.utils;
+
+import android.content.Context;
+import android.content.ContextWrapper;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.util.Log;
+
+import com.webcon.sus.entity.AlarmNode;
+import com.webcon.sus.eventObjects.ServiceEvent;
+import com.webcon.sus.eventObjects.StationEvent;
+import com.webcon.sus.utils.AlarmMsgManager;
+import com.webcon.sus.utils.CallbackBuffer;
+import com.webcon.sus.utils.CommonUtils;
+import com.webcon.sus.utils.CommunicationUtils;
+import com.webcon.sus.utils.SUConstant;
+
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
+
+import de.greenrobot.event.EventBus;
+
+/**
+ * 通信库-回调处理
+ */
+public class CCallbackMethod extends ContextWrapper {
+    private static final String TAG = "CallbackMethod";
+
+	private static CCallbackMethod me;
+	private boolean isResolve;
+    private CallbackBuffer mBuffer;
+	private ParseCallbackDataRunnable mParser;
+
+    /*  ------------------------------ */
+
+    private CCallbackMethod(Context base) {
+        super(base);
+        isResolve = true;
+        mBuffer = CallbackBuffer.getInstance();
+        mParser = new ParseCallbackDataRunnable();
+        new Thread(mParser).start();
+    }
+
+	public static CCallbackMethod getInstance(Context context) {
+		if (me == null) {
+			synchronized (CCallbackMethod.class) {
+				if (me == null) {
+					me = new CCallbackMethod(context);
+				}
+			}
+		}
+		return me;
+	}
+
+    /**
+     * 回调数据
+     */
+    private byte[] callbackBuffer;
+
+    /**
+     * 回   调:
+     * 1.新报警消息
+     * 2.视频数据
+     * 3.其他通知（状态改变信息等）：包括站场上下线、用户异地登陆
+     */
+    public void onCallback(){
+        if(WPApplication.DEBUG){
+            Log.w(TAG, "##############onCallback#############");
+        }
+        mBuffer.enQueue(callbackBuffer);
+        if (mParser != null) {
+            mParser.inDataOpen();
+        }
+    }
+
+    /**
+     * 清理工作
+     */
+    public void release(){
+        isResolve = false;
+    }
+
+    /* ------------------- */
+    /**
+     * 读取缓冲区中的数据并解析
+     */
+    private class ParseCallbackDataRunnable implements Runnable {
+
+        @Override
+        public void run() {
+            try {
+                while (isResolve) {
+                    if(mBuffer == null || mBuffer.getSize() <= 0){
+                        synchronized (this) {
+                            wait();
+                        }
+                    }else{
+                        // 解析是按顺序执行的
+                        byte[] data = mBuffer.deQueue();
+                        if(data != null && data.length != 0){
+                            parseHeader(data);
+                        }
+                    }
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } finally {
+                mBuffer.clearData();
+            }
+        }
+
+        public void inDataOpen() {
+            synchronized (this) {
+                notify();
+            }
+        }
+    }
+
+    /**
+     * 解析头部：
+     * <br>全部数据包括：①JNI层附加的头部、②PDU头部、③子PDU三个部分
+     * <br>本方法先处理①附加的头部
+     * <br>| length(4) | pdu(2) | msgType(2) | dataType(2) | datalength(4) | [PDU] |
+     * <p>说明：有些回调需要一个回应；但如果是视频数据，则不需要回复</p>
+     */
+    private void parseHeader(byte[] data){
+        dumpData(data);
+        // ----
+        int offset = 0;
+        // 数据长度
+        int length = JTools.Bytes4ToInt(data, offset);
+        offset += 4;
+        // pdu类型：主要是来自服务软件的数据。。
+        short pdu = JTools.Bytes2ToShort(data, offset);
+        offset += 2;
+        // 消息类型：只需要：回调数据包 CALLBACK_PDU_MSG_TYPE_DATA
+        short msgType = JTools.Bytes2ToShort(data, offset);
+        offset += 2;
+        // 数据类型：1: 必达控制包 2:聊天文本信息 3:音视频数据包 可以不用理会
+        short dataType = JTools.Bytes2ToShort(data, offset);
+        offset += 2;
+        Log.i(TAG, "----length: " + length + ", pdu: " + pdu
+                + ", msgType: " + msgType + ", dataType: " + dataType + " ----");
+
+        // 收到的普通数据
+        if(msgType == SUConstant.CALLBACK_PDU_MSG_TYPE_OnReceivedData){
+            // 子pdu长度
+            int pduLen = JTools.Bytes4ToInt(data, offset);
+            offset += 4;
+            if(pduLen <= 0){
+                Log.e(TAG, "PDU数据长度错误：" + pduLen);
+                return;
+            }
+            byte[] subData = new byte[pduLen];
+            System.arraycopy(data, offset, subData, 0, pduLen);
+
+            switch (pdu){
+                // 来自系统服务软件
+                case SUConstant.PDU_B_WIN_SEND_CLI:
+                    parseWinInformHead(subData);
+                    break;
+                // 来自中心服务器
+                case SUConstant.PDU_D_SERVER_RSP_CLI:
+                    parseStationState(subData);
+                    break;
+                // 来自服务器数据库的 （*不需要）
+                case SUConstant.PDU_A_DB_RSP_CLI:
+                    Log.e(TAG, "DISCARD DB DATA");
+                    break;
+                // 来自服务软件的回应  （*不需要）
+                case SUConstant.PDU_C_WIN_RSP_CLI:
+                    Log.e(TAG, "DISCARD WIN RSP DATA");
+                    break;
+                default:
+                    Log.e(TAG, "DISCARD --unkown data--");
+                    break;
+            }
+        } else if(msgType == SUConstant.CALLBACK_PDU_MSG_TYPE_OnSecondLogined){
+            // 用户在异地登录，被挤出  发送广播==> LogoutExitReceiver
+            sendExitBroadcast(msgType);
+            Log.i("LogOut", "--------------LogOut-------------");
+        } else{
+            Log.e(TAG, "unkown message type");
+        }
+    }
+
+    /**
+     * 解析系统服务软件发送的数据，主要处理②PDU头部
+     * <p>| socket1(2) | socket2(2) | subPduType(2) | dataLen(4) | data... |</p>
+     */
+    private void parseWinInformHead(byte[] data){
+        int offset = 0;
+        // pdu头：socket（sub-centre)
+        short socket1 = JTools.Bytes2ToShort(data, offset);
+        offset += 2;
+        // pdu头：socket（win-sub)
+        short socket2 = JTools.Bytes2ToShort(data, offset);
+        offset += 2;
+        // pdu头：子PDU类型
+        short subPduType = JTools.Bytes2ToShort(data, offset);
+        offset += 2;
+        // pdu头：数据长度
+        int subPduLen = JTools.Bytes4ToInt(data, offset);
+        offset += 4;
+        // 子PDU
+        byte[] subData = new byte[subPduLen];
+        System.arraycopy(data, offset, subData, 0, subPduLen);
+
+        // 分派子pdu处理
+        switch(subPduType){
+            // 接收新报警消息 --需要回应
+            case SUConstant.SUB_NEW_ALARM:
+                short rspRet = -1;
+                if(parseSubNewAlarm(subData)){
+                    rspRet = 0;
+                }
+                CommunicationUtils.getInstance().respondWin(socket1, socket2, rspRet);
+                break;
+            // 接收预览视频数据 --不需要回应
+            case SUConstant.SUB_PREVIEW_DATA:
+                parseSubVideoData(subData);
+                break;
+            // 接收报警消息已处理通知 --不需要回应
+            case SUConstant.SUB_RSP_PROCESS_ALARM:
+                AlarmMsgManager.getInstance().transmitCenter(
+                        AlarmMsgManager.ALARM_MANAGE_SOLVE_RECEIVE,
+                        parseSubToSolvedAlarm(subData));
+                break;
+            default:
+                Log.e(TAG, "未知PDU类型：" + subPduType);
+                break;
+        }
+    }
+
+    /**
+     * 解析新报警消息
+     * | deviceName | date | content |
+     * @return 是否处理成功，用于回应
+     */
+    private boolean parseSubNewAlarm(byte[] data){
+        int pre = 0;
+        int rear = 0;
+        int len = data.length;
+
+        if(data.length == 0){
+            return false;
+        }
+
+        try{
+            //获取设备名称
+            pre = rear;
+            while(data[rear] != '\0' && rear < len){
+                rear++;
+            }
+            String deviceName = new String(data, pre, rear - pre, WPConstant.STRING_UTF8);
+            rear++;
+
+            //获取报警时间
+            pre = rear;
+            while(data[rear] != '\0' && rear < len){
+                rear++;
+            }
+            String date = new String(data, pre, rear - pre, WPConstant.STRING_UTF8);
+            rear++;
+
+            //获取报警内容
+            pre = rear;
+            while(data[rear] != '\0' && rear < len){
+                rear++;
+            }
+            String content = new String(data, pre, rear - pre, WPConstant.STRING_UTF8);
+
+            //创建报警消息结点
+            ArrayList<AlarmNode> list = new ArrayList<>();
+            AlarmNode newAlarm = new AlarmNode();
+            newAlarm.setDeviceName(deviceName);
+            newAlarm.setStationId(WPApplication.getInstance().getStationId(deviceName));
+            newAlarm.setAlarmDate(date);
+            newAlarm.setContent(content);
+            newAlarm.setIsSolved((short)0);
+            list.add(newAlarm);
+            //转发处理
+            AlarmMsgManager.getInstance().transmitCenter(AlarmMsgManager.ALARM_MANAGE_ADD, list);
+        }catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
+
+    /**
+     * 将收到的已处理报警消息通知处理成消息结点
+     * ##FIXME: 暂无数据结构可解析
+     */
+    private List<AlarmNode> parseSubToSolvedAlarm(@NonNull byte[] data){
+        if(data.length <= 0){
+            Log.e(TAG, "空数据");
+            return null;
+        }
+        // 解析数据
+        List<AlarmNode> list = new ArrayList<>();
+        AlarmNode alarm = new AlarmNode();
+        // TODO:处理消息。。。
+        list.add(alarm);
+        return list;
+    }
+
+    /**
+     * 解析视频数据，并调用回调接口进行播放
+     * / dataType(4) | dataLen(4) | data... |
+     */
+    private void parseSubVideoData(byte[] data){
+        int offset = 0;
+        // NOTE：这里和文档不同，非获取预览句柄，而是获取视频数据类型，如头部和数据两种
+        int dataType = JTools.Bytes4ToInt(data, offset);
+        offset += 4;
+        //获取数据长度
+        int dataLen = JTools.Bytes4ToInt(data, offset);
+        offset += 4;
+        //取出数据
+        if(dataLen > 0){
+            byte[] video = new byte[dataLen];
+            System.arraycopy(data, offset, video, 0, dataLen);
+            CommunicationUtils.getInstance().onVideoData(dataType, video, dataLen);
+        }else{
+            Log.e(TAG, "video data is null");
+        }
+    }
+
+    /**
+     * 解析站场状态改变信息：站场上下线通知
+     * <p>| result(2) | pmid(4) | subType(2) |</p>
+     */
+    private void parseStationState(byte[] data){
+        // 解析数据
+        if(CommunicationUtils.getInstance().parseServerStationsData(data)){
+            // 发送回复
+            CommunicationUtils.getInstance().respondServer((short) 0);
+            new Thread(){
+                @Override
+                public void run(){
+                    // 重建站场数据
+                    CommunicationUtils.getInstance().refreshAllStationInformation();
+                    // 发布清除通知事件
+                    EventBus.getDefault().post(new ServiceEvent(ServiceEvent.SERVICE_EVENT_CLEAR_NOTI));
+                    // 发布刷新事件
+                    EventBus.getDefault().post(new StationEvent(StationEvent.STATION_EVENT_ONLINE_STATE_CHANGED));
+                }
+            }.start();
+        }else{
+            // 发送回复
+            CommunicationUtils.getInstance().respondServer((short)-1);
+        }
+    }
+
+    private void dumpData(byte[] data){
+        Log.w(TAG, "[----------------data----------------]");
+        if(data.length > 150){
+            for(int i = 0; i < 150; i++){
+                Log.i(TAG, "byte data:" + data[i]);
+            }
+        }else{
+            for(byte b : data){
+                Log.i(TAG, "byte data:" + b);
+            }
+        }
+        Log.w(TAG, "[----------------data-----------------]");
+    }
+
+
+    // 发送退出广播
+    private void sendExitBroadcast(int msgType){
+        WPApplication.flag_exit = true;
+        Bundle bundle = new Bundle();
+        bundle.putInt("msgType", msgType);
+        Intent intent = new Intent();
+        intent.putExtras(bundle);
+        intent.setAction(WPConstant.LOGOUT_EXIT_ACTION);
+        sendBroadcast(intent);
+    }
+
+    /* --------------- native ---------------- */
+    /**
+     * 提供回调函数的类
+     * @return 0成功 <0 失败
+     */
+    public native int setCallBackObj();
+
+
+    /**
+     * 后台开始工作
+     * 调用java回调函数返回数据，
+     * note:在FCNetACLogin成功之后才能调用
+     *
+     * @param javaPath      java回调函数的路径
+     * @param javaMethod    java回调函数的方法名称
+     * @param bufName       返回数据存放的数组名称
+     * @return              0成功 <0 失败
+     */
+    public native int doWork(String javaPath, String javaMethod, String bufName);
+}

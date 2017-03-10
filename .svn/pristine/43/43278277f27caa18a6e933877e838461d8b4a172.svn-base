@@ -1,0 +1,797 @@
+package com.webcon.sus.activities;
+
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.SharedPreferences;
+import android.graphics.drawable.BitmapDrawable;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.support.v4.app.Fragment;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.GridView;
+import android.widget.PopupWindow;
+import android.widget.Toast;
+
+import com.webcon.sus.adapter.EquipmentGridAdapter;
+import com.webcon.sus.db.AlarmDao;
+import com.webcon.sus.demo.R;
+import com.webcon.sus.entity.Equipment;
+import com.webcon.sus.entity.TreeElement;
+import com.webcon.sus.view.CornerButton;
+import com.webcon.wp.utils.ApplicationManager;
+import com.webcon.wp.utils.EncrypAES;
+import com.webcon.wp.utils.JTools;
+import com.webcon.wp.utils.ModifyDialogUtil;
+import com.webcon.wp.utils.NativeInterface;
+import com.webcon.wp.utils.PublicMethodUtil;
+import com.webcon.wp.utils.WPApplication;
+import com.webcon.wp.utils.WPConstant;
+
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public class UserListFragment extends Fragment {
+	private View mView;
+	private GridView gridView;
+	private Context mContext;
+	private PopupWindow popWindow;
+	private View popView;
+	private CornerButton bn_rename, bn_video, bn_alarm;
+	private ProgressDialog loadListDialog;
+    // 用于显示的树元素集合 排除了当前自己的结点
+	private List<TreeElement> treeElementsList;
+	private EquipmentGridAdapter gridAdapter;
+	private String selectCameraId = null, selectCameraName = null;
+	private EquipmentListReceiver equipmentListReceiver;
+    // 所有树用户的集合
+	private List<TreeElement> elementList;
+    // 所有设备集合
+	private List<Equipment> equipmentList;
+	private TreeElement selectTreeElement = null;
+	private AlarmDao alarmDao; // 报警信息表操作
+
+	private SharedPreferences wpPreferences;
+	private int currentUserType;
+
+	/**
+	 * 处理加载树形列表返回值的handler
+	 */
+	Handler loadTreeHandler = new Handler() {
+
+		@Override
+		public void handleMessage(Message msg) {
+			switch (msg.what) {
+			case -1:
+				Toast.makeText(mContext,
+						R.string.str_equipmentlist_toask_loadtreefaild,
+						Toast.LENGTH_LONG).show();
+				// 程序崩溃后直接关闭
+				System.exit(0);
+				break;
+			default:
+				if (msg.what > 0) {
+					Bundle bundle = msg.getData();
+					byte[] resolveData = bundle.getByteArray("resolveData");
+					if (resolveData != null) {
+						try {
+							resolveTreeData(resolveData);
+							System.out.println("treeElementsList::"+treeElementsList);
+							if (gridAdapter == null) {
+								gridAdapter = new EquipmentGridAdapter(
+										mContext, treeElementsList, 0);
+								gridView.setAdapter(gridAdapter);
+							} else {
+								gridAdapter.notifyDataSetChanged();
+							}
+						} catch (Exception e) {
+							e.printStackTrace();
+							Toast.makeText(
+									mContext,
+									R.string.str_equipmentlist_toask_loadtreefaild,
+									Toast.LENGTH_LONG).show();
+						}
+					}
+				} else {
+					new AlertDialog.Builder(mContext)
+							.setTitle(
+									R.string.str_equipmentlist_alert_treefaild_title)
+							.setMessage(
+									R.string.str_equipmentlist_alert_treefaild_message)
+							.setCancelable(false)
+							.setOnKeyListener(
+									new DialogInterface.OnKeyListener() {
+
+										@Override
+										public boolean onKey(
+												DialogInterface dialog,
+												int keyCode, KeyEvent event) {
+											if (keyCode == KeyEvent.KEYCODE_SEARCH) {
+												return true;
+											}
+											return false;
+										}
+									})
+							.setPositiveButton(
+									R.string.str_equipmentlist_alert_treefaild_eixtbt,
+									new DialogInterface.OnClickListener() {
+
+										@Override
+										public void onClick(
+												DialogInterface dialog,
+												int which) {
+											ApplicationManager.getInstance()
+													.applicationOtherExit();
+											System.exit(0);
+										}
+									}).show();
+				}
+				break;
+			}
+			if (loadListDialog.isShowing()) {
+				loadListDialog.dismiss();
+			}
+
+			// 发送启动报警判断的广播
+			Intent intent = new Intent();
+			intent.setAction(WPConstant.START_JUDGMENT_SERVICE_ACTION);
+			mContext.sendBroadcast(intent);
+		}
+	};
+
+	/**
+	 * 重命名设备昵称handler
+	 */
+	Handler RenameHandler = new Handler() {
+		public void handleMessage(Message msg) {
+			switch (msg.what) {
+			case 0:// 昵称修改成功
+				Toast.makeText(mContext, "修改成功！", Toast.LENGTH_SHORT).show();
+				break;
+			case -1:
+				Toast.makeText(mContext, "修改失败，请稍后重试！", Toast.LENGTH_SHORT)
+						.show();
+				break;
+			default:
+				break;
+			}
+		};
+	};
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+
+		initView();
+		getTreeList();
+		popupWindowInit();
+	}
+
+	/**
+	 * 刷新界面
+	 */
+	public void refreshFragment() {
+		elementList = WPApplication.getInstance().getTreeElementLists();
+		treeElementsList.clear();
+		treeElementsList.addAll(WPApplication.getInstance().getCurrentUser()
+				.getChildrenList());
+		Collections.sort(treeElementsList);
+		if (gridAdapter == null) {
+			gridAdapter = new EquipmentGridAdapter(mContext, treeElementsList, 0);
+			gridView.setAdapter(gridAdapter);
+		} else {
+			gridAdapter.notifyDataSetChanged();
+		}
+	}
+
+	/**
+	 * 数据有变化时刷新操作
+	 * bug：web端删除好友，这里会显示该删除好友记录40多条
+	 */
+	public void refreshData() {
+		treeElementsList.clear();
+		elementList.clear();
+		new Thread(new LoadTreeRunnable()).start();
+	}
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		ViewGroup group = (ViewGroup) mView.getParent();
+		if (group != null) {
+			group.removeAllViewsInLayout();
+		}
+		return mView;
+	}
+
+	private void initView() {
+		LayoutInflater inflater = getActivity().getLayoutInflater();
+		mView = inflater.inflate(R.layout.fragment_userlist,
+				(ViewGroup) getActivity().findViewById(R.id.main_vp_pager),
+				false);
+		mContext = getActivity();
+		wpPreferences = mContext.getSharedPreferences(WPConstant.WP_SETTING, 0);
+
+		alarmDao = new AlarmDao(mContext);
+
+		// 注册广播
+		equipmentListReceiver = new EquipmentListReceiver();
+		IntentFilter filter = new IntentFilter();
+		filter.addAction(WPConstant.USER_ONLINE_STATUS_ACTION);
+		filter.addAction(WPConstant.EQUIPMENT_ONLINE_STATUS_ACTION);
+		mContext.registerReceiver(equipmentListReceiver, filter);
+
+		gridView = (GridView) mView.findViewById(R.id.userlist_gridview);
+		gridView.setOnItemClickListener(itemClickListener);
+	}
+
+	/**
+	 * popupWindow初始化
+	 */
+	private void popupWindowInit() {
+		LayoutInflater li = (LayoutInflater) mContext
+				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		popView = li.inflate(R.layout.layout_tab_monitoring_menu, null);
+
+		popView.setBackgroundResource(R.drawable.bg_xml_monitoring_menu);
+
+		bn_rename = (CornerButton) popView.findViewById(R.id.monitoring_menu_bt_rename);
+		bn_alarm = (CornerButton) popView.findViewById(R.id.monitoring_menu_bt_alarm);
+		bn_video = (CornerButton) popView.findViewById(R.id.monitoring_menu_bt_video);
+
+		bn_video.setOnClickListener(btnClickListener);
+		bn_alarm.setOnClickListener(btnClickListener);
+
+		bn_rename.setOnClickListener(btnClickListener);
+		popWindow = new PopupWindow(
+                popView,
+                PublicMethodUtil.getInstance().px2dip(mContext, 220),
+                PublicMethodUtil.getInstance().px2dip(mContext, 190));
+
+		popWindow.setFocusable(true);
+		popWindow.setOutsideTouchable(true); // 设置允许在外点击消失
+		popWindow.setBackgroundDrawable(new BitmapDrawable());
+		popWindow.setAnimationStyle(R.style.style_monitoring_menu);
+	}
+
+	/**
+	 * 设置popupWindow的位置
+	 */
+	private void popupWindowShow(View parent) {
+		popWindow.showAtLocation(parent, Gravity.BOTTOM, 0, 0);
+	}
+
+	/**
+	 * 关闭popupWindow
+	 */
+	private void popupWindowDismiss() {
+		if (popWindow.isShowing()) {
+			popWindow.dismiss();
+		}
+	}
+
+	/**
+	 * 获取树形数据列表
+	 */
+	public void getTreeList() {
+		treeElementsList = new ArrayList<TreeElement>();
+		elementList = new ArrayList<TreeElement>();
+		loadListDialog = PublicMethodUtil.getInstance().makeProgressDialog(
+				mContext, R.string.str_null,
+				R.string.str_equipmentlist_loading_tree, false, false);
+		if (!loadListDialog.isShowing()) {
+			loadListDialog.show();
+		}
+		// 启动加载树数据的线程
+		new Thread(new LoadTreeRunnable()).start();
+	}
+
+	/**
+	 * 解析树形结构数据
+	 */
+	private void resolveTreeData(byte[] data) throws Exception {
+
+		equipmentList = new ArrayList<Equipment>();
+		// 关注在线状态的用户Id集合
+		List<String> lineStatusList = new ArrayList<String>();
+
+		int offset = 0;
+		int treeNums = JTools.Bytes4ToInt(data, offset);
+		offset += 4;
+		// 循环解析所有节点的数据
+		for (int i = 0; i < treeNums; i++) {
+			TreeElement treeEle = new TreeElement();
+			Equipment equipment = new Equipment();
+			// 父节点
+			int parentIndex = JTools.Bytes4ToInt(data, offset);
+			offset += 4;
+			treeEle.setParentIndex(parentIndex);
+			// System.out.println("parentIndex----------->" + parentIndex);
+
+			// 树形表唯一标识
+			int grantIndex = JTools.Bytes4ToInt(data, offset);
+			offset += 4;
+			treeEle.setGrantIndex(grantIndex);
+			// System.out.println("grantIndex----------->" + grantIndex);
+
+			// 用户ID（用户名）
+			String userId = (String) JTools.toStringList(data, offset,
+					WPConstant.STRING_GB2312).get(0);
+			offset = (Integer) JTools.toStringList(data, offset,
+					WPConstant.STRING_GB2312).get(1);
+			treeEle.setUserId(userId);
+			equipment.setEqID(userId);
+			// System.out.println("userId------------>" + userId);
+
+			// 昵称
+			String userName = (String) JTools.toStringList(data, offset,
+					WPConstant.STRING_GB2312).get(0);
+			offset = (Integer) JTools.toStringList(data, offset,
+					WPConstant.STRING_GB2312).get(1);
+			treeEle.setUserName(userName);
+			equipment.setEqName(userName);
+			// System.out.println("userName------------>" + userName);
+
+			// 用户类型
+			int userType = JTools.Bytes4ToInt(data, offset);
+			offset += 4;
+			if (userType == 8 || userType == 1536 || userType == 1024
+					|| userType == 1280 || userType == 1792)
+				treeEle.setUserType(0);
+			else
+				treeEle.setUserType(userType);
+			// 标志用于修改设备昵称
+			if (parentIndex == 0) {
+				//System.out.println("currentUserType------------>" + userType);
+				if (userType == 1792)
+					currentUserType = userType;
+			}
+			// System.out.println("userType------------>" + userType);
+			treeEle.setOnlineStatus(0);
+
+			elementList.add(treeEle);
+			if (userType == 7) {
+				equipmentList.add(equipment);
+			}
+			// System.out.println(treeEle.getUserName());
+		}
+
+		// 所有监控设备集合存入全局变量，以便获取报警信息
+		WPApplication.getInstance().setmEquipmentList(equipmentList);
+
+		// 给所有对象添加各自的子集合
+		for (int i = 0; i < elementList.size(); i++) {
+			List<TreeElement> childrenList = new ArrayList<TreeElement>();
+			for (int j = 0; j < elementList.size(); j++) {
+				if (elementList.get(j).getParentIndex() == elementList.get(i)
+						.getGrantIndex()) {
+					childrenList.add(elementList.get(j));
+				}
+			}
+			Collections.sort(childrenList);
+			elementList.get(i).setChildrenList(childrenList);
+
+			if (elementList.get(i).getParentIndex() == 0) {
+				elementList.get(i).setUserType(-1);
+				WPApplication.getInstance().setCurrentUser(elementList.get(i));
+				treeElementsList.addAll(elementList.get(i).getChildrenList());
+			}
+
+			if (elementList.get(i).getUserType() == 0) {
+				lineStatusList.add(elementList.get(i).getUserId());
+			}
+		}
+
+		// 获取用户在线状态
+		getElementsLineStatus(lineStatusList, elementList);
+		// 获取监控设备在线状态
+		getEquipmentLineStatus();
+
+		// 排序（在线状态和用户类型）
+		Collections.sort(elementList);
+		Collections.sort(treeElementsList);
+
+		// 保存树结构中所有元素
+		WPApplication.getInstance().setTreeElementLists(elementList);
+
+	}
+
+	/**
+	 * 获取当前树形组织中用户的在线状态
+	 */
+	private void getElementsLineStatus(List<String> list, List<TreeElement> treeList) {
+		String[] idArray = new String[list.size()];
+		list.toArray(idArray);
+		int[] statusArray = new int[idArray.length];
+		int getLineStatusResult = NativeInterface.getInstance()
+				.findFrinedUserOnLineInfo(idArray.length, idArray, statusArray);
+		Log.i("GetLineStatusResult", "getLineStatusResult-------------->"
+				+ getLineStatusResult);
+		// 高16位表示用户类型 低16位表示在线状态
+		if (getLineStatusResult == 0) {
+			for (int i = 0; i < statusArray.length; i++) {
+				for (int j = 0; j < treeList.size(); j++) {
+					if (treeList.get(j).getUserId().equals(idArray[i])) {
+
+						int xl, xh;
+						xl = statusArray[i] & 0x0000ffff;
+						xh = (statusArray[i] & 0xffff0000) >> 16;
+						if (xl == 1) {
+							treeList.get(j).setOnlineStatus(1);
+						}
+						if (xh == 1) {
+							treeList.get(j).setUserType(1);
+						}
+						break;
+					}
+				}
+			}
+		} else {
+			Toast.makeText(mContext,
+					R.string.str_equipmentlist_toask_linestatusfaild,
+					Toast.LENGTH_LONG).show();
+		}
+	}
+
+	/**
+	 * 获取当前组织中监控设备的在线状态
+	 */
+	private void getEquipmentLineStatus() {
+		try {
+			if (equipmentList != null && WPApplication.monitorUserList != null) {
+				if (equipmentList.size() > 0
+						&& WPApplication.monitorUserList.size() > 0) {
+					// 要发送给的监控用户
+					String deUser = "";
+					for (int i = 0; i < WPApplication.monitorUserList.size(); i++) {
+						deUser = deUser
+								+ WPApplication.monitorUserList.get(i)
+										.getmUserId() + "\0";
+					}
+					byte[] deUserByte = deUser.getBytes(WPConstant.STRING_UTF8);
+					byte[] deUserData = new byte[deUserByte.length + 2];
+					JTools.ShortToBytes2(
+							(short) WPApplication.monitorUserList.size(),
+							deUserData, 0);
+					System.arraycopy(deUserByte, 0, deUserData, 2,
+							deUserByte.length);
+
+					// 设备的id
+					String equipmentIds = "";
+					for (int i = 0; i < equipmentList.size(); i++) {
+						equipmentIds = equipmentIds
+								+ equipmentList.get(i).getEqID() + "\0";
+					}
+					byte[] equipmentIdsByte = equipmentIds
+							.getBytes(WPConstant.STRING_GB2312);
+					byte[] inData = new byte[equipmentIdsByte.length + 4];
+					JTools.IntToBytes4(equipmentList.size(), inData, 0);
+					System.arraycopy(equipmentIdsByte, 0, inData, 4,
+							equipmentIdsByte.length);
+
+					int getEquipmentLineStatusResult = NativeInterface
+							.getInstance().sendDataToAll((short) 0, (short) 1,
+									deUserData, deUserData.length,
+									WPConstant.REQUEST_EQUIPMENT_ONLINE,
+									inData, inData.length);
+					Log.i("GetEquipmentLineStatus",
+							"getEquipmentLineStatusResult-------------->"
+									+ getEquipmentLineStatusResult);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * @param child 子结点
+	 * @return 父结点
+	 */
+	private TreeElement getParentElement(TreeElement child) {
+		TreeElement parent = WPApplication.getInstance().getCurrentUser();
+		for (TreeElement te : elementList) {
+			if (te.getGrantIndex() == child.getParentIndex()) {
+				parent = te;
+				return parent;
+			}
+		}
+		return parent;
+	}
+
+	/**
+	 * listView列表点击事件
+	 */
+	OnItemClickListener itemClickListener = new OnItemClickListener() {
+
+		@Override
+		public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+				long arg3) {
+
+			selectTreeElement = treeElementsList.get(arg2);
+			int type = treeElementsList.get(arg2).getUserType();
+			if (type == 4 || type == 7){
+//                WPApplication.getInstance().setKeyBackFlag(SUConstant.KEYBACK_TYPE_STATIONS);
+            }
+
+			// user根节点和组织
+			if (type == -1 || type == 4) {
+
+				List<TreeElement> childrenList = new ArrayList<TreeElement>();
+				for (TreeElement te : treeElementsList.get(arg2)
+						.getChildrenList()) {
+					childrenList.add(te);
+				}
+				treeElementsList.clear();
+				treeElementsList.addAll(childrenList);
+				Collections.sort(treeElementsList);
+				System.gc();
+				gridAdapter.notifyDataSetChanged();
+			}
+			// camera
+			else if (type == 7) {
+				selectCameraId = treeElementsList.get(arg2).getUserId();
+				selectCameraName = treeElementsList.get(arg2).getUserName();
+				popupWindowShow(arg1);
+			}
+		}
+	};
+
+	/**
+	 * 按钮点击监听事件
+	 */
+	OnClickListener btnClickListener = new OnClickListener() {
+
+		@Override
+		public void onClick(View v) {
+			if (v == bn_rename) {
+				if (currentUserType == 1792) {
+					Bundle bundle = new Bundle();
+					bundle.putString("cameraId", selectCameraId);
+					bundle.putString("cameraName", selectCameraName);
+					(new ModifyDialogUtil()).showModifyDialog(mContext,
+							ModifyDialogUtil.MODIFY_EQUIPMENTNAME,
+							RenameHandler, bundle).show();
+				} else
+					Toast.makeText(mContext, "升级为付费主账户即可使用修改设备昵称功能！",
+							Toast.LENGTH_LONG).show();
+				popupWindowDismiss();
+			} else if (v == bn_alarm) {
+				Equipment equipment = new Equipment();
+				equipment.setEqID(selectCameraId);
+				equipment.setEqName(selectCameraName);
+				Bundle bundle = new Bundle();
+				bundle.putSerializable("equipment", equipment);
+				Intent intent = new Intent(mContext,
+						CameraMonitorAnnalActivity.class);
+				intent.putExtras(bundle);
+				startActivity(intent);
+				popupWindowDismiss();
+			} else if (v == bn_video) {
+				if (selectTreeElement != null) {
+					if (selectTreeElement.getOnlineStatus() == 1) {
+						Bundle bundle = new Bundle();
+						bundle.putString("equipmentId", selectCameraId);
+						Intent intent = new Intent(mContext,
+								MonitoringVideoActivity.class);
+						intent.putExtras(bundle);
+						mContext.startActivity(intent);
+					} else {
+						Toast.makeText(mContext,
+								R.string.str_equipmentlist_toask_unlinenovideo,
+								Toast.LENGTH_LONG).show();
+					}
+				}
+				popupWindowDismiss();
+			}
+		}
+	};
+
+	public void onBackPresse() {
+		treeElementsList.clear();
+		for (int i = 0; i < elementList.size(); i++) {
+            //#### 报了一个空指针错误？
+			if (elementList.get(i).getParentIndex() == selectTreeElement.getParentIndex()){
+                treeElementsList.add(elementList.get(i));
+            }
+		}
+		System.gc();
+		Collections.sort(treeElementsList);
+		gridAdapter.notifyDataSetChanged();
+		selectTreeElement = getParentElement(selectTreeElement);
+		if (selectTreeElement.getUserType() == -1){
+            WPApplication.getInstance().setKeyBackFlag(0);
+        }
+	}
+
+	@Override
+	public void onDestroy() {
+		mContext.unregisterReceiver(equipmentListReceiver);
+        loadTreeHandler.removeCallbacksAndMessages(null);
+        RenameHandler.removeCallbacksAndMessages(null);
+		super.onDestroy();
+	}
+
+	/**
+	 * 调用通信接口获取树形列线程
+	 */
+	private class LoadTreeRunnable implements Runnable {
+
+		@Override
+		public void run() {
+			Message msg = new Message();
+			try {
+				// 获取默认gid
+				int getDefaultGid = NativeInterface.getInstance()
+						.getDefaultGId();
+				Log.i("GetDefaultGid", "GetDefaultGid-------------->"
+						+ getDefaultGid);
+				if (getDefaultGid >= 0) {
+					WPApplication.getInstance().setDefaultGid(
+							(short) getDefaultGid);
+					WPApplication.getInstance().setGetDefaultGid(true);
+				}
+				// 获取企业id
+				int getCropIdResult = NativeInterface.getInstance().getCorpId();
+				Log.i("GetCropIdResult", "GetCropIdResult-------------->"
+						+ getCropIdResult);
+				if (getCropIdResult < 0) {
+					msg.what = -1;
+				} else {
+					WPApplication.getInstance().setDefaultCorpId(
+							getCropIdResult);
+					byte[] selfName = (EncrypAES.getInstance().decrypt(
+							wpPreferences.getString(EncrypAES.getInstance()
+									.encrypt(WPConstant.USER_NAME), EncrypAES
+									.getInstance().encrypt(""))) + "\0")
+							.getBytes(WPConstant.STRING_GB2312);
+
+					byte[] inData = new byte[selfName.length + 8];
+
+					JTools.IntToBytes4(getCropIdResult, inData, 0);
+					System.arraycopy(selfName, 0, inData, 4, selfName.length);
+					JTools.IntToBytes4(WPApplication.getInstance()
+							.getUserFlag(), inData, selfName.length + 4);
+
+					byte[] outData = new byte[1024 * 4];
+					int getTreeResult = 0;
+					int requestNum = 0;
+					while (getTreeResult <= 0 && requestNum < 5) {
+						getTreeResult = NativeInterface.getInstance()
+								.getDBData(WPConstant.GET_TREE_DATA, inData,
+										inData.length, outData, outData.length);
+						Log.i("GetTreeData", "GetTreeDataResult-------------->"
+								+ getTreeResult);
+						requestNum += 1;
+					}
+					byte[] realOutData = new byte[getTreeResult];
+					System.arraycopy(outData, 0, realOutData, 0, getTreeResult);
+					Bundle bundle = new Bundle();
+					bundle.putByteArray("resolveData", realOutData);
+
+					msg.what = getTreeResult;
+					msg.setData(bundle);
+				}
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+				msg.what = -1;
+			}
+			loadTreeHandler.sendMessage(msg);
+		}
+	}
+
+	/**
+	 * 设备列表广播
+	 */
+	private class EquipmentListReceiver extends BroadcastReceiver {
+
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			String action = intent.getAction();
+			Bundle bundle = intent.getExtras();
+
+			// 监听用户在线状态
+			if (action.equals(WPConstant.USER_ONLINE_STATUS_ACTION)) {
+				String userId = bundle.getString("UserId");
+				int userLineStatus = bundle.getInt("UserLineStatus");
+				// 在线
+				if (userLineStatus == 1) {
+					int userType = bundle.getInt("userType");
+					if (userType == 8 || userType == 1536 || userType == 1024
+							|| userType == 1280 || userType == 1792)
+						userType = 0;
+					userNameChangeStatus(userId, 1, userType);
+				}
+				// 离线
+				else if (userLineStatus == 2) {
+					userNameChangeStatus(userId, 0, -1);
+				}
+				// 服务器异常
+				else if (userLineStatus == 3) {
+				}
+				// 监控用户离线
+				else if (userLineStatus == 7) {
+					monitorAndEquipmentLineStatus(userId);
+				}
+			}
+			// 监控设备在线状态获取
+			else if (action.equals(WPConstant.EQUIPMENT_ONLINE_STATUS_ACTION)) {
+				int[] statusArray = bundle.getIntArray("statusArray");
+				String[] idArray = bundle.getStringArray("idArray");
+				for (int i = 0; i < idArray.length; i++) {
+					for (int j = 0; j < elementList.size(); j++) {
+						if (elementList.get(j).getUserId().equals(idArray[i])) {
+							elementList.get(j).setOnlineStatus(statusArray[i]);
+							break;
+						}
+					}
+				}
+				Collections.sort(treeElementsList);
+				gridAdapter.notifyDataSetChanged();
+			}
+		}
+
+		/**
+		 * 通过用户名修改用户的在线状态
+		 */
+		private void userNameChangeStatus(String userId, int status,
+				int userType) {
+			for (int i = 0; i < elementList.size(); i++) {
+				if (elementList.get(i).getUserId().equals(userId)) {
+					if (userType != -1)
+						elementList.get(i).setUserType(userType);
+					if (elementList.get(i).getOnlineStatus() != status) {
+						elementList.get(i).setOnlineStatus(status);
+						Collections.sort(treeElementsList);
+						gridAdapter.notifyDataSetChanged();
+						return;
+					}
+				}
+			}
+		}
+
+		/**
+		 * 监控用户下线后，将与该监控用户关联的监控端下线
+		 */
+		private void monitorAndEquipmentLineStatus(String userId) {
+			if (WPApplication.getInstance().getmEquipmentList() != null
+					&& WPApplication.getInstance().getmEquipmentList().size() > 0) {
+				for (int i = 0; i < WPApplication.getInstance()
+						.getmEquipmentList().size(); i++) {
+					if (WPApplication.getInstance().getmEquipmentList().get(i)
+							.getMonitorId() != null
+							&& WPApplication.getInstance().getmEquipmentList()
+									.get(i).getMonitorId().equals(userId)) {
+						for (int j = 0; j < elementList.size(); j++) {
+							if (elementList
+									.get(j)
+									.getUserId()
+									.equals(WPApplication.getInstance()
+											.getmEquipmentList().get(i)
+											.getEqID())) {
+								elementList.get(j).setOnlineStatus(0);
+							}
+						}
+					}
+				}
+			}
+			Collections.sort(treeElementsList);
+			gridAdapter.notifyDataSetChanged();
+		}
+	}
+}

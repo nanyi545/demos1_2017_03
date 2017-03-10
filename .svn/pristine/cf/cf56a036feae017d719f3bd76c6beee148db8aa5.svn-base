@@ -1,0 +1,114 @@
+package com.webcon.sus.utils;
+
+import com.webcon.sus.entity.AlarmNode;
+import com.webcon.sus.eventObjects.MessageEvent;
+import com.webcon.wp.utils.WPApplication;
+
+import java.util.List;
+
+import de.greenrobot.event.EventBus;
+
+/**
+ * @author m
+ */
+public class AlarmMsgManager {
+    public static final String TAG = "AlarmMsgManager";
+    public static final int ALARM_MANAGE_SOLVE  = 1;
+    public static final int ALARM_MANAGE_ADD    = 2;
+    public static final int ALARM_MANAGE_INIT   = 3;
+    public static final int ALARM_MANAGE_DELETE = 4;
+
+    private static AlarmMsgManager me;
+
+    private AlarmMsgManager(){
+    }
+
+    public static AlarmMsgManager getInstance(){
+        if(me == null){
+            synchronized (AlarmMsgManager.class){
+                if(me == null){
+                    me = new AlarmMsgManager();
+                }
+            }
+        }
+        return me;
+    }
+
+    //------------------------------------
+    /**
+     * ★用于解析和保存★
+     * <p>接收的消息要经过这里</p>
+     * <p>假定：获得的每个消息都要通过这里</p>
+     * 1.初始化消息
+     * 2.新消息
+     */
+    public void parseCenter(int type, byte[] data){
+        switch(type){
+            case ALARM_MANAGE_INIT:
+                storageProcess();
+                transmitCenter(type, null);
+                break;
+            case ALARM_MANAGE_ADD:
+                //TODO...
+                break;
+            default:
+                break;
+        }
+
+    }
+
+    /**
+     * 保存处理
+     * <p>！暂时不经过数据库</p>
+     */
+    private void storageProcess(){
+
+    }
+
+    /**
+     * 访问处理
+     * <p>！暂时不经过数据库</p>
+     */
+    private void accessProcess(){
+
+    }
+
+    /**
+     * ★转发消息通知中心★
+     * <p>所有的消息都要经过这里，并且所处理的消息是未处理过的</p>
+     * <p>假定：用于转发处理结果、以及发送通知</p>
+     * 1.发送通知
+     * 2.修改表状态
+     */
+    public void transmitCenter(int type, List<AlarmNode> alarms){
+        //
+        accessProcess();
+        //
+        switch(type){
+            case ALARM_MANAGE_INIT:
+                MessageEvent mEvent = new MessageEvent(MessageEvent.ALARM_FLAG_INIT);
+                EventBus.getDefault().post(mEvent);
+                break;
+            case ALARM_MANAGE_SOLVE:
+                if(alarms == null || alarms.size() <= 0){
+                    return;
+                }
+                AlarmNode node = alarms.get(0);
+                int stationId = node.getStationId();
+                WPApplication.getInstance().getStationNode(stationId).solvedNewAlarm(node.getId());
+
+                //发送通知
+                MessageEvent eventRefresh = new MessageEvent(MessageEvent.ALARM_FLAG_REFRESH);
+                eventRefresh.stationId = stationId;
+                EventBus.getDefault().post(eventRefresh);
+                break;
+            case ALARM_MANAGE_ADD:
+                break;
+            case ALARM_MANAGE_DELETE:
+                break;
+            default:
+                break;
+        }
+    }
+
+}

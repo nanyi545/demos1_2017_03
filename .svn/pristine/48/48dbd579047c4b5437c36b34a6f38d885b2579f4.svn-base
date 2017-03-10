@@ -1,0 +1,312 @@
+package com.webcon.sus.media;
+
+
+import android.content.Context;
+import android.util.Log;
+
+import com.android.test.VoiceObject;
+import com.webcon.sus.entity.MonitorUser;
+import com.webcon.wp.utils.AudioDataBuffer;
+import com.webcon.wp.utils.JTools;
+import com.webcon.wp.utils.NativeInterface;
+import com.webcon.wp.utils.WPApplication;
+import com.webcon.wp.utils.WPConstant;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+/**
+ * 音频采集播放管理类
+ * <p>用于回音处理</p>
+ * @author Vieboo
+ *
+ */
+public class AudioManager {
+	
+	private static VoiceObject voiceObject;
+	//private static TransferDecoding transferDecoding;
+	private static AudioManager audioManager;
+	private static Context context;
+	private boolean recordingFlag = false;
+	private boolean playerFlag = false;
+	private static short gid;
+	private AudioPlayerThread audioPlayerThread;
+	
+	private AudioManager(){
+		
+	}
+	
+	public static AudioManager getInstance(Context context, short gid){
+		if(audioManager == null){
+			synchronized (AudioManager.class) {
+				if(audioManager == null){
+					audioManager = new AudioManager();
+				}
+			}
+		}
+		AudioManager.context = context;
+		AudioManager.gid = gid;
+		if(voiceObject == null){
+			voiceObject = new VoiceObject();
+		}
+//		if(transferDecoding == null){
+//			transferDecoding = new TransferDecoding();
+//		}
+		return audioManager;
+	}
+	
+	public static AudioManager getInstance(){
+		if(audioManager == null){
+			synchronized (AudioManager.class) {
+				if(audioManager == null){
+					audioManager = new AudioManager();
+				}
+			}
+		}
+		if(voiceObject == null){
+			voiceObject = new VoiceObject();
+		}
+//		if(transferDecoding == null){
+//			transferDecoding = new TransferDecoding();
+//		}
+		return audioManager;
+	}
+	
+	/**
+	 * 保存接收到的音频数据
+	 */
+	public void enAudioDate(byte[] data){
+		if(audioPlayerThread != null){
+			AudioDataBuffer.getAudioDataBuffer().enQueue(data);
+			audioPlayerThread.openPlayerLock();
+		}
+	}
+	
+	/**
+	 * 音频初始化
+	 */
+	public void audioInit(){
+		voiceObject.nativeinit(context);
+		voiceObject.Init(context);
+	}
+	
+	/**
+	 * 启动录音
+	 */
+	public void audioStartRecord(int bit, int samp){
+//		transferDecoding.g722_encoder_init(bit, samp);
+//		voiceObject.StartRecorder();
+//		recordingFlag = true;
+//		new Thread(new AudioRecordDataSendThread()).start();
+	}
+	
+	private FileOutputStream fos;
+	public void audioStartRecord(int bit,int samp,MonitorUser monitorUser,FileOutputStream fos){
+		this.fos = fos;
+		voiceObject.StartRecorder();
+		recordingFlag = true;
+		new Thread(new AudioRecordDataSendToEquipmentThread(monitorUser)).start();
+	}
+	
+	/**
+	 * 停止录音
+	 */
+	public void audioStopRecord(){
+		if(recordingFlag){
+			recordingFlag = false;
+			voiceObject.StopRecorder();
+//			transferDecoding.g722_encoder_release();
+		}
+	}
+	
+	/**
+	 * 启动播放
+	 */
+	public void audioStartPlay(int bit, int samp){
+//		transferDecoding.g722_decoder_init(bit, samp);
+		voiceObject.StartPlayer();
+		playerFlag = true;
+		audioPlayerThread = new AudioPlayerThread();
+		new Thread(audioPlayerThread).start();
+	}
+	
+	/**
+	 * 停止播放
+	 */
+	public void audioStopPlay(){
+		if(playerFlag){
+			playerFlag = false;
+			voiceObject.StopPlayer();
+//			transferDecoding.g722_decoder_release();
+		}
+	}
+	
+//	/**
+//	 * 发送音频数据线程
+//	 */
+//	private class AudioRecordDataSendThread implements Runnable{
+//
+//		@Override
+//		public void run() {
+//			byte[] outData = new byte[320];
+////			byte[] audioData = new byte[320];
+//			byte[] deUser = new byte[2];
+//
+//			JTools.ShortToBytes2((short)0, deUser, 0);
+//			Log.i("Record", "-------录音开始------");
+//			while(recordingFlag){
+////				int size = voiceObject.CallbackM(audioData);
+//				int size = voiceObject.CallbackM(outData);
+//				if(size > 0){
+////					int length = transferDecoding.g722_encoder(outData, audioData, size);
+//					short dataType=5;
+//					if(WPApplication.getInstance().getUserFlag()==1){
+//						dataType=1;
+//					}
+//					NativeInterface.getInstance().sendDataToAll(
+//							gid,
+//							dataType,
+//							deUser,
+//							deUser.length,
+//							WPConstant.MUTUAL_AUDIO_DATA,
+//							outData,
+//							size
+//							);
+//				}else{
+//					try {
+//						Thread.sleep(100);
+//					} catch (InterruptedException e) {
+//						e.printStackTrace();
+//					}
+//				}
+//			}
+//			Log.i("Record", "-------录音结束------");
+////			audioData = null;
+//			deUser = null;
+//		}
+//
+//	}
+	
+	private class AudioRecordDataSendToEquipmentThread implements Runnable{
+		private MonitorUser monitorUser;
+
+		public AudioRecordDataSendToEquipmentThread(MonitorUser monitorUser) {
+			this.monitorUser = monitorUser;
+		}
+
+		@Override
+		public void run() {
+			byte[] outData = new byte[320];
+			byte[] deUser = new byte[2];
+			
+			JTools.ShortToBytes2((short)0, deUser, 0);
+			Log.i("Record", "-------录音开始------");
+			while(recordingFlag){
+//				int size = voiceObject.CallbackM(audioData);
+				int size = voiceObject.CallbackM(outData);
+				if(size > 0){
+//					int length = transferDecoding.g722_encoder(outData, audioData, size);
+					short dataType=5;
+					if(WPApplication.getInstance().getUserFlag()==1){
+						dataType=1;
+					}
+					if (monitorUser != null) {
+						try {
+							int getMonitoringVoiceResult = NativeInterface
+									.getInstance().sendData(
+											(short) 0,
+											(short) 1,
+											monitorUser.getmUserId(),
+											WPConstant.SEND_VOICE_DATA,
+											outData, 
+											outData.length,
+											monitorUser.ismIsP2PConnect());
+								System.out.println("sendVoiceResult: "+getMonitoringVoiceResult+"   data length: "+outData.length);
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+						}
+					
+					try {
+						fos.write(outData, 0, outData.length);
+						fos.flush();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}finally{
+						try {
+							fos.close();
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}
+				}else{
+					try {
+						Thread.sleep(100);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+			Log.i("Record", "-------录音结束------");
+//			audioData = null;
+			deUser = null;
+		}
+		
+	}
+	
+	/**
+	 * 播放音频数据线称
+	 */
+	private class AudioPlayerThread implements Runnable{
+
+		@Override
+		public void run() {
+			
+			Log.i("Record", "-------播放开始------");
+			byte[] audioData;
+//			byte[] playData = new byte[320];
+			while(playerFlag){
+				audioData = AudioDataBuffer.getAudioDataBuffer().deQueue();
+				if(audioData != null){
+//					int length = transferDecoding.g722_decoder(playData, audioData, audioData.length);
+//					voiceObject.WritePlayData(playData, length);
+					voiceObject.WritePlayData(audioData, audioData.length);
+//					try {
+//						Thread.sleep(20);
+//					} 
+//					catch (InterruptedException e) {
+//						e.printStackTrace();
+//					}
+				}else{
+					synchronized (this) {
+						try {
+//							Log.i("Record", "-------播放暂停------");
+							wait();
+						} 
+						catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+					}
+				}
+			}
+
+			Log.i("Record", "-------播放结束------");
+		}
+		
+		private void openPlayerLock(){
+			synchronized (this) {
+				notify();
+			}
+		}
+	}
+	
+	
+	/**
+	 * 录音、播放、转解码对象释放
+	 */
+	public void audioObjectRelease(){
+		voiceObject.Exit();
+		voiceObject = null;
+//		transferDecoding = null;
+		}
+} 

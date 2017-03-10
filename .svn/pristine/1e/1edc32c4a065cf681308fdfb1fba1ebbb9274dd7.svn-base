@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include layout="@layout/layout_include_back_head" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:padding="10dp" >
+
+        <TextView
+            android:id="@+id/usermsg_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:padding="5dp"
+            android:text="@string/str_pi_account" />
+
+        <TextView
+            android:id="@+id/usermsg_txt_userid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/usermsg_account"
+            android:layout_marginLeft="30dp"
+            android:text="@string/str_pi_account_sample"
+            android:textColor="@color/Orange400" />
+    </RelativeLayout>
+
+    <!--<TextView-->
+    <!--android:layout_width="fill_parent"-->
+    <!--android:layout_height="0.2dp"-->
+    <!--android:background="@android:color/darker_gray" />-->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:src="@drawable/divider_simple_1"
+        android:layout_marginRight="18dp"
+        android:layout_marginLeft="18dp"
+        android:contentDescription="@string/str_null"/>
+
+    <RelativeLayout
+        android:id="@+id/usermsg_ll_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/bn_selector_lightblue"
+        android:padding="10dp" >
+
+        <TextView
+            android:id="@+id/usermsg_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:padding="5dp"
+            android:text="@string/str_pi_nickname" />
+
+        <TextView
+            android:id="@+id/usermsg_txt_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/usermsg_nickname"
+            android:layout_marginLeft="30dp"
+            android:text="@string/str_pi_nickname_sample"
+            android:textColor="@color/Orange400" />
+
+        <ImageView
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/icon_next"
+            android:contentDescription="@string/str_null"/>
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:src="@drawable/divider_simple_1"
+        android:layout_marginRight="18dp"
+        android:layout_marginLeft="18dp"
+        android:contentDescription="@string/str_null"/>
+
+    <!--
+    <LinearLayout
+        android:id="@+id/usermag_ll_name"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:background="@color/color_back_gray"
+        android:padding="10dp" >
+
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="修改昵称" />
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:text="保存" />
+    </LinearLayout>
+
+    -->
+
+    <RelativeLayout
+        android:id="@+id/usermsg_ll_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/bn_selector_lightblue"
+        android:padding="10dp" >
+
+        <TextView
+            android:id="@+id/usermsg_passwd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:padding="5dp"
+            android:text="@string/str_pi_passwd" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/usermsg_passwd"
+            android:layout_marginLeft="30dp"
+            android:text="@string/str_pi_passwd_sample"
+            android:textColor="@color/Grey_" />
+
+        <ImageView
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/icon_next"
+            android:contentDescription="@string/str_null"/>
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:src="@drawable/divider_simple_1"
+        android:layout_marginRight="18dp"
+        android:layout_marginLeft="18dp"
+        android:contentDescription="@string/str_null"/>
+
+</LinearLayout>

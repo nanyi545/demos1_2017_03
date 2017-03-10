@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head lang="en">
+<meta charset="UTF-8">
+<title>array_test</title>
+
+
+    <script type="text/javascript">
+    function showAndroidToast(toast) {
+        Android.showToast(toast);
+    }
+
+    function showAndroidToast1() {
+        var myarray=new Array(5);
+myarray[0]=1;
+myarray[1]=false;
+myarray[2]="222";
+myarray[3]="333";
+myarray[4]="444";
+
+
+        Android.showToast("---"+myarray[0]+"---"+myarray[1]+"---"+myarray[2]);
+    }
+
+    </script>
+
+
+
+</head>
+<body>
+
+
+<input type="button" value="Toast" onClick="showAndroidToast('Hello from JavaScript!!!')">
+<input type="button" value="Toast1" onClick="showAndroidToast1()">
+
+
+
+
+</body>
+</html>

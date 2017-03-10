@@ -1,0 +1,285 @@
+package com.webcon.sus.activities;
+
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.util.Log;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import com.webcon.sus.demo.R;
+import com.webcon.sus.entity.AlarmNode;
+import com.webcon.sus.entity.StationNode;
+import com.webcon.sus.eventObjects.MessageEvent;
+import com.webcon.sus.utils.AlarmMsgManager;
+import com.webcon.wp.utils.NotificationCancelManager;
+import com.webcon.wp.utils.PublicMethodUtil;
+import com.webcon.wp.utils.WPApplication;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
+
+import de.greenrobot.event.EventBus;
+
+/**
+ * @author m
+ */
+public class AlarmDetailsActivityCompat extends BaseActivity implements View.OnClickListener{
+    private static final String TAG = "AlarmDetails";
+    public static final String ALARM_DETAIL_FLAG = "alarmDetailedIntentFlag";
+    public static final String ALARM_DETAIL_TEMP = "alarmTemp";
+    public static final String ALARM_DETAIL_DATA = "alarmData";
+
+    private Context mContext;
+    private TextView tv_title, tv_name, tv_date, tv_content, tv_solveState, tv_solver, tv_solveDate;
+    private RelativeLayout rl_solveState, rl_solver, rl_solveDate;
+
+    private int alarmId;
+    private int intentFlag; // 跳转标识
+    private int alarmTemp; // 保留字段
+
+    private AlarmNode mAlarm;
+    private ImageButton bn_back;
+    private SimpleDateFormat format;
+    private Button bn_confirm_solve;
+
+    private boolean isProcessing = false;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
+        init();
+    }
+
+    private void init(){
+        Log.i(TAG, "init");
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        setContentView(R.layout.layout_alarm_details_compat);
+
+        mContext = this;
+        format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        format.setTimeZone(TimeZone.getTimeZone("GMT+8"));
+
+        tv_title = (TextView) findViewById(R.id.title_tv);
+        tv_title.setText("报警详情");
+        tv_name = (TextView) findViewById(R.id.tv_alarm_detail_name_value);
+        tv_date = (TextView) findViewById(R.id.tv_alarm_detail_date_value);
+        tv_content = (TextView) findViewById(R.id.tv_alarm_detail_content_value);
+        tv_solveState = (TextView) findViewById(R.id.tv_alarm_detail_solve_state_value);
+        tv_solver = (TextView) findViewById(R.id.tv_alarm_detail_solver_value);
+        tv_solveDate = (TextView) findViewById(R.id.tv_alarm_detail_solve_date_value);
+
+        rl_solveState = (RelativeLayout) findViewById(R.id.rl_alarm_detail_solve_state);
+        rl_solver = (RelativeLayout) findViewById(R.id.rl_alarm_detail_solver);
+        rl_solveDate = (RelativeLayout) findViewById(R.id.rl_alarm_detail_solve_date);
+
+        bn_back = (ImageButton) findViewById(R.id.usermsg_back);
+        bn_back.setOnClickListener(this);
+
+        bn_confirm_solve = (Button) findViewById(R.id.bn_alarm_details_solver_confirm);
+        bn_confirm_solve.setOnClickListener(this);
+
+        //赋值
+        parseDate(getIntent());
+    }
+
+    private void parseDate(Intent intent){
+        Log.i(TAG, "parseData");
+        Bundle bundle = intent.getExtras();
+        if(bundle == null){
+            Log.e(TAG, "no data found");
+            return;
+        }
+        // 跳转标识 flag
+        // 0:程序未启动的情况下从登陆页面直接跳转
+        // 1:点击报警列表跳转
+        // 2:程序在启动状态下点击通知跳转
+        // 3:主界面退出了...
+        intentFlag = bundle.getInt(ALARM_DETAIL_FLAG, -1);
+        // 保留字段
+        alarmTemp = bundle.getInt(ALARM_DETAIL_TEMP, -1);
+        // 报警数据
+        mAlarm = (AlarmNode) bundle.getSerializable(ALARM_DETAIL_DATA);
+
+        if (mAlarm == null) {
+            Log.e(TAG, "alarm not found");
+            return;
+        }else{
+            mAlarm.printOut();
+            alarmId = mAlarm.getId();
+        }
+        assignText(mAlarm);
+    }
+
+    /**
+     * 赋值
+     * @param alarm 报警消息实体
+     */
+    private void assignText(AlarmNode alarm){
+        //报警设备名称
+        if (alarm.getDeviceName() != null && !alarm.getDeviceName().equals("")) {
+            tv_name.setText(alarm.getDeviceName());
+        } else {
+            tv_name.setText(getResources().getString(R.string.str_notifi_alarm_tv_unknow));
+        }
+
+        //报警日期
+        if (alarm.getAlarmDate() != null && !alarm.getAlarmDate().equals("")) {
+            tv_date.setText(alarm.getAlarmDate());
+        } else {
+            tv_date.setText(getResources().getString(R.string.str_notifi_alarm_tv_unknow));
+        }
+
+        //报警内容
+        if (alarm.getContent() != null && !alarm.getContent().equals("")) {
+            tv_content.setText(alarm.getContent());
+        } else {
+            tv_content.setText(getResources().getString(R.string.str_notifi_alarm_tv_unknow));
+        }
+
+        if (isSolved(alarm)){//若消息已处理
+            //消息处理状态
+            tv_solveState.setTextColor(getResources().getColor(R.color.Black));
+            tv_solveState.setText("已处理");
+
+            //消息处理者
+            if (alarm.getSolver() != null && !alarm.getSolver().equals("")) {
+                tv_solver.setText(alarm.getSolver() + "");
+            } else {
+                tv_solver.setText(getResources().getString(R.string.str_notifi_alarm_tv_unknow));
+            }
+            //消息处理时间
+            if (alarm.getSolvedDate() != -1) {
+                String time = format.format(new Date(alarm.getSolvedDate() * 1000));
+                tv_solveDate.setText(time);
+            } else {
+                tv_solveDate.setText(getResources().getString(R.string.str_notifi_alarm_tv_unknow));
+            }
+
+            //显示
+            rl_solver.setVisibility(View.VISIBLE);
+            rl_solveDate.setVisibility(View.VISIBLE);
+            //隐藏按钮
+            bn_confirm_solve.setVisibility(View.GONE);
+
+        }else{//消息未处理
+            //消息处理状态
+            tv_solveState.setTextColor(getResources().getColor(R.color.Red_));
+            tv_solveState.setText("未处理");
+
+            //隐藏
+            rl_solver.setVisibility(View.GONE);
+            rl_solveDate.setVisibility(View.GONE);
+
+            //显示按钮
+            bn_confirm_solve.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private boolean isSolved(AlarmNode alarm){
+        return 1 == alarm.getIsSolved();
+    }
+
+    /* -------------------------------------- */
+    /**
+     * 返回关闭当前页面
+     */
+    private void pageBack() {
+        // TODO:在程序未启动的情况下打开的，跳转到??页面( 这里跳转转到了login/main页面，不知道哪个、、)
+        if (intentFlag == 0) {
+            intentToNewActivity(mContext, MainActivityCompat.class, AlarmDetailsActivityCompat.this, true);
+        } else {
+            AlarmDetailsActivityCompat.this.finish();
+        }
+    }
+
+
+    @Override
+    public void onClick(View v) {
+        // 返回按钮
+        if (v == bn_back) {
+            pageBack();
+        }
+        if(v == bn_confirm_solve && !isProcessing){
+            isProcessing = true;
+            // 请求处理->
+            // ☆关键：当前本地唯一能够引起整个消息机制变化的调用☆ FIXME：!!!处理通知!!!
+            // 通知的id
+            mAlarm.setSolvedDate(new Date().getTime() / 1000);
+            if(WPApplication.getInstance() != null){
+                //部分手机 部分Android版本  杀掉主线程后  WPApplication线程也会关掉
+                mAlarm.setSolver(WPApplication.getInstance().getCurrentUser().getUserName());
+            }
+            ArrayList<AlarmNode> alarmList = new ArrayList<>();
+            alarmList.add(mAlarm);
+            AlarmMsgManager.getInstance().transmitCenter(
+                    AlarmMsgManager.ALARM_MANAGE_SOLVE_REQUEST, alarmList);
+
+
+            // FIXME：取消当前处理的报警信息的通知，(XXXX-以及发送通知，请求修改数据库什么的。。。)
+            int notificationID = -1;
+            try {
+                //TODO：使用工具，转化一个标识符
+                notificationID = (int) PublicMethodUtil.getInstance()
+                        .dateChangeNotificationId(mAlarm.getAlarmDate());
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
+            if (notificationID != -1) {
+                NotificationCancelManager.getInstance().clearOneNotification(
+                        mContext, notificationID, NotificationCancelManager.TAG_ALARM);
+            }
+        }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, @NonNull KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+            pageBack();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+
+    @Override
+    protected void releaseHandler() {
+
+    }
+
+    /* -------------------- */
+    @Override
+    protected void onNewIntent(Intent intent) {
+        Log.w(TAG, "on new intent");
+        parseDate(intent);
+        super.onNewIntent(intent);
+    }
+
+    public void onEventMainThread(MessageEvent event){
+        Log.w(TAG, "get message event");
+        if(event.getType() == MessageEvent.ALARM_FLAG_REFRESH && event.alarmId == alarmId){
+            isProcessing = false;
+            if(event.success){
+                StationNode node = WPApplication.getInstance().getStationNode(mAlarm.getStationId());
+                AlarmNode alarm = node.getAlarmNode(alarmId);
+                if(alarm != null){
+                    mAlarm = alarm;
+                    assignText(alarm);
+                }
+            }else{
+                bn_confirm_solve.setVisibility(View.VISIBLE);
+            }
+
+        }
+    }
+}

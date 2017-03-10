@@ -1,0 +1,275 @@
+package com.webcon.sus.entity;
+
+
+import android.support.annotation.NonNull;
+import android.util.Log;
+
+import com.webcon.sus.utils.SUConstant;
+import com.webcon.wp.utils.WPApplication;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+/**
+ * 站场结点
+ * <p>包括包含设备列表和该站场报警消息列表等数据</p>
+ * @author master
+ * //FIXME：线程安全？？？？？
+ */
+public class StationNode implements Comparable<StationNode>{
+    private static final String TAG = "StationNode";
+    /** 设备列表 */
+    private List<BaseDevice> mDevices;
+    /** 报警消息列表 */
+    private List<AlarmNode> mAlarms;
+
+    /** 站场服务器Id */
+    private int mId = 0;
+    /** 站场名称 */
+    private String mName = "";
+    /** 备注消息(保留) */
+    private String mRemark = "";
+    /** 是否存活 */
+    private boolean isAlive = false;
+    /** 新报警消息数量 */
+    private int mNewAlarm = 0;
+    /** 站场状态：开启、关闭、有新报警 */
+    private int mState = SUConstant.FLAG_STATION_CLOSED;
+    /** 报警录音数量 */
+    private int mRecordSum = 0;
+
+    private boolean processing = false;
+
+    // getter & setter
+
+    public List<BaseDevice> getDeviceList(){
+        if(mDevices == null){
+            Log.e("StationNode", "devices list is null");
+            throw new NullPointerException();
+        }
+        return mDevices;
+    }
+
+    public void setDeviceList(List<BaseDevice> list){
+        this.mDevices = list;
+        if(mDevices != null){
+            Collections.sort((ArrayList) mDevices);
+        }
+    }
+
+    public int getId(){
+        return this.mId;
+    }
+
+    public void setId(int id){
+        this.mId = id;
+    }
+
+    public int getState() {
+        return mState;
+    }
+
+    public void setState(int mState) {
+        if(mState == SUConstant.FLAG_STATION_OPENED && mNewAlarm != 0){
+            mState = SUConstant.FLAG_STATION_ALARM;
+        }
+        this.mState = mState;
+    }
+
+    //--------------------
+    /*
+     * 报警消息列表的操作:
+     * 1.添加、删除新消息
+     * 2.处理新消息
+     */
+
+    public List<AlarmNode> getAlarmList(){
+        refreshAlarmList();
+        return mAlarms;
+    }
+
+    public void setAlarmList(List<AlarmNode> list){
+        this.mAlarms = list;
+    }
+
+    public int getNewAlarm() {
+        return mNewAlarm;
+    }
+
+    public void setNewAlarm(int newAlarm) {
+        mNewAlarm = newAlarm;
+        if(mState != SUConstant.FLAG_STATION_CLOSED){
+            if(newAlarm > 0){
+                mState = SUConstant.FLAG_STATION_ALARM;
+            }else{
+                mState = SUConstant.FLAG_STATION_OPENED;
+            }
+        }
+    }
+
+    /**
+     * 处理一条新消息：包括当前消息列表和全局列表的处理
+     * <p><i>这样写逻辑是不是太乱了？？那么以后有时间再来改吧</i></p>
+     */
+    public void solvedNewAlarm(AlarmNode alarm){
+        //FIXME:这个逻辑部分可能需要重新处理。。。
+        if(alarm != null){//修改和删除操作
+            // 处理站场结点下的消息列表
+            if(!findAlarmArrayAndSolved(mAlarms, alarm)){
+                Log.e(TAG, "not found item --> stationList");
+                throw new NullPointerException();
+            }
+            // 处理全部消息列表
+            if(!findAlarmArrayAndSolved(WPApplication.getInstance().getAllAlarmList(), alarm)){
+                Log.e(TAG, "not found item --> allList");
+                throw new NullPointerException();
+            }
+        }
+        //
+        WPApplication.getInstance().substractNewAlarm();
+        setNewAlarm(mNewAlarm - 1);
+        refreshAlarmList();
+    }
+
+    /**
+     * 添加一条报警消息
+     */
+    public void addNewAlarm(AlarmNode alarm){
+        //TODO:有个关于匹配的问题？
+        mAlarms.add(alarm);
+        setNewAlarm(mNewAlarm + 1);
+        //NOTE:除初始化之外，其他的报警消息操作都在指定的Station中的列表进行，然后自动构建全局列表
+        refreshAlarmList();
+        WPApplication.getInstance().rebuildAlarmList();
+        WPApplication.getInstance().addNewAlarm();
+        //与通知分离，之后要注意发送事件通知
+    }
+
+    /**
+     * 删除一条报警消息
+     * <p>注：未实现相关功能</p>
+     */
+    public void removeAlarm(AlarmNode alarm){
+        //TODO: 关于能否匹配的问题？
+        mAlarms.remove(alarm);
+        if(alarm.getIsSolved() == 0){
+            solvedNewAlarm(null);
+        }
+        refreshAlarmList();
+        WPApplication.getInstance().rebuildAlarmList();
+        WPApplication.getInstance().substractNewAlarm();
+    }
+
+    public void refreshAlarmList(){
+        Collections.sort(mAlarms);
+    }
+
+    /**
+     * 核查未处理报警消息
+     */
+    public int correctNewAlarms(){
+        mNewAlarm = 0;
+        for(AlarmNode an : mAlarms){
+            if(an.getIsSolved() == 0){
+                mNewAlarm++;
+            }
+        }
+        return mNewAlarm;
+    }
+
+    /**
+     *  获取结点
+     */
+    public AlarmNode getAlarmNode(int id){
+        if(mAlarms.size() <= 0){
+            return null;
+        }else{
+            for(AlarmNode node : mAlarms){
+                if(node.getId() == id){
+                    return node;
+                }
+            }
+        }
+        return null;
+    }
+
+    public boolean isProcessing(){
+        return processing;
+    }
+
+    //------------
+
+    public String getName() {
+        return mName;
+    }
+
+    public void setName(String mName) {
+        this.mName = mName;
+    }
+
+    public int getRecordSum() {
+        return mRecordSum;
+    }
+
+    public void setRecordSum(int mRecordSum) {
+        this.mRecordSum = mRecordSum;
+    }
+
+    public String getRemark() {
+        return mRemark;
+    }
+
+    public void setRemark(String mRemark) {
+        this.mRemark = mRemark;
+    }
+
+    public boolean isAlive() {
+        return isAlive;
+    }
+
+    public void setAlive(boolean isAlive) {
+        this.isAlive = isAlive;
+    }
+
+    public boolean isDefend(){
+        if(mState == SUConstant.FLAG_STATION_OPENED || mState == SUConstant.FLAG_STATION_ALARM){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    private boolean findAlarmArrayAndSolved(List<AlarmNode> list, AlarmNode alarm){
+        boolean ret = false;
+        for(AlarmNode n : list){
+            if(n.getId() == alarm.getId()){
+                n.setIsSolved((short)1);
+                n.setSolver(alarm.getSolver());
+                n.setSolvedDate(alarm.getSolvedDate());
+                ret = true;
+                break;
+            }
+        }
+        return ret;
+    }
+
+
+    @Override
+    public int compareTo(@NonNull StationNode another) {
+        if(another.getState() < mState){
+            return -1;
+        }else if(another.getState() > mState){
+            return 1;
+        }else{
+            if(another.getId() > mId){
+                return -1;
+            }else if(another.getId() < mId){
+                return 1;
+            }else{
+                return 0;
+            }
+        }
+    }
+
+}

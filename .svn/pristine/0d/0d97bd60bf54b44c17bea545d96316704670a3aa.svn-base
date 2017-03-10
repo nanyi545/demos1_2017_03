@@ -1,0 +1,786 @@
+package com.webcon.sus.service;
+
+import android.app.PendingIntent;
+import android.app.Service;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.os.IBinder;
+import android.os.PowerManager;
+import android.os.PowerManager.WakeLock;
+import android.util.Log;
+import android.widget.Toast;
+
+import com.webcon.sus.db.AlarmDao;
+import com.webcon.sus.demo.R;
+import com.webcon.sus.entity.AlarmInfo;
+import com.webcon.sus.entity.DeviceNode;
+import com.webcon.sus.entity.Equipment;
+import com.webcon.sus.entity.StationNode;
+import com.webcon.sus.eventObjects.MessageEvent;
+import com.webcon.sus.eventObjects.StationListEvent;
+import com.webcon.sus.utils.SUConstant;
+import com.webcon.wp.utils.CCallbackMethod;
+import com.webcon.wp.utils.EncrypAES;
+import com.webcon.wp.utils.JTools;
+import com.webcon.wp.utils.LoginLock;
+import com.webcon.wp.utils.NativeInterface;
+import com.webcon.wp.utils.WPApplication;
+import com.webcon.wp.utils.WPConstant;
+
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
+
+import de.greenrobot.event.EventBus;
+
+/**
+ * 通信库工作需要的线程、报警信息的处理
+ * 
+ * @author Vieboo
+ * 
+ */
+public class DoworkService extends Service {
+
+//	private AlarmManager alarmManager;
+//	private static final int PENDING_INTENT_TAG = 1;
+	private static final int PENDING_INTENT_TAG = Intent.FILL_IN_ACTION;
+	private PendingIntent sender;
+	private AlarmReceiver alarmReceiver;
+	private Context mContext;
+	private PowerManager mPowerManager;
+	private WakeLock mWakeLock;
+
+	@Override
+	public IBinder onBind(Intent intent) {
+		return null;
+	}
+
+	@Override
+	public void onCreate() {
+		mContext = this;
+
+		// 注册报警相关广播
+		alarmReceiver = new AlarmReceiver();
+		IntentFilter alarmFilter = new IntentFilter();
+		alarmFilter.addAction(WPConstant.RESOLVE_ALARM_ACTION); // 处理报警信息
+		alarmFilter.addAction(WPConstant.START_JUDGMENT_SERVICE_ACTION); // 启动获取未处理报警信息的广播
+		registerReceiver(alarmReceiver, alarmFilter);
+
+//		alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+
+//		IntentFilter filter = new IntentFilter();
+//		filter.addAction(WPConstant.TIME_IN_24_ACTION);
+
+        //EventBus
+        EventBus.getDefault().register(this);
+        testData();
+		super.onCreate();
+	}
+
+	@Override
+	public int onStartCommand(Intent intent, int flags, int startId) {
+
+		// 启动电量控制锁，保持cpu不睡眠
+		mPowerManager = (PowerManager) mContext
+				.getSystemService(Context.POWER_SERVICE);
+		mWakeLock = mPowerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
+				WPConstant.TAG_WP);
+		if (!mWakeLock.isHeld()) {
+			mWakeLock.acquire();
+		}
+
+		int callbackObjResult = -1;
+		try {
+			callbackObjResult = CCallbackMethod.getInstancs(this).setCallBackObj();
+		} catch (UnsatisfiedLinkError e) {
+			e.printStackTrace();
+		}
+		// int callbackObjResult = CCallbackMethod.getInstancs(this)
+		// .setCallBackObj();
+		if (callbackObjResult < 0) {
+			Toast.makeText(this, R.string.str_dowrokservice_toast_a,
+					Toast.LENGTH_SHORT).show();
+		} else {
+			new DoworkThread().start();
+		}
+		return super.onStartCommand(intent, flags, startId);
+	}
+
+	@Override
+	public void onDestroy() {
+		// 释放电量锁
+		if (mWakeLock != null && mWakeLock.isHeld()) {
+			mWakeLock.release();
+		}
+		unregisterReceiver(alarmReceiver);
+//		alarmManager.cancel(sender);
+		Log.i("AppExit", "-----------AppExit-----------");
+		if (!WPApplication.isCancellation) {
+			System.exit(0);
+		}
+
+        //EventBus
+        EventBus.getDefault().unregister(this);
+
+		super.onDestroy();
+	}
+
+	/**
+	 * doworking....
+	 */
+	private class DoworkThread extends Thread {
+
+		@Override
+		public void run() {
+			// 解开登陆锁
+			LoginLock.getInstance().getUnlock();
+			LoginLock.hasLocked = true;
+
+            Log.e("DOWORK", "dowork thread");
+			int i = CCallbackMethod.getInstancs(DoworkService.this).doWork(
+					"com/webcon/wp/utils/CCallbackMethod", "messageCallback",
+					"callBackData");
+
+			Log.e("DOWORK", "------------------DoworkDead-------------------");
+		}
+	}
+
+	/************************ 报警部分 *************************/
+
+	/**
+	 * 启动请求未处理报警信息的线程
+	 */
+	public void startRequestAlarmThread(List<Equipment> equipmentList) {
+        if(WPApplication.DEBUG){
+            return;
+        }
+		new RequestCameraAlarmUnlineThread(equipmentList).start();
+	}
+
+	/**
+	 * 请求摄像头未处理的报警信息
+	 */
+	private class RequestCameraAlarmUnlineThread extends Thread {
+
+		List<Equipment> equipmentList;
+		AlarmDao alarmDao;
+		String currentUserName;
+
+		private RequestCameraAlarmUnlineThread(List<Equipment> list) {
+			this.equipmentList = list;
+			alarmDao = new AlarmDao(mContext);
+			SharedPreferences mPreferences = mContext.getSharedPreferences(
+					WPConstant.WP_SETTING, 0);
+			currentUserName = EncrypAES.getInstance().decrypt(
+					mPreferences.getString(
+							EncrypAES.getInstance().encrypt(
+									WPConstant.USER_NAME), EncrypAES
+									.getInstance().encrypt("")));
+		}
+
+		@Override
+		public void run() {
+
+			try {
+
+				/*
+				 * 数据结构 int 预留 short 摄像头个数 byte[] 摄像头id集合
+				 */
+
+				String equipmentIds = "";
+				for (int i = 0; i < equipmentList.size(); i++) {
+					equipmentIds = equipmentIds
+							+ equipmentList.get(i).getEqID() + "\0";
+				}
+				byte[] idByteArray = equipmentIds
+						.getBytes(WPConstant.STRING_UTF8);
+				byte[] inData = new byte[idByteArray.length + 6];
+				byte[] outData = new byte[1024 * 6];
+
+				int inOffset = 0;
+				// 预留
+				JTools.IntToBytes4(0, inData, inOffset);
+				inOffset += 4;
+				// 摄像头个数
+				JTools.ShortToBytes2((short) equipmentList.size(), inData,
+						inOffset);
+				inOffset += 2;
+				// 拷贝摄像头ID集合
+				System.arraycopy(idByteArray, 0, inData, inOffset,
+						idByteArray.length);
+
+                //TODO 调用通信库 请求未处理报警信息
+				int reqUnonlineAlarmResult = NativeInterface.getInstance()
+						.getDBData(WPConstant.REQUEST_UNONLINE_ALARM, inData,
+								inData.length, outData, outData.length);
+
+				// 接口调用成功
+				if (reqUnonlineAlarmResult > 0) {
+					/*
+					 * 数据结构
+					 * short 是否成功标识 0表示成功
+					 * short 摄像头个数
+					 *
+					 * for(摄像头个数)
+					 *  String 摄像头id
+					 *  String 摄像头昵称
+					 *  short 报警个数
+					 *  for(报警个数)
+					 *   short 报警是否已经处理
+					 *   --0:未处理 1：已处理
+					 *   short 报警类型
+					 *   --2:摄像头报警
+					 *   String 报警时间
+					 *   String 报警日期
+					 *   short 后面数据的长度（暂时没用）
+					 *   String(short) 报警强度
+					 *   --1：轻度报警  2、3：重度报警  4:紧急报警
+					 *  End for
+					 * End for
+					 */
+					int outOffset = 0;
+					// 是否请求成功标识
+					short resultFlag = JTools.Bytes2ToShort(outData, outOffset);
+					// 请求成功
+					if (resultFlag == 0) {
+						outOffset += 2;
+						// 摄像头个数
+						short cameraNum = JTools.Bytes2ToShort(outData,
+								outOffset);
+//						System.out
+//								.println("CameraNum------------>" + cameraNum);
+						outOffset += 2;
+						if (cameraNum > 0) {
+							// 获取的总报警信息
+							List<AlarmInfo> allAlarmList = new ArrayList<AlarmInfo>();
+							// 获取已处理的报警信息
+							List<AlarmInfo> resolveAlarmList = new ArrayList<AlarmInfo>();
+
+							for (int i = 0; i < cameraNum; i++) {
+								// 摄像头Id
+								String cameraId = (String) JTools.toStringList(
+										outData, outOffset,
+										WPConstant.STRING_GB2312).get(0);
+								outOffset = (Integer) JTools.toStringList(
+										outData, outOffset,
+										WPConstant.STRING_GB2312).get(1);
+
+								// 摄像头昵称
+								String cameraName = (String) JTools
+										.toStringList(outData, outOffset,
+												WPConstant.STRING_GB2312)
+										.get(0);
+								outOffset = (Integer) JTools.toStringList(
+										outData, outOffset,
+										WPConstant.STRING_GB2312).get(1);
+
+								// 报警个数
+								short alarmNum = JTools.Bytes2ToShort(outData, outOffset);
+								outOffset += 2;
+//								System.out.println("alarmNum-------->"
+//										+ alarmNum);
+
+								if (alarmNum > 0) {
+									for (int j = 0; j < alarmNum; j++) {
+										AlarmInfo alarmInfo = new AlarmInfo();
+										alarmInfo.setAlarmEqId(cameraId);
+										alarmInfo.setAlarmEqName(cameraName);
+										// 是否处理过 0:未处理 1:已处理
+										short alarmResolve = JTools
+												.Bytes2ToShort(outData,
+														outOffset);
+										outOffset += 2;
+										alarmInfo.setIsSolve(alarmResolve);
+
+										if (alarmResolve == 1) {
+											// 处理者
+											String dealUserNick = (String) JTools
+													.toStringList(
+															outData,
+															outOffset,
+															WPConstant.STRING_GB2312)
+													.get(0);
+											outOffset = (Integer) JTools
+													.toStringList(
+															outData,
+															outOffset,
+															WPConstant.STRING_GB2312)
+													.get(1);
+											alarmInfo
+													.setDealUserNick(dealUserNick);
+
+											// 处理时间
+											long dealTime = JTools.Bytes4ToInt(
+													outData, outOffset);
+											alarmInfo.setDealTime(dealTime);
+											outOffset += 4;
+
+											// 已经处理过的报警信息
+											resolveAlarmList.add(alarmInfo);
+										} else {
+											alarmInfo.setDealUserNick(null);
+											alarmInfo.setDealTime(-1);
+										}
+
+										// 报警类型
+										short alarmType = JTools.Bytes2ToShort(
+												outData, outOffset);
+										outOffset += 2;
+										alarmInfo.setAlarmType(alarmType);
+//										System.out.println("alarmType-------->"
+//												+ alarmType);
+
+										// 报警时间
+										String alarmTime = (String) JTools
+												.toStringList(
+														outData,
+														outOffset,
+														WPConstant.STRING_GB2312)
+												.get(0);
+										outOffset = (Integer) JTools
+												.toStringList(
+														outData,
+														outOffset,
+														WPConstant.STRING_GB2312)
+												.get(1);
+										// 报警日期
+										String alarmDate = (String) JTools
+												.toStringList(
+														outData,
+														outOffset,
+														WPConstant.STRING_GB2312)
+												.get(0);
+										outOffset = (Integer) JTools
+												.toStringList(
+														outData,
+														outOffset,
+														WPConstant.STRING_GB2312)
+												.get(1);
+										alarmInfo.setAlarmDateTime(alarmDate
+												+ " " + alarmTime);
+
+										// 报警信息长度
+										outOffset += 2;
+
+										// 摄像头报警时，解析为报警强度
+										if (alarmType == 2) {
+											// 报警信息强度 1： 次要报警 2：重要报警 3：紧急报警
+											short alarmMsg = JTools
+													.Bytes2ToShort(outData,
+															outOffset);
+											outOffset += 2;
+											alarmInfo.setAlarmInfo(alarmMsg
+													+ "");
+											// System.out
+											// .println("alarmMsg-------->"
+											// + alarmMsg);
+										}
+										// 添加报警信息入集合
+										allAlarmList.add(alarmInfo);
+
+									}
+								}
+							}
+							/*
+							 * 保存新的报警信息入数据库
+							 */
+							if (allAlarmList.size() > 0
+									&& !currentUserName.equals("")) {
+								List<AlarmInfo> deleteAlarmInfoList = alarmDao.deleteAlarmSelectAllData(currentUserName);
+								if(deleteAlarmInfoList != null && deleteAlarmInfoList.size()>0){
+									for(int i = 0;i<deleteAlarmInfoList.size();i++){
+										for(int j = 0;j<allAlarmList.size();j++){
+											if(allAlarmList.get(j).getAlarmEqId().equals(deleteAlarmInfoList.get(i).getAlarmEqId()) && 
+													allAlarmList.get(j).getAlarmDateTime().equals(deleteAlarmInfoList.get(i).getAlarmDateTime())){
+													allAlarmList.remove(j);
+													j--;
+											}
+										}
+									}
+								}
+								alarmDao.alarmInsertOrRelaceData(
+										currentUserName, allAlarmList);
+								sendUpdateAlarmBroadcast(1);
+							}
+
+							/*
+							 * 如果获取的报警信息中有已经处理过的报警信息，通知数据库将不再发送这些报警信息
+							 */
+							if (resolveAlarmList.size() > 0) {
+								new ResolveAlarmInfoThread(resolveAlarmList, 0)
+										.start();
+							}
+						}
+					}
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	/**
+	 * 发送报警信息条数和报警信息列表更新的广播
+	 */
+	private void sendUpdateAlarmBroadcast(int flag) {
+		// System.out.println("--SEND---");
+		// 发送更新报警列表的广播
+		Intent updateIntent = new Intent();
+		updateIntent.setAction(WPConstant.ALARM_INFO_UPDATE_ATION);
+		Bundle bundle = new Bundle();
+		// 标识，0：处理状态更新 1：新增报警信息
+		bundle.putInt("alarmUpdateFlag", flag);
+		updateIntent.putExtras(bundle);
+		sendBroadcast(updateIntent);
+
+		// 发送未处理报警条数更新的广播
+		Intent numIntent = new Intent();
+		// 未处理报警数目更新
+		numIntent.setAction(WPConstant.NEW_ALARM_NUM_ACTION);
+		sendBroadcast(numIntent);
+	}
+
+	/**
+	 * 向数据库设置处理的报警信息
+	 * 
+	 * @author Vieboo
+	 * 
+	 */
+	private class ResolveAlarmInfoThread extends Thread {
+
+		List<AlarmInfo> alarmInfoList;
+		int alarmTemp;
+
+		private ResolveAlarmInfoThread(List<AlarmInfo> infoList, int temp) {
+			this.alarmInfoList = infoList;
+			this.alarmTemp = temp;
+		}
+
+		@Override
+		public void run() {
+			/*
+			 * 数据结构
+			 * int temp预留字段
+			 * short 报警个数
+			 *
+			 * for(报警个数)
+			 * String 设备ID
+			 * short 报警类型
+			 * String 报警时间
+			 * String 报警日期
+			 * Endfor
+			 */
+			try {
+				byte[] inData = new byte[1024 * 4];
+				int inOffset = 0;
+				// temp预留字段
+				JTools.IntToBytes4(alarmTemp, inData, inOffset);
+				inOffset += 4;
+				// 报警个数
+				JTools.ShortToBytes2((short) alarmInfoList.size(), inData,
+						inOffset);
+				inOffset += 2;
+				for (int i = 0; i < alarmInfoList.size(); i++) {
+					// 设备ID
+					byte[] eqIdData = (alarmInfoList.get(i).getAlarmEqId() + "\0")
+							.getBytes(WPConstant.STRING_GB2312);
+					System.arraycopy(eqIdData, 0, inData, inOffset,
+							eqIdData.length);
+					inOffset += eqIdData.length;
+					// 报警类型
+					JTools.ShortToBytes2(alarmInfoList.get(i).getAlarmType(),
+							inData, inOffset);
+					inOffset += 2;
+					// 报警时间
+					String dateTime = alarmInfoList.get(i).getAlarmDateTime();
+					String time = dateTime.substring(dateTime.indexOf(" ") + 1);
+					byte[] timeData = (time + "\0")
+							.getBytes(WPConstant.STRING_GB2312);
+					System.arraycopy(timeData, 0, inData, inOffset,
+							timeData.length);
+					inOffset += timeData.length;
+					// 报警日期
+					String date = dateTime.substring(0, dateTime.indexOf(" "));
+					byte[] dateData = (date + "\0")
+							.getBytes(WPConstant.STRING_GB2312);
+					System.arraycopy(dateData, 0, inData, inOffset,
+							dateData.length);
+					inOffset += dateData.length;
+				}
+				byte[] sendInData = new byte[inOffset];
+				byte[] outData = new byte[100];
+				System.arraycopy(inData, 0, sendInData, 0, inOffset);
+				// System.out.println("132请求发送已处理报警----->"
+				// + new String(sendInData));
+				int result = NativeInterface.getInstance().getDBData(
+						WPConstant.RECEIVE_UNONLINE_ALARM_TO_DB, sendInData,
+						inOffset, outData, outData.length);
+				if (result > 0) {
+					/*
+					 * 解析返回的数据 int 预留 short 结果 0：成功
+					 */
+					short resolveResult = JTools.Bytes2ToShort(outData, 4);
+					// 处理报警信息成功
+					if (resolveResult == 0) {
+						SharedPreferences mPreferences = mContext
+								.getSharedPreferences(WPConstant.WP_SETTING, 0);
+						String currentUserName = EncrypAES
+								.getInstance()
+								.decrypt(
+										mPreferences
+												.getString(
+														EncrypAES
+																.getInstance()
+																.encrypt(
+																		WPConstant.USER_NAME),
+														EncrypAES.getInstance()
+																.encrypt("")));
+						AlarmDao alarmDao = new AlarmDao(mContext);
+						alarmDao.alarmInfoUpdate(currentUserName, alarmInfoList);
+						sendUpdateAlarmBroadcast(0);
+					}
+				}
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	/**
+	 * START_JUDGMENT_SERVICE_ACTION: 启动查询未处理的报警信息
+	 * 
+	 * ALARM_SERVER_TO_CLIENT_ACTION: 在线时用来接收报警信息的广播（无推送的时候用到，现在没有已经注释） pdu==71
+	 * 监控设备改变
+	 * 
+	 * @author Vieboo
+	 * 
+	 */
+	private class AlarmReceiver extends BroadcastReceiver {
+
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			String action = intent.getAction();
+			Bundle bundle = intent.getExtras();
+			// TODO #2 启动获取未处理的报警信息的广播
+			if (action.equals(WPConstant.START_JUDGMENT_SERVICE_ACTION)) {
+				// 启动获取未处理的报警信息的线程
+				startRequestAlarmThread(WPApplication.getInstance().getmEquipmentList());
+			}
+			// TODO #2 处理报警信息
+			else if (action.equals(WPConstant.RESOLVE_ALARM_ACTION)) {
+				int alarmTemp = bundle.getInt("resolveAlarmTemp"); // 保留字段
+				List<AlarmInfo> alarmInfoList = new ArrayList<AlarmInfo>();
+				alarmInfoList.add((AlarmInfo) bundle.getSerializable("resolveAlarmData"));
+				new ResolveAlarmInfoThread(alarmInfoList, alarmTemp).start();
+			}
+		}
+
+	}
+
+
+    //--------------------
+    public void onEventBackgroundThread(MessageEvent event){
+
+    }
+
+    private void testData(){
+        //--1--
+        StationNode n1 = new StationNode();
+        n1.setId(0x001);
+        n1.setName("North");
+        n1.setDetail("loyal garden");
+        n1.setSeq(1);
+        n1.setState(SUConstant.FLAG_STATION_CLOSED);
+
+        DeviceNode d11 = new DeviceNode();
+        d11.setType(SUConstant.DEVICE_TYPE_MONITOR);
+        d11.setID("001001");
+        d11.setName("North DK");
+        DeviceNode d12 = new DeviceNode();
+        d12.setType(SUConstant.DEVICE_TYPE_RADAR);
+        d12.setID("001002");
+        d12.setName("North CK");
+        ArrayList<DeviceNode> device1 = new ArrayList<>();
+        device1.add(d11);
+        device1.add(d12);
+        n1.setDeviceList(device1);
+
+        AlarmInfo i11 = new AlarmInfo();
+        i11.setIsSolve((short)0);
+        i11.setAlarmEqName("North DK");
+        i11.setAlarmDateTime("2015-07-06");
+        i11.setAlarmEqId("001001");
+        i11.setAlarmInfo("1");
+        i11.setAlarmType((short)2);
+
+        AlarmInfo i12 = new AlarmInfo();
+        i12.setIsSolve((short)0);
+        i12.setAlarmEqName("North CK");
+        i12.setAlarmDateTime("2015-07-03");
+        i12.setAlarmEqId("001002");
+        i12.setAlarmInfo("2");
+        i12.setAlarmType((short)2);
+
+        AlarmInfo i13 = new AlarmInfo();
+        i13.setIsSolve((short)0);
+        i13.setAlarmEqName("North CK");
+        i13.setAlarmDateTime("2015-07-04");
+        i13.setAlarmEqId("001002");
+        i13.setAlarmInfo("3");
+        i13.setAlarmType((short)2);
+
+        ArrayList<AlarmInfo> a1 = new ArrayList<>();
+        a1.add(i11);
+        a1.add(i12);
+        a1.add(i13);
+
+        n1.setAlarmInfoList(a1);
+        n1.setAlarmAllMsg(a1.size());
+        n1.setAlarmNewMsg(a1.size());
+
+
+        //--2--
+        StationNode n2 = new StationNode();
+        n2.setId(0x002);
+        n2.setName("South");
+        n2.setDetail("monster ocean");
+        n2.setSeq(2);
+        n2.setState(SUConstant.FLAG_STATION_ALARM);
+
+        DeviceNode d21 = new DeviceNode();
+        d21.setType(SUConstant.DEVICE_TYPE_MONITOR);
+        d21.setID("002001");
+        d21.setName("South AU");
+        DeviceNode d22 = new DeviceNode();
+        d22.setType(SUConstant.DEVICE_TYPE_ENTRANCE);
+        d22.setID("002002");
+        d22.setName("South NU");
+        ArrayList<DeviceNode> device2 = new ArrayList<>();
+        device2.add(d21);
+        device2.add(d22);
+        n2.setDeviceList(device2);
+
+
+        AlarmInfo i21 = new AlarmInfo();
+        i21.setIsSolve((short)0);
+        i21.setAlarmEqName("South AU");
+        i21.setAlarmDateTime("2015-07-02");
+        i21.setAlarmEqId("002001");
+        i21.setAlarmInfo("1");
+        i21.setAlarmType((short)2);
+
+        AlarmInfo i22 = new AlarmInfo();
+        i22.setIsSolve((short)0);
+        i22.setAlarmEqName("South AU");
+        i22.setAlarmDateTime("2015-07-02");
+        i22.setAlarmEqId("002001");
+        i22.setAlarmInfo("2");
+        i22.setAlarmType((short)2);
+
+        AlarmInfo i23 = new AlarmInfo();
+        i23.setIsSolve((short)0);
+        i23.setAlarmEqName("South NU");
+        i23.setAlarmDateTime("2015-07-01");
+        i23.setAlarmEqId("002002");
+        i23.setAlarmInfo("3");
+        i23.setAlarmType((short)2);
+
+        ArrayList<AlarmInfo> a2 = new ArrayList<>();
+        a2.add(i21);
+        a2.add(i22);
+        a2.add(i23);
+
+        n2.setAlarmInfoList(a2);
+        n2.setAlarmAllMsg(a2.size());
+        n2.setAlarmNewMsg(a2.size());
+
+
+        //--3--
+        StationNode n3 = new StationNode();
+        n3.setId(0x003);
+        n3.setName("West");
+        n3.setDetail("shine dusk");
+        n3.setSeq(3);
+        n3.setState(SUConstant.FLAG_STATION_OPENED);
+
+        DeviceNode d31 = new DeviceNode();
+        d31.setType(SUConstant.DEVICE_TYPE_ENTRANCE);
+        d31.setID("003001");
+        d31.setName("West UD");
+        DeviceNode d32 = new DeviceNode();
+        d32.setType(SUConstant.DEVICE_TPYE_INFRARED);
+        d32.setID("003002");
+        d32.setName("West FD");
+        ArrayList<DeviceNode> device3 = new ArrayList<>();
+        device3.add(d31);
+        device3.add(d32);
+        n3.setDeviceList(device3);
+
+
+        AlarmInfo i31 = new AlarmInfo();
+        i31.setIsSolve((short)0);
+        i31.setAlarmEqName("West UD");
+        i31.setAlarmDateTime("2015-07-01");
+        i31.setAlarmEqId("003001");
+        i31.setAlarmInfo("1");
+        i31.setAlarmType((short)2);
+
+        AlarmInfo i32 = new AlarmInfo();
+        i32.setIsSolve((short)0);
+        i32.setAlarmEqName("West UD");
+        i32.setAlarmDateTime("2015-07-02");
+        i32.setAlarmEqId("003001");
+        i32.setAlarmInfo("2");
+        i32.setAlarmType((short)2);
+
+        AlarmInfo i33 = new AlarmInfo();
+        i33.setIsSolve((short)0);
+        i33.setAlarmEqName("West FD");
+        i33.setAlarmDateTime("2015-07-07");
+        i33.setAlarmEqId("003002");
+        i33.setAlarmInfo("3");
+        i33.setAlarmType((short)2);
+
+        ArrayList<AlarmInfo> a3 = new ArrayList<>();
+        a3.add(i31);
+        a3.add(i32);
+        a3.add(i33);
+
+        n3.setAlarmInfoList(a3);
+        n3.setAlarmAllMsg(a3.size());
+        n3.setAlarmNewMsg(a3.size());
+
+        ArrayList<StationNode> sn = new ArrayList<>();
+        sn.add(n1);
+        sn.add(n2);
+        sn.add(n3);
+        WPApplication.getInstance().setStationList(sn);
+
+        List<AlarmInfo> alarmList = new ArrayList<>();
+        for(StationNode n : sn){
+            alarmList.addAll(n.getAlarmInfoList());
+        }
+        WPApplication.getInstance().setAlarmList(alarmList);
+
+        new Thread(){
+            @Override
+            public void run(){
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                StationListEvent event = new StationListEvent(StationListEvent.STATION_EVENT_INIT);
+                event.msg = 1;
+                EventBus.getDefault().post(event);
+                Log.w("Service", "post refresh");
+            }
+        }.start();
+
+    }
+
+}

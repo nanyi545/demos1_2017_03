@@ -1,0 +1,84 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/navigation_drawer_container"
+    android:background="@color/color_white"
+    android:orientation="vertical"
+    tools:context="com.webcon.sus.activities.NavigationDrawerFragment">
+
+    <LinearLayout
+        android:id="@+id/navigation_drawer_head"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="36dp"
+        android:paddingBottom="12dp"
+        android:orientation="vertical"
+        android:background="@color/Blue_">
+        <LinearLayout
+            android:id="@+id/linear_pos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginLeft="24dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/str_userid"
+                android:layout_marginRight="10dp"
+                android:gravity="right"
+                android:textSize="12sp"
+                android:textColor="@color/Amber200"/>
+
+            <TextView
+                android:id="@+id/tv_drawer_userid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/text_test"
+                android:textSize="16sp"
+                android:textColor="@color/White"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="24dp"
+            android:layout_marginLeft="24dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:layout_marginRight="10dp"
+                android:text="@string/str_username"
+                android:textSize="12sp"
+                android:textColor="@color/Amber200"/>
+
+            <TextView
+                android:id="@+id/tv_drawer_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/text_test"
+                android:textSize="16sp"
+                android:textColor="@color/White"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/navigation_drawer_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="12dp"
+        android:choiceMode="singleChoice"
+        android:divider="@android:color/transparent"
+        android:descendantFocusability="blocksDescendants"
+        android:dividerHeight="0dp"
+        android:fadingEdge="none"/>
+
+</LinearLayout>

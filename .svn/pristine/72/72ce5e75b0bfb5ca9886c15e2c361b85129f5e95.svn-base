@@ -1,0 +1,113 @@
+package com.webcon.sus.utils;
+
+import com.webcon.sus.entity.AlarmNode;
+import com.webcon.sus.entity.StationNode;
+import com.webcon.sus.eventObjects.MessageEvent;
+import com.webcon.wp.utils.WPApplication;
+
+import de.greenrobot.event.EventBus;
+
+/**
+ * @author m
+ */
+public class AlarmMsgManager {
+    private static AlarmMsgManager me;
+
+    private AlarmMsgManager(){
+    }
+
+    public static AlarmMsgManager getInstance(){
+        if(me == null){
+            synchronized (AlarmMsgManager.class){
+                if(me == null){
+                    me = new AlarmMsgManager();
+                }
+            }
+        }
+        return me;
+    }
+
+    //------------------------------------
+    /**
+     * ★用于解析和保存★
+     * <p>假定：获得的每个消息都要通过这里</p>
+     * 1.初始化消息
+     * 2.新消息
+     */
+    public void parseCenter(int type, byte[] data){
+        switch(type){
+            case MessageEvent.ALARM_FLAG_INIT:
+
+                break;
+            case MessageEvent.ALARM_FLAG_REFRESH:
+
+                break;
+            default:
+                break;
+        }
+        storageProcess();
+        transmitCenter(type);
+    }
+
+    /**
+     * 保存处理
+     * <p>！暂时不经过数据库</p>
+     */
+    private void storageProcess(){
+
+    }
+
+    /**
+     * 访问处理
+     * <p>！暂时不经过数据库</p>
+     */
+    private void accessProcess(){
+
+    }
+
+    private void transmitCenter(int type){
+        transmitCenter(type, -1, -1);
+    }
+
+    /**
+     * ★转发消息通知★
+     * <p>假定：用于转发处理结果、以及发送通知</p>
+     * 1.发送通知
+     * 2.修改表状态
+     */
+    public void transmitCenter(int type, int stationId, int id){
+        accessProcess();
+        switch(type){
+            case MessageEvent.ALARM_FLAG_INIT:
+                MessageEvent e1 = new MessageEvent(type);
+                //FIXME 暂时由DoworkService直接通知
+                break;
+            case MessageEvent.ALARM_FLAG_REFRESH_SEC:
+                MessageEvent event3 = new MessageEvent(type);
+                //TODO
+                break;
+            case MessageEvent.ALARM_FLAG_REFRESH:
+                //刷新，重排序消息列表
+                WPApplication.getInstance().refreshAlarmList();
+                //FIXME：出错！！
+                WPApplication.getInstance().substractNewAlarms();
+                StationNode temp = WPApplication.getInstance().getStationNode(stationId);
+                for(AlarmNode an : temp.getAlarmList()){
+                    if(an.getId() == id){
+                        an.setIsSolved((short) 1);
+                        temp.substractAlarm();
+                        break;
+                    }
+                }
+                MessageEvent e2 = new MessageEvent(type);
+                e2.stationId = stationId;
+                e2.sum = WPApplication.getInstance().getAllNewAlarms();
+                EventBus.getDefault().post(e2);
+                break;
+            default:
+                break;
+        }
+
+    }
+
+}

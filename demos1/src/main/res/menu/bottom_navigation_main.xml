@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_favorites"
+        android:enabled="true"
+        android:icon="@drawable/bottom_nav_icon_selector1"
+        android:title="首页"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_schedules"
+        android:enabled="true"
+        android:icon="@drawable/ic_action_zoom_in"
+        android:title="订单"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_music"
+        android:enabled="true"
+        android:icon="@drawable/ic_action_zoom_out"
+        android:title="发现"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_my"
+        android:enabled="true"
+        android:icon="@drawable/ic_search"
+        android:title="我的"
+        app:showAsAction="always" />
+
+</menu>

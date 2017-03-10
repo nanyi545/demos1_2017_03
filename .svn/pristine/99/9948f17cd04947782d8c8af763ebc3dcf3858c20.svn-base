@@ -1,0 +1,163 @@
+package com.webcon.sus.utils;
+
+
+import com.webcon.sus.entity.AlarmNode;
+import com.webcon.sus.entity.BaseDevice;
+import com.webcon.sus.entity.StationNode;
+import com.webcon.wp.utils.WPApplication;
+
+import java.util.ArrayList;
+
+/**
+ * 数据的打包和解析
+ * <p>包括：和系统服务软件的连接，和数据库的连接</p>
+ * @author m
+ */
+public class DataParseUtils {
+    /* ---------------------------------------------------------- */
+    /**
+     * 解析初始站场信息
+     */
+    public static void parseInitStations(byte[] data){
+        ArrayList<StationNode> list = new ArrayList<>();
+        /*
+         * 生成初始station列表，
+         * >>循环解析出每个站场信息（不完整）
+         * 最后保存到WPApplication中
+         */
+        WPApplication.getInstance().setStationList(list);
+    }
+
+    /**
+     * 解析初始设备信息
+     */
+    public static void parseInitDevices(StationNode station, byte[] data){
+        ArrayList<BaseDevice> list = new ArrayList<>();
+        /*
+         * 在相应的站场结点下，生成设备列表
+         * >>循环解析出每个设备信息
+         * 最后返回设备信息列表，用于保存到stationNode中
+         * ##TODO：注意引用结点的赋值结果是否正确
+         */
+        station.setDeviceList(list);
+    }
+
+    /**
+     * 解析初始报警信息
+     */
+    public static void parseInitAlarms(StationNode station, byte[] data){
+        ArrayList<AlarmNode> list = new ArrayList<>();
+        int newAlarms = 0;
+        /*
+         * 解析一个站场下的全部设备的全部未报警消息
+         * >>循环解析出每个报警消息
+         * 最后返回报警消息列表，用于保存到stationNode中
+         */
+        station.setNewAlarm(newAlarms);
+        station.setAlarmList(list);
+    }
+
+    /* ---------------------------------------------------------- */
+
+    /**
+     * 解析回调得到的数据：
+     * 1.新消息
+     * 2.视频预览数据
+     * 3.状态变化（站场、设备、登录）
+     * <p>作用于类似CCallbackMethod这样的回调方法</p>
+     */
+    public static void parseCallback(int type, byte[] data){
+
+        switch(type){
+            case SUConstant.CALLBACK_NEW_ALARM:
+                ArrayList<AlarmNode> list = new ArrayList<>();
+                AlarmNode newAlarm = new AlarmNode();
+                list.add(newAlarm);
+                /* 解析报警消息数据，生成报警消息，然后调用消息管理接口 */
+                AlarmMsgManager.getInstance().transmitCenter(AlarmMsgManager.ALARM_MANAGE_ADD, list);
+                break;
+            case SUConstant.CALLBACK_PREVIEW_DATA:
+                /* 解析视频数据，并调用回调接口进行播放 */
+                CommunicationUtils.getInstance().onVideoData(0, 0, null, 0);
+                break;
+            case SUConstant.CALLBACK_STATE_CHANGE:
+
+                break;
+            default:
+                break;
+        }
+    }
+
+    /**
+     * 解析请求返回值
+     * 1.云台控制请求返回数据
+     */
+    public static void parseRespondData(int type, int retCode, byte[] data){
+        if(retCode != 0){
+            //deal
+            return;
+        }
+
+        switch (type){
+            default:
+                parseRespondSecondary(type, data);
+                break;
+        }
+    }
+
+    /**
+     * 子PDU处理
+     */
+    private static void parseRespondSecondary(int type, byte[] data){
+
+    }
+
+    /* ---------------------------------------------------------- */
+    public static byte[] createRequestHead(int type, int stationId, String deviceId){
+        byte[] ret = new byte[0];
+        switch (type){
+            case SUConstant.REQUEST_STATION_LIST:
+
+                break;
+            case SUConstant.REQUEST_DEVICE_LIST:
+
+                break;
+            case SUConstant.REQUEST_ALARMS_LIST:
+
+                break;
+            //云台控制...
+            case SUConstant.SUB_REQUEST_START_PREVIEW:
+
+                break;
+            case SUConstant.SUB_REQUEST_STOP_PREVIEW:
+
+                break;
+            case SUConstant.SUB_REQUEST_OPEN_DEFENCE:
+
+                break;
+            case SUConstant.SUB_REQUEST_STOP_DEFENCE:
+
+                break;
+            case SUConstant.SUB_REQUEST_PTZ:
+
+                break;
+            case SUConstant.SUB_REQUEST_SPEAKER:
+
+                break;
+            case SUConstant.SUB_REQUEST_ALARM_PLAYER:
+
+                break;
+            case SUConstant.SUB_REQUEST_MODIFY:
+
+                break;
+            default:
+                break;
+        }
+        return ret;
+    }
+
+
+    /* ---------------------------------------------------------- */
+
+
+}

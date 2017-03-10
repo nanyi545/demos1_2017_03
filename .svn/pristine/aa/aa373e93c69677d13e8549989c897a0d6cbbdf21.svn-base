@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!-- layout constant -->
+    <dimen name="item_width">54dp</dimen>
+    <dimen name="item_height">34dp</dimen>
+	<dimen name="item_bound">2px</dimen>
+    <dimen name="item_text">16sp</dimen>
+    
+    <dimen name="battery_width">22dp</dimen>
+    <dimen name="battery_height">14dp</dimen>
+    <dimen name="base_offset">10dp</dimen>
+    <dimen name="padding2">2dp</dimen>
+	<dimen name="padding4">4dp</dimen>
+	<dimen name="padding6">6dp</dimen>
+	<dimen name="padding8">8dp</dimen>
+    <dimen name="padding10">10dp</dimen>
+    <dimen name="padding20">20dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!-- drawer -->
+    <dimen name="navigation_drawer_width">220dp</dimen>
+
+    <!-- CircularProgressButton -->
+    <dimen name="cpb_stroke_width">4dp</dimen>
+
+    <!-- text size -->
+    <dimen name="tsize_1">30sp</dimen>
+    <dimen name="tsize_2">26sp</dimen>
+    <dimen name="tsize_3">24sp</dimen>
+    <dimen name="tsize_4">22sp</dimen>
+    <dimen name="tsize_5">20sp</dimen>
+    <dimen name="tsize_6">18sp</dimen>
+    <dimen name="tsize_7">16sp</dimen>
+    <dimen name="tsize_8">14sp</dimen>
+    <dimen name="tsize_9">12sp</dimen>
+    <dimen name="tsize_10">10sp</dimen>
+
+    <!-- margin -->
+
+    <dimen name="mg_s_0">1dp</dimen>
+    <dimen name="mg_s_1">2dp</dimen>
+    <dimen name="mg_s_2">4dp</dimen>
+    <dimen name="mg_s_3">6dp</dimen>
+    <dimen name="mg_s_4">8dp</dimen>
+    <dimen name="mg_s_5">10dp</dimen>
+    <dimen name="mg_s_6">12dp</dimen>
+    <dimen name="mg_s_7">14dp</dimen>
+    <dimen name="mg_s_8">16dp</dimen>
+    <dimen name="mg_s_9">18dp</dimen>
+
+    <dimen name="mg_m_1">20dp</dimen>
+    <dimen name="mg_m_2">22dp</dimen>
+    <dimen name="mg_m_3">24dp</dimen>
+    <dimen name="mg_m_4">26dp</dimen>
+    <dimen name="mg_m_5">28dp</dimen>
+    <dimen name="mg_m_6">30dp</dimen>
+    <dimen name="mg_m_7">32dp</dimen>
+    <dimen name="mg_m_8">34dp</dimen>
+    <dimen name="mg_m_9">36dp</dimen>
+
+    <dimen name="mg_l_1">40dp</dimen>
+    <dimen name="mg_l_2">44dp</dimen>
+    <dimen name="mg_l_3">48dp</dimen>
+    <dimen name="mg_l_4">52dp</dimen>
+    <dimen name="mg_l_5">56dp</dimen>
+    <dimen name="mg_l_6">60dp</dimen>
+    <dimen name="mg_l_7">64dp</dimen>
+    <dimen name="mg_l_8">68dp</dimen>
+    <dimen name="mg_l_9">72dp</dimen>
+
+    <dimen name="img_s">16dp</dimen>
+
+    <!-- login setting -->
+    <dimen name="login_text_hight">24dp</dimen>
+    <dimen name="login_text_padding_vertical">16dp</dimen>
+    <dimen name="login_text_padding_horizontal">30dp</dimen>
+    <dimen name="login_text_mid_v">12dp</dimen>
+    <dimen name="login_text_mid_h">8dp</dimen>
+    <dimen name="login_text_edit_width">128dp</dimen>
+    <dimen name="login_text_size">14sp</dimen>
+    <dimen name="login_bn_hight">28dp</dimen>
+
+    <!-- layout_monitor_compat.xml -->
+    <dimen name="monitor_ptz_textSize2">12sp</dimen>
+    <dimen name="monitor_ptz_textSize">14sp</dimen>
+    <dimen name="monitor_ptz_move_w">36dp</dimen>
+    <dimen name="monitor_ptz_move_h">36dp</dimen>
+    <dimen name="monitor_ptz_move_margin">8dp</dimen>
+
+    <dimen name="monitor_ptz_ctrl_w_b">42dp</dimen>
+    <dimen name="monitor_ptz_ctrl_h_b">54dp</dimen>
+
+    <dimen name="monitor_ptz_ctrl_w_a">42dp</dimen>
+    <dimen name="monitor_ptz_ctrl_h_a">36dp</dimen>
+
+    <!-- defence button -->
+    <dimen name="bn_defence_common">8dp</dimen>
+    <dimen name="cardview_radius">1dp</dimen>
+</resources>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="bn_login_login">登录</string>
+    <string name="bn_login_setting">设置</string>
+
+    <string name="bn_voice_record_start">开始录制</string>
+    <string name="bn_voice_record_stop">停止录制</string>
+    <string name="bn_voice_play_start">开始播放</string>
+    <string name="bn_voice_play_stop">停止播放</string>
+    <string name="bn_voice_clear">清空缓存</string>
+
+    <string name="str_test_station">测试站点</string>
+    <string name="str_test_station_msg">! 1条未处理警报</string>
+    <string name="str_test_device">测试设备</string>
+    <string name="str_test_device_detail">你说你..瞅啥呢</string>
+
+    <!-- fragment_station_devices.xml -->
+    <!-- error = -1 -->
+    <string name="cpb_closed">开启布防</string>
+    <!-- idle = 0 -->
+    <string name="cpb_opened">关闭布防</string>
+    <!-- complete = 100 -->
+    <string name="cpb_other">其他状态</string>
+
+
+    <!-- -->
+    <string name="str_station">站场</string>
+    <string name="str_alarm">警报</string>
+    <string name="str_device">设备</string>
+
+    <string name="str_ptz_up">↑</string>
+    <string name="str_ptz_down">↓</string>
+    <string name="str_ptz_left">←</string>
+    <string name="str_ptz_right">→</string>
+
+    <string name="str_ptz_move">移动</string>
+    <string name="str_ptz_sharp">对焦</string>
+    <string name="str_ptz_zoom">聚焦</string>
+    <string name="str_ptz_aperture">光圈</string>
+    <string name="str_ptz_increase">+</string>
+    <string name="str_ptz_decrease">-</string>
+
+    <string name="str_monitor_start_track">播放警报</string>
+    <string name="str_monitor_stop_track">停止警报</string>
+    <string name="str_monitor_open_speak">开启喊话</string>
+    <string name="str_monitor_close_speak">关闭喊话</string>
+    <string name="str_monitor_open_menu">打开控制</string>
+
+    <string name="str_test_new_alarm">！新报警消息</string>
+
+
+</resources>

@@ -1,0 +1,223 @@
+package com.webcon.wp.utils;
+
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager.NameNotFoundException;
+import android.net.Uri;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
+
+import com.webcon.sus.demo.R;
+import com.webcon.sus.utils.OkHttpClientManager;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+public class UpdateManager {
+
+	// private int curVersionCode;
+	// private int newVersionCode;
+	private String curVersionName;
+	private String newVersionName;
+	private Context mContext;
+	private UpdateCallback callback;
+	private int progress;
+	private Boolean hasNewVersion;
+	private Boolean canceled;
+
+	private SharedPreferences mSP;
+	private String ip;
+
+	private static final int UPDATE_CHECKCOMPLETED      = 1;
+	private static final int UPDATE_DOWNLOADING         = 2;
+	private static final int UPDATE_DOWNLOAD_ERROR      = 3;
+	private static final int UPDATE_DOWNLOAD_COMPLETED  = 4;
+	private static final int UPDATE_DOWNLOAD_CANCELED   = 5;
+
+	// private static final int UPDATE_DOWNLOAD_LENGTH = 6;
+
+	public UpdateManager(Context context, UpdateCallback updateCallback) {
+		mContext = context;
+		mSP = context.getSharedPreferences(WPConstant.WP_SETTING, 0);
+//		ip = EncrypAES.getInstance().decrypt(
+//				mSP.getString(
+//						EncrypAES.getInstance().encrypt(WPConstant.SERVER_IP),
+//						EncrypAES.getInstance().encrypt("")));
+        ip = context.getResources().getString(R.string.str_login_default_ip);
+        //--↑--test---↑----
+		callback = updateCallback;
+		canceled = false;
+		getCurVersion();
+	}
+
+	/**
+	 * 获取自身版本号
+	 */
+	private void getCurVersion() {
+		try {
+			PackageInfo pInfo = mContext.getPackageManager().getPackageInfo(mContext.getPackageName(), 0);
+			curVersionName = pInfo.versionName;
+            if(WPApplication.DEBUG){
+                Log.i("update>>", "self version: " + curVersionName);
+            }
+		} catch (NameNotFoundException e) {
+			Log.e("update", e.getMessage());
+			curVersionName = "1.0.0";
+		}
+	}
+
+	/**
+     * 检查更新
+	 * <p>获得服务器返回的版本名作对比</p>
+	 */
+	public void checkUpdate() {
+		hasNewVersion = false;
+		new Thread() {
+			@Override
+			public void run() {
+				try {
+					String url = "http://" + ip + WPConstant.VERSION_DOWNLOAD_PATH + "?type=phone";
+					newVersionName = OkHttpClientManager.getInstance().getAsString(url).trim();
+                    if(WPApplication.DEBUG){
+                        Log.i("update>>", "latest version: " + newVersionName);
+                    }
+					if (newVersionName.compareTo(curVersionName) > 0) {
+						hasNewVersion = true;
+					}
+				} catch (Exception e) {
+					Log.e("update", e.getMessage());
+				}
+				updateHandler.sendEmptyMessage(UPDATE_CHECKCOMPLETED);
+			}
+		}.start();
+	}
+
+	/**
+	 * 安装
+	 */
+	public void installApk() {
+		Intent intent = new Intent(Intent.ACTION_VIEW);
+		intent.setDataAndType(Uri.fromFile(new File(WPConstant.APK_PATH,
+				WPConstant.APK_NAME)),
+				"application/vnd.android.package-archive");
+		mContext.startActivity(intent);
+	}
+
+	/**
+	 * 下载，信息updateHandler返回
+	 */
+	public void downloadPackage() {
+
+		new Thread() {
+			@Override
+			public void run() {
+				try {
+					String spec = "http://" + ip + WPConstant.APK_DOWNLOAD_PATH;
+					URL url = new URL(spec);
+					HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+					conn.connect();
+					int length = conn.getContentLength();
+					InputStream is = conn.getInputStream();
+
+					File ApkFile = new File(WPConstant.APK_PATH,
+							WPConstant.APK_NAME);
+					if (!ApkFile.exists()) {
+						File akpDir = new File(WPConstant.APK_PATH);
+						akpDir.mkdirs();
+						ApkFile.createNewFile();
+					}
+
+					FileOutputStream fos = new FileOutputStream(ApkFile);
+
+					int count = 0;
+					byte buf[] = new byte[512];
+
+					do {
+						int numread = is.read(buf);
+						count += numread;
+						progress = (int) (((float) count / length) * 100);
+
+						updateHandler.sendMessage(updateHandler
+								.obtainMessage(UPDATE_DOWNLOADING));
+						if (numread <= 0) {
+
+							updateHandler.sendEmptyMessage(UPDATE_DOWNLOAD_COMPLETED);
+							break;
+						}
+						fos.write(buf, 0, numread);
+					} while (!canceled);
+					if (canceled) {
+						updateHandler.sendEmptyMessage(UPDATE_DOWNLOAD_CANCELED);
+					}
+					fos.close();
+					is.close();
+				} catch (MalformedURLException e) {
+					e.printStackTrace();
+					updateHandler.sendMessage(updateHandler.obtainMessage(
+							UPDATE_DOWNLOAD_ERROR, e.getMessage()));
+				} catch (IOException e) {
+					e.printStackTrace();
+
+					updateHandler.sendMessage(updateHandler.obtainMessage(
+							UPDATE_DOWNLOAD_ERROR, e.getMessage()));
+				}
+			}
+		}.start();
+	}
+
+	public void cancelDownload() {
+		canceled = true;
+	}
+
+	Handler updateHandler = new Handler() {
+		@Override
+		public void handleMessage(Message msg) {
+			switch (msg.what) {
+			case UPDATE_CHECKCOMPLETED:
+				callback.checkUpdateCompleted(hasNewVersion);
+				break;
+			case UPDATE_DOWNLOADING:
+				callback.downloadProgressChanged(progress);
+				break;
+			case UPDATE_DOWNLOAD_ERROR:
+				callback.downloadCompleted(false, msg.obj.toString());
+				break;
+			case UPDATE_DOWNLOAD_COMPLETED:
+				callback.downloadCompleted(true, "");
+				break;
+			case UPDATE_DOWNLOAD_CANCELED:
+				callback.downloadCanceled();
+				// case UPDATE_DOWNLOAD_LENGTH:
+				// callback.downloadSetLength(length);
+				// break;
+			default:
+				break;
+			}
+		}
+	};
+
+	/**
+	 * 接口，将数据回调到界面
+	 * @author xj
+	 *
+	 */
+	public interface UpdateCallback {
+		void checkUpdateCompleted(Boolean hasUpdate);
+
+		void downloadProgressChanged(int progress);
+
+		void downloadCanceled();
+
+        void downloadCompleted(Boolean sucess, CharSequence errorMsg);
+
+		// public void downloadSetLength(int length);
+	}
+}

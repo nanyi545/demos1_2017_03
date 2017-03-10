@@ -1,0 +1,309 @@
+package com.webcon.sus.utils;
+
+import android.util.Log;
+
+import com.webcon.sus.eventObjects.StationInformEvent;
+import com.webcon.wp.utils.IMediaCallback;
+import com.webcon.wp.utils.JTools;
+import com.webcon.wp.utils.NativeInterface;
+import com.webcon.wp.utils.WPApplication;
+import com.webcon.wp.utils.WPConstant;
+
+import de.greenrobot.event.EventBus;
+
+/**
+ * @author m
+ */
+public class CommunicationUtils{
+
+    /* constants */
+
+
+    /* variable */
+    private static CommunicationUtils my;
+    private IMediaCallback mMediaCallback;
+
+
+    /* method */
+    private CommunicationUtils(){
+//        EventBus.getDefault().register(this);
+    }
+
+    public static CommunicationUtils getInstance(){
+        if(my == null){
+            synchronized (CommunicationUtils.class){
+                if(my == null){
+                    my = new CommunicationUtils();
+                }
+            }
+        }
+        return my;
+    }
+
+    /* public method */
+
+    public int init(){
+        int ret = 0;
+
+        return ret;
+    }
+
+    public int login(){
+        int ret = 0;
+
+        return ret;
+    }
+
+    public void openDefence(int id){
+        //TEST
+        new Thread(new ButtonRunnable(StationInformEvent.DEVICE_EVENT_DEFENCE_OPEN, id)).start();
+    }
+
+    public void closeDefence(int id){
+        //TEST
+        new Thread(new ButtonRunnable(StationInformEvent.DEVICE_EVENT_DEFENCE_CLOSE, id)).start();
+    }
+
+    //TEST
+    private class ButtonRunnable implements Runnable {
+        private int ss = 0;
+        private int id = 0;
+        public ButtonRunnable(int ss, int id){
+            this.ss = ss;
+            this.id = id;
+        }
+
+        @Override
+        public void run() {
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            switch (ss){
+                case StationInformEvent.DEVICE_EVENT_DEFENCE_OPEN:
+                    WPApplication.getInstance().getStationNode(id).setState(SUConstant.FLAG_STATION_OPENED);
+                    break;
+                case StationInformEvent.DEVICE_EVENT_DEFENCE_CLOSE:
+                    WPApplication.getInstance().getStationNode(id).setState(SUConstant.FLAG_STATION_CLOSED);
+                    break;
+                default:
+                    break;
+            }
+            //to DeviceList
+            StationInformEvent event = new StationInformEvent(ss, id);
+            EventBus.getDefault().post(event);
+        }
+    }
+
+    public int openMonitorVideoFlow(){
+        int ret = 0;
+
+        return ret;
+    }
+
+    public int closeMonitorVideoFlow(){
+        int ret = 0;
+
+        return ret;
+    }
+
+    public void registerMediaCallback(IMediaCallback mMediaCallback){
+        this.mMediaCallback = mMediaCallback;
+    }
+
+    public void unregisterMediaCallback(){
+        mMediaCallback = null;
+    }
+
+    public int openSpeaker(){
+        int ret = 0;
+
+        return ret;
+    }
+
+    public int closeSpeaker(){
+        int ret = 0;
+
+        return 0;
+    }
+
+    public void sendVoiceData(){
+
+    }
+
+    public int sendCloudControlRequest(int requestCode){
+        int ret = 0;
+
+        return 0;
+    }
+
+    public int modifyUserPasswd(String oldPW, String newPW){
+        int ret = 0;
+
+        return ret;
+    }
+
+    public void sendCommonData(){
+
+    }
+
+    public void loadInitialData(byte[] name){
+        new Thread(new LoadInitialDataRunnable(name)).start();
+    }
+
+    public void refreshDeviceList(int stationId){
+        new Thread(new LoadingDeviceListRunnable(stationId)).start();
+    }
+
+
+    public void exit(){
+//        EventBus.getDefault().unregister(this);
+    }
+
+
+
+    /* private method */
+    private boolean isMediaCallback(){
+        return mMediaCallback != null;
+    }
+
+    private int nxWrapper(int xType){
+        return nxWrapper(xType, 0);
+    }
+
+    private int nxWrapper(int xType, int pduType){
+        int ret = -1;
+        switch(xType){
+            case SUConstant.NET_CL_INIT:
+                break;
+            case SUConstant.NET_CL_LOGIN:
+                break;
+            case SUConstant.NET_CL_GET_GID:
+                break;
+            case SUConstant.NET_CL_GET_CORP_ID:
+                break;
+            case SUConstant.NET_CL_GET_DATA:
+                switch(pduType){
+
+                }
+                break;
+            case SUConstant.NET_CL_SEND_DATA:
+                switch(pduType){
+
+                }
+                break;
+            case SUConstant.NET_CL_CREATE_P2P:
+                break;
+            case SUConstant.NET_CL_UINIT:
+                break;
+            default:
+                break;
+        }
+        return ret;
+    }
+
+
+    /* Thread */
+    /**
+     * 调用通信接口获取树形列线程
+     */
+    private class LoadInitialDataRunnable implements Runnable {
+
+        private byte[] name;
+        public LoadInitialDataRunnable(byte[] name){
+            this.name = name;
+        }
+
+        @Override
+        public void run() {
+
+            // ##TODO获取默认gid
+            int getDefaultGid = nxWrapper(SUConstant.NET_CL_GET_GID);
+            Log.i("GetDefaultGid", "GetDefaultGid-------------->" + getDefaultGid);
+            if (getDefaultGid >= 0) {
+                WPApplication.getInstance().setDefaultGid((short) getDefaultGid);
+                WPApplication.getInstance().setGetDefaultGid(true);
+            }
+
+            // ##TODO获取企业id
+            int getCropIdResult = nxWrapper(SUConstant.NET_CL_GET_CORP_ID);
+            Log.i("GetCropIdResult", "GetCropIdResult-------------->" + getCropIdResult);
+
+            if (getCropIdResult < 0) {
+//                event.state = -1;
+            } else {
+                //设置全局企业id
+                WPApplication.getInstance().setDefaultCorpId(getCropIdResult);
+                byte[] inData = new byte[name.length + 8];
+                JTools.IntToBytes4(getCropIdResult, inData, 0);
+                System.arraycopy(name, 0, inData, 4, name.length);
+                JTools.IntToBytes4(WPApplication.getInstance().getUserFlag(), inData, name.length + 4);
+
+                //
+                byte[] outData = new byte[1024 * 4];    // TODO 不知道数据长度够不够
+                int getTreeResult = 0;
+                int requestNum = 0;
+                //请求数据，返回全部站点、设备、消息数据
+                while (getTreeResult <= 0 && requestNum < 5) {
+                    getTreeResult = NativeInterface.getInstance().getDBData(
+                            WPConstant.GET_TREE_DATA,
+                            inData,
+                            inData.length,
+                            outData,
+                            outData.length
+                    );
+                    Log.i("GetTreeData", "GetTreeDataResult-------------->" + getTreeResult);
+                    requestNum += 1;
+                }
+
+                //---打包--
+                byte[] realOutData = new byte[getTreeResult];
+                System.arraycopy(outData, 0, realOutData, 0, getTreeResult);
+//                Bundle bundle = new Bundle();
+//                bundle.putByteArray("resolveData", realOutData);
+
+//                event.state = getTreeResult;
+//                event.setBundle(bundle);
+
+                //-- 解析并保存 ---
+                try {
+                    DataParseUtils.parseInitialData(realOutData);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+//            EventBus.getDefault().post(event);
+        }
+    }
+
+
+    /**
+     * 请求获取设备状态
+     */
+    private class LoadingDeviceListRunnable implements Runnable{
+        private int mStationId;
+
+        public LoadingDeviceListRunnable(int stationId){
+            this.mStationId = stationId;
+        }
+
+        @Override
+        public void run(){
+            //## TODO 异步加载设备列表
+
+            try {
+                Thread.sleep(1200);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            StationInformEvent event = new StationInformEvent(StationInformEvent.DEVICE_EVENT_REFRESH, mStationId);
+            EventBus.getDefault().post(event);
+            //TODO 发送给stationList页面进行刷新
+            //........
+        }
+    }
+
+
+
+}

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.nanyi545.www.materialdemo.testPullToRefresh.CoordinatorPullToRefresh xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/coordinator"
+    android:background="@color/Red100"
+    tools:context="com.nanyi545.www.materialdemo.testPullToRefresh.TestPullRefreshActivity2">
+
+
+    <android.support.design.widget.AppBarLayout
+        android:paddingTop="24dp"
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:background="@color/Red300"
+        app:layout_behavior="com.nanyi545.www.materialdemo.testPullToRefresh.CustomAppbarLoBehaviour3">
+
+
+        <com.nanyi545.www.materialdemo.collapse_layout.CollapsHolder
+            android:id="@+id/collapse_holder1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/Teal100">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="heheda"
+                android:textSize="30sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:src="@android:drawable/ic_media_play" />
+
+        </com.nanyi545.www.materialdemo.collapse_layout.CollapsHolder>
+
+        <ImageView
+            android:id="@+id/gap"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/collapse_holder1"
+            android:src="@drawable/side_nav_bar" />
+
+        <com.nanyi545.www.materialdemo.collapse_layout.CollapsHolder
+            android:id="@+id/collapse_holder2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/gap"
+            android:background="@color/Teal100">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="hahada"
+                android:textSize="30sp" />
+
+        </com.nanyi545.www.materialdemo.collapse_layout.CollapsHolder>
+
+
+
+    </android.support.design.widget.AppBarLayout>
+
+    <!--app:layout_behavior="@string/appbar_scrolling_view_behavior"-->
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvToDoList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="com.nanyi545.www.materialdemo.coordinatorWithoutAppbarLO.CustomScrollingViewBehaviour3"
+        />
+
+
+</com.nanyi545.www.materialdemo.testPullToRefresh.CoordinatorPullToRefresh>

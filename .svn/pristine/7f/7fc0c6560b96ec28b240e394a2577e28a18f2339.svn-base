@@ -1,0 +1,21 @@
+package com.webcon.sus.eventObjects;
+
+/**
+ * @author m
+ */
+public class MainInformEvent extends BaseEvent{
+    public static final int MAIN_EVENT_NEW_ALARM = 1;
+
+    private int newAlarmNum = 0;
+    public MainInformEvent(int type){
+        super(type);
+    }
+
+    public void setNewAlarmNum(int num){
+        this.newAlarmNum = num;
+    }
+
+    public int getNewAlarmNum(){
+        return newAlarmNum;
+    }
+}

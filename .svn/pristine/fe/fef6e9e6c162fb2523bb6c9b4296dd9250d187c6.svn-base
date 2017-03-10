@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/list_item_alarm_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:background="@drawable/selector_bg_list_itemm"
+    android:layout_marginLeft="1dp"
+    android:layout_marginRight="1dp"
+    android:layout_marginTop="1dp"
+    android:padding="1dp">
+    <RelativeLayout
+        android:id="@+id/alarm_list_item_rl_num"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+	    <TextView
+	        android:id="@+id/alarm_list_item_tv_number"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:gravity="center"
+	        android:paddingLeft="2dp"
+	        android:singleLine="true"/>
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/alarm_list_item_tv_eqname"
+        style="@style/style_alarm_list_item"
+        android:layout_weight="1.7"
+        android:singleLine="true"/>
+    <TextView
+        android:id="@+id/alarm_list_item_tv_time"
+        style="@style/style_alarm_list_item"
+        android:layout_weight="1.7"/>
+    <TextView
+        android:id="@+id/alarm_list_item_tv_info"
+        style="@style/style_alarm_list_item"
+        android:layout_weight="1.5"
+        android:singleLine="true"/>
+</LinearLayout>

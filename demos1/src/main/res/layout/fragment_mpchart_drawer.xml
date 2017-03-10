@@ -1,0 +1,102 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_weight="7"
+    android:fadeScrollbars="false"
+    android:scrollbars="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context="test1.nh.com.demos1.activities.DrawerActivity$PlaceholderFragment">
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/chart1"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginTop="5dp" />
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/chart2"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_below="@id/chart1"
+            android:layout_marginTop="20dp" />
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/barChart1"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_below="@id/chart2" />
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/sta_pchart"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_below="@+id/barChart1" />
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/chart3_pb"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:layout_below="@+id/sta_pchart" />
+
+        <RelativeLayout
+            android:id="@+id/playback_control_holder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/chart3_pb"
+            android:background="@color/Transparent">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@color/Blue900trans"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.wnafee.vector.MorphButton
+                    android:id="@+id/playPauseButton"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:scaleType="fitXY"
+                    app:vc_endDrawable="@drawable/ic_play_to_pause"
+                    app:vc_startDrawable="@drawable/ic_pause_to_play" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="2月16日\n 14:27"
+                    />
+
+
+                <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
+                    android:id="@+id/chart3_seekBar"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    app:dsb_max="400"
+                    app:dsb_min="0" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="2月17日\n 14:27"
+                    />
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+</ScrollView>

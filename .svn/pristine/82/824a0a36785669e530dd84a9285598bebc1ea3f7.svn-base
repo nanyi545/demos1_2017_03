@@ -1,0 +1,318 @@
+package com.webcon.wp.utils;
+
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
+import android.widget.TextView;
+
+import com.webcon.sus.demo.R;
+import com.webcon.sus.eventObjects.ModifyEvent;
+import com.webcon.sus.utils.CommunicationUtils;
+
+import java.lang.reflect.Field;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import de.greenrobot.event.EventBus;
+
+public class ModifyDialogUtil {
+    public static final String TAG = "ModifyDialogUtil";
+    public static final String PRECEDING_STATION    = "proceding_station_name";
+
+	private EditText edit1, edit2;
+	private TextView prompt;
+    // 参数
+	private Context mContext;
+	private Bundle bundle;
+    private int modifyType;
+
+	public AlertDialog showModifyDialog(Context context, int type, Bundle b) {
+		this.mContext = context;
+		this.modifyType = type;
+		this.bundle = b;
+
+		AlertDialog.Builder builder = new Builder(mContext);
+        // 创建布局
+		LinearLayout ll = new LinearLayout(mContext);
+		ll.setOrientation(LinearLayout.VERTICAL);
+		ll.setPadding(10, 0, 10, 10);
+		LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+		ll.setLayoutParams(params);
+        LayoutParams lp = new LayoutParams(LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        lp.setMargins(0, 10, 0, 10);
+
+        String title = "";
+		String hint = "";
+		switch (modifyType) {
+            // 修改用户昵称
+            case ModifyEvent.MODIFY_EVENT_CHANGE_NAME:
+                title = mContext.getResources().getString(
+                        R.string.str_modify_name_title);
+                // 原来的用户名
+                hint = WPApplication.getInstance().getCurrentUser().getUserName();
+                break;
+            // 修改站场名称
+            case ModifyEvent.MODIFY_EVENT_CHANGE_STATION:
+                title = mContext.getResources().getString(
+                        R.string.str_modify_name_title);
+                // 原来的站场名
+                hint = bundle.getString(PRECEDING_STATION);
+                break;
+            // 修改密码
+            case ModifyEvent.MODIFY_EVENT_CHANGE_PWD:
+                title = mContext.getResources().getString(
+                        R.string.str_modify_password_title);
+                // 提示
+                hint = mContext.getResources().getString(
+                        R.string.str_modify_password_hint);
+                break;
+            default:
+                break;
+        }
+
+        // 第一个输入框
+		edit1 = new EditText(mContext);
+		edit1.setHint(hint);
+        edit1.setSingleLine(true);
+        edit1.setHintTextColor(mContext.getResources().getColor(R.color.Grey300));
+		edit1.requestFocus();
+		ll.addView(edit1, lp);
+        //
+		if (type == ModifyEvent.MODIFY_EVENT_CHANGE_PWD) {
+            edit1.setTransformationMethod(PasswordTransformationMethod.getInstance());
+            // 第二个输入框
+			edit2 = new EditText(mContext);
+			edit2.setHint(mContext.getResources().getString(
+                    R.string.str_modify_password_hint1));
+            edit2.setSingleLine(true);
+            edit2.setHintTextColor(mContext.getResources().getColor(R.color.Grey300));
+			edit2.setTransformationMethod(PasswordTransformationMethod.getInstance());
+			ll.addView(edit2, lp);
+		}
+        // 提示框（隐藏）
+		prompt = new TextView(mContext);
+		prompt.setPadding(0, 10, 0, 10);
+		prompt.setTextColor(mContext.getResources().getColor(R.color.color_font_lightwhite));
+		ll.addView(prompt, lp);
+		prompt.setVisibility(View.GONE);
+
+        // 设置对话框
+		builder.setTitle(title);
+		builder.setView(ll);
+		builder.setPositiveButton("保存", new DialogInterface.OnClickListener() {
+
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+                Log.i(TAG, "保存");
+				setDialogShowAlways(dialog);
+				switch (modifyType) {
+                    // 修改用户昵称
+                    case ModifyEvent.MODIFY_EVENT_CHANGE_NAME:
+                        if (isNameQualified()) {
+                            // 传给服务器刷新界面 sharep里改
+                            new Thread(new ModifyNicknameRunnable()).start();
+                            setDialogDismiss(dialog);
+                        }
+                        break;
+                    // 修改站场名称
+                    case ModifyEvent.MODIFY_EVENT_CHANGE_STATION:
+                        if (isNameQualified()) {
+                            new Thread(new ModifyPassRunnable()).start();
+                            setDialogDismiss(dialog);
+                        }
+                        break;
+                    // 修改密码
+                    case ModifyEvent.MODIFY_EVENT_CHANGE_PWD:
+                        if (edit1.getText().toString().equals(edit2.getText().toString())) {
+                            // 密码验证通过
+                            String password = edit1.getText().toString();
+                            if (password.length() < 4 || password.length() > 16) {
+                                showPrompt(mContext.getResources().getString(
+                                        R.string.str_modify_password_length));
+                            } else if (isSpecial(password, "[>\\s<]")) {
+                                showPrompt(mContext.getResources().getString(
+                                        R.string.str_modify_password_special));
+                            } else if (isSame(password)) {
+                                showPrompt(mContext.getResources().getString(
+                                        R.string.str_modify_password_same));
+                            } else if (isOrder(password)) {
+                                showPrompt(mContext.getResources().getString(
+                                        R.string.str_modify_password_order));
+                            } else {
+                                new Thread(new ModifyPassRunnable()).start();
+                                setDialogDismiss(dialog);
+                            }
+                        } else {
+                            showPrompt(mContext.getResources().getString(
+                                    R.string.str_modify_password_notsame));
+                        }
+                        break;
+                    default:
+                        break;
+                }
+
+			}
+
+		});
+		builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				setDialogDismiss(dialog);
+			}
+		});
+        // 创建
+		AlertDialog dialog = builder.create();
+		dialog.setCanceledOnTouchOutside(false);
+		dialog.setCancelable(true);
+		return dialog;
+	}
+
+    /**
+     * 检查用户名是否规范
+     */
+	private boolean isNameQualified() {
+		String name = edit1.getText().toString().trim();
+		if (name.length() == 0) {
+			showPrompt(mContext.getResources().getString(
+					R.string.str_modify_name_null));
+			return false;
+		} else if (name.length() > 15) {
+			showPrompt(mContext.getResources().getString(
+					R.string.str_modify_name_length));
+			return false;
+		} else if (isSpecial(name, "[~!@#$%^&*(),./;\'\\\\<>:\\?]")) {
+			showPrompt(mContext.getResources().getString(
+					R.string.str_modify_name_special));
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+    /**
+     * 显示结果提示框
+     */
+	private void showPrompt(String msg) {
+		prompt.setVisibility(View.VISIBLE);
+		prompt.setText(msg);
+		edit1.setText(null);
+		edit1.requestFocus();
+		if (modifyType == ModifyEvent.MODIFY_EVENT_CHANGE_PWD){
+            edit2.setText(null);
+        }
+	}
+
+	private boolean isSame(String str) {
+		String regex = str.substring(0, 1) + "{" + str.length() + "}";
+		return str.matches(regex);
+	}
+
+	private boolean isSpecial(String str, String regex) {
+		Pattern pat = Pattern.compile(regex);
+		Matcher mat = pat.matcher(str);
+		return mat.find();
+	}
+
+    /**
+     * 检查是否密码合理性
+     */
+	private boolean isOrder(String str) {
+        if(WPApplication.DEBUG){
+            //--remove mytest-------
+            return false;
+        }
+		String orderStr = "0123456789>" +
+                "<abcdefghijklmnopqrstuvwxyz>" +
+                "<ABCDEFGHIJKLMNOPQRSTUVWXYZ>" +
+                "<9876543210>" +
+                "<zyxwvutsrqponmlkjihgfedcba>" +
+                "<ZYXWVUTSRQPONMLKJIHGFEDCBA";
+		return orderStr.contains(str);
+	}
+
+	/**
+	 * 设置点击按键时Dialog不关闭
+	 */
+	private void setDialogShowAlways(DialogInterface dialog) {
+		try {
+			Field field = dialog.getClass().getSuperclass().getDeclaredField("mShowing");
+			field.setAccessible(true);
+			field.set(dialog, false);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * 关闭Dialog
+	 */
+	private void setDialogDismiss(DialogInterface dialog) {
+		try {
+			Field field = dialog.getClass().getSuperclass().getDeclaredField("mShowing");
+			field.setAccessible(true);
+			field.set(dialog, true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+    /**
+     * 修改昵称线程
+     */
+    private class ModifyNicknameRunnable implements Runnable {
+
+        @Override
+        public void run(){
+            String newName = edit1.getText().toString();
+            // 生成请求
+            byte[] req = CommunicationUtils.getInstance().createRequestBDModifyUserName(
+                    WPApplication.getInstance().getCurrentUser().getUserId(), newName);
+            if(CommunicationUtils.getInstance().requestModifyUser(req)){
+                // 修改全部变量
+                WPApplication.getInstance().getCurrentUser().setUserName(newName);
+                // 发送结果
+                EventBus.getDefault().post(new ModifyEvent(ModifyEvent.MODIFY_EVENT_CHANGE_NAME));
+            }
+        }
+    }
+
+    /**
+     * 修改密码线程
+     */
+	private class ModifyPassRunnable implements Runnable {
+
+		@Override
+		public void run() {
+			SharedPreferences wpPreferences = mContext.getSharedPreferences(WPConstant.WP_SETTING, 0);
+            String oldPass = EncrypAES.getInstance().decrypt(
+                    wpPreferences.getString(
+                            EncrypAES.getInstance().encrypt(WPConstant.USER_PWD),
+                            EncrypAES.getInstance().encrypt("")));
+            String newPass = edit1.getText().toString();
+            // 生成请求
+            byte[] req = CommunicationUtils.getInstance().createRequestBDModifyPasswd(
+                    WPApplication.getInstance().getCurrentUser().getUserId(), oldPass, newPass);
+            if(CommunicationUtils.getInstance().requestModifyUser(req)){
+                // 保存密码
+                wpPreferences.edit().putString(
+                        EncrypAES.getInstance().encrypt(WPConstant.USER_PWD),
+                        EncrypAES.getInstance().encrypt(newPass)).apply();
+                // 发送结果
+                EventBus.getDefault().post(new ModifyEvent(ModifyEvent.MODIFY_EVENT_CHANGE_PWD));
+            }
+            mContext = null;
+		}
+	}
+}

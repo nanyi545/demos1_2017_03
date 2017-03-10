@@ -1,0 +1,256 @@
+package com.webcon.sus.activities;
+
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.WindowManager;
+import android.widget.ImageButton;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import com.webcon.sus.demo.R;
+import com.webcon.sus.entity.AlarmInfo;
+import com.webcon.wp.utils.NotificationCancelManager;
+import com.webcon.wp.utils.PublicMethodUtil;
+import com.webcon.wp.utils.WPApplication;
+import com.webcon.wp.utils.WPConstant;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
+
+/**
+ * 报警信息详细页面
+ * 
+ * @author Vieboo
+ * 
+ */
+public class AlarmDetailedActivity extends BaseActivity implements OnClickListener {
+
+	private Context mContext;
+	private TextView titleTV, nameTV, timeTV, strengthTV, infoTV, typeTV,
+			dealnickTV, dealtimeTV;
+	private RelativeLayout strengthRL, infoRL, dealnickRl, dealTimeRl;
+	private int intentFlag; // 跳转标识
+	private int alarmTemp; // 保留字段
+	private AlarmInfo alarmInfo;
+	private ImageButton back;
+	private SimpleDateFormat format;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+		setContentView(R.layout.layout_alarm_detailed);
+		mContext = this;
+		format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		format.setTimeZone(TimeZone.getTimeZone("GMT+8"));
+		initView();
+		resolveData(getIntent());
+	}
+
+	private void initView() {
+
+		titleTV = (TextView) findViewById(R.id.title_tv);
+		nameTV = (TextView) findViewById(R.id.notifi_alarm_tv_value_name);
+		timeTV = (TextView) findViewById(R.id.notifi_alarm_tv_value_time);
+		strengthTV = (TextView) findViewById(R.id.notifi_alarm_tv_value_strength);
+		infoTV = (TextView) findViewById(R.id.notifi_alarm_tv_value_info);
+		typeTV = (TextView) findViewById(R.id.notifi_alarm_tv_value_type);
+		dealnickTV = (TextView) findViewById(R.id.notifi_alarm_tv_value_dealnick);
+		dealtimeTV = (TextView) findViewById(R.id.notifi_alarm_tv_value_dealtime);
+		back = (ImageButton) findViewById(R.id.usermsg_back);
+		titleTV.setText("报警详情");
+
+		strengthRL = (RelativeLayout) findViewById(R.id.notifi_alarm_strength_rl);
+		infoRL = (RelativeLayout) findViewById(R.id.notifi_alarm_info_rl);
+		dealnickRl = (RelativeLayout) findViewById(R.id.notifi_alarm_dealnick_rl);
+		dealTimeRl = (RelativeLayout) findViewById(R.id.notifi_alarm_dealtime_rl);
+
+		back.setOnClickListener(this);
+    }
+
+	/**
+	 * 数据解析和UI赋值
+	 */
+	private void resolveData(Intent intent) {
+		Bundle bundle = intent.getExtras();
+		// 跳转标识 flag 0:程序未启动的情况下从登陆页面直接跳转 1:点击报警列表跳转 2:程序在启动状态下点击通知跳转
+		intentFlag = bundle.getInt("alarmDetailedIntentFlag");
+		// 保留字段
+		alarmTemp = bundle.getInt("alarmTemp");
+		// 报警数据
+		alarmInfo = (AlarmInfo) bundle.getSerializable("alarmData");
+
+		if (alarmInfo.getAlarmEqName() != null
+				&& !alarmInfo.getAlarmEqName().equals(""))
+			nameTV.setText(alarmInfo.getAlarmEqName());
+		else
+			nameTV.setText(getResources().getString(
+					R.string.str_notifi_alarm_tv_unknow));
+
+		if (alarmInfo.getAlarmDateTime() != null
+				&& !alarmInfo.getAlarmDateTime().equals(""))
+			timeTV.setText(alarmInfo.getAlarmDateTime());
+		else
+			timeTV.setText(getResources().getString(
+					R.string.str_notifi_alarm_tv_unknow));
+
+		// 报警类型
+		if (0 < alarmInfo.getAlarmType() && alarmInfo.getAlarmType() < 7) {
+			String[] typeArray = getResources().getStringArray(
+					R.array.array_camera_monitor_annal_msgtype_tv);
+			typeTV.setText(typeArray[alarmInfo.getAlarmType()]);
+		} else
+			typeTV.setText(getResources().getString(
+					R.string.str_notifi_alarm_tv_unknow));
+
+		// 摄像头报警，报警强度
+		if (alarmInfo.getAlarmType() == 2) {
+			String[] msgArray;
+			//取高八位
+			short alarmStrength = (short) ((Short.parseShort(alarmInfo
+					.getAlarmInfo()) >> 8) & 0xff);
+			//取低八位
+			int alarmMsg = Short.parseShort(alarmInfo.getAlarmInfo()) & 0xff;
+			// 轻度报警
+			if (alarmStrength == 1) {
+				strengthTV.setText(mContext
+						.getString(R.string.str_notifi_alarm_level_light));
+				msgArray = getResources().getStringArray(
+						R.array.array_camera_alarm_type_light);
+				if (0 < alarmMsg && alarmMsg <= 3)
+					infoTV.setText(msgArray[alarmMsg - 1]);
+				else
+					infoTV.setText(mContext
+							.getString(R.string.str_notifi_alarm_tv_unknow));
+			}
+			// 重度报警
+			else if (alarmStrength == 2) {
+				strengthTV.setText(mContext
+						.getString(R.string.str_notifi_alarm_level_weight));
+				msgArray = getResources().getStringArray(
+						R.array.array_camera_alarm_type_weight);
+				if (0 < alarmMsg && alarmMsg <= 4)
+					infoTV.setText(msgArray[alarmMsg - 1]);
+				else
+					infoTV.setText(mContext
+							.getString(R.string.str_notifi_alarm_tv_unknow));
+			}
+			// 紧急报警
+			else if (alarmStrength == 3) {
+				strengthTV.setText(mContext
+						.getString(R.string.str_notifi_alarm_level_crash));
+				msgArray = getResources().getStringArray(
+						R.array.array_camera_alarm_type_carsh);
+				if (0 < alarmMsg && alarmMsg <=5)
+					infoTV.setText(msgArray[alarmMsg - 1]);
+				else
+					infoTV.setText(mContext
+							.getString(R.string.str_notifi_alarm_tv_unknow));
+			} else
+				strengthTV.setText(getResources().getString(
+						R.string.str_notifi_alarm_tv_unknow));
+
+		} else {
+			strengthRL.setVisibility(View.GONE);
+			infoRL.setVisibility(View.GONE);
+		}
+
+		// 判断如果当前报警信息未处理，则发送处理的广播
+		if (alarmInfo.getIsSolve() == 0) {
+			// 通知的id
+			alarmInfo.setDealTime(new Date().getTime() / 1000);
+			//部分手机 部分Android版本  杀掉主线程后  WPApplication线程也会关掉
+			if(WPApplication.getInstance() != null && WPApplication.getInstance().getCurrentUser() != null){
+				alarmInfo.setDealUserNick(WPApplication.getInstance().getCurrentUser().getUserName());
+			}
+			dealnickRl.setVisibility(View.GONE);
+			dealTimeRl.setVisibility(View.GONE);
+			int notificationID = -1;
+			try {
+				notificationID = (int) PublicMethodUtil.getInstance()
+						.dateChangeNotificationId(alarmInfo.getAlarmDateTime(),
+								alarmInfo.getAlarmType());
+
+			} catch (NumberFormatException e) {
+				e.printStackTrace();
+			}
+			// 取消当前处理的报警信息的通知
+			if (notificationID != -1) {
+				NotificationCancelManager.getInstance().clearOneNotification(
+						mContext, notificationID,
+						NotificationCancelManager.TAG_ALARM);
+
+				Intent bcIntent = new Intent();
+				bcIntent.setAction(WPConstant.RESOLVE_ALARM_ACTION);
+				Bundle resolveBundle = new Bundle();
+				resolveBundle.putInt("resolveAlarmTemp", alarmTemp); // 保留字段
+				resolveBundle.putSerializable("resolveAlarmData", alarmInfo);
+				bcIntent.putExtras(resolveBundle);
+				sendBroadcast(bcIntent);
+
+			}
+		} else {
+			if (alarmInfo.getDealTime() != -1) {
+				String time = format.format(new Date(
+						alarmInfo.getDealTime() * 1000));
+				dealtimeTV.setText(time);
+			} else {
+				dealtimeTV.setText(getResources().getString(
+						R.string.str_notifi_alarm_tv_unknow));
+			}
+			if (alarmInfo.getDealUserNick() != null
+					&& !alarmInfo.getDealUserNick().equals(""))
+				dealnickTV.setText(alarmInfo.getDealUserNick() + "");
+			else
+				dealnickTV.setText(getResources().getString(
+						R.string.str_notifi_alarm_tv_unknow));
+		}
+	}
+
+	@Override
+	protected void onNewIntent(Intent intent) {
+		resolveData(intent);
+		super.onNewIntent(intent);
+	}
+
+	/**
+	 * 返回关闭当前页面
+	 */
+	private void pageBack() {
+		// 在程序未启动的情况下打开的，跳转到mian页面
+		if (intentFlag == 0) {
+			intentToNewActivity(mContext, MainActivityCompat.class,
+					AlarmDetailedActivity.this, true);
+		} else {
+			AlarmDetailedActivity.this.finish();
+		}
+	}
+
+	@Override
+	public void onClick(View v) {
+		// 返回按钮
+		if (v == back) {
+			pageBack();
+		}
+	}
+
+	@Override
+	public boolean onKeyDown(int keyCode, @NonNull KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+			pageBack();
+			return true;
+		}
+		return super.onKeyDown(keyCode, event);
+	}
+
+    @Override
+    public void releaseHandler(){}
+
+
+}

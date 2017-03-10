@@ -1,0 +1,19 @@
+package com.webcon.sus.eventObjects;
+
+/**
+ * @author m
+ */
+public class StationListEvent extends BaseEvent{
+    /** 初始化完成，更新数据 */
+    public static final int STATION_EVENT_INIT = 1;
+    /** 更新报警消息数量 */
+    public static final int STATION_EVENT_UPDATE_ALARM = 2;
+    /** 更新防御状态 */
+    public static final int SATION_EVENT_UPDATE_DEFENCE = 3;    //重新排序
+    public int msg = -1;
+
+    public StationListEvent(int type){
+        super(type);
+    }
+
+}

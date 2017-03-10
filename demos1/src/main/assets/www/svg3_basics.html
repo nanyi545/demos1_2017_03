@@ -1,0 +1,135 @@
+<html>
+
+    <head>
+        <meta charset="utf-8"/>
+        <style type="text/css">
+        	svg{
+        		display:block;
+        	}
+
+        	#svg1{
+        		background: red;
+        	}
+        	#svg2{
+        		background: green;
+        	}
+
+			#view_box_test{
+				background: green;
+			}
+
+
+        </style>
+
+
+        <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+
+        <script type="text/javascript">
+        </script>
+        
+        
+
+
+
+    </head>
+
+    <script>
+
+    </script>
+
+
+
+    <body>
+
+
+	    <h1> svg - rect</h1>
+
+
+	    <svg id="svg1" width="400" height="110">
+	  		<rect x="20" y="20" width="300" height="90" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)" />
+		</svg>
+
+
+		<svg id="svg2" width="400" height="180">
+		  	<rect x="20" y="20" width="150" height="150"
+		  		style="fill:blue;stroke:pink;stroke-width:5;fill-opacity:0.1;stroke-opacity:0.9" />
+		</svg>
+
+
+		<svg width="400" height="180">
+		  <rect x="50" y="20" rx="20" ry="20" width="150" height="150"
+		  style="fill:red;stroke:black;stroke-width:5;opacity:0.5" />
+		</svg>
+
+
+	    <h1> svg - ellipse</h1>
+
+		<svg height="150" width="500">
+		  <ellipse cx="240" cy="100" rx="220" ry="30" style="fill:purple" />
+		  <ellipse cx="220" cy="70" rx="190" ry="20" style="fill:lime" />
+		  <ellipse cx="210" cy="45" rx="170" ry="15" style="fill:yellow" />
+		</svg>
+
+
+
+	    <h1> svg - path</h1>
+
+		<svg height="210" width="400">
+		  <path d="M150 0 L75 200 L225 200 Z" />
+		</svg>
+
+
+		<h1> svg - def + use</h1>
+
+		<svg>
+			<defs>
+				<g id="shape">
+					<rect x="50" y="50" width="50" height="50" />
+					<circle cx="50" cy="50" r="50" style="fill:purple" />
+				</g>
+			</defs>
+
+			<use xlink:href="#shape" x="50" y="50" />
+			<use xlink:href="#shape" x="200" y="50" />
+
+		</svg>
+
+
+
+		<h1> svg - viewBox</h1>
+
+		<svg width="300" height="300" viewBox="0 0 3 3" id="view_box_test">
+			<rect x="1" y="1" width="1" height="1"
+				  style="fill:red;"/>
+		</svg>
+
+
+		<h1> svg - stroke</h1>
+
+		<svg>
+			<circle cx="50" cy="50" r="25"
+					style="stroke: #000066; fill: none;
+               stroke-width: 0.2cm;" />
+
+
+			<line x1="20" y1="20" x2="120" y2="20"
+				  style="stroke: #000000; fill:none;
+      				stroke-width: 6px;
+      				stroke-dasharray: 10 5;
+      				stroke-opacity: 0.7;";
+			/>
+
+		</svg>
+
+
+
+
+
+
+
+
+
+	</body>
+</html>
+
+

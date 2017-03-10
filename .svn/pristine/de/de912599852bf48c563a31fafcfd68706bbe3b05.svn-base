@@ -1,0 +1,244 @@
+package com.webcon.sus.activities;
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.Toast;
+
+import com.webcon.sus.CircleProgressButton.CircularProgressButton;
+import com.webcon.sus.adapter.DeviceListAdapter;
+import com.webcon.sus.demo.R;
+import com.webcon.sus.entity.BaseDevice;
+import com.webcon.sus.entity.StationNode;
+import com.webcon.sus.eventObjects.DeviceEvent;
+import com.webcon.sus.eventObjects.StationEvent;
+import com.webcon.sus.utils.CommunicationUtils;
+import com.webcon.sus.utils.SUConstant;
+import com.webcon.wp.utils.WPApplication;
+import com.webcon.wp.utils.WPConstant;
+
+import java.util.List;
+
+import de.greenrobot.event.EventBus;
+
+/**
+ * @author m
+ */
+public class StationDevicesFragment extends Fragment {
+    private static final String TAG = "StationDevicesFragment";
+    public static final String KEY_DEVICE = "deviceId";
+
+    private Context mContext;
+    private SharedPreferences mPreferences;
+    private int mStationId = -1;
+
+    //显示的列表
+    private ListView mDeviceListView;
+    private DeviceListAdapter mDeviceAdapter;
+    //站场结点集合，用于构造列表
+    private List<BaseDevice> mDeviceList;
+    private StationNode mStation;
+
+    /** 加载等待进度条 */
+	private CircularProgressButton mDefenceButton;
+
+    //---------------
+    public StationDevicesFragment() {
+
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
+        init(getArguments());
+    }
+
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        Log.i(TAG, "on create view");
+        View layout = inflater.inflate(R.layout.fragment_station_devices, container, false);
+        mDeviceListView = (ListView) layout.findViewById(R.id.list_devices);
+        //设备列表短点击-->monitoring
+        mDeviceListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // ##TODO #device列表点击事件，实现跳转 （具体传的值需要再考虑）
+                if(mDeviceList.get(position).getType() == SUConstant.DEVICE_TYPE_MONITOR){
+                    Intent intent = new Intent(mContext, MonitorActivityCompat.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putInt(MainStationListFragment.KEY_ID, mStationId);
+                    //FIXME ##可以改进么？比如传递一个下标过去，而不是ID，--*需要保持设备列表不变*--
+                    bundle.putString(StationDevicesFragment.KEY_DEVICE, mStation.getDeviceList().get(position).getID());
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(mContext, "Click Sensor!!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        //设备列表长点击
+        mDeviceListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                //##TODO 弹出设备详细信息页面 DeviceInformationActivity
+                Intent intent = new Intent(mContext, StationInformationActivity.class);
+                startActivity(intent);
+                return true;
+            }
+        });
+
+        //布防按钮
+		mDefenceButton = (CircularProgressButton)layout.findViewById(R.id.bn_station_defence);
+        //初始化布防按钮状态
+		if(mStation.isDefend()){
+            mDefenceButton.setProgress(0);  //开启状态。。关闭布防 idle-opened-blue
+		}else{
+            mDefenceButton.setProgress(-1); //关闭状态。。开启布防 error-closed-red
+		}
+		mDefenceButton.setIndeterminateProgressMode(true);
+        //布防按钮监听器 ##FIXME 快速双击有bug
+		mDefenceButton.setOnClickListener(new View.OnClickListener(){
+			@Override
+			public void onClick(View v){
+				if(mDefenceButton.getProgress() == 0){// state == idle //
+					mDefenceButton.setProgress(50);
+                    CommunicationUtils.getInstance().closeDefence(mStationId);
+				}else if(mDefenceButton.getProgress() == -1){//state == Idle  //state == error
+					mDefenceButton.setProgress(50);
+                    CommunicationUtils.getInstance().openDefence(mStationId);
+				}
+			}
+		});
+        //TODO ===initList===
+        initList(mStationId);
+        return layout;
+    }
+
+
+    private void init(Bundle bundle){
+        mContext = getActivity();
+        mPreferences = mContext.getSharedPreferences(WPConstant.WP_SETTING, 0);
+
+        if(bundle == null){
+            errorQuit(2001);
+        }else{
+            mStationId = bundle.getInt(MainStationListFragment.KEY_ID, -1);
+            mStation = WPApplication.getInstance().getStationNode(mStationId);
+            if(mStation != null && mStation.getDeviceList() != null){
+                mDeviceList = mStation.getDeviceList();
+            }
+//            else{
+//                errorQuit(2003);
+//            }
+//            if(mDeviceList == null){
+//                errorQuit(2004);
+//            }
+            if(mStationId == -1){
+                errorQuit(2002);
+                getActivity().finish();
+            }
+        }
+    }
+
+    private void initList(int id){
+        refreshFragment();
+        /* 调用通信接口获取最新设备状态  TODO: ##发送请求 ##参数：站场id */
+//        CommunicationUtils.getInstance().refreshDeviceList(id);
+    }
+
+    /**
+     * 刷新界面 (被动)
+     */
+    private void refreshFragment() {
+        if(mDeviceList != null){
+            if(mDeviceAdapter == null){
+                mDeviceAdapter = new DeviceListAdapter(mContext, mDeviceList);
+                mDeviceListView.setAdapter(mDeviceAdapter);
+            }else{
+                refreshAdapter();
+            }
+        }
+    }
+
+    public void refreshAdapter(){
+        if(mDeviceAdapter != null){
+            mDeviceAdapter.notifyDataSetChanged();
+        }
+    }
+
+    private void errorQuit(int errorCode){
+        Toast.makeText(mContext, "初始化失败: " + errorCode, Toast.LENGTH_SHORT).show();
+        getActivity().finish();
+    }
+
+    //----
+    public void onBackPressed() {
+    }
+
+    //##-------------
+    public void onEventMainThread(StationEvent event){
+        if(event.stationId != mStationId){
+            return;
+        }
+        switch (event.getType()){
+            //##TODO
+            case StationEvent.STATION_EVENT_REFRESH:
+                if(event.msg == SUConstant.FLAG_STATION_OPENED){
+                    mDefenceButton.setProgress(0);
+                }else if(event.msg == SUConstant.FLAG_STATION_CLOSED){
+                    mDefenceButton.setProgress(-1);
+                }else{
+                    // 关闭等待对话框
+                    refreshFragment();
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void onEventMainThread(DeviceEvent event){
+        //##TODO: 设备状态变更
+        switch(event.getType()){
+            case DeviceEvent.DEVICE_ONLINE:
+                break;
+            case DeviceEvent.DEVICE_OFLINE:
+                break;
+            case DeviceEvent.DEVICE_EXCEPTION:
+                break;
+            default:
+                break;
+        }
+    }
+
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+    }
+
+    @Override
+    public void onDestroy(){
+        EventBus.getDefault().unregister(this);
+        mContext = null;
+        super.onDestroy();
+    }
+
+
+}

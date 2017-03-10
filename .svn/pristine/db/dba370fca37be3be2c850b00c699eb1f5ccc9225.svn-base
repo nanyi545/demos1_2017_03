@@ -1,0 +1,327 @@
+package com.webcon.wp.utils;
+
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.text.method.PasswordTransformationMethod;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
+import android.widget.TextView;
+
+import com.webcon.sus.demo.R;
+
+import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Field;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class ModifyDialogUtil {
+
+	public static final int MODIFY_USERNAME = 0;
+	public static final int MODIFY_EQUIPMENTNAME = 1;
+	public static final int MODIFY_PASSWORD = 2;
+	private static int modifyType;
+
+	private EditText edit1, edit2;
+	private TextView prompt;
+
+	private Context mContext;
+	private Handler RefreshHandler;
+	private Bundle bundle;
+
+	public AlertDialog showModifyDialog(Context context, int type,
+			Handler handlder, Bundle b) {
+		mContext = context;
+		modifyType = type;
+		this.RefreshHandler = handlder;
+		this.bundle = b;
+		AlertDialog.Builder builder = new Builder(mContext);
+		LinearLayout ll = new LinearLayout(mContext);
+		ll.setOrientation(LinearLayout.VERTICAL);
+		ll.setPadding(10, 0, 10, 10);
+		LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT,
+				LayoutParams.WRAP_CONTENT);
+		ll.setLayoutParams(params);
+		String hint = "", title = "";
+
+		switch (modifyType) {
+		case MODIFY_USERNAME:
+			title = mContext.getResources().getString(
+					R.string.str_modify_name_title);
+			hint = WPApplication.getInstance().getCurrentUser().getUserName();
+			break;
+		case MODIFY_EQUIPMENTNAME:
+			title = mContext.getResources().getString(
+					R.string.str_modify_name_title);
+			hint = bundle.getString("cameraName");
+			break;
+		case MODIFY_PASSWORD:
+			title = mContext.getResources().getString(
+					R.string.str_modify_password_title);
+			hint = mContext.getResources().getString(
+					R.string.str_modify_password_hint);
+			break;
+		}
+
+		edit1 = new EditText(mContext);
+		edit1.setHint(hint);
+        edit1.setHintTextColor(mContext.getResources().getColor(R.color.Grey300));
+		edit1.requestFocus();
+		ll.addView(edit1);
+		if (type == MODIFY_PASSWORD) {
+			edit2 = new EditText(mContext);
+			edit2.setHint(mContext.getResources().getString(
+					R.string.str_modify_password_hint1));
+            edit2.setHintTextColor(mContext.getResources().getColor(R.color.Grey300));
+			edit1.setTransformationMethod(PasswordTransformationMethod
+					.getInstance());
+			edit2.setTransformationMethod(PasswordTransformationMethod
+					.getInstance());
+			ll.addView(edit2);
+		}
+		prompt = new TextView(mContext);
+		prompt.setPadding(0, 10, 0, 10);
+		prompt.setTextColor(mContext.getResources().getColor(
+				R.color.color_font_lightwhite));
+		ll.addView(prompt);
+		prompt.setVisibility(View.GONE);
+		builder.setTitle(title);
+		builder.setView(ll);
+		builder.setPositiveButton("保存", new DialogInterface.OnClickListener() {
+
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				setDialogShowAlways(dialog);
+				switch (modifyType) {
+				case MODIFY_USERNAME:
+					if (isNameQualified()) {
+						// 传给服务器刷新界面 sharep里改
+						new Thread(new ModifyNameRunnable(1)).start();
+						setDialogDismiss(dialog);
+					}
+					break;
+				case MODIFY_EQUIPMENTNAME:
+					if (isNameQualified()) {
+						new Thread(new ModifyNameRunnable(2)).start();
+						setDialogDismiss(dialog);
+					}
+					break;
+				case MODIFY_PASSWORD:
+					if (edit1.getText().toString()
+							.equals(edit2.getText().toString())) {
+
+						String password = edit1.getText().toString();
+						if (password.length() < 4 || password.length() > 16) {
+							showPrompt(mContext.getResources().getString(
+									R.string.str_modify_password_length));
+						} else if (isSpecial(password, "[>\\s<]")) {
+							showPrompt(mContext.getResources().getString(
+									R.string.str_modify_password_special));
+						} else if (isSame(password)) {
+							showPrompt(mContext.getResources().getString(
+									R.string.str_modify_password_same));
+						} else if (isOrder(password)) {
+							showPrompt(mContext.getResources().getString(
+									R.string.str_modify_password_order));
+						} else {
+							new Thread(new ModifyPassRunnable()).start();
+							setDialogDismiss(dialog);
+						}
+					} else {
+						showPrompt(mContext.getResources().getString(
+								R.string.str_modify_password_notsame));
+					}
+					break;
+				}
+
+			}
+
+		});
+		builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				setDialogDismiss(dialog);
+			}
+		});
+		AlertDialog dialog = builder.create();
+		dialog.setCanceledOnTouchOutside(false);
+		dialog.setCancelable(true);
+		return dialog;
+	}
+
+	private boolean isNameQualified() {
+		String name = edit1.getText().toString().trim();
+		if (name.length() == 0) {
+			showPrompt(mContext.getResources().getString(
+					R.string.str_modify_name_null));
+			return false;
+		} else if (name.length() > 15) {
+			showPrompt(mContext.getResources().getString(
+					R.string.str_modify_name_length));
+			return false;
+		} else if (isSpecial(name, "[~!@#$%^&*(),./;\'\\\\<>:\\?]")) {
+			showPrompt(mContext.getResources().getString(
+					R.string.str_modify_name_special));
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	private void showPrompt(String msg) {
+		prompt.setVisibility(View.VISIBLE);
+		prompt.setText(msg);
+		edit1.setText(null);
+		edit1.requestFocus();
+		if (modifyType == MODIFY_PASSWORD)
+			edit2.setText(null);
+	}
+
+	private boolean isSame(String str) {
+		String regex = str.substring(0, 1) + "{" + str.length() + "}";
+		return str.matches(regex);
+	}
+
+	private boolean isSpecial(String str, String regex) {
+		Pattern pat = Pattern.compile(regex);
+		Matcher mat = pat.matcher(str);
+		return mat.find();
+	}
+
+	private boolean isOrder(String str) {
+		String orderStr = "0123456789><abcdefghijklmnopqrstuvwxyz><ABCDEFGHIJKLMNOPQRSTUVWXYZ><9876543210><zyxwvutsrqponmlkjihgfedcba><ZYXWVUTSRQPONMLKJIHGFEDCBA";
+		return orderStr.contains(str);
+	}
+
+	/**
+	 * 设置点击按键时Dialog不关闭
+	 * 
+	 * @param dialog
+	 */
+	private void setDialogShowAlways(DialogInterface dialog) {
+		try {
+			Field field = dialog.getClass().getSuperclass()
+					.getDeclaredField("mShowing");
+			field.setAccessible(true);
+			field.set(dialog, false);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * 关闭Dialog
+	 * 
+	 * @param dialog
+	 */
+	private void setDialogDismiss(DialogInterface dialog) {
+		try {
+			Field field = dialog.getClass().getSuperclass()
+					.getDeclaredField("mShowing");
+			field.setAccessible(true);
+			field.set(dialog, true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	private class ModifyNameRunnable implements Runnable {
+		int type;
+
+		private ModifyNameRunnable(int type) {
+			this.type = type;
+		}
+
+		@Override
+		public void run() {
+			Message msg = new Message();
+			String newName = edit1.getText().toString();
+			String str = null;
+			if (type == 1)
+				str = WPApplication.getInstance().getCurrentUser().getUserId()
+						+ "\0"
+						+ WPApplication.getInstance().getCurrentUser()
+								.getUserName() + "\0" + newName + "\0";
+			else {
+				str = bundle.getString("cameraId") + "\0"
+						+ bundle.getString("cameraName") + "\0" + newName
+						+ "\0";
+			}
+			byte[] strByte = null;
+			try {
+				strByte = str.getBytes(WPConstant.STRING_GB2312);
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+			byte[] inData = new byte[strByte.length + 4];
+			JTools.IntToBytes4(type, inData, 0);
+			System.arraycopy(strByte, 0, inData, 4, strByte.length);
+			byte[] outData = new byte[1024];
+			int result = NativeInterface.getInstance().getDBData(
+					WPConstant.MODIFY_NICK, inData, inData.length, outData,
+					outData.length);
+			if (result > 0) {
+				int r = JTools.Bytes4ToInt(outData, 0);
+				if (r == 0) {
+					msg.what = 0;
+					Bundle bundle = new Bundle();
+					bundle.putString("name", newName);
+					msg.setData(bundle);
+				} else
+					msg.what = -1;
+			} else
+				msg.what = -1;
+			RefreshHandler.sendMessage(msg);
+		}
+	}
+
+	private class ModifyPassRunnable implements Runnable {
+
+		@Override
+		public void run() {
+			Message msg = new Message();
+			SharedPreferences wpPreferences = mContext.getSharedPreferences(
+					WPConstant.WP_SETTING, 0);
+			String oldPass = EncrypAES.getInstance().decrypt(
+					wpPreferences.getString(
+							EncrypAES.getInstance()
+									.encrypt(WPConstant.USER_PWD), EncrypAES
+									.getInstance().encrypt("")));
+			String newPass = edit1.getText().toString();
+			String str = WPApplication.getInstance().getCurrentUser()
+					.getUserId()
+					+ "\0" + oldPass + "\0" + newPass + "\0";
+			byte[] strByte = null;
+			try {
+				strByte = str.getBytes(WPConstant.STRING_GB2312);
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+			byte[] inData = new byte[strByte.length];
+			System.arraycopy(strByte, 0, inData, 0, strByte.length);
+			byte[] outData = new byte[1024];
+			int result = NativeInterface.getInstance().getDBData(
+					WPConstant.MODIFY_PASSWORD, inData, inData.length, outData,
+					outData.length);
+			if (result > 0) {
+				int r = JTools.Bytes4ToInt(outData, 0);
+				System.out.println("密码 r=" + r);
+				if (r == 0)
+					msg.what = 1;
+				else
+					msg.what = -1;
+			} else
+				msg.what = -1;
+			RefreshHandler.sendMessage(msg);
+		}
+	}
+}

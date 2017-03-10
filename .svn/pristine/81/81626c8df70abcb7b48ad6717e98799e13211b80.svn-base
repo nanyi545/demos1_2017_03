@@ -1,0 +1,653 @@
+package com.webcon.sus.activities;
+
+import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
+import android.util.Log;
+import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.webcon.sus.adapter.MainPagerAdapter;
+import com.webcon.sus.db.AlarmDao;
+import com.webcon.sus.demo.R;
+import com.webcon.sus.entity.TreeElement;
+import com.webcon.sus.eventObjects.MessageEvent;
+import com.webcon.sus.http.HttpRequestUtil;
+import com.webcon.sus.service.DoworkService;
+import com.webcon.sus.utils.BitmapUtil;
+import com.webcon.sus.utils.SUConstant;
+import com.webcon.wp.utils.ApplicationManager;
+import com.webcon.wp.utils.EncrypAES;
+import com.webcon.wp.utils.JTools;
+import com.webcon.wp.utils.NativeInterface;
+import com.webcon.wp.utils.NotificationCancelManager;
+import com.webcon.wp.utils.PublicMethodUtil;
+import com.webcon.wp.utils.WPApplication;
+import com.webcon.wp.utils.WPConstant;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import de.greenrobot.event.EventBus;
+
+/**
+ * 主界面
+ * @author m
+ */
+public class MainActivityCompat extends BaseActivity
+        implements NavigationDrawerFragment.NavigationDrawerCallbacks{
+
+    private static final String TAG = "Main";
+
+    private Context mContext;
+    private ViewPager viewPager;
+    private MainPagerAdapter adapter;
+    private ArrayList<Fragment> fragments = new ArrayList<Fragment>();
+    private String currentUserName;
+
+    private Button bn_stations, bn_alarms;
+    // 显示新报警个数
+    private TextView newAlarmNum;
+    // 注销loading对话框
+    private ProgressDialog cancellationDialog;
+    //双击退出处理
+    private boolean mDoubleClick = false;
+
+    /* 广播数据相关 */
+    // 显示新报警数量的广播
+    private NewAlarmNumReceiver newAlarmNumReceiver;
+    // 昵称或者树结构改变的广播
+    private DataChangedReceiver dataChangedReceiver;
+    private AlarmDao alarmDao;
+
+    // cursorImage
+    private ImageView cursorIV;
+    // 图片偏移量
+    private int cursorOffset = 0;
+    // 当前页卡编号
+    private int cursorIndex = 0;
+    // 图片宽度
+    private int cursorImgWidth = 0;
+
+    //Fragment instance
+    private AlarmListFragment alarmList;
+    private MainStationListFragment stationList;
+
+    //Toolbar
+    private Toolbar mToolbar;
+    private NavigationDrawerFragment mNavigation;
+    private Handler mHandler;
+
+
+    Handler mainHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                // 注销结束（关闭注销的progressDialog）
+                case -11:
+                    if (cancellationDialog.isShowing()) {
+                        cancellationDialog.dismiss();
+                    }
+                    break;
+            }
+        }
+
+    };
+
+    @Override
+    public void releaseHandler(){
+        mainHandler.removeCallbacksAndMessages(null);
+    }
+
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.layout_main_compat);
+        mContext = this;
+        EventBus.getDefault().register(this);
+        mHandler = new Handler();
+        initView();
+        initData();
+        initFragment(savedInstanceState);
+    }
+
+    private void initView(){
+        mToolbar = (Toolbar)findViewById(R.id.toolbar_main);
+        setSupportActionBar(mToolbar);
+//        mToolbar.setLogo(R.drawable.icon_radar);  //TODO
+//        setTitle(R.string.corp_title);
+        setTitle(R.string.app_name);
+
+        //fragment
+        mNavigation = (NavigationDrawerFragment)
+                getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
+        mNavigation.setUp(
+                R.id.navigation_drawer,
+                (DrawerLayout) findViewById(R.id.navigation_drawerlayout),
+                mToolbar);
+
+    }
+
+    //-----------Menu or ActionBar--------------
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+//        if (!mNavigationDrawerFragment.isDrawerOpen()) {
+//            getMenuInflater().inflate(R.menu.test_drawer, menu);
+////            restoreActionBar();
+//            restoreToolBar();
+//            return true;
+//        }
+//        return super.onCreateOptionsMenu(menu);
+//        getMenuInflater().inflate(R.menu.menu_toolbar_settings, menu);
+        getMenuInflater().inflate(R.menu.menu_main_compat, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()){
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+//    @Override
+//    public boolean dispatchTouchEvent(MotionEvent event){
+//        Log.i(TAG, "touch event");
+//        return super.dispatchTouchEvent(event);
+//    }
+
+
+    //---------------
+    /**
+     * 初始化数据 广播注册
+     */
+    private void initData() {
+        ApplicationManager.getInstance().addOtherActivity(this);
+        currentUserName = EncrypAES.getInstance().decrypt(
+                wpPreferences.getString(
+                        EncrypAES.getInstance().encrypt(WPConstant.USER_NAME),
+                        EncrypAES.getInstance().encrypt("")));
+        /* 报警信息表 */
+        alarmDao = new AlarmDao(mContext);
+
+        IntentFilter filter = new IntentFilter();
+        /* 注册 接收新警告的广播 */
+        newAlarmNumReceiver = new NewAlarmNumReceiver();
+        filter.addAction(WPConstant.NEW_ALARM_NUM_ACTION); // 新报警数量
+        registerReceiver(newAlarmNumReceiver, filter);
+        /* 注册 接收数据改变的广播 */
+        dataChangedReceiver = new DataChangedReceiver();
+        filter.addAction(WPConstant.NICKNAME_CHANGED_ACTION); // 昵称改变
+        filter.addAction(WPConstant.TREE_CHANGED_ACTION); // 树结构改变
+        registerReceiver(dataChangedReceiver, filter);
+
+    }
+
+    /**
+     * 初始化Fragment
+     * @param savedInstanceState 保存的状态
+     */
+    private void initFragment(Bundle savedInstanceState) {
+        if (findViewById(R.id.main_vp_pager) != null) {
+            // 如果我们从先前的状态恢复，那么我们不需要做任何事，直接返回
+            if (savedInstanceState != null) {
+                return;
+            }
+        }
+
+//        userList = new UserListFragment();
+        stationList = new MainStationListFragment();
+        alarmList = new AlarmListFragment();
+//        fragments.add(userList);
+        fragments.add(stationList);
+        fragments.add(alarmList);
+
+        initCursorImage();
+        initTextView();
+        initViewPager();
+
+        newAlarmNum = (TextView) findViewById(R.id.main_tv_tab_newalarmnum);
+
+        // 注销的progressdialog
+        cancellationDialog = PublicMethodUtil.getInstance().makeProgressDialog(
+                mContext, R.string.str_null, R.string.str_loading_cancellation,
+                false, false);
+    }
+
+    @Override
+    protected void onResume() {
+//        // 注册报警推送服务
+//        if (!PushUtils.hasBind(mContext))
+//            PushUtils.bindPushServer(this);
+        Log.i(TAG, "onResume");
+        super.onResume();
+    }
+
+    /**
+     * 初始化界面元素
+     */
+    private void initViewPager() {
+        viewPager = (ViewPager) findViewById(R.id.main_vp_pager);
+        adapter = new MainPagerAdapter(getSupportFragmentManager(), fragments);
+        viewPager.setAdapter(adapter);
+        viewPager.setCurrentItem(0);
+        viewPager.addOnPageChangeListener(new MyPageChangeListener());
+    }
+
+    /**
+     * 初始化动画
+     */
+    private void initCursorImage() {
+        Bitmap mp = BitmapUtil.overlapBitmapColor(BitmapFactory.decodeResource(
+                getResources(), R.drawable.bg_mutual_main_cursorimg),
+                getResources().getColor(R.color.White));
+        cursorIV = (ImageView) findViewById(R.id.main_iv_cursor);
+        cursorIV.setImageBitmap(mp);
+        cursorImgWidth = mp.getWidth();
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+        int screentWidth = dm.widthPixels;
+        cursorOffset = (screentWidth / 2 - cursorImgWidth) / 2;
+        Matrix matrix = new Matrix();
+        matrix.postTranslate(cursorOffset, 0);
+        cursorIV.setImageMatrix(matrix);
+    }
+
+    /**
+     * 初始化界面元素
+     */
+    private void initTextView() {
+        bn_stations = (Button)findViewById(R.id.main_bn_tab_userlist);
+        bn_alarms = (Button)findViewById(R.id.main_bn_tab_alarmlist);
+        bn_stations.setOnClickListener(mClickListenr);
+        bn_alarms.setOnClickListener(mClickListenr);
+    }
+
+    /**
+     * 头标点击监听
+     */
+    private View.OnClickListener mClickListenr = new View.OnClickListener(){
+        @Override
+        public void onClick(View v){
+            if(bn_stations == v){
+                viewPager.setCurrentItem(0);
+            }
+            if(bn_alarms == v){
+                viewPager.setCurrentItem(1);
+            }
+        }
+    };
+
+    /**
+     * ViewPager滑动监听事件
+     */
+    private class MyPageChangeListener implements OnPageChangeListener {
+
+        int one = cursorOffset * 2 + cursorImgWidth; // 卡1 --> 卡2 偏移量
+
+        @Override
+        public void onPageScrollStateChanged(int arg0) {
+
+        }
+
+        @Override
+        public void onPageScrolled(int arg0, float arg1, int arg2) {
+
+        }
+
+        @Override
+        public void onPageSelected(int arg0) {
+            Animation animation = null;
+            switch (arg0) {
+                // 移动到0
+                case 0:
+                    if (cursorIndex == 1) {
+                        animation = new TranslateAnimation(one, 0, 0, 0);
+                    }
+                    break;
+                // 移动到1
+                case 1:
+                    if (cursorIndex == 0) {
+                        animation = new TranslateAnimation(cursorOffset, one, 0, 0);
+                    }
+                    break;
+            }
+            cursorIndex = arg0;
+            if(animation != null){
+                animation.setFillAfter(true); // 图片停在动画停止位置
+                animation.setDuration(300);
+                cursorIV.startAnimation(animation);
+            }
+        }
+    }
+
+    /**
+     * ##TODO #3 监听按键事件
+     */
+    @Override
+    public boolean dispatchKeyEvent(@NonNull KeyEvent event) {
+        if (event.getAction() == KeyEvent.ACTION_DOWN && event.getRepeatCount() == 0){
+            //返回键处理
+            if (event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
+                Log.i("Main", "key back..");
+                if(mNavigation != null && mNavigation.isDrawerOpen()){
+                    mNavigation.closeDrawer();
+                    return true;
+                }
+                int back = WPApplication.getInstance().getKeyBackFlag();
+                if(back == SUConstant.KEYBACK_TYPE_CLEAR){
+                    //退出处理
+                    if(mDoubleClick){
+                        WPApplication.isCancellation = false;
+                        new CancellationThread().start();
+                    }else{
+                        mDoubleClick = true;
+                        Toast.makeText(mContext, R.string.str_main_toast_back_agin, Toast.LENGTH_SHORT).show();
+                        mHandler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                mDoubleClick = false;
+                            }
+                        }, 2000);
+                    }
+                }else{
+                    if((back & 0x0F) == SUConstant.KEYBACK_TYPE_STATIONS){
+                        stationList.onBackPressed();
+                    }
+                    if((back & 0xF0) == SUConstant.KEYBACK_TYPE_ALARMS){
+                        alarmList.onBackPressed();
+                    }
+                }
+                //##FIXME: 需要修改
+                return true;
+            } else if (event.getKeyCode() == KeyEvent.KEYCODE_MENU) {
+                //屏蔽了Menu键
+                return true;
+            }
+        }
+        return super.dispatchKeyEvent(event);
+    }
+
+    /**
+     * 退出AlertDialog提醒框，确定按钮点击事件
+     * <p>为什么没有用到?</p>
+     */
+    DialogInterface.OnClickListener exitPositiveListener = new DialogInterface.OnClickListener() {
+
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            ApplicationManager.getInstance().applicationExit();
+            ApplicationManager.getInstance().applicationOtherExit();
+        }
+    };
+
+    /**
+     * Activity已经存在，再次跳转到当前Activty调用此方法 切换到报警列表标签
+     */
+    @Override
+    protected void onNewIntent(Intent intent) {
+        //FIXME ##
+        Log.i(TAG, "on new Intent");
+        super.onNewIntent(intent);
+    }
+
+    @Override
+    protected void onDestroy() {
+        // 清除所有报警
+        NotificationCancelManager.getInstance().clearAllNotification(mContext);
+        unregisterReceiver(newAlarmNumReceiver);
+        unregisterReceiver(dataChangedReceiver);
+        stopService(new Intent(mContext, DoworkService.class));
+//        PushUtils.setBind(mContext, false);
+        mContext.stopService(new Intent(mContext, DoworkService.class));
+        EventBus.getDefault().unregister(this);
+        Log.i("MainDestroy", "-----------MainDestroy-----------");
+        super.onDestroy();
+    }
+
+    /**
+     * 注销登陆，在web推送服务器删除当前用户的报警推送注册
+     */
+    class CancellationThread extends Thread {
+        @Override
+        public void run() {
+            if (!currentUserName.equals("") && !WPApplication.DEBUG) {
+                HttpRequestUtil hru = new HttpRequestUtil();
+                // flag 注册:1 注销:0
+                String url = "http://"
+                        + EncrypAES.getInstance().decrypt(
+                        wpPreferences.getString(EncrypAES.getInstance()
+                                        .encrypt(WPConstant.SERVER_IP),
+                                EncrypAES.getInstance().encrypt("")))
+                        + WPConstant.PHONE_PUSH_INFO_ADDRESS + "flag=0"
+                        + "&userId=" + currentUserName;
+                hru.requestFromHttpGet(url);
+            }
+//            // 注销报警推送服务
+//            PushUtils.stopPushServer(mContext);
+
+            // 反初始化通信库
+            NativeInterface.getInstance().unInit();
+
+            if (WPApplication.isCancellation) {// 注销
+                //清除暂时删除的数据
+                AlarmDao alarmDao = new AlarmDao(mContext);
+                alarmDao.deleteAlarmDeleteData(currentUserName);
+
+                // 跳转到登录页面
+                MainActivityCompat.this.finish();
+                Intent loginIntent = new Intent(mContext, LoginActivityCompat.class);
+                loginIntent.putExtra(WPConstant.INTENT_LOGIN_FLAG, 1);
+                startActivity(loginIntent);
+                // 关闭注销的progressDialog
+                mainHandler.sendEmptyMessage(-11);
+            } else {// 退出
+                ApplicationManager.getInstance().applicationExit();
+                ApplicationManager.getInstance().applicationOtherExit();
+            }
+        }
+    }
+
+//    /**
+//     * 数组合并
+//     */
+//    private byte[] getNewByteArray(byte[] data, byte[] srcdata) {
+//        byte[] newData = new byte[data.length + srcdata.length];
+//        System.arraycopy(srcdata, 0, newData, 0, srcdata.length);
+//        System.arraycopy(data, 0, newData, srcdata.length, data.length);
+//        return newData;
+//    }
+
+    /**
+     * 显示新的报警数量的广播
+     */
+    private class NewAlarmNumReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            // 报警信息数量
+            // ##TODO
+            if (action.equals(WPConstant.NEW_ALARM_NUM_ACTION)) {
+                // System.out.println("----Resocle------");
+                long num = alarmDao.selectCountNoResolved(currentUserName);
+                if (num > 0) {
+                    newAlarmNum.setVisibility(View.VISIBLE);
+                    newAlarmNum.setText(num + "");
+                } else {
+                    newAlarmNum.setVisibility(View.GONE);
+                }
+            }
+        }
+    }
+
+    /**
+     * 数据改变
+     */
+    private class DataChangedReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            //##TODO
+            String action = intent.getAction();
+            byte[] data = intent.getByteArrayExtra("outData");
+            // 昵称修改
+            if (action.equals(WPConstant.NICKNAME_CHANGED_ACTION)) {
+                // 替换昵称
+                String userID, newName;
+                int offset = 0;
+                // 用户类型
+                int type = JTools.Bytes4ToInt(data, offset);
+                offset += 4;
+                try {
+                    // ID
+                    userID = (String) JTools.toStringList(data, offset,
+                            WPConstant.STRING_GB2312).get(0);
+                    offset = (Integer) JTools.toStringList(data, offset,
+                            WPConstant.STRING_GB2312).get(1);
+                    // 新昵称
+                    newName = (String) JTools.toStringList(data, offset,
+                            WPConstant.STRING_GB2312).get(0);
+                    List<TreeElement> list = WPApplication.getInstance()
+                            .getTreeElementLists();
+                    // 刷新界面
+                    for (TreeElement treeElement : list) {
+                        if (treeElement.getUserId().equals(userID)) {
+                            treeElement.setUserName(newName);
+                        }
+                        if (type == 4)// 组织的userID和name是一样的，所以都要改
+                            treeElement.setUserId(newName);
+                    }
+                    WPApplication.getInstance().setTreeElementLists(list);
+                    stationList.refreshFragment();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            } else if (action.equals(WPConstant.TREE_CHANGED_ACTION)) {
+                // 刷新界面，如果是摄像头还要删除报警
+//                stationList.refreshData();
+                stationList.refreshFragment();
+                // 用户类型
+                int type = JTools.Bytes4ToInt(data, 0);
+                if (type == 7) {
+                    String equipmentID = null;
+                    try {
+                        equipmentID = (String) JTools.toStringList(data, 4,
+                                WPConstant.STRING_GB2312).get(0);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    if (equipmentID != null)
+                        new AlarmDao(mContext)
+                                .alarmDeleteEquipmentData(equipmentID);
+                }
+            }
+        }
+    }
+
+    @Override
+    public void onNavigationDrawerItemSelected(int position){
+//        if(WPApplication.DEBUG){
+//            return;
+//        }
+        switch(position){
+            case 0: //跳转到个人信息界面
+//                Intent intent1 = new Intent(mContext, PersonalInformationActivity.class);
+//                startActivity(intent1);
+                break;
+            case 1: //跳转到警告语音设置界面
+                Intent intent2 = new Intent(mContext, ExpelAudioActivity.class);
+                startActivity(intent2);
+                break;
+            case 2: //跳转到报警消息查询
+//                Intent intent3 = new Intent(mContext, CameraMonitorAnnalActivity.class);
+//                startActivity(intent3);
+                break;
+            case 3: //注销账号
+                logout();
+                break;
+            case 4: //退出
+                WPApplication.isCancellation = false;
+                new CancellationThread().start();
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void logout(){
+        PublicMethodUtil
+                .getInstance()
+                .makeAlertDialogBuilder(
+                        mContext,
+                        R.string.dialog_title_prompt,
+                        R.string.str_main_dialog_cancellation_message,
+                        R.string.btn_ok,
+                        R.string.btn_cancle,
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                if (!WPApplication.DEBUG) {
+                                    wpPreferences
+                                            .edit()
+                                            .putString(
+                                                    EncrypAES.getInstance()
+                                                            .encrypt(WPConstant.AUTO_LOGIN),
+                                                    EncrypAES.getInstance()
+                                                            .encrypt("0"))
+                                            .apply();
+                                }
+                                WPApplication.isCancellation = true;
+                                // 启动注销的progressdialog
+                                if (!cancellationDialog.isShowing()) {
+                                    cancellationDialog.show();
+                                    new CancellationThread().start();
+                                }
+                            }
+                        },
+                        null).show();
+    }
+
+    //-------------EventBus-----------------
+
+
+    public void eventSender(Object event){
+        EventBus.getDefault().post(event);
+    }
+
+    public void onEventMainThread(MessageEvent event){
+
+    }
+
+    //--------test--------
+
+
+}

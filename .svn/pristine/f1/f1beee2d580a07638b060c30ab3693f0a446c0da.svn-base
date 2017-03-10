@@ -1,0 +1,84 @@
+package com.webcon.sus.http;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.CoreConnectionPNames;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+/**
+ * http请求工具类
+ * 
+ * @author Vieboo
+ * 
+ */
+public class HttpRequestUtil {
+
+	/**
+	 * get请求
+	 */
+	public boolean requestFromHttpGet(String url) {
+		HttpGet httpGet = new HttpGet(url);
+		httpGet.addHeader("Content-Type", "application/html; charset=utf-8");
+		DefaultHttpClient dhc = new DefaultHttpClient();
+		dhc.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, 5000);
+		try {
+			HttpResponse httpResponse = dhc.execute(httpGet);
+			if (httpResponse.getStatusLine().getStatusCode() == 200) {
+				return true;
+			} else {
+				return false;
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+ 
+	/**
+	 * 有返回值的 主要用于软件更新
+	 * @param url
+	 * @param param
+	 * @return
+	 */
+	public String reguestStringFromGet(String url, String param) {
+		String result = "";
+		BufferedReader in = null; 
+		String urlName = url + "?" + param;
+		HttpGet httpGet = new HttpGet(urlName);
+		httpGet.addHeader("Content-Type", "application/html; charset=utf-8");
+		DefaultHttpClient dhc = new DefaultHttpClient();
+		dhc.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT,
+				5000);
+		try {
+			HttpResponse response = dhc.execute(httpGet);
+			if (response.getStatusLine().getStatusCode() == 200) {
+				in = new BufferedReader(new InputStreamReader(response
+						.getEntity().getContent(), "utf-8"));
+				StringBuffer stringBuffer = new StringBuffer("");
+				String line = "";
+
+				String NL = System.getProperty("line.separator");
+				while ((line = in.readLine()) != null) {
+					stringBuffer.append(line + NL);
+				}
+				result = stringBuffer.toString();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (in != null) {
+				try {
+					in.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return result;
+	}
+
+}

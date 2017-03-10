@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linear_remote_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/theme_main">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="@string/app_name"
+        android:textColor="@color/White"
+        android:textSize="18sp"/>
+    <!--<ImageView-->
+        <!--android:layout_width="36dp"-->
+        <!--android:layout_height="36dp"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:src="@drawable/icon_shield_green"-->
+        <!--android:contentDescription="@string/str_null"/>-->
+    <!--<ImageButton-->
+        <!--android:id="@+id/bn_remote_notification_quit"-->
+        <!--android:layout_width="36dp"-->
+        <!--android:layout_height="36dp"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:src="@android:drawable/ic_delete"-->
+        <!--android:background="@drawable/selector_delete"-->
+        <!--android:contentDescription="@string/str_null"/>-->
+
+</RelativeLayout>

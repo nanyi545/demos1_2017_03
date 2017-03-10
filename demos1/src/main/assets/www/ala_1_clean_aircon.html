@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+
+
+<link rel="stylesheet" type="text/css" href="ala/css/common.css">
+<!--   original href="/Public/Api2/css/common.css?v="     -->
+
+<script type="text/javascript" src="/Public/Api2/js/jquery.js"></script>
+<script type="text/javascript" src="/Public/Api2/js/jquery-2.0.1.min.js"></script>
+<script type="text/javascript" src="/Public/Api2/js/common.js"></script>
+
+</head>
+<body>
+
+<link rel="stylesheet" type="text/css" href="ala/css/pay.css">         
+<!--   original href="/Public/Api2/css/pay.css?v=1.0.0"    ....    http://testapi.nbaljz.cn/Public/Api2/css/pay.css?v=1.0.0    -->
+
+<link rel="stylesheet" type="text/css" href="ala/css/iosStyle.css">
+<!--   original href="/Public/Api2/css/iosSelect.css?v=5"    -->
+
+<script type="text/javascript" src="ala/js/iscroll.js"></script>
+<!--   original src="/Public/Api2/js/iscroll.js"    -->
+
+<script type="text/javascript" src="ala/js/iosSelect.js"></script>
+<!--   original src="/Public/Api2/js/iosSelect.js"   -->
+
+<style>
+    .ios-select-widget-box header.iosselect-header a.close{color: #999;}
+    .ios-select-widget-box header.iosselect-header a.sure{color: #f63;}
+</style>
+
+<div class="pay" style="margin-bottom: 5em;">
+    <div class="head">
+        <a class="left pay-back" href="javascript:" url="/Api2/Single/aircon.html"></a>
+        <div class="center">确认订单</div>
+    </div>
+    <a class="address" href="/Api2/Single/addr_list.html" >
+        <div class="noaddr tel">请选择服务地址</div>        
+        <div class="more-icon"></div>
+        <div class="border-b"></div>
+        <input type="hidden" name="address_id" id="address_id" value="">
+    </a>
+
+    <div class="clean">
+        <div class="item border" tabid="0">
+                <div class="left">中央空调出风口</div>
+                <div class="unit">￥50/个</div>
+                <div class="right">
+                    <div class="minus">-</div>
+                    <div class="num">0</div>
+                    <div class="add">+</div>
+                </div>
+                <input type="hidden" name="cate_id" id="cate_id" value="5">
+                <input type="hidden" name="cate_deposit" id="cate_deposit" value="50">
+                <input type="hidden" name="cate_total" id="cate_total" value="0">
+            </div><div class="item " tabid="1">
+                <div class="left">壁挂式空调</div>
+                <div class="unit">￥100/台</div>
+                <div class="right">
+                    <div class="minus">-</div>
+                    <div class="num">0</div>
+                    <div class="add">+</div>
+                </div>
+                <input type="hidden" name="cate_id" id="cate_id" value="6">
+                <input type="hidden" name="cate_deposit" id="cate_deposit" value="100">
+                <input type="hidden" name="cate_total" id="cate_total" value="0">
+            </div><div class="item border" tabid="2">
+                <div class="left">柜（立）式空调</div>
+                <div class="unit">￥120/台</div>
+                <div class="right">
+                    <div class="minus">-</div>
+                    <div class="num">0</div>
+                    <div class="add">+</div>
+                </div>
+                <input type="hidden" name="cate_id" id="cate_id" value="7">
+                <input type="hidden" name="cate_deposit" id="cate_deposit" value="120">
+                <input type="hidden" name="cate_total" id="cate_total" value="0">
+            </div>        <input type="hidden" name="cate_num" id="cate_num" value="3">
+    </div>
+
+    <a class="choose-time" href="javascript:" id="J_choose">
+        <div class="choose">
+            <div class="left">起始时间</div>
+            <div class="right">
+                <input type="hidden" name="sub_time" id="sub_time" value="">
+                <span class="start-time">请选择服务时间</span>
+                <div class="more-icon"></div>
+            </div>
+        </div>
+    </a>
+    <div class="detail">
+        <div class="left">
+            <img src="http://testapi.nbaljz.cn//api/upload/picture_image/id/849" alt="" width="100%" height="100%"/>
+        </div>
+        <div class="right">
+            <div class="title">空调清洁 <span>（¥50-120/台）</span></div>
+            <div class="company">宁波美好家保洁服务有限公司</div>
+        </div>
+    </div>
+    <div class="demo">
+        <input type="text" id="remark" name="remark" placeholder="备注：其他需求等" maxlength="50" />
+    </div>
+    <div class="appoint clearfix">
+        <input type="hidden" name="order_type" id="order_type" value="7">
+        <input type="hidden" name="single_id" id="single_id" value="2">
+        <div class="left"><span>合计金额</span> ￥<span name="money" id="money">0.00</span> </div>
+        <a class="appoint-btn" href="javascript:" url="/Api2/Single/add_order.html">提交订单</a>
+    </div>
+</div>
+<div class="mask"></div>
+<div class="time-choose">
+    <div class="title">
+        <a class="cancel-btn" href="javascript:">取消</a>
+        <div class="text">选择服务时间</div>
+        <a class="sure-btn" href="javascript:">确认</a>
+    </div>
+    <div class="detail">
+        <div id="wrapper1">
+            <div class="left" id="scroller1">
+            </div>
+        </div>
+        <div id="wrapper2">
+            <div class="right" id="scroller2">
+                <div class="info">请选择开始时间</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container"></div>
+
+<script type="text/javascript" src="/Public/Api2/js/iscroll1.js"></script>
+<script type="text/javascript">
+    var today = new Date();
+    var least_hour = parseInt("24");
+    var days_hour = parseInt("240");
+    var start = parseInt("7");
+    var end = parseInt("18");
+    var duration = $("#choosed").html();
+    var day_time = end - start;/*服务时长*/
+    var h = today.getHours();
+    var least = least_hour/24;
+    var days = days_hour/24;
+    writeDay(least,days);
+    setInterval(writeTime(start,end,$("#choosed").html()),50);
+
+    var cate_num = $("#cate_num").val();
+    $(".minus").click(function(){
+        var num = $(this).siblings(".num").html();
+        var total = 0;
+        if(num>0){
+            num--;
+        }
+        $(this).siblings(".num").html(num);
+        var deposit = $(this).parent(".right").siblings("#cate_deposit").val();
+        var cateMoney = deposit*num;
+        $(this).parent(".right").siblings("#cate_total").val(cateMoney);
+
+        for(var i=0;i<cate_num;i++){
+            $(".clean .item").each(function() {
+                if($(this).attr("tabid") == i){
+                    total = parseInt(total) + parseInt($(this).children("#cate_total").val());
+                }
+            });
+        }
+        money.innerHTML = total.toFixed(2);
+    });
+    $(".add").click(function(){
+        var num = $(this).siblings(".num").html();
+        var total = 0;
+        num++;
+        $(this).siblings(".num").html(num);
+        var deposit = $(this).parent(".right").siblings("#cate_deposit").val();
+        var cateMoney = deposit*num;
+        $(this).parent(".right").siblings("#cate_total").val(cateMoney);
+
+        for(var i=0;i<cate_num;i++){
+            $(".clean .item").each(function() {
+                if($(this).attr("tabid") == i){
+                    total = parseInt(total) + parseInt($(this).children("#cate_total").val());
+                }
+            });
+        }
+        money.innerHTML = total.toFixed(2);
+    });
+
+    $("#J_choose").click(function(){
+        $(".mask").show();
+        $(".time-choose").show();
+    });
+    $(".cancel-btn").click(function(){
+        $(".mask").hide();
+        $(".time-choose").hide();
+    });
+
+    function isLeap(year) {
+        return year % 4 == 0 ? (year % 100 != 0 ? 1 : (year % 400 == 0 ? 1 : 0)) : 0;
+    }
+    function writeDay(least,days){
+        $("#wrapper1 .left").css("height",days*3 + "em");
+        var today=new Date();
+        var y=today.getFullYear();              //获取日期中的年份
+        var weekday=new Array(7);
+        weekday[0]="星期日";
+        weekday[1]="星期一";
+        weekday[2]="星期二";
+        weekday[3]="星期三";
+        weekday[4]="星期四";
+        weekday[5]="星期五";
+        weekday[6]="星期六";
+        var days_per_month = new Array(31, 28 + isLeap(y), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);        //创建月份数组
+        var m = today.getMonth() + 1;                //获取日期中的月份(需要注意的是：月份是从0开始计算，获取的值比正常月份的值少1)
+        var d = today.getDate() + parseInt(least) -1;
+        var weekdays = parseInt(today.getDay());
+        var firstday = weekdays + parseInt(least);
+        if(h>end||(h==end && today.getMinutes()>0)){
+            firstday=firstday+1;
+            d=d+1;
+        }
+        for(var i=0;i<days;i++){
+            var d1 = firstday++ % 7;
+            d++ ;
+            if(d > days_per_month[m -1]){
+                d = 1;
+                m = m+1;
+            }
+            if(m>12){
+                m = 1;
+                y = y+1;
+            }
+            $("#wrapper1 .left").append("<div class='left-item'>" + m + '/' + d + "  "+ weekday[d1] + "</div> <input type='text' class='year' value='" + y + "' hidden='hidden'/>");
+        }
+        $("#wrapper1 .left>*:nth-child(1)").addClass("cur");
+    }
+
+    function writeTime(start,end,duration){
+        var today = new Date();
+        var h = today.getHours();
+        var mu = today.getMinutes();
+
+        var num = (end - start)/0.5 + 1;
+        $("#wrapper2 .right").css("height",(num+2)*3 + "em");
+        for(var i=0;i<num;i++){
+            var time = start + 0.5*i;
+            var show;
+            if((time % 1 != 0)){
+                show = time - 0.5 + ":30";
+            }else{
+                show = time + ":00";
+            }
+            $("#wrapper2 .right").append("<div class='right-item'>" + " " + show + "</div>");
+        }
+        $("#wrapper2 .right>*:nth-child(2)").append("<div class='choosed'></div>");
+
+        var num1 = (h-start)/0.5;
+        if(mu>30){
+            num1 = num1 +2;
+        }
+        if(mu>0&&mu<30){
+            num1 = num1 +1;
+        }
+        if(h<end){
+            for(var i=0;i<num1;i++){
+                $('#wrapper2 .right .right-item').eq(i).css("display","none");
+            }
+        }
+    }
+
+    $(".left-item").click(function(){
+        $(this).addClass("cur");
+        $(this).siblings(".left-item").removeClass("cur");
+        var num = (end - start)/0.5 + 1;
+        var num1 = (h - start)/0.5 +1;
+        if($(this).index() == "0" && h<end){
+            for(var i=0;i<num1;i++){
+                $('#wrapper2 .right .right-item').eq(i).css("display","none");
+            }
+        }else{
+            for(var j=0;j<num;j++){
+                $('#wrapper2 .right .right-item').eq(j).css("display","block");
+            }
+        }
+    });
+
+    $("#wrapper2 .right-item").click(function(){
+        $(this).append("<div class='choosed'></div>");
+        $(this).siblings(".right-item").children(".choosed").remove();
+    });
+
+    $(".sure-btn").click(function(){
+        var time =  $(".left .year").val() + "/" + $(".left .cur").text() + $(".right .choosed").parent(".right-item").text();
+        var date = time.substr(0,10) + "  " + $(".right .choosed").parent(".right-item").text().substr(0,6);
+        var date1 = new Date(date);
+        var time_str = date1.getTime().toString();
+        $("#sub_time").val(time_str.substr(0,10));
+        $(".start-time").html(date);
+        $(".mask").hide();
+        $(".time-choose").hide();
+    });
+</script>
+<script type="text/javascript">
+    var order_flag = true;
+
+    //订单提交点击事件
+    $(".appoint-btn").click(function(){
+        var uid = '2';
+        if(uid=='' || uid=='0'){
+            getUserCodeFromApp();
+            return false;
+        }
+        if(!order_flag) return false;
+
+        var order_type = $("#order_type").val();
+        var single_id = $("#single_id").val();
+        var address_id = $("input[name='address_id']").val();
+        var remark = $("#remark").val();
+        var sub_time = $("#sub_time").val();
+        var money = $("#money").html();
+
+        if(uid == '' || order_type == '' || single_id == ''){
+            showdialog('参数错误，请重新进入下单');
+            return false;
+        }
+        if(address_id == ''){
+            showdialog('请选择服务地址');
+            return false;
+        }
+        if(sub_time == ''){
+            showdialog('请选择上门服务时间');
+            return false;
+        }
+        if(money <= 0){
+            showdialog('请选择服务项目');
+            return false;
+        }
+
+        // 分类封装JSON
+        var cate_num = $("#cate_num").val();
+        var cateinfo = [];
+        var j = 0;
+        for(var i=0;i<cate_num;i++){
+            $(".clean .item").each(function() {
+                if($(this).attr("tabid") == i && $(this).children(".right").children(".num").html()>0){
+                    var cate = new Object();
+                    cate.id = $(this).children("#cate_id").val();
+                    cate.num = $(this).children(".right").children(".num").html();
+                    cateinfo[j] = cate;
+                    j++;
+                }
+            });
+        }
+        cateinfo = JSON.stringify(cateinfo);
+        var url = $(this).attr("url");
+        var data = {"uid":uid,"order_type":order_type,"single_id":single_id,"address_id":address_id,"remark":remark,"sub_time":sub_time,"cateinfo":cateinfo,"money":money};
+        order_flag = false;
+        ajax_execute(url,data,callback_sure);
+    });
+
+    function callback_sure(data){
+
+        if(data.status == 1){
+            order_flag = true;
+            showdialog("订单提交成功");
+            setTimeout(sendOrderIdToApp(data.info),1000);
+        }else{
+            order_flag = true;
+            showdialog(data.info);
+        }
+    }
+</script>
+		<script type="text/javascript" src="/Public/Api2/js/layer/layer.js"></script>
+		<script type="text/javascript">
+		    // 下单页返回提示
+		    $(".pay-back").click(function(){
+		        var url = $(this).attr("url");
+		        //询问框
+		        layer.open({
+					content: '下单尚未完成，确定退出？'
+					,btn: ['确定', '取消']
+					,yes: function(index, layero){
+						window.location.href=url;
+					}
+				});
+		    });
+
+		    // 拨打电话
+		    function callPhone(phone) {
+		        var eqpt = 'other';
+		        if(eqpt == 'android'){
+		            //调用android程序中的方法，并传递参数
+		            window.AndroidWebView.callPhoneFromH5(phone);
+		        }else if(eqpt == 'ios'){
+		            //调用iOS程序中的方法，并传递参数
+		            //"getOrderIdFromH5://"为自定义协议头;
+		            //order_id为要传给OC的值,以":|"作为分隔
+		            window.location.href="tel:"+phone;
+		        }else{
+		            return false;
+		        }
+		    }
+
+		    // 返回页面
+		    function goBackToApp() {
+		        var eqpt = 'other';
+		        var page = 'home';
+		        if(eqpt == 'android'){
+		            //调用android程序中的方法，并传递参数
+		            window.AndroidWebView.goBackFromH5(page);
+		        }else if(eqpt == 'ios'){
+		            //调用iOS程序中的方法，并传递参数
+		            //"getOrderIdFromH5://"为自定义协议头;
+		            //order_id为要传给OC的值,以":|"作为分隔
+		            window.location.href="goBackFromH5://"+":|"+page;
+		        }else{
+		            return false;
+		        }
+		    }
+
+		    // 未登录提示客户端返回用户MOBILE
+		    function getUserCodeFromApp() {
+		        var eqpt = 'other';
+		        var h5_url = 'http://testapi.nbaljz.cn/Api2/Single/payaircon/type/7/single_id/2.html';
+		        if(eqpt == 'android'){
+		            //调用android程序中的方法，并传递参数
+		            window.AndroidWebView.sendUserCodeToH5(h5_url);
+		        }else if(eqpt == 'ios'){
+		            //调用iOS程序中的方法，并传递参数
+		            //"getOrderIdFromH5://"为自定义协议头;
+		            //order_id为要传给OC的值,以":|"作为分隔
+		            window.location.href="sendUserCodeToH5://"+":|"+h5_url;
+		        }else{
+		            return false;
+		        }
+		    }
+
+		    // 发送订单ID参数到客户端
+		    function sendOrderIdToApp(order_id) {
+		        var eqpt = 'other';
+		        if(eqpt == 'android'){
+		            //调用android程序中的方法，并传递参数
+		            window.AndroidWebView.getOrderIdFromH5(order_id);
+		        }else if(eqpt == 'ios'){
+		            //调用iOS程序中的方法，并传递参数
+		            //"getOrderIdFromH5://"为自定义协议头;
+		            //order_id为要传给OC的值,以":|"作为分隔
+		            window.location.href="getOrderIdFromH5://"+":|"+order_id;
+		        }else{
+		            return false;
+		        }
+		    }
+		</script>  
+	</body>
+</html>

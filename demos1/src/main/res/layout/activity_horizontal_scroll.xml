@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/container_scroll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/Purple100">
+
+
+    <test1.nh.com.demos1.activities.horizontalScroll.HorizontalScroller
+        android:id="@+id/h_scroller"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        >
+
+        <test1.nh.com.demos1.activities.horizontalScroll.TestIv
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@color/Teal500"
+            android:clickable="true"/>
+
+        <test1.nh.com.demos1.activities.horizontalScroll.TestIv
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@color/Red500"
+            android:clickable="true"/>
+
+        <test1.nh.com.demos1.activities.horizontalScroll.TestIv
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@color/Purple500"
+            android:clickable="true"/>
+
+        <test1.nh.com.demos1.activities.horizontalScroll.TestIv
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@color/Blue500"
+            android:clickable="true"/>
+
+    </test1.nh.com.demos1.activities.horizontalScroll.HorizontalScroller>
+
+
+
+
+    <test1.nh.com.demos1.activities.horizontalScroll.VerticalScroller
+        android:id="@+id/v_scroller"
+        android:layout_below="@+id/h_scroller"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:background="@color/Teal50">
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="20dp"
+            android:text="1111"
+            android:background="@color/Red200"
+            />
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="20dp"
+            android:text="2222"
+            android:background="@color/Red300"
+
+            />
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="20dp"
+            android:text="3333"
+            android:background="@color/Red400"
+
+            />
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="20dp"
+            android:text="4444"
+            android:background="@color/Red500"
+
+            />
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="20dp"
+            android:text="5555"
+            android:background="@color/Red600"
+            />
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="20dp"
+            android:text="66666"
+            android:background="@color/Teal500"
+            />
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="20dp"
+            android:text="7777"
+            android:background="@color/Teal300"
+            />
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="20dp"
+            android:text="8888"
+            android:background="@color/Teal200"
+            />
+
+    </test1.nh.com.demos1.activities.horizontalScroll.VerticalScroller>
+
+
+
+    <Button
+        android:layout_below="@+id/v_scroller"
+        android:id="@+id/btn_scroll_by"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="scroll_by"
+        />
+    <Button
+        android:layout_below="@+id/v_scroller"
+        android:layout_toRightOf="@+id/btn_scroll_by"
+        android:id="@+id/btn_scroll_to"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="scroll_to"
+        />
+
+    <Button
+        android:layout_below="@+id/v_scroller"
+        android:layout_toRightOf="@+id/btn_scroll_to"
+        android:id="@+id/btn_scroll_by_anim"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="scroll_by_anim"
+        />
+
+
+    <test1.nh.com.demos1.activities.horizontalScroll.NumberPicker
+        android:layout_below="@+id/btn_scroll_by"
+        android:id="@+id/day_picker"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:backgroundColor="@color/Teal600"
+        app:flagText="asdasd"
+        app:flagTextSize="30dp"
+        app:flagTextColor="#abcdef"
+        app:startNumber="1"
+        app:endNumber="31"
+        app:currentNumber="11"
+        app:textColorNormal="#000000"
+        app:textSizeHighLight="24dp"
+        app:textColorHighLight="@color/Purple400"
+        app:textSizeNormal="6dp"
+        app:verticalSpacing="0dp"
+        app:lines="5" />
+
+    <!--app:textSize="20.1sp"-->
+    <!--app:heightAdjustment="1.5"-->
+    <test1.nh.com.demos1.activities.horizontalScroll.ItemPicker
+        app:textSize="16sp"
+        app:highLightIndicator="single_line"
+        app:itemCountHalf="2"
+        android:background="#FFFFFF"
+        android:layout_toRightOf="@+id/day_picker"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@+id/btn_scroll_by"
+        android:id="@+id/test_picker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
+    <TextView
+
+        android:id="@+id/selected_time"
+        android:layout_below="@+id/test_picker"
+        android:layout_toRightOf="@+id/time_picker"
+        android:textSize="16sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="20sp"
+        android:onClick="changeFormatter"
+        />
+
+
+
+
+    <test1.nh.com.demos1.activities.horizontalScroll.ItemPicker
+        android:padding="10dp"
+        app:textSize="18sp"
+        app:highLightIndicator="rect"
+        app:itemCountHalf="3"
+        app:scrollMode="show_once"
+        android:background="#FFFFFF"
+        android:layout_below="@+id/test_picker"
+        android:id="@+id/date_picker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
+    <test1.nh.com.demos1.activities.horizontalScroll.ItemPicker
+        android:padding="10dp"
+        app:textSize="18sp"
+        app:highLightIndicator="double_line"
+        app:itemCountHalf="3"
+        app:scrollMode="show_once"
+        android:background="#FFFFFF"
+        android:layout_below="@+id/test_picker"
+        android:layout_toRightOf="@+id/date_picker"
+        android:id="@+id/time_picker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
+
+</RelativeLayout>
+

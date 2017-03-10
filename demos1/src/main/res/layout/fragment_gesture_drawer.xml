@@ -1,0 +1,18 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    tools:context="test1.nh.com.demos1.activities.DrawerActivity$PlaceholderFragment">
+
+    <ImageView android:id="@+id/iv_test"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:background="@color/Teal400"/>
+
+    <ImageView android:id="@+id/iv_test_red"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:background="@color/Red400"
+        android:layout_below="@id/iv_test"/>
+
+
+</RelativeLayout>

@@ -1,0 +1,234 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:mlp="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/cornered_background"
+    android:orientation="vertical"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    android:layout_marginBottom="16dp"
+    tools:context="com.webcon.sus.activities.AlarmDetailsActivityCompat">
+
+    <include layout="@layout/layout_include_back_head_round" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/rl_capture_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="240dp"
+                    android:background="@color/Grey200">
+
+                    <TextView
+                        android:id="@+id/tv_alarm_capture_loading_failure"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="@string/str_loading_capture_failure"
+                        android:textColor="@color/Grey600"
+                        android:visibility="gone" />
+
+                    <ImageView
+                        android:id="@+id/iv_alarm_capture"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center"
+                        android:contentDescription="@string/cd_alarm_capture"
+                        android:scaleType="centerCrop" />
+
+                    <ProgressBar
+                        android:id="@+id/progress_loading_capture"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:visibility="gone" />
+                </RelativeLayout>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:contentDescription="@string/str_null"
+                    android:src="@drawable/divider_simple_2" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_vertical"
+                    android:padding="4dp">
+
+                    <TextView
+                        android:id="@+id/tv_alarm_detail_name"
+                        style="@style/style_notifi_alarm_tv_directory"
+                        android:text="@string/str_notifi_alarm_tv_name" />
+
+                    <TextView
+                        android:id="@+id/tv_alarm_detail_name_value"
+                        style="@style/style_notifi_alarm_tv_value"
+                        android:layout_toRightOf="@+id/tv_alarm_detail_name" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:padding="4dp">
+
+                    <TextView
+                        android:id="@+id/tv_alarm_detail_date"
+                        style="@style/style_notifi_alarm_tv_directory"
+                        android:text="@string/str_notifi_alarm_tv_time" />
+
+                    <TextView
+                        android:id="@+id/tv_alarm_detail_date_value"
+                        style="@style/style_notifi_alarm_tv_value"
+                        android:layout_toRightOf="@+id/tv_alarm_detail_date" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_alarm_detail_position"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:padding="4dp">
+
+                    <TextView
+                        android:id="@+id/tv_alarm_detail_positionType"
+                        style="@style/style_notifi_alarm_tv_directory"
+                        android:text="@string/str_notifi_alarm_tv_position_segment" />
+
+                    <TextView
+                        android:id="@+id/tv_alarm_detail_positionType_value"
+                        style="@style/style_notifi_alarm_tv_value"
+                        android:layout_toRightOf="@+id/tv_alarm_detail_positionType" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_alarm_detail_solve_state"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:padding="4dp">
+
+                    <TextView
+                        android:id="@+id/tv_alarm_detail_solve_state"
+                        style="@style/style_notifi_alarm_tv_directory"
+                        android:text="@string/str_notifi_alarm_tv_state" />
+
+                    <TextView
+                        android:id="@+id/tv_alarm_detail_solve_state_value"
+                        style="@style/style_notifi_alarm_tv_value"
+                        android:layout_toRightOf="@+id/tv_alarm_detail_solve_state" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_alarm_detail_solver"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:padding="4dp">
+
+                    <TextView
+                        android:id="@+id/tv_alarm_detail_solver"
+                        style="@style/style_notifi_alarm_tv_directory"
+                        android:text="@string/str_notifi_alarm_tv_dealnick" />
+
+                    <TextView
+                        android:id="@+id/tv_alarm_detail_solver_value"
+                        style="@style/style_notifi_alarm_tv_value"
+                        android:layout_toRightOf="@+id/tv_alarm_detail_solver" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_alarm_detail_solve_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:padding="4dp">
+
+                    <TextView
+                        android:id="@+id/tv_alarm_detail_solve_date"
+                        style="@style/style_notifi_alarm_tv_directory"
+                        android:text="@string/str_notifi_alarm_tv_dealtime" />
+
+                    <TextView
+                        android:id="@+id/tv_alarm_detail_solve_date_value"
+                        style="@style/style_notifi_alarm_tv_value"
+                        android:layout_toRightOf="@+id/tv_alarm_detail_solve_date" />
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp">
+
+
+                    <!--android:background="@drawable/bg_bn_login_pressed"-->
+                    <FrameLayout
+                        android:id="@+id/frame_defence_container"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true">
+                        <!--android:background="@drawable/selector_bn_confirm"-->
+                        <Button
+                            android:id="@+id/bn_alarm_details_solver_confirm"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:background="@drawable/selector_bn_confirm"
+                            android:layout_gravity="center_horizontal"
+                            android:padding="4dp"
+                            android:text="@string/str_mark_alarm"
+                            android:textColor="@color/theme_main"
+                            android:textSize="14sp" />
+                        <!--android:visibility="gone"-->
+                        <com.lsjwzh.widget.materialloadingprogressbar.CircleProgressBar
+                            android:id="@+id/mlp_loading_defence123"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_weight="1"
+                            android:visibility="gone"
+                            mlp:mlpb_enable_circle_background="false"
+                            mlp:mlpb_progress_color="@color/Red300"
+                            mlp:mlpb_progress_stoke_width="4dp" />
+                    </FrameLayout>
+                </RelativeLayout>
+
+
+                <!--<Button-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="测试"-->
+                    <!--android:onClick="testFun"-->
+                    <!--/>-->
+
+
+            </LinearLayout>
+        </ScrollView>
+
+        <ImageView
+            android:id="@+id/toolbar_shadow_prelollipop"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:background="@color/Transparent"
+            android:src="@drawable/background_shadow"></ImageView>
+
+
+    </RelativeLayout>
+
+</LinearLayout>

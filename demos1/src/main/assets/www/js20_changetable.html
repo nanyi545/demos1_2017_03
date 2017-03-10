@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> new document </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=gbk"/>
+    <script type="text/javascript">
+
+
+// style="background-color: Blue;"
+function changeGray(tableRow){
+tableRow.bgColor='#eeeeee';
+}
+
+function changeWhite(tableRow){
+tableRow.bgColor='#ffffff';
+}
+
+
+      // 编写一个函数，供添加按钮调用，动态在表格的最后一行添加子节点；
+      function addline(){
+          var lastitem=document.getElementById("adder");
+          var tableR=document.createElement("tr");
+          var id=document.createElement("td");
+          id.appendChild(document.createTextNode("xh"+getLines()));
+
+        var name=document.createElement("td");
+          name.innerHTML="name";
+
+        var delete1=document.createElement("td");
+
+          var a_ele=document.createElement("a");
+          a_ele.setAttribute("onClick","deleteline(this)");
+          a_ele.setAttribute("href","javascript:void(0);");
+          a_ele.appendChild(document.createTextNode("delete"));
+
+          delete1.appendChild(a_ele);
+
+          var parent=document.getElementById("table");
+
+          tableR.appendChild(id);
+          tableR.appendChild(name);
+          tableR.appendChild(delete1);
+        tableR.onmouseover=function(){changeGray(tableR);};     //  add event dynamically by code
+        tableR.onmouseout=function(){changeWhite(tableR);};
+
+          parent.appendChild(tableR);
+      }
+
+
+      function getLines(){
+          var lines=document.getElementsByTagName("tr");
+          if (lines.length<10){
+              return "00"+lines.length;
+          } else  {
+              return "0"+lines.length;
+          }
+      }
+
+
+
+     // 创建删除函数
+     function deleteline(a_element){
+         var table_row=a_element.parentNode.parentNode;
+         var table=table_row.parentNode;
+         table.removeChild(table_row);
+     }
+
+
+
+  </script>
+</head>
+<body>
+<table border="1" width="50%" id="table">
+    <tr>
+        <th>学号</th>
+        <th>姓名</th>
+        <th>操作</th>
+    </tr>
+
+    <tr onmouseover="changeGray(this)"  onmouseout="changeWhite(this)">
+        <td>xh001</td>
+        <td>王小明</td>
+        <td id=>
+            <a onClick="deleteline(this)" href="javascript:void(0);">删除</a>
+        </td>
+    </tr>
+
+    <tr onmouseover="changeGray(this)"  onmouseout="changeWhite(this)">
+        <td>xh002</td>
+        <td>刘小芳</td>
+        <td> <a onClick="deleteline(this)" href="javascript:void(0);">删除</a>
+        </td>
+    </tr>
+
+</table>
+<input id="adder" type="button" value="添加一行"  onclick="addline()" />   <!--在添加按钮上添加点击事件  -->
+</body>
+</html>

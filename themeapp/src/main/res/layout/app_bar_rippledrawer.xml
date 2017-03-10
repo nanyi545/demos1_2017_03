@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".activities.MainActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </android.support.design.widget.AppBarLayout>
+
+
+    <include layout="@layout/content_rippledrawer"
+        />
+
+
+    <!--toolbar shadow pre-api21-->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:id="@+id/toolbar_shadow_prelollipop"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:background="@drawable/background_shadow"
+        ></ImageView>
+
+    <!--app:layout_anchor="@id/toolbar_shadow_prelollipop"-->
+    <!--layout_anchor/layout_anchorGravity ;anchored at a particular view-->
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@android:drawable/ic_dialog_email" />
+
+
+    <!--toolbar shadow pre-api21-->
+    <!--<FrameLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="5dp"-->
+        <!--android:id="@+id/toolbar_shadow_prelollipop"-->
+        <!--android:orientation="vertical"-->
+        <!--android:layout_marginTop="?attr/actionBarSize"-->
+        <!--android:background="@drawable/background_shadow"-->
+        <!--></FrameLayout>-->
+    <!--this will cause FAB animation with snackbar fail&#45;&#45;  FAB has to be the last item in the coordinatorlayout-->
+
+
+</android.support.design.widget.CoordinatorLayout>

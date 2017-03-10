@@ -1,0 +1,87 @@
+package com.webcon.sus.utils;
+
+import com.webcon.sus.eventObjects.ErrorEvent;
+import com.webcon.wp.utils.WPApplication;
+
+import java.text.MessageFormat;
+
+import de.greenrobot.event.EventBus;
+
+/**
+ * @author m
+ */
+public class CommonUtils {
+    public static String ORIGINAL_ALRAM = "！{0}条警报";
+
+    public static String placeHolderSwitch(int num){
+        return MessageFormat.format(ORIGINAL_ALRAM, num);
+    }
+
+    public static int getStamp(){
+        return ++WPApplication.getInstance().alarmSeqSeed;
+    }
+
+    /**
+     * 分开两个int
+     */
+    public static int[] divideIntData(int req){
+        int[] a = new int[2];
+        a[1] = req & 0xF;
+        a[0] = req >> 8;
+        return a;
+    }
+
+    /**
+     * 合并两个int
+     */
+    public static int mergeIntData(int command, int state){
+        return command<<8 + state;
+    }
+
+    public static void sendErrorEvent(short pdu, int code){
+        String description = null;
+        switch(pdu){
+
+            /* -------- 回复解析错误 --------- */
+
+
+
+            // 请求开启预览 回复
+            case SUConstant.SUB_RSP_START_PREVIEW:
+                description = "请求视频预览失败";
+                break;
+            // 请求停止预览 回复
+            case SUConstant.SUB_RSP_STOP_PREVIEW:
+                description = "请求停止视频预览失败";
+                break;
+            // 请求云台控制 回复
+            case SUConstant.SUB_RSP_PTZ:
+                description = "请求云台控制失败";
+                break;
+            // 请求开启布防 回复
+            case SUConstant.SUB_RSP_OPEN_DEFENCE:
+                description = "请求开启布防失败";
+                break;
+            // 请求停止布防 回复
+            case SUConstant.SUB_RSP_STOP_DEFENCE:
+                description = "请求停止布防失败";
+                break;
+            // 请求播放报警语音 回复
+            case SUConstant.SUB_RSP_ALARM_PLAYER:
+                description = "请求播放报警语音失败";
+                break;
+            // 报警处理请求 回复
+            case SUConstant.SUB_RSP_PROCESS_ALARM:
+                description = "请求处理报警消息失败";
+                break;
+            default:
+                description = "未知 解析错误";
+                break;
+        }
+
+        ErrorEvent event = new ErrorEvent(ErrorEvent.ERROR_EVENT_TYPE_PARSE_SUB_PDU);
+        event.description = description;
+        EventBus.getDefault().post(event);
+    }
+
+}

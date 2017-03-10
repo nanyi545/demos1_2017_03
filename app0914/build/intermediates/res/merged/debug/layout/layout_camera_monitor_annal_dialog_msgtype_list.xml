@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/color_white" >
+    <ListView 
+        android:id="@+id/camera_monitor_annal_dialog_msgtype_listview"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:cacheColorHint="@color/color_transparent"
+        android:divider="@color/color_camera_config_dialog_week_list_line"
+        android:dividerHeight="0.5dp"
+        />
+</LinearLayout>

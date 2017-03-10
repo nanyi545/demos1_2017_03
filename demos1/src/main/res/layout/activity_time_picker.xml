@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.time_picker.TimePickerActivity">
+
+
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/endless"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        />
+
+
+
+
+    <LinearLayout
+        android:id="@+id/test_lo"
+        android:layout_toRightOf="@+id/endless"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:background="@color/Red300"
+            android:id="@+id/test_tv1"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="sadfasdf"
+            />
+
+        <TextView
+            android:background="@color/Red300"
+            android:id="@+id/test_tv2"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="sadfasdf"
+            />
+        <TextView
+            android:background="@color/Red300"
+            android:id="@+id/test_tv3"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="sadfasdf"
+            />
+
+
+        <TextView
+            android:background="@color/Red300"
+            android:id="@+id/test_tv4"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="sadfasdf"
+            />
+        <TextView
+            android:background="@color/Red300"
+            android:id="@+id/test_tv5"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="sadfasdf"
+            />
+    </LinearLayout>
+
+
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_below="@+id/endless"
+        android:layout_width="175dip"
+        android:layout_height="150dip"
+        android:layout_gravity="center_vertical"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dip"
+            android:layout_gravity="center_horizontal"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="150dip"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/ic_launcher"
+                android:text="Item 1" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="150dip"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/ic_launcher"
+                android:text="Item 2" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="150dip"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/ic_launcher"
+                android:text="Item 3" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="150dip"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/ic_launcher"
+                android:text="Item 4" />
+        </LinearLayout>
+    </ScrollView>
+
+
+
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_below="@+id/endless"
+        android:layout_toRightOf="@+id/scrollView1"
+        android:layout_width="175dip"
+        android:layout_height="60dp"
+        android:layout_gravity="center_vertical"
+        android:scrollbars="none" >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dip"
+            android:layout_gravity="center_horizontal"
+            android:orientation="vertical" >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dip"
+                android:text="Item 1" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dip"
+                android:text="Item 2" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dip"
+                android:text="Item 3" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dip"
+                android:text="Item 4" />
+        </LinearLayout>
+    </ScrollView>
+
+
+    <android.support.v7.widget.AppCompatSeekBar
+        android:layout_below="@+id/scrollView1"
+        android:layout_width="100dp"
+        android:layout_height="50dp" />
+
+
+</RelativeLayout>

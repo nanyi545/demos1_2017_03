@@ -1,0 +1,121 @@
+package com.webcon.sus.utils;
+
+import android.util.Log;
+
+import com.webcon.sus.eventObjects.ErrorEvent;
+import com.webcon.wp.utils.WPApplication;
+
+import java.text.MessageFormat;
+
+import de.greenrobot.event.EventBus;
+
+/**
+ * @author m
+ */
+public class CommonUtils {
+    public static String ORIGINAL_ALRAM             = "！{0}条警报";
+    public static final String ORIGINAL_NO_ALARM          = "无警报";
+    public static final String ORIGINAL_DEFENCE_OPENED    = "已开启布防";
+    public static final String ORIGINAL_DEFENCE_CLOSED    = "已关闭布防";
+    public static final String ORIGINAL_ONLINE            = "当前在线 / ";
+    public static final String ORIGINAL_OFFLINE           = "当前已离线";
+
+    public static String placeHolderSwitch(int num){
+        return MessageFormat.format(ORIGINAL_ALRAM, num);
+    }
+
+    public static int getStamp(){
+        return ++WPApplication.getInstance().alarmSeqSeed;
+    }
+
+    /**
+     * 分开两个int
+     */
+    public static int[] divideIntData(int req){
+        int[] a = new int[2];
+        a[1] = req & 0xF;
+        a[0] = req >> 8;
+        return a;
+    }
+
+    /**
+     * 合并两个int
+     */
+    public static int mergeIntData(int command, int state){
+        return command<<8 + state;
+    }
+
+    /**
+     * 显示错误
+     * @param pdu 由服务端返回的pdu类型
+     * @param code 错误码（自定义）
+     */
+    public static void sendErrorEvent(short pdu, int code){
+        Log.e("Error", "-------error-------");
+        String description = null;
+        switch(pdu){
+            /* -------- 回复解析错误 --------- */
+            case SUConstant.PARSE_RSP_ERROR_WRONG_DATA:
+                description = "错误的解析数据";
+                break;
+            case SUConstant.PARSE_RSP_ERROR_COMMUNICATION:
+                description = "请求失败：" + code;
+                break;
+            case SUConstant.SUB_DB_RSP_MODIFY_UN:
+                description = "请求修改用户昵称失败";
+                break;
+            case SUConstant.SUB_DB_RSP_MODIFY_PW:
+                if(code == -4005){
+                    description = "旧密码错误";
+                }else if(code == -4004){
+                    description = "账号不存在";
+                }else{
+                    description = "请求修改用户密码失败";
+                }
+                break;
+            // 请求开启预览 回复
+            case SUConstant.SUB_RSP_START_PREVIEW:
+                description = "请求视频预览失败";
+                break;
+            // 请求停止预览 回复
+            case SUConstant.SUB_RSP_STOP_PREVIEW:
+                description = "请求停止视频预览失败";
+                break;
+            // 请求云台控制 回复
+            case SUConstant.SUB_RSP_PTZ:
+                description = "请求云台控制失败";
+                break;
+            // 请求开启布防 回复
+            case SUConstant.SUB_RSP_OPEN_DEFENCE:
+                description = "请求开启布防失败";
+                break;
+            // 请求停止布防 回复
+            case SUConstant.SUB_RSP_STOP_DEFENCE:
+                description = "请求停止布防失败";
+                break;
+            // 请求播放报警语音 回复
+            case SUConstant.SUB_RSP_ALARM_PLAYER:
+                description = "请求播放报警语音失败";
+                break;
+            // 报警处理请求 回复
+            case SUConstant.SUB_RSP_PROCESS_ALARM:
+                if(code == -1){
+                    description = "请求处理报警消息: 连接错误";
+                }else if(code == -2){
+                    description = "请求处理报警消息: 已被处理";
+                }else{
+                    description = "请求处理报警消息失败";
+                }
+                break;
+            default:
+                description = "未知 请求错误";
+                break;
+        }
+        // 请求处理
+        ErrorEvent event = new ErrorEvent(ErrorEvent.ERROR_EVENT_TYPE_PARSE_SUB_PDU);
+        event.description = description;
+        EventBus.getDefault().post(event);
+    }
+
+
+}

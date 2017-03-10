@@ -1,0 +1,787 @@
+package com.webcon.sus.activities;
+
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.support.annotation.NonNull;
+import android.util.Log;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.AbsListView;
+import android.widget.AbsListView.OnScrollListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.RadioButton;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.webcon.sus.adapter.MonitorAnnalListAdapter;
+import com.webcon.sus.demo.R;
+import com.webcon.sus.entity.AlarmInfo;
+import com.webcon.sus.entity.Equipment;
+import com.webcon.sus.view.DateDialog;
+import com.webcon.sus.view.TimeDialog;
+import com.webcon.wp.utils.ApplicationManager;
+import com.webcon.wp.utils.JTools;
+import com.webcon.wp.utils.NativeInterface;
+import com.webcon.wp.utils.PublicMethodUtil;
+import com.webcon.wp.utils.WPConstant;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+
+/**
+ * 摄像头报警信息查询页面
+ * 
+ * @author Vieboo
+ * 
+ */
+public class CameraMonitorAnnalActivity extends BaseActivity {
+
+	private Context mContext;
+	private ListView msgListView; // 报警信息列表
+	private MonitorAnnalListAdapter maListAdapter;
+	private LayoutInflater mLayoutInflater;
+	private TextView msgTypeTV, startDateTV, endDateTV, startTimeTV, endTimeTV;
+	private String[] msgTypeArray;
+    /*
+     * 消息类型选择标识
+     * 0: 所有报警信息(1除外)
+     * 1：摄像头进出记录（供报警算法模块历史数据源）
+     * 2：摄像头报警
+     * 3：传感器报警
+     * 4：门禁报警
+     * 5：烟雾探测器
+     * 6：燃气探测器
+     */
+	private int messageTypeIndex;
+	private AlertDialog typeAlertDialog = null;
+	private int[] startDate, endDate;
+	private int[] startTime, endTime;
+	private TimeDialog timeDialog;
+	private DateDialog dateDialog;
+	private Equipment equipment;
+	private Button searchBT;
+	private List<AlarmInfo> alarmInfoList;
+	private boolean isSearch = false;
+
+	private View foot_View, headView;
+	private TextView foot_none;
+	private LinearLayout foot_loading;
+
+	private short nowPage = 1; // 当前页
+	private short avgPages = 20; // 每页个数
+	private short totalPagets = -1; // 总页数
+
+	private TextView msgNoneTV;
+	private RelativeLayout msgLoadRL;
+
+	private String startTimeSearch, endTimeSearch, startDateSearch,
+			endDateSearch;
+
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		initView();
+	}
+
+	private void initView() {
+		setContentView(R.layout.layout_camera_monitor_annal);
+		mContext = this;
+		ApplicationManager.getInstance().addActivity(this);
+		equipment = (Equipment) getIntent().getExtras().getSerializable("equipment");
+
+		msgTypeArray = mContext.getResources().getStringArray(
+				R.array.array_camera_monitor_annal_msgtype_tv);
+
+		alarmInfoList = new ArrayList<AlarmInfo>();
+		maListAdapter = new MonitorAnnalListAdapter(mContext, alarmInfoList,
+				msgTypeArray);
+
+		msgListView = (ListView) findViewById(R.id.camera_monitor_annal_msglist);
+		msgTypeTV = (TextView) findViewById(R.id.camera_monitor_annal_settv_msgtype);
+		startDateTV = (TextView) findViewById(R.id.camera_monitor_annal_tv_startdate);
+		endDateTV = (TextView) findViewById(R.id.camera_monitor_annal_tv_enddate);
+		startTimeTV = (TextView) findViewById(R.id.camera_monitor_annal_tv_starttime);
+		endTimeTV = (TextView) findViewById(R.id.camera_monitor_annal_tv_endtime);
+		searchBT = (Button) findViewById(R.id.camera_monitor_annal_bt_search);
+
+		msgNoneTV = (TextView) findViewById(R.id.camera_monitor_annal_msg_tv_none);
+		msgLoadRL = (RelativeLayout) findViewById(R.id.camera_monitor_annal_msg_rl_loading);
+
+		msgListView.setOnItemClickListener(itemClickListener);
+
+		msgTypeTV.setOnClickListener(clickListener);
+		startDateTV.setOnClickListener(clickListener);
+		endDateTV.setOnClickListener(clickListener);
+		startTimeTV.setOnClickListener(clickListener);
+		endTimeTV.setOnClickListener(clickListener);
+		searchBT.setOnClickListener(clickListener);
+
+		mLayoutInflater = (LayoutInflater) mContext
+				.getSystemService(LAYOUT_INFLATER_SERVICE);
+		// 添加头部View
+		headView = mLayoutInflater.inflate(
+				R.layout.layout_camera_monitor_annal_msglist_item, null);
+		headView.setPadding(0,
+				PublicMethodUtil.getInstance().px2dip(mContext, 10), 0,
+				PublicMethodUtil.getInstance().px2dip(mContext, 10));
+		headView.setBackgroundColor(mContext.getResources().getColor(
+				R.color.color_white));
+		TextView tv1 = (TextView) headView
+				.findViewById(R.id.cma_msglist_item_tv_number);
+		TextView tv2 = (TextView) headView
+				.findViewById(R.id.cma_msglist_item_tv_type);
+		TextView tv3 = (TextView) headView
+				.findViewById(R.id.cma_msglist_item_tv_time);
+		TextView tv4 = (TextView) headView
+				.findViewById(R.id.cma_msglist_item_tv_message);
+		tv1.setText(R.string.str_camera_monitor_annal_msglist_title_num);
+		tv2.setText(R.string.str_camera_monitor_annal_msglist_title_type);
+		tv3.setText(R.string.str_camera_monitor_annal_msglist_title_time);
+		tv4.setText(R.string.str_camera_monitor_annal_msglist_title_message);
+
+		foot_View = mLayoutInflater.inflate(
+				R.layout.layout_camera_monitor_annal_msglist_bottom, null);
+
+		foot_loading = (LinearLayout) foot_View
+				.findViewById(R.id.camera_monitor_annal_msglist_bottom_have);
+		foot_none = (TextView) foot_View
+				.findViewById(R.id.camera_monitor_annal_msglist_bottom_none);
+		foot_none.setVisibility(View.GONE);
+		foot_loading.setVisibility(View.VISIBLE);
+
+		msgListView.setOnScrollListener(scrollListener);
+
+		// 设置默认选择的消息类型为第一个
+		messageTypeIndex = 0;
+
+		msgTypeTV.setText(msgTypeArray[messageTypeIndex]);
+
+		setDefaultTime();
+		setDefaultDate();
+
+		// 实例化时间日期Dialog
+		timeDialog = new TimeDialog(mContext);
+		timeDialog.setValues(startTime, endTime, startTimeTV, endTimeTV);
+		dateDialog = new DateDialog(mContext);
+		dateDialog.setValues(startDate, endDate, startDateTV, endDateTV);
+
+	}
+
+	OnItemClickListener itemClickListener = new OnItemClickListener() {
+
+		@Override
+		public void onItemClick(AdapterView<?> parent, View view, int position,
+				long id) {
+			Toast.makeText(mContext, position, Toast.LENGTH_SHORT).show();
+			if (!view.equals(headView) && !view.equals(foot_View)) {
+				Bundle bundle = new Bundle();
+				AlarmInfo alarmInfo = alarmInfoList.get(position + 1);
+				// 跳转标识 flag 0:程序未启动的情况下从登陆页面直接跳转 1:点击报警列表跳转 2:程序在启动状态下点击通知跳转
+				bundle.putInt("alarmDetailedIntentFlag", 1);
+				// 保留字段（推送的报警信息里会有，获取的默认填0）
+				bundle.putInt("alarmTemp", 0);
+				// 报警信息对象
+				bundle.putSerializable("alarmData", alarmInfo);
+
+				// 跳转到报警信息详细页面
+				Intent intent = new Intent(mContext,
+						AlarmDetailsActivityCompat.class);
+				intent.putExtras(bundle);
+				mContext.startActivity(intent);
+			}
+		}
+	};
+
+	/**
+	 * 根据设备配置的时间设置消息时间控件默认的时间
+	 */
+	private void setDefaultTime() {
+		startTime = new int[3];
+		endTime = new int[3];
+		if (equipment != null) {
+			if (equipment.getEqConStartTime() != null
+					&& !equipment.getEqConStartTime().equals("")) {
+				try {
+					PublicMethodUtil.getInstance().saveStringTimeInArray(
+							equipment.getEqConStartTime(), startTime);
+					startTimeTV.setText(equipment.getEqConStartTime());
+				} catch (Exception e) {
+					startTime = new int[] { 0, 0, 0 };
+					e.printStackTrace();
+				}
+			} else {
+				startTime = new int[] { 0, 0, 0 };
+			}
+			if (equipment.getEqConEndTime() != null
+					&& !equipment.getEqConEndTime().equals("")) {
+				try {
+					PublicMethodUtil.getInstance().saveStringTimeInArray(
+							equipment.getEqConEndTime(), endTime);
+					endTimeTV.setText(equipment.getEqConEndTime());
+				} catch (Exception e) {
+					endTime = new int[] { 0, 0, 0 };
+					e.printStackTrace();
+				}
+			} else {
+				endTime = new int[] { 0, 0, 0 };
+			}
+		} else {
+			startTime = new int[] { 0, 0, 0 };
+			endTime = new int[] { 0, 0, 0 };
+		}
+	}
+
+	/**
+	 * 批量设置UI的clickable和颜色
+	 */
+	private void setUIClickableAndColor(boolean able) {
+		if (able) {
+			msgTypeTV.setClickable(true);
+			msgTypeTV.setTextColor(mContext.getResources().getColor(
+					R.color.color_font_gray));
+			startTimeTV.setClickable(true);
+			startTimeTV.setTextColor(mContext.getResources().getColor(
+					R.color.color_font_gray));
+			endTimeTV.setClickable(true);
+			endTimeTV.setTextColor(mContext.getResources().getColor(
+					R.color.color_font_gray));
+			startDateTV.setClickable(true);
+			startDateTV.setTextColor(mContext.getResources().getColor(
+					R.color.color_font_gray));
+			endDateTV.setClickable(true);
+			endDateTV.setTextColor(mContext.getResources().getColor(
+					R.color.color_font_gray));
+			searchBT.setClickable(true);
+			searchBT.setTextColor(mContext.getResources().getColor(
+					R.color.color_font_gray));
+		} else {
+			msgTypeTV.setClickable(false);
+			msgTypeTV.setTextColor(mContext.getResources().getColor(
+					R.color.color_font_lightwhite));
+			startTimeTV.setClickable(false);
+			startTimeTV.setTextColor(mContext.getResources().getColor(
+					R.color.color_font_lightwhite));
+			endTimeTV.setClickable(false);
+			endTimeTV.setTextColor(mContext.getResources().getColor(
+					R.color.color_font_lightwhite));
+			startDateTV.setClickable(false);
+			startDateTV.setTextColor(mContext.getResources().getColor(
+					R.color.color_font_lightwhite));
+			endDateTV.setClickable(false);
+			endDateTV.setTextColor(mContext.getResources().getColor(
+					R.color.color_font_lightwhite));
+			searchBT.setClickable(false);
+			searchBT.setTextColor(mContext.getResources().getColor(
+					R.color.color_font_lightwhite));
+		}
+	}
+
+	/**
+	 * 初始化日期
+	 */
+	private void setDefaultDate() {
+		Calendar calendar = Calendar.getInstance();
+		int year = calendar.get(Calendar.YEAR);
+		int month = calendar.get(Calendar.MONTH);
+		int day = calendar.get(Calendar.DAY_OF_MONTH);
+		startDate = new int[] { year, month, day };
+		endDate = new int[] { year, month, day };
+	}
+
+	/**
+	 * View点击监听事件
+	 */
+	OnClickListener clickListener = new OnClickListener() {
+
+		@Override
+		public void onClick(View v) {
+			// 消息类型
+			if (v == msgTypeTV) {
+				if (typeAlertDialog == null) {
+					typeAlertDialog = makeMessageTypeAlertDialog();
+				}
+				if (!typeAlertDialog.isShowing()) {
+					typeAlertDialog.show();
+				}
+			}
+			// 起始日期
+			else if (v == startDateTV) {
+				if (!dateDialog.getIsShowing()) {
+					dateDialog.dateDialogInit(0);
+				}
+			}
+			// 结束日期
+			else if (v == endDateTV) {
+				if (!dateDialog.getIsShowing()) {
+					dateDialog.dateDialogInit(1);
+				}
+			}
+			// 起始时间
+			else if (v == startTimeTV) {
+				if (!timeDialog.getIsShowing()) {
+					timeDialog.timeDialogInit(0);
+				}
+			}
+			// 结束时间
+			else if (v == endTimeTV) {
+				if (!timeDialog.getIsShowing()) {
+					timeDialog.timeDialogInit(1);
+				}
+			}
+			// 搜索
+			else if (v == searchBT) {
+				if (timeAndDateVerify()) {
+					if (!isSearch) {
+						isSearch = true; // 改变正在搜索的值为true
+						msgListView.setVisibility(View.GONE); // 隐藏显示消息的listview
+						msgNoneTV.setVisibility(View.GONE); // 隐藏msgNoneTV
+						msgLoadRL.setVisibility(View.VISIBLE); // 显示加载的msgLoadRL
+						startTimeSearch = startTimeTV.getText().toString(); // 开始时间
+						endTimeSearch = endTimeTV.getText().toString(); // 结束时间
+						startDateSearch = startDateTV.getText().toString(); // 开始日期
+						endDateSearch = endDateTV.getText().toString(); // 结束日期
+						nowPage = 1; // 初始化当前页为1
+						totalPagets = -1; // 初始化总页数为-1
+
+						alarmInfoList.clear();
+						// 删除listview头部
+						if (msgListView.getHeaderViewsCount() > 0) {
+							msgListView.removeHeaderView(headView);
+						}
+						// 删除listview底部
+						if (msgListView.getFooterViewsCount() > 0) {
+							msgListView.removeFooterView(foot_View);
+						}
+
+						// 设置foot_View的背景为默认当前页面的背景色
+						foot_View
+								.setBackgroundColor(mContext
+										.getResources()
+										.getColor(
+												R.color.color_camera_monitor_annal_bg));
+						foot_none.setVisibility(View.GONE); // 隐藏foot_none
+						foot_loading.setVisibility(View.VISIBLE); // 显示foot_loading
+						setUIClickableAndColor(false); // 搜索时禁止控件点击事件
+						new Thread(new AlarmMessageSearch()).start(); // 启动消息搜索线程
+					}
+				}
+			}
+		}
+	};
+
+	/**
+	 * listview滑动事件
+	 */
+	OnScrollListener scrollListener = new OnScrollListener() {
+
+		@Override
+		public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+		}
+
+		@Override
+		public void onScroll(AbsListView view, int firstVisibleItem,
+				int visibleItemCount, int totalItemCount) {
+			if (msgListView.getVisibility() == View.VISIBLE && !isSearch) {
+				// 判断是不是最后一个
+				if (firstVisibleItem + visibleItemCount == totalItemCount) {
+					isSearch = true;
+					if (totalPagets > 0 && nowPage > totalPagets) {
+						if (alarmInfoList.size() % 2 == 0) {
+							foot_View
+									.setBackgroundColor(mContext
+											.getResources()
+											.getColor(
+													R.color.color_camera_monitor_annal_bg));
+						} else {
+							foot_View.setBackgroundColor(mContext
+									.getResources().getColor(
+											R.color.color_white));
+						}
+						foot_loading.setVisibility(View.GONE);
+						foot_none.setVisibility(View.VISIBLE);
+						isSearch = false;
+					} else {
+						foot_none.setVisibility(View.GONE);
+						new Thread(new AlarmMessageSearch()).start();
+					}
+				}
+			}
+		}
+	};
+
+	/**
+	 * 根据条件查询报警消息的条件验证
+	 */
+	private boolean timeAndDateVerify() {
+		long s_time = (long) startTime[0] * 100000 + startTime[1] * 1000
+				+ startTime[2];
+		long e_time = (long) endTime[0] * 100000 + endTime[1] * 1000
+				+ endTime[2];
+		long s_date = (long) startDate[0] * 10000000 + startDate[1] * 1000
+				+ startDate[2];
+		long e_date = (long) endDate[0] * 10000000 + endDate[1] * 1000
+				+ endDate[2];
+		if (e_time - s_time < 0 && e_time != 0) {
+			showToast(mContext,
+					R.string.str_camera_monitor_annal_toast_timeerroe);
+			return false;
+		}
+		if (e_date - s_date < 0 && e_date != 0) {
+			showToast(mContext,
+					R.string.str_camera_monitor_annal_toast_dateerroe);
+			return false;
+		}
+		if (!startDateTV.getText().toString().equals("")
+				&& endDateTV.getText().toString().equals("")) {
+			showToast(mContext,
+					R.string.str_camera_monitor_annal_toast_dateerroe);
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * 消息类型选择AlertDialog
+	 */
+	private AlertDialog makeMessageTypeAlertDialog() {
+		final MessageTypeAdapter mtAdapter = new MessageTypeAdapter();
+		AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+		View view = mLayoutInflater.inflate(
+				R.layout.layout_camera_monitor_annal_dialog_msgtype_list, null);
+		ListView listView = (ListView) view
+				.findViewById(R.id.camera_monitor_annal_dialog_msgtype_listview);
+		listView.setAdapter(mtAdapter);
+		listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				if (messageTypeIndex != arg2) {
+					messageTypeIndex = arg2;
+					mtAdapter.notifyDataSetInvalidated();
+				}
+				msgTypeTV.setText(msgTypeArray[arg2]);
+				typeAlertDialog.dismiss();
+				typeAlertDialog = null;
+			}
+		});
+
+		AlertDialog ad = builder.create();
+		ad.setView(view, 0, 0, 0, 0);
+		return ad;
+	}
+
+	/**
+	 * 消息类型选择AlertDialog中ListView的Adapter适配器
+	 */
+	private class MessageTypeAdapter extends BaseAdapter {
+
+		@Override
+		public int getCount() {
+			return msgTypeArray.length;
+		}
+
+		@Override
+		public Object getItem(int position) {
+			return msgTypeArray[position];
+		}
+
+		@Override
+		public long getItemId(int position) {
+			return position;
+		}
+
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent) {
+			MsgTypeViewHolder holder;
+			if (convertView == null) {
+				holder = new MsgTypeViewHolder();
+				convertView = mLayoutInflater
+						.inflate(
+								R.layout.layout_camera_monitor_annal_dialog_msgtype_list_item,
+								null);
+				holder.tv = (TextView) convertView
+						.findViewById(R.id.cmn_dialog_msgtype_list_item_tv);
+				holder.rb = (RadioButton) convertView
+						.findViewById(R.id.cmn_dialog_msgtype_list_item_rb);
+				convertView.setTag(holder);
+			} else {
+				holder = (MsgTypeViewHolder) convertView.getTag();
+			}
+			holder.tv.setText(msgTypeArray[position]);
+			if (messageTypeIndex == position) {
+				holder.rb.setChecked(true);
+			} else {
+				holder.rb.setChecked(false);
+			}
+
+			return convertView;
+		}
+
+	}
+
+	private class MsgTypeViewHolder {
+		TextView tv;
+		RadioButton rb;
+	}
+
+	/**
+	 * 查找监控消息的线程
+	 */
+	private class AlarmMessageSearch implements Runnable {
+		@Override
+		public void run() {
+			Message msg = new Message();
+			try {
+				byte[] inData = alarmMessageSearchInData();
+				byte[] outData = new byte[1024 * 4];
+                //向服务器发送请求，搜索数据库
+				int alarmMessageSearchReuslt = NativeInterface.getInstance()
+						.getDBData(WPConstant.GET_ALARM_INFO_PAGE, inData,
+								inData.length, outData, outData.length);
+				Log.i("AlarmMessageSearch",
+						"alarmMessageSearchReuslt---------->"
+								+ alarmMessageSearchReuslt);
+				if (alarmMessageSearchReuslt < 0) {
+					msg.what = -1;
+				} else {
+					byte[] alarmData = new byte[alarmMessageSearchReuslt];
+					System.arraycopy(outData, 0, alarmData, 0,
+							alarmMessageSearchReuslt);
+					Bundle bundle = new Bundle();
+					bundle.putByteArray("alarmData", alarmData);
+					msg.setData(bundle);
+					msg.what = 0;
+				}
+			} catch (Exception e) {
+				msg.what = -1;
+				e.printStackTrace();
+			}
+			annalHandler.sendMessage(msg);
+		}
+	}
+
+	/**
+	 * 生成搜索监控消息的inDate
+	 */
+	private byte[] alarmMessageSearchInData() throws Exception {
+		/*
+		 * 查询监控设备报警信息传入的数据结构 String 设备ID short 报警类型 0:所有报警类型 2:摄像头报警 3:人体心跳报警
+		 * 4:人体呼吸报警 String 起始时间(hh:mm:ss) String 截至时间 String 起始日期(yyyy-mm-dd)
+		 * String 截止日期 short 请求的第几页 short 请求每页个数
+		 */
+		// 设备id
+		String eqId = equipment.getEqID() + "\0";
+		byte[] idByte = eqId.getBytes(WPConstant.STRING_GB2312);
+
+		// 时间和日期
+		String dataTime = startTimeSearch + "\0" + endTimeSearch + "\0"
+				+ startDateSearch + "\0" + endDateSearch + "\0";
+		// System.out.println("data-time--->" + dataTime);
+		byte[] dtByte = dataTime.getBytes(WPConstant.STRING_GB2312);
+
+		int offset = 0;
+		byte[] inData = new byte[idByte.length + 2 + dtByte.length + 4];
+
+		System.arraycopy(idByte, 0, inData, 0, idByte.length);
+		offset += idByte.length;
+
+		// 报警类型
+		if (messageTypeIndex == 0) {
+			JTools.ShortToBytes2((short) messageTypeIndex, inData, offset);
+		} else {
+			JTools.ShortToBytes2((short) (messageTypeIndex + 1), inData, offset);
+		}
+		offset += 2;
+
+		System.arraycopy(dtByte, 0, inData, offset, dtByte.length);
+		offset += dtByte.length;
+
+		// 当前页数
+		JTools.ShortToBytes2(nowPage, inData, offset);
+		offset += 2;
+
+		// 每页的个数
+		JTools.ShortToBytes2(avgPages, inData, offset);
+		return inData;
+	}
+
+	/**
+	 * 线程和UI交互的Handler
+	 */
+	Handler annalHandler = new Handler() {
+
+		@Override
+		public void handleMessage(Message msg) {
+			switch (msg.what) {
+			// 查询成功，并有查询结果
+			case 0:
+				Bundle bundle = msg.getData();
+				byte[] alarmData = bundle.getByteArray("alarmData");
+				resolveAlarmMessage(alarmData);
+				break;
+			case -1:
+				showToast(
+						mContext,
+						R.string.str_camera_monitor_annal_toast_alarmmsgsearcherror);
+				break;
+			default:
+				break;
+			}
+			setUIClickableAndColor(true);
+			if (msgLoadRL.getVisibility() != View.GONE) {
+				msgLoadRL.setVisibility(View.GONE);
+			}
+			isSearch = false;
+		}
+	};
+
+	/**
+	 * 解析查询到的监控消息
+	 */
+	private void resolveAlarmMessage(byte[] data) {
+		try {
+			/*
+			 * 查询报警信息的返回数据类型 short 是否成功 0表示查询成功 short 总页数 short 请求的第几页 short
+			 * 请求每页的实际个数 for(请求每页的实际个数) short 报警类型 2:摄像头报警 3:人体心跳报警 4:人体呼吸报警
+			 * String 报警时间 String 报警日期 String 报警信息 Endfor
+			 */
+
+			// 成功标识
+			int offset = 2;
+			if (JTools.Bytes2ToShort(data, 0) == 0) {
+				// 总页数
+				short totalP = JTools.Bytes2ToShort(data, offset);
+				if (totalPagets == -1) {
+					totalPagets = totalP;
+				}
+				offset += 2;
+				// 请求的第几页
+				offset += 2;
+				// 实际返回的数量
+				short realPages = JTools.Bytes2ToShort(data, offset);
+				offset += 2;
+
+				if (realPages > 0) {
+					for (int i = 0; i < realPages; i++) {
+						AlarmInfo ai = new AlarmInfo();
+						// 是否处理
+						short haveDeal = JTools.Bytes2ToShort(data, offset);
+						ai.setIsSolve(haveDeal);
+						offset += 2;
+						if (haveDeal == 1) {
+							// 处理者
+							String dealUserNick = (String) JTools.toStringList(
+									data, offset, WPConstant.STRING_GB2312)
+									.get(0);
+							offset = (Integer) JTools.toStringList(data,
+									offset, WPConstant.STRING_GB2312).get(1);
+							ai.setDealUserNick(dealUserNick);
+
+							// 处理时间
+							long dealTime = JTools.Bytes4ToInt(data, offset);
+							ai.setDealTime(dealTime);
+							offset += 4;
+						} else {
+							ai.setDealUserNick(null);
+							ai.setDealTime(-1);
+						}
+						// 报警类型
+						short alarmType = JTools.Bytes2ToShort(data, offset);
+						ai.setAlarmType(alarmType);
+						offset += 2;
+
+						// 报警时间
+						String time = ((String) JTools.toStringList(data,
+								offset, WPConstant.STRING_GB2312).get(0));
+						offset = (Integer) JTools.toStringList(data, offset,
+								WPConstant.STRING_GB2312).get(1);
+						// 报警日期
+						String date = ((String) JTools.toStringList(data,
+								offset, WPConstant.STRING_GB2312).get(0));
+						offset = (Integer) JTools.toStringList(data, offset,
+								WPConstant.STRING_GB2312).get(1);
+						ai.setAlarmDateTime(date + " " + time);
+
+						// 报警信息长度
+						offset += 2;
+
+						// 摄像头报警强度1： 次要报警 2：重要报警 3：紧急报警
+						if (alarmType == 2) {
+							ai.setAlarmInfo(JTools.Bytes2ToShort(data, offset)
+									+ "");
+							offset += 2;
+						}
+
+						alarmInfoList.add(ai);
+					}
+					msgLoadRL.setVisibility(View.GONE);
+					msgNoneTV.setVisibility(View.GONE);
+					if (msgListView.getVisibility() != View.VISIBLE) {
+						msgListView.setVisibility(View.VISIBLE);
+					}
+
+					// 添加listview头部
+					if (msgListView.getHeaderViewsCount() == 0) {
+						msgListView.setAdapter(null);
+						msgListView.addHeaderView(headView);
+					}
+					// 添加listview底部
+					if (msgListView.getFooterViewsCount() == 0) {
+						msgListView.setAdapter(null);
+						msgListView.addFooterView(foot_View);
+						if (totalPagets <= avgPages) {
+							foot_none.setVisibility(View.VISIBLE);
+						} else {
+							foot_none.setVisibility(View.GONE);
+						}
+						msgListView.setAdapter(maListAdapter);
+					}
+
+					maListAdapter.notifyDataSetChanged();
+					nowPage += 1;
+				} else {
+					msgLoadRL.setVisibility(View.GONE);
+					msgListView.setVisibility(View.GONE);
+					msgNoneTV.setVisibility(View.VISIBLE);
+				}
+			} else {
+				showToast(
+						mContext,
+						R.string.str_camera_monitor_annal_toast_alarmmsgsearcherror);
+			}
+		} catch (Exception e) {
+			showToast(mContext,
+					R.string.str_camera_monitor_annal_toast_alarmmsgsearcherror);
+			e.printStackTrace();
+		}
+
+	}
+
+	@Override
+	public boolean onKeyDown(int keyCode, @NonNull KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+		}
+		return super.onKeyDown(keyCode, event);
+	}
+
+    @Override
+    public void releaseHandler(){
+        annalHandler.removeCallbacksAndMessages(null);
+    }
+}

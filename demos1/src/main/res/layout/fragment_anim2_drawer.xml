@@ -1,0 +1,116 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="7"
+    android:fadeScrollbars="false"
+    android:scrollbars="vertical">
+
+    <LinearLayout
+        android:id="@+id/container_big"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/container1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/Teal100"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/startButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Run Grow-Animation" />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:id="@+id/iv_grow"
+                android:src="@drawable/basketbal"
+                />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/container2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/Red100"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/startButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Run move-Animation" />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:id="@+id/iv_move"
+                android:src="@drawable/basketbal"
+                />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/container4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/Blue100"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/startButton4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Run rotate-Animation" />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:id="@+id/iv_rotate"
+                android:src="@drawable/basketbal"
+                />
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:id="@+id/container3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/Purple100"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/startButton3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Run color-Animation" />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:id="@+id/iv_color"
+                android:background="@color/Purple300"
+                />
+            <TextView
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:text="test text"
+                android:id="@+id/tv_color"
+                />
+        </LinearLayout>
+
+
+
+
+
+
+    </LinearLayout>
+
+</ScrollView>

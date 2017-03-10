@@ -1,0 +1,299 @@
+package com.webcon.wp.utils;
+
+import android.app.Application;
+import android.util.Log;
+
+import com.webcon.sus.entity.AlarmNode;
+import com.webcon.sus.entity.Equipment;
+import com.webcon.sus.entity.MonitorUser;
+import com.webcon.sus.entity.StationNode;
+import com.webcon.sus.entity.TreeElement;
+import com.webcon.sus.handler.CrashHandler;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+
+/**
+ * 全局变量和静态变量
+ * 
+ * @author Vieboo
+ * FIXME: 退出以及清理工作？？
+ */
+public class WPApplication extends Application {
+    public static final boolean DEBUG = true;
+
+    private static WPApplication wpApplication;
+
+	//##FIXME ##丢弃：MonitorUser表示其他手机用户，但本项目不需要 监控用户Id集合
+	public static List<MonitorUser> monitorUserList;
+
+	// 当前网络是否为移动网络
+	public static boolean phoneNet;
+
+	// 返回按键重写标识
+	private int keyBackFlag;// 0为主界面退出行为，1为用户列表后退行为，2为报警列表退出删除行为
+
+	// 当前退出动作是否为注销
+	public static boolean isCancellation = false;
+
+	// 当前程序的Uid
+	private int appUid;
+
+	// 手机类型UserFlag(5支持影视频1不支持)
+	private int userFlag = 1;
+
+	// 负责对比报警信息的设备列表
+	private List<Equipment> mEquipmentList;
+
+	// 树形结构里的所有元素
+	private List<TreeElement> treeElementLists;
+
+
+    /*  -New- */
+    public int alarmSeqSeed = 0;
+    private List<AlarmNode> mAllAlarms;
+    private List<StationNode> mStationList;
+    private int allNewAlarms = 0;
+
+    //映射表，对应于：StationId--pos
+    private HashMap<Integer, Integer> mStationReflect;
+
+
+/* ===========================================================  */
+    public static WPApplication getInstance() {
+        return wpApplication;
+    }
+
+    @Override
+    public void onCreate() {
+        Log.w("Application", "onCreate");
+        CrashHandler crashHandler = CrashHandler.getInstance();
+        crashHandler.init(this);
+//        //百度推广
+//        FrontiaApplication.initFrontiaApplication(getApplicationContext());
+        wpApplication = this;
+        monitorUserList = new ArrayList<MonitorUser>();
+        mStationReflect = new HashMap<>();
+        mAllAlarms = new ArrayList<>();
+        super.onCreate();
+    }
+
+
+	public int getUserFlag() {
+		return userFlag;
+	}
+
+	public void setUserFlag(int userFlag) {
+		this.userFlag = userFlag;
+	}
+
+    //
+    public void setStationList(List<StationNode> list){
+        this.mStationList = list;
+        refreshReflectMap();
+    }
+
+    /**
+     * <p>如果要获取指定节点，请调用{@link WPApplication#getStationNode(int)}获取</p>
+     */
+    public List<StationNode> getStationList(){
+        refreshStationList();
+        return mStationList;
+    }
+
+    /*
+     * 说明：
+     * 全局消息列表的操作暂定如下：
+     * 1.设置列表：即不管是新消息的加入，或者是旧消息的删除，都在子Station中处理
+     *   然后重新组合成全部列表  （暂时这么规定。。。）
+     * 2.处理消息包括：添加新消息、设置消息数量、减少新消息      <<<注意消息数量与操作之间的一致性
+     * 3.只在初始化时创建，其他时候由指定站场的消息列表处理，会自动重建列表 （暂定）
+     */
+
+    //
+    public void refreshAlarmList(){
+        Collections.sort((ArrayList) mAllAlarms);
+    }
+
+    /**
+     * ★重建全局消息列表★
+     */
+    public void rebuildAlarmList(){
+        if(mAllAlarms != null && mStationList != null){
+            mAllAlarms.clear();
+            allNewAlarms = 0;
+            for(StationNode node : mStationList){
+                mAllAlarms.addAll(node.getAlarmList());
+                allNewAlarms += node.getNewAlarm();
+            }
+            refreshAlarmList();
+        }
+    }
+
+    public List<AlarmNode> getAllAlarmList(){
+        refreshAlarmList();
+        return mAllAlarms;
+    }
+
+    /**
+     * 获取全部新消息的数量
+     */
+    public int getAllNewAlarms(){
+        return allNewAlarms;
+    }
+
+    /**
+     * 设置全部新消息的数量 ☆重要
+     */
+    public void setAllNewAlarms(int newAlarms){
+        this.allNewAlarms = newAlarms;
+    }
+
+    /**
+     * 减少一条新消息的数量
+     */
+    public void substractNewAlarm(){
+        if(allNewAlarms <= 0){
+            throw new UnsupportedOperationException();
+        }
+        allNewAlarms--;
+        refreshAlarmList();
+    }
+
+    /**
+     * 增加一条新消息的数量
+     */
+    public void addNewAlarm(){
+        allNewAlarms++;
+    }
+
+
+
+    /*
+     * 列表顺序出现改变的情形：
+     * 1.布防状态改变
+     */
+
+    public void refreshStationList(){
+        // ##TODO ## 排序。。
+        Collections.sort((ArrayList) mStationList);
+        refreshReflectMap();
+    }
+
+    private void refreshReflectMap(){
+        mStationReflect.clear();
+        if(mStationList != null){
+            int i = 0;
+            for(StationNode n : mStationList){
+                mStationReflect.put(n.getIdentifier(), i++);
+            }
+        }
+    }
+
+    /**
+     * 获取stationNode结点
+     * <p>!!!注意，如果要获取结点，记得使用该方法获取，
+     * 不要使用{@link WPApplication#getStationList()}获取整个列表，下标是对不上的</p>
+     * @param stationId station标识符
+     */
+    public StationNode getStationNode(int stationId){
+        if(mStationReflect != null && mStationList != null){
+            return mStationList.get(mStationReflect.get(stationId));
+        }else{
+            return null;
+        }
+    }
+
+    //----for test-----
+
+    /**
+     * 检查新的报警消息
+     */
+    public boolean checkNewAlarms(){
+        int sum = 0;
+        for(StationNode sn : mStationList){
+            sum += sn.getNewAlarm();
+        }
+        return allNewAlarms == sum;
+    }
+
+    /**
+     * 遍历检查全部的未处理报警消息（耗时）
+     */
+    public int correctNewAlarms(){
+        allNewAlarms = 0;
+        for(StationNode sn : mStationList){
+            allNewAlarms += sn.correctNewAlarms();
+        }
+        return allNewAlarms;
+    }
+
+    //
+	public List<Equipment> getmEquipmentList() {
+		return mEquipmentList;
+	}
+
+	public void setmEquipmentList(List<Equipment> mEquipmentList) {
+		this.mEquipmentList = mEquipmentList;
+	}
+
+
+    public int getKeyBackFlag() {
+        return keyBackFlag;
+    }
+
+    public void setKeyBackFlag(int keyBackFlag) {
+        if(keyBackFlag == 0){
+            this.keyBackFlag = keyBackFlag;
+        }else{
+            this.keyBackFlag |= keyBackFlag;
+        }
+
+    }
+
+	public List<TreeElement> getTreeElementLists() {
+		return treeElementLists;
+	}
+
+	public void setTreeElementLists(List<TreeElement> treeElementLists) {
+		this.treeElementLists = treeElementLists;
+	}
+
+
+	public int getAppUid() {
+		return appUid;
+	}
+
+	public void setAppUid(int appUid) {
+		this.appUid = appUid;
+	}
+
+
+	/**
+	 * 根据用户的用户ID获取用户的昵称
+	 */
+	public String getUserNameWithId(String id) {
+		if (treeElementLists != null) {
+			for (int i = 0; i < treeElementLists.size(); i++) {
+				if (treeElementLists.get(i).getUserId().equals(id)) {
+					return treeElementLists.get(i).getUserName();
+				}
+			}
+		}
+		return id;
+	}
+
+	private TreeElement currentUser;
+
+	public TreeElement getCurrentUser() {
+		return currentUser;
+	}
+
+	public void setCurrentUser(TreeElement currentUser) {
+		this.currentUser = currentUser;
+	}
+
+
+}

@@ -1,0 +1,65 @@
+.main_content{
+    width:100vw;
+    height:100vh;
+    overflow: hidden;
+}
+
+
+
+/*  img back ground */
+/*  does this work for ios browser ?? */
+
+body {
+	background-image: url("../images/background.png"); 
+	-moz-background-size: cover;
+	-webkit-background-size: cover;    
+	background-size: cover;
+	background-position: top center !important;
+	background-repeat: no-repeat !important;
+	background-attachment: fixed;
+}
+
+
+
+img.gift{
+	display: inline-block;
+	width:60vw;
+	margin:3vh 20vw 0 20vw;
+}
+
+
+div.hint{
+	font-size:200%;
+	width:100vw;
+	text-align: center;
+	color:red;
+	font-weight: bold;
+}
+
+
+img.shareTxt{
+	position:fixed;
+	display: inline-block;
+	width:50vw;
+	top:52vh;
+	left:25vw;
+}
+
+img.share{
+	position:fixed;
+	display: inline-block;
+	width:70vw;
+	bottom:22vh;
+	left:15vw;
+}
+
+
+img.download{
+	position:fixed;
+	display: inline-block;
+	width:70vw;
+	bottom:12vh;
+	left:15vw;
+}
+
+

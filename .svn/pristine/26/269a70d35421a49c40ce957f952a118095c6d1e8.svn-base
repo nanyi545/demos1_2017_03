@@ -1,0 +1,97 @@
+package com.webcon.sus.utils;
+
+
+/**
+ * 数据的打包和解析
+ * <p>包括：和系统服务软件的连接，和数据库的连接</p>
+ * @author m
+ */
+public class DataParseUtils {
+    /* ---------------------------------------------------------- */
+    /**
+     * 解析初始站场信息
+     */
+    public static void parseInitStations(byte[] data){
+        /*
+         * 生成初始station列表，最后保存到WPApplication中
+         */
+    }
+
+    /**
+     * 解析初始设备信息
+     */
+    public static void parseInitDevices(byte[] data){
+        /*
+         *
+         */
+    }
+
+    /**
+     * 解析初始报警信息
+     */
+    public static void parseInitAlarms(byte[] data){
+
+    }
+
+    /* ---------------------------------------------------------- */
+
+    /**
+     * 解析回调得到的数据：
+     * 1.新消息
+     * 2.视频预览数据
+     * 3.状态变化（站场、设备、登录）
+     * <p>作用于类似CCallbackMethod这样的回调方法</p>
+     */
+    public static void parseCallback(int type, byte[] data){
+
+    }
+
+    /**
+     * 解析请求返回值
+     * 1.初始化之--站场列表
+     * 2.初始化之--设备列表
+     * 3.初始化之--消息列表
+     * 4.云台控制请求返回数据
+     */
+    public static void parseRetData(int type, int retCode, byte[] data){
+        if(retCode != 0){
+            //deal
+            return;
+        }
+
+        switch (type){
+            default:
+                parseSecondary(type, data);
+                break;
+        }
+    }
+
+    /**
+     * 子PDU处理
+     */
+    private static void parseSecondary(int type, byte[] data){
+
+    }
+
+    /* ---------------------------------------------------------- */
+    public static byte[] createRequestHead(int type){
+        byte[] ret = new byte[0];
+        switch (type){
+            case SUConstant.REQUEST_STATION_LIST:
+
+                break;
+            case SUConstant.REQUEST_DEVICE_LIST:
+
+                break;
+            case SUConstant.REQUEST_ALARMS_LIST:
+
+                break;
+        }
+        return ret;
+    }
+
+
+    /* ---------------------------------------------------------- */
+
+
+}

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <!-- 创建会话 -->
+	<item android:id="@+id/menu_main_createmutual"
+	    android:title="@string/str_menu_main_createmutual"
+	    android:orderInCategory="100"
+	     />
+	<!-- 查看流量信息 -->
+	<item android:id="@+id/menu_main_flow"
+	    android:title="@string/str_menu_main_flow"
+	    android:orderInCategory="100" 
+	    />
+	<!-- 注销 -->
+	<item 
+	    android:id="@+id/menu_main_cancellation"
+	    android:title="@string/str_menu_main_cancellation"
+	    android:orderInCategory="100"
+	    />
+</menu>

@@ -1,0 +1,16 @@
+package com.webcon.sus.utils;
+
+/**
+ * s视频回调接口
+ * @author m
+ */
+public interface IVideoCallback {
+    /**
+     * 用于播放的视频数据
+     * @param iDataType 数据类型    1.系统头数据 2.流数据
+     * @param pDataBuffer 存放数据的缓冲区指针
+     * @param iDataSize 缓冲区大小
+     */
+//    void onData(int iRealHandle, int iDataType, byte[] pDataBuffer, int iDataSize);
+    void onData(int iDataType, byte[] pDataBuffer, int iDataSize);
+}

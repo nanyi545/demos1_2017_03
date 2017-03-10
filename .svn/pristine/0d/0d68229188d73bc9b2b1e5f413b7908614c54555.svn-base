@@ -1,0 +1,130 @@
+package com.webcon.sus.utils;
+
+
+import com.webcon.sus.entity.StationNode;
+import com.webcon.wp.utils.JTools;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * @author m
+ */
+public class DataParseUtils {
+
+    /* PDU穷举：
+     * ***发送***
+     * ·请求验证
+     * ·登录
+     * ·请求初始化设备数据
+     * ·请求初始化报警数据
+     * ·布防操作（关闭、开启）
+     *
+     *
+     * ***接收***
+     *
+     *
+     */
+
+
+    //------------------------------------------
+    /**
+     * 解析初始化数据结构
+     * <p> 当前假设以设备为作为划分，再添加到指定的站场下的列表中，最后整理出站场列表 </p>
+     */
+    public static List<StationNode> parseInitialData(byte[] data) throws Exception{
+        ArrayList<StationNode> mList = new ArrayList<>();
+
+        /*
+         * 解析大概步骤：
+         * 1.获取长度
+         * 2......
+         */
+        int offset = 0;
+        int treeNums = JTools.Bytes4ToInt(data, offset);
+        offset += 4;
+
+        // **循环解析所有节点的数据
+//        for (int i = 0; i < treeNums; i++) {
+////            TreeElement treeEle = new TreeElement();
+////            Equipment equipment = new Equipment();
+//            StationNode sn = new StationNode();
+//            // 父节点
+//            int parentIndex = JTools.Bytes4ToInt(data, offset);
+//            offset += 4;
+//            treeEle.setParentIndex(parentIndex);
+//
+//            // 树形表唯一标识
+//            int grantIndex = JTools.Bytes4ToInt(data, offset);
+//            offset += 4;
+//            treeEle.setGrantIndex(grantIndex);
+//
+//            // 用户ID（用户名）
+//            String userId = (String) JTools.toStringList(data, offset,
+//                    WPConstant.STRING_GB2312).get(0);
+//            offset = (Integer) JTools.toStringList(data, offset,
+//                    WPConstant.STRING_GB2312).get(1);
+//            treeEle.setUserId(userId);
+//            equipment.setEqID(userId);
+//
+//            // 昵称
+//            String userName = (String) JTools.toStringList(data, offset,
+//                    WPConstant.STRING_GB2312).get(0);
+//            offset = (Integer) JTools.toStringList(data, offset,
+//                    WPConstant.STRING_GB2312).get(1);
+//            treeEle.setUserName(userName);
+//            equipment.setEqName(userName);
+//            // System.out.println("userName------------>" + userName);
+//
+//            // 用户类型
+//            int userType = JTools.Bytes4ToInt(data, offset);
+//            offset += 4;
+//            if (userType == 8 || userType == 1536 || userType == 1024
+//                    || userType == 1280 || userType == 1792)
+//                treeEle.setUserType(0);
+//            else
+//                treeEle.setUserType(userType);
+//            // 标志用于修改设备昵称
+//            if (parentIndex == 0) {
+//                if (userType == 1792)
+////                    currentUserType = userType;
+//            }
+//            treeEle.setOnlineStatus(0);
+//
+//            mList.add(treeEle);
+//            if (userType == 7) {
+//                mList.add(equipment);
+//            }
+//        }
+
+//        // 关注在线状态的用户Id集合
+//        List<String> lineStatusList = new ArrayList<String>();
+//        // 给所有对象添加各自的子集合
+//        for (int i = 0; i < elementList.size(); i++) {
+//            List<TreeElement> childrenList = new ArrayList<TreeElement>();
+//            for (int j = 0; j < elementList.size(); j++) {
+//                if (elementList.get(j).getParentIndex() == elementList.get(i)
+//                        .getGrantIndex()) {
+//                    childrenList.add(elementList.get(j));
+//                }
+//            }
+//            Collections.sort(childrenList);
+//            elementList.get(i).setChildrenList(childrenList);
+//
+//            if (elementList.get(i).getParentIndex() == 0) {
+//                elementList.get(i).setUserType(-1);
+//                WPApplication.getInstance().setCurrentUser(elementList.get(i));
+//                treeElementsList.addAll(elementList.get(i).getChildrenList());
+//            }
+//
+//            if (elementList.get(i).getUserType() == 0) {
+//                lineStatusList.add(elementList.get(i).getUserId());
+//            }
+//        }
+
+
+
+        return mList;
+    }
+
+}

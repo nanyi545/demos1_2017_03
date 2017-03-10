@@ -1,0 +1,435 @@
+package com.webcon.sus.utils;
+
+import android.util.Log;
+
+import com.webcon.sus.eventObjects.StationEvent;
+import com.webcon.wp.utils.JTools;
+import com.webcon.wp.utils.NativeInterface;
+import com.webcon.wp.utils.WPApplication;
+import com.webcon.wp.utils.WPConstant;
+
+import java.util.Random;
+
+import de.greenrobot.event.EventBus;
+
+/**
+ * 通信库工具类
+ * <p>UI层调用这里，在这里调用JNI接口</p>
+ * @author m
+ */
+public class CommunicationUtils extends DataParseUtils{
+    /* variable */
+    /** 实例 */
+    private static CommunicationUtils my;
+    /** 视频回调接口 */
+    private IVideoCallback iVideoCallback;
+
+
+    /* ************ */
+
+    /** 通信工具类，包装了通信的发送处理，以及回调解析处理 */
+    private CommunicationUtils(){
+//        EventBus.getDefault().register(this);
+    }
+
+    /** 返回单例 */
+    public static CommunicationUtils getInstance(){
+        if(my == null){
+            synchronized (CommunicationUtils.class){
+                if(my == null){
+                    my = new CommunicationUtils();
+                }
+            }
+        }
+        return my;
+    }
+
+    /**
+     * 注册视频回调监听
+     */
+    public void registerVideoCallback(IVideoCallback iVideoCallback){
+        this.iVideoCallback = iVideoCallback;
+    }
+
+    /**
+     * 反注册视频回调监听
+     */
+    public void unregisterVideoCallback(){
+        iVideoCallback = null;
+    }
+
+    /**
+     * 初始化数据
+     */
+    public void loadInitialData(byte[] name){
+        new Thread(new LoadInitialDataRunnable(name)).start();
+    }
+
+    public void refreshDeviceList(int stationId){
+        new Thread(new LoadingDeviceListRunnable(stationId)).start();
+    }
+
+
+    /* ********************通信接口调用******************** */
+
+    /**
+     * 初始化通信库
+     */
+    public int init(){
+        int ret = 0;
+
+        return ret;
+    }
+
+    /**
+     * 验证用户名密码
+     */
+    public int verify(){
+        int ret = 0;
+
+        return ret;
+    }
+
+    /**
+     * 登录实现
+     */
+    public int login(){
+        int ret = 0;
+
+        return ret;
+    }
+
+    /* ********************与数据库的连接******************** */
+
+    /**
+     * 根据用户标识，请求需要的StationId集合
+     */
+    public void requestStationSet(int userId){
+
+    }
+
+    /* ********************接收回调******************** */
+    /**
+     * 数据的回调接收：
+     * 1.站场列表
+     * 2.站场设备列表
+     * 3.站场报警列表
+     * 4.视频数据
+     * 5.新报警消息
+     */
+    public void onCallback(){
+        //回调数据接口
+
+    }
+    /** 接收-回调缓存 */
+    public byte[] callbackBuffer;
+
+
+    /* ********************与站场系统服务软件的连接******************** */
+    /**
+     * 用户加入（上线）
+     */
+    public void userJoin(int userId){
+
+    }
+
+    /**
+     * 用户退出（下线）
+     */
+    public void userQuit(int userId){
+
+    }
+
+    /**
+     * 根据站场ID请求全部的设备记录
+     */
+    public void requestStationDevices(int stationId){
+
+    }
+
+    /**
+     * 根据站场ID请求全部的报警消息
+     */
+    public void requestStationAlarms(int stationId){
+
+    }
+
+    /**
+     * 开启布防
+     */
+    public void openDefence(int stationId) {
+        new Thread(new ButtonRunnable(SUConstant.FLAG_STATION_OPENED, stationId)).start();
+    }
+
+    /**
+     * 关闭布防
+     */
+    public void closeDefence(int stationId){
+        new Thread(new ButtonRunnable(SUConstant.FLAG_STATION_CLOSED, stationId)).start();
+    }
+
+    /**
+     * 开启视频预览
+     */
+    public int openMonitorPreview(int stationId, String monitorId){
+
+        return 0;
+    }
+
+    /**
+     * 关闭视频预览
+     */
+    public int closeMonitorPreview(int stationId, String monitorId){
+
+        return testRet();
+    }
+
+    /**
+     * 打开预录制语音
+     */
+    public int openAlarmTrack(int stationId, String monitorId){
+
+        return testRet();
+    }
+
+    /**
+     * 关闭预录制语音
+     */
+    public int closeAlarmTrack(int stationId, String monitorId){
+
+        return testRet();
+    }
+
+    /**
+     * 播放语音喊话
+     */
+    public int sendVoice(int stationId, String monitorId, byte[] data, int length){
+
+        return testRet();
+    }
+
+    /**
+     * 云台控制
+     */
+    public void requestPtz(int stationId, String monitorId, int ptzType, boolean ptzState){
+        if(ptzType == -1){
+            return;
+        }
+    }
+
+    /**
+     * 对站场的请求
+     * <p>有何用？</p>
+     */
+    public void requestStation(int stationId, int requestCode){
+
+    }
+
+    /**
+     * 对站场的修改
+     * <p>大概是要改站场名称？</p>
+     */
+    public void modifyStation(int stationId, String name){
+
+    }
+
+
+    /* ********************** 其他 ****************** */
+    /**
+     * 释放工作
+     * <p>反初始化、清理内存等。。。</p>
+     */
+    public void release(){
+//        EventBus.getDefault().unregister(this);
+    }
+
+
+    /* ******************** private method ******************** */
+    private Random ran = new Random();
+    private int testRet(){
+        return ran.nextInt(1) - 1;
+    }
+
+    private boolean isMediaCallback(){
+        return iVideoCallback != null;
+    }
+
+    private int nxWrapper(int xType){
+        return nxWrapper(xType, 0);
+    }
+
+    private int nxWrapper(int xType, int pduType){
+        int ret = -1;
+        switch(xType){
+            case SUConstant.NET_CL_INIT:
+                break;
+            case SUConstant.NET_CL_LOGIN:
+                break;
+            case SUConstant.NET_CL_GET_GID:
+                break;
+            case SUConstant.NET_CL_GET_CORP_ID:
+                break;
+            case SUConstant.NET_CL_GET_DATA:
+                switch(pduType){
+
+                }
+                break;
+            case SUConstant.NET_CL_SEND_DATA:
+                switch(pduType){
+
+                }
+                break;
+            case SUConstant.NET_CL_CREATE_P2P:
+                break;
+            case SUConstant.NET_CL_UINIT:
+                break;
+            default:
+                break;
+        }
+        return ret;
+    }
+
+
+
+    /* ***************************************** Thread ****************************** */
+
+    /**
+     * 布防按钮
+     */
+    private class ButtonRunnable implements Runnable {
+        private int ss = 0;
+        private int id = 0;
+        public ButtonRunnable(int ss, int id){
+            this.ss = ss;
+            this.id = id;
+        }
+
+        @Override
+        public void run() {
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            WPApplication.getInstance().getStationNode(id).setState(ss);
+            //post event
+            StationEvent event= new StationEvent(StationEvent.STATION_EVENT_REFRESH);
+            event.stationId = id;
+            event.msg = ss;
+            EventBus.getDefault().post(event);
+        }
+    }
+
+
+    /**
+     * 调用通信接口获取树形列线程
+     */
+    private class LoadInitialDataRunnable implements Runnable {
+
+        private byte[] name;
+        public LoadInitialDataRunnable(byte[] name){
+            this.name = name;
+        }
+
+        @Override
+        public void run() {
+
+            // ##TODO获取默认gid
+            int getDefaultGid = nxWrapper(SUConstant.NET_CL_GET_GID);
+            Log.i("GetDefaultGid", "GetDefaultGid-------------->" + getDefaultGid);
+            if (getDefaultGid >= 0) {
+                WPApplication.getInstance().setDefaultGid((short) getDefaultGid);
+                WPApplication.getInstance().setGetDefaultGid(true);
+            }
+
+            // ##TODO获取企业id
+            int getCropIdResult = nxWrapper(SUConstant.NET_CL_GET_CORP_ID);
+            Log.i("GetCropIdResult", "GetCropIdResult-------------->" + getCropIdResult);
+
+            if (getCropIdResult < 0) {
+//                event.state = -1;
+            } else {
+                //设置全局企业id
+                WPApplication.getInstance().setDefaultCorpId(getCropIdResult);
+                byte[] inData = new byte[name.length + 8];
+                JTools.IntToBytes4(getCropIdResult, inData, 0);
+                System.arraycopy(name, 0, inData, 4, name.length);
+                JTools.IntToBytes4(WPApplication.getInstance().getUserFlag(), inData, name.length + 4);
+
+                //
+                byte[] outData = new byte[1024 * 4];    // TODO 不知道数据长度够不够
+                int getTreeResult = 0;
+                int requestNum = 0;
+                //请求数据，返回全部站点、设备
+                while (getTreeResult <= 0 && requestNum < 5) {
+                    getTreeResult = NativeInterface.getInstance().getDBData(
+                            WPConstant.GET_TREE_DATA,
+                            inData,
+                            inData.length,
+                            outData,
+                            outData.length
+                    );
+                    Log.i("GetTreeData", "GetTreeDataResult-------------->" + getTreeResult);
+                    requestNum += 1;
+                }
+
+                //---打包--
+                byte[] realOutData = new byte[getTreeResult];
+                System.arraycopy(outData, 0, realOutData, 0, getTreeResult);
+//                Bundle bundle = new Bundle();
+//                bundle.putByteArray("resolveData", realOutData);
+
+//                event.state = getTreeResult;
+//                event.setBundle(bundle);
+
+                //-- 解析并保存 ---
+                try {
+                    DataParseUtils.parseInitialData(realOutData);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+//            EventBus.getDefault().post(event);
+        }
+    }
+
+
+    /**
+     * 请求获取设备状态
+     */
+    private class LoadingDeviceListRunnable implements Runnable{
+        private int mStationId;
+
+        public LoadingDeviceListRunnable(int stationId){
+            this.mStationId = stationId;
+        }
+
+        @Override
+        public void run(){
+            //## TODO 异步加载设备列表
+
+            try {
+                Thread.sleep(1200);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            StationEvent event = new StationEvent(StationEvent.STATION_EVENT_REFRESH);
+            event.stationId = mStationId;
+            EventBus.getDefault().post(event);
+            //TODO 发送给stationList页面进行刷新
+            //........
+        }
+    }
+
+    //事件结果发送器--EventBus
+    private void eventResultSender(int type, int ret){
+
+    }
+
+    private class RequestRunnable implements Runnable{
+        @Override
+        public void run(){
+
+        }
+    }
+}

@@ -1,0 +1,134 @@
+package rm.module_monitoring;
+
+
+import android.os.Bundle;
+import android.os.Environment;
+import android.support.v7.app.AppCompatActivity;
+import android.view.Surface;
+import android.view.SurfaceHolder;
+import android.widget.Toast;
+
+import com.hikvision.netsdk.HCNetSDK;
+
+import org.MediaPlayer.PlayM4.Player;
+
+import java.io.File;
+
+public class MonitoringVideoActivity2 extends AppCompatActivity
+        implements SurfaceHolder.Callback{
+
+    private static final String TAG = "MonitoringVideoActivity2";
+    public static final String FILEPATH = Environment.getExternalStorageDirectory().toString()+
+            File.separator + "nanhong" + File.separator;	//文件路径
+    private String logFileDir = FILEPATH + "hcnetlog" + File.separator;
+
+    private Player mPlayer;
+    private HCNetSDK mNet;
+    private int errorCode = 0;
+    private boolean isPlaying = false;
+    private int playerPort = 0;
+
+    private Surface mSurface;
+
+    //播放流相关
+    private int shamHeadLength = 0;
+    private byte[] shamHead = new byte[shamHeadLength];
+    private int streamBufferSize = 1024 * 800;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+        initView();
+        initSDK();
+    }
+
+
+    private void initView(){
+        setContentView(R.layout.layout_monitoring_video2);
+
+    }
+
+    private void initSDK(){
+        initDir();
+        mPlayer = Player.getInstance();
+        mNet = HCNetSDK.getInstance();
+
+        //
+        if(mNet.NET_DVR_Init()){
+            errorCode |= 0x1;
+        }
+        HCNetSDK.getInstance().NET_DVR_SetLogToFile(3, logFileDir, true);
+    }
+
+    private void initDir(){
+        File dir = new File(FILEPATH);
+        if(!dir.exists()){
+            if(dir.mkdirs()){
+                Toast.makeText(this, "make dirs failed!", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    private void release(){
+
+    }
+
+    private boolean initPlayer(){
+        if(mPlayer == null){
+            return false;
+        }
+        playerPort = mPlayer.getPort();
+
+        if(!mPlayer.setStreamOpenMode(playerPort, Player.STREAM_REALTIME)){
+            return false;
+        }
+
+        return true;
+    }
+
+    private void startPlayer(){
+        /*
+        当前播放库已经支持无头码流，文件头长度可以为零，若无头码流则码流必须为海康设备编码的码流，
+        且建议从文件开头部分到能解析出正确的I帧，此时数据大小必须小于10K。
+
+         */
+        mPlayer.openStream(playerPort, shamHead, shamHeadLength, streamBufferSize);
+
+
+
+        /*
+        设置播放缓冲区（即解码后的图像缓冲区）大小；这个缓冲区比较重要，直接影响播放的流畅性和延时性。
+        在一定范围内缓冲越大越流畅，同时延时越大。
+        在播放文件时用户最好可以考虑开大缓冲（如果内存足够大），我们的默认值是6（帧）。
+        在播放流时我们的默认值是6(帧)，如果用户追求最大延时最小，可以考虑适当减小这个值。
+        * 接口在PlayM4_OpenStream之后、PlayM4_Play之前调用有效。
+         */
+        mPlayer.setDisplayBuf(playerPort, 15);//最大缓冲帧数
+
+
+        /*
+        HWND [in] 播放视频的窗口句柄
+        开始解码线程，若送入的显示窗口句柄为NULL，则不显示，但是不影响解码。
+         */
+//        mPlayer.play(playerPort, )
+
+//        mNet.NET_DVR_RealPlay_V40()
+    }
+
+
+    //--------------
+    @Override
+    public void surfaceCreated(SurfaceHolder holder) {
+
+    }
+
+    @Override
+    public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+
+    }
+
+    @Override
+    public void surfaceDestroyed(SurfaceHolder holder) {
+
+    }
+}

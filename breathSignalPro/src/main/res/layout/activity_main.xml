@@ -1,0 +1,92 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.webcon.breath.freescale.ui.MainActivity">
+
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="串口测试"
+        android:onClick="jumpSerial"
+        />
+
+
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/chart1"
+        android:layout_width="350dp"
+        android:layout_height="200dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:id="@+id/tv_timer"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:textSize="20sp"
+        ></TextView>
+
+
+    <Button
+        android:layout_marginTop="1dp"
+        android:id="@+id/bn_printFile"
+        android:onClick="printFile"
+        android:text="printFile()-normal"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:textSize="20sp"
+        ></Button>
+
+
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/chart3_pb"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_below="@+id/sta_pchart" />
+
+    <RelativeLayout
+        android:id="@+id/playback_control_holder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/chart3_pb"
+        android:background="@color/Transparent">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.wnafee.vector.MorphButton
+                android:id="@+id/playPauseButton"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:scaleType="fitXY"
+                app:vc_endDrawable="@drawable/ic_play_to_pause"
+                app:vc_startDrawable="@drawable/ic_pause_to_play" />
+
+
+            <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
+                android:id="@+id/chart3_seekBar"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                app:dsb_max="400"
+                app:dsb_min="0" />
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+
+
+</LinearLayout>

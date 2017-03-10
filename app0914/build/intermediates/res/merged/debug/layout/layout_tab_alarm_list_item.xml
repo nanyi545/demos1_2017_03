@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ripple="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/list_item_alarm_container"
+    android:layout_width="match_parent"
+    android:layout_height="56dp">
+
+    <com.andexert.library.RippleView
+        android:id="@+id/rippleview_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        ripple:rv_color="?attr/colorAccent"
+        ripple:rv_rippleDuration="250">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/alarm_list_item_rl_num"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/alarm_list_item_tv_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:paddingLeft="2dp"
+                    android:singleLine="true" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/alarm_list_item_tv_eqname"
+                style="@style/style_alarm_list_item"
+                android:layout_weight="1.7"
+                android:singleLine="true" />
+
+            <TextView
+                android:id="@+id/alarm_list_item_tv_time"
+                style="@style/style_alarm_list_item"
+                android:layout_weight="1.7" />
+
+            <TextView
+                android:id="@+id/alarm_list_item_tv_info"
+                style="@style/style_alarm_list_item"
+                android:layout_weight="1.5"
+                android:singleLine="true" />
+        </LinearLayout>
+
+    </com.andexert.library.RippleView>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0.7dp"
+        android:background="@color/Grey300"
+        android:layout_alignParentBottom="true"
+        ></ImageView>
+
+
+</RelativeLayout>

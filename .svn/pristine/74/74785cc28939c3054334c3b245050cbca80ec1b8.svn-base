@@ -1,0 +1,285 @@
+package com.webcon.sus.activities;
+
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.util.TypedValue;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Toast;
+
+import com.webcon.sus.adapter.RVStationListAdapter;
+import com.webcon.sus.demo.R;
+import com.webcon.sus.entity.StationNode;
+import com.webcon.sus.eventObjects.MessageEvent;
+import com.webcon.sus.eventObjects.ServiceEvent;
+import com.webcon.sus.eventObjects.StationEvent;
+import com.webcon.sus.utils.CommunicationUtils;
+import com.webcon.wp.utils.ApplicationManager;
+import com.webcon.wp.utils.WPApplication;
+import com.webcon.wp.utils.WPConstant;
+
+import java.util.List;
+
+import de.greenrobot.event.EventBus;
+
+/**
+ * 主界面の站场列表页面
+ * @author m
+ */
+public class MainStationListFragment extends Fragment
+        implements SwipeRefreshLayout.OnRefreshListener, AppBarLayout.OnOffsetChangedListener{
+    private static final String TAG     = "MainStationListFragment";
+    public static final String KEY_ID   = "stationId";
+    public static final String KEY_PAGE = "viewPagerId";
+
+    private Context mContext;
+    private boolean initialized = false;
+
+    private SwipeRefreshLayout mSwipeLayout;
+    private RecyclerView mRecyclerView;
+    private LinearLayoutManager mRecyclerManager;
+    private RVStationListAdapter mAdapter;
+
+    public MainStationListFragment() {
+
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
+        init();
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View layout = inflater.inflate(R.layout.fragment_station_list, container, false);
+        // 下拉刷新列表初始化
+        mSwipeLayout = (SwipeRefreshLayout)layout.findViewById(R.id.layout_swipe_container);
+        mSwipeLayout.setColorSchemeResources(R.color.GreenA200, R.color.GreenA400, R.color.GreenA700);
+        mSwipeLayout.setOnRefreshListener(this);
+        mSwipeLayout.setContentDescription("下拉刷新");
+        // 触发refresh需要拉动的距离
+//        mSwipeLayout.setDistanceToTriggerSync((int) TypedValue.applyDimension(
+//                TypedValue.COMPLEX_UNIT_DIP, 42, getResources().getDisplayMetrics()));
+        // 显示进度的位置 scale : true
+        mSwipeLayout.setProgressViewOffset(true, 0, (int) TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP, 16, getResources().getDisplayMetrics()));
+
+        // 站场列表
+        mRecyclerView = (RecyclerView)layout.findViewById(R.id.recycler_stations);
+        //如果可以确定每个item的高度是固定的，设置这个选项可以提高性能
+        mRecyclerView.setHasFixedSize(true);
+        // 线性
+        mRecyclerManager = new LinearLayoutManager(mContext);
+        mRecyclerView.setLayoutManager(mRecyclerManager);
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        // 其他
+        if(!initialized){
+            Log.i(TAG, "post service event");
+            mSwipeLayout.setRefreshing(true);
+            EventBus.getDefault().post(new ServiceEvent(ServiceEvent.SERVICE_EVENT_INIT_STATION_REQ));
+        }
+        return layout;
+    }
+
+    /** 初始化配置 */
+    private void init() {
+        mContext = getActivity();
+    }
+
+    /**
+     * 刷新界面 (被动)
+     */
+    public void refreshFragment() {
+        Log.w(TAG, "refresh fragment");
+        if(mAdapter == null){
+            mAdapter = new RVStationListAdapter((getStationList()));
+            mAdapter.setOnItemClickListener(new RVStationListAdapter.OnStationItemClickListener() {
+                @Override
+                public void onItemClick(View view, int position) {
+                    Log.i(TAG, "item position:" + position);
+                    if (getStationList().get(position).isOnline()) {
+                        Intent intent = new Intent(mContext, StationDetailsActivity.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putInt(KEY_ID, getStationList().get(position).getId());
+                        intent.putExtras(bundle);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(mContext, "该站场客户端当前未上线！", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onItemLongClick(View view, int position) {
+                    Toast.makeText(mContext, "Long Click", Toast.LENGTH_SHORT).show();
+                }
+            });
+            mRecyclerView.setAdapter(mAdapter);
+        }else{
+            refreshAdapter();
+        }
+    }
+
+    public void refreshAdapter(){
+        if(mAdapter != null){
+            WPApplication.getInstance().refreshStationList();
+            mAdapter.notifyDataSetChanged();
+        }
+    }
+
+    private void stopWaiting(){
+        mSwipeLayout.setRefreshing(false);
+    }
+
+    /*
+     * 异步加载完数据-->解析完成-->通知刷新-->在adapter之前获取全局变量到本地
+     */
+    private List<StationNode> getStationList(){
+        return WPApplication.getInstance().getStationList();
+    }
+
+    // ##TODO ##待修改-返回键  处理finish等
+    public void onBackPressed() {
+
+    }
+
+    // ##在后台完成了数据的接收、解析、数据库处理之后，在此只要调用刷新就行
+    public void onEventMainThread(StationEvent event) {
+        Log.i(TAG, "receive station list refresh event:" + event.msg);
+        Log.i(TAG, "receive station list refresh event type:" + event.getType());
+        switch (event.getType()) {
+            case StationEvent.STATION_EVENT_INIT:
+                initialized = true;
+                int m = event.msg;
+                switch (m) {
+                    //NOTE:闪退，并且无法追踪！！
+                    case -1:
+                        Toast.makeText(
+                                mContext,
+                                R.string.str_equipmentlist_toask_loadtreefaild,
+                                Toast.LENGTH_LONG
+                        ).show();
+                        // 程序崩溃后退出
+                        sendExitBroadcast(-1000);
+                        break;
+                    default:
+                        if (m > 0) {
+                            refreshFragment();
+                        } else {
+                            //加载出错
+                            new AlertDialog.Builder(mContext)
+                                    .setTitle(R.string.str_equipmentlist_alert_treefaild_title)
+                                    .setMessage(R.string.str_equipmentlist_alert_treefaild_message)
+                                    .setCancelable(false)
+                                    .setOnKeyListener(
+                                            new DialogInterface.OnKeyListener() {
+                                                @Override
+                                                public boolean onKey(
+                                                        DialogInterface dialog,
+                                                        int keyCode,
+                                                        KeyEvent event) {
+                                                    if (keyCode == KeyEvent.KEYCODE_SEARCH) {
+                                                        return true;
+                                                    }
+                                                    return false;
+                                                }
+                                            }
+                                    )
+                                    .setPositiveButton(R.string.str_equipmentlist_alert_treefaild_eixtbt,
+                                            new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    ApplicationManager.getInstance().applicationOtherExit();
+                                                    System.exit(0);
+                                                }
+                                            }).show();
+                        }
+                        break;
+                }//~switch
+                stopWaiting();
+                break;
+            case StationEvent.STATION_EVENT_ONLINE_STATE_CHANGED:
+                refreshAdapter();
+                break;
+            case StationEvent.STATION_EVENT_REFRESH:
+                refreshAdapter();
+                break;
+            case StationEvent.STATION_EVENT_EXCEPTION:
+                stopWaiting();
+                Toast.makeText(mContext, "站场列表异常", Toast.LENGTH_SHORT).show();
+                break;
+            default:
+                break;
+        }
+    }
+
+    // 发送退出广播
+    private void sendExitBroadcast(int msgType){
+        WPApplication.flag_exit = true;
+        Bundle bundle = new Bundle();
+        bundle.putInt("msgType", msgType);
+        Intent intent = new Intent();
+        intent.putExtras(bundle);
+        intent.setAction(WPConstant.LOGOUT_EXIT_ACTION);
+        getActivity().sendBroadcast(intent);
+    }
+
+    public void onEventMainThread(MessageEvent event){
+        switch (event.getType()){
+            case MessageEvent.ALARM_FLAG_REFRESH:
+                //刷新列表
+                refreshAdapter();
+                break;
+            default:
+                break;
+        }
+    }
+
+    @Override
+    public void onRefresh(){
+        mSwipeLayout.setRefreshing(true);
+        CommunicationUtils.getInstance().loadInitialData();
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+    }
+
+    @Override
+    public void onResume(){
+        Log.i(TAG, "onResume");
+        super.onResume();
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+    }
+
+    @Override
+    public void onDestroy() {
+        EventBus.getDefault().unregister(this);
+        mContext = null;
+        super.onDestroy();
+    }
+
+    @Override
+    public void onOffsetChanged(AppBarLayout appBarLayout, int i) {
+        mSwipeLayout.setEnabled(i == 0);
+    }
+}

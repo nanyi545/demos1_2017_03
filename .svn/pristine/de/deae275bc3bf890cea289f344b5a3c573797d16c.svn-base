@@ -1,0 +1,151 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.webcon.sus.activities.MonitorActivityCompat">
+
+    <!-- 屏幕 -->
+    <SurfaceView
+        android:id="@+id/monitor_surface"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible" />
+
+    <!-- 退出按钮 -->
+    <ImageButton
+        android:id="@+id/monitor_quit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bg_xml_mutual_video_bottom"
+        android:paddingBottom="12dp"
+        android:paddingTop="12dp"
+        android:src="@drawable/bg_mutual_video_shutdow"
+        android:contentDescription="@string/str_null"/>
+
+    <!-- 左边的移动的操控界面 -->
+    <RelativeLayout
+        android:id="@+id/monitor_ptz_menu"
+        android:layout_width="134dp"
+        android:layout_height="134dp"
+        android:padding="8dp"
+        android:background="@drawable/bg_monitor_dim_1"
+        android:layout_alignParentLeft="true"
+        android:layout_above="@id/monitor_quit"
+        android:visibility="gone">
+        <Button
+            android:id="@+id/bn_monitor_ptz_move"
+            style="@style/style_monitor_ptz_menu"
+            android:layout_centerInParent="true"
+            android:layout_margin="5dp"
+            android:text="@string/str_ptz_move"/>
+        <Button
+            android:id="@+id/bn_monitor_ptz_move_left"
+            style="@style/style_monitor_ptz_menu"
+            android:layout_toLeftOf="@id/bn_monitor_ptz_move"
+            android:layout_centerVertical="true"
+            android:text="@string/str_ptz_left"/>
+        <Button
+            android:id="@+id/bn_monitor_ptz_move_right"
+            style="@style/style_monitor_ptz_menu"
+            android:layout_toRightOf="@id/bn_monitor_ptz_move"
+            android:layout_centerVertical="true"
+            android:text="@string/str_ptz_right"/>
+        <Button
+            android:id="@+id/bn_monitor_ptz_move_up"
+            style="@style/style_monitor_ptz_menu"
+            android:layout_above="@id/bn_monitor_ptz_move"
+            android:layout_centerHorizontal="true"
+            android:text="@string/str_ptz_up"/>
+        <Button
+            android:id="@+id/bn_monitor_ptz_move_down"
+            style="@style/style_monitor_ptz_menu"
+            android:layout_below="@id/bn_monitor_ptz_move"
+            android:layout_centerHorizontal="true"
+            android:text="@string/str_ptz_down"/>
+    </RelativeLayout>
+
+    <!-- 语音相关的界面 -->
+    <LinearLayout
+        android:id="@+id/linear_monitor_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="2dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:orientation="vertical">
+        <Button
+            android:id="@+id/bn_monitor_track"
+            style="@style/sytle_monitor_list_voice"
+            android:text="@string/str_monitor_start_track"
+            android:background="@drawable/selector_monitor_voice"/>
+        <Button
+            android:id="@+id/bn_monitor_speaker"
+            style="@style/sytle_monitor_list_voice"
+            android:text="@string/str_monitor_open_speak"/>
+        <Button
+            android:id="@+id/bn_monitor_menu"
+            style="@style/sytle_monitor_list_voice"
+            android:text="@string/str_monitor_open_menu"/>
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/list_monitor_tracklist"
+        android:layout_width="56dp"
+        android:layout_height="100dp"
+        android:layout_alignTop="@id/linear_monitor_list"
+        android:layout_toRightOf="@id/linear_monitor_list"
+        android:visibility="gone"
+        android:background="@color/Transparent"/>
+
+    <!-- 右边的控制界面 -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="4dp"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:id="@+id/linear_monitor_list_controller"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_monitor_controller_b"
+            android:orientation="vertical"
+            android:visibility="gone">
+            <Button
+                android:id="@+id/bn_monitor_increase"
+                style="@style/style_monitor_ptz_controller_b"
+                android:text="@string/str_ptz_increase"/>
+            <Button
+                android:id="@+id/bn_monitor_decrease"
+                style="@style/style_monitor_ptz_controller_b"
+                android:text="@string/str_ptz_decrease"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/liear_monitor_list_function"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <!-- 对焦 -->
+            <Button
+                android:id="@+id/bn_monitor_sharp"
+                style="@style/style_monitor_ptz_controller_a"
+                android:text="@string/str_ptz_sharp"/>
+            <!-- 变焦 -->
+            <Button
+                android:id="@+id/bn_monitor_zoom"
+                style="@style/style_monitor_ptz_controller_a"
+                android:text="@string/str_ptz_zoom"/>
+            <!-- 光圈 -->
+            <Button
+                android:id="@+id/bn_monitor_aperture"
+                style="@style/style_monitor_ptz_controller_a"
+                android:text="@string/str_ptz_aperture"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

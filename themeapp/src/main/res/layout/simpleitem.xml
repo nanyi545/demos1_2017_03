@@ -1,0 +1,21 @@
+<com.andexert.library.RippleView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/more"
+    app:rv_color="@color/colorAccent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+<TextView
+    android:id="@+id/text1"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="@color/Red50"
+    android:textStyle="bold"
+    android:fontFamily="sans-serif-medium"
+    android:gravity="center_horizontal|center_vertical"/>
+
+</com.andexert.library.RippleView>
+
+    <!--android:background="@color/Red200"-->
+    <!--android:layout_Gravity=""-->

@@ -1,0 +1,33 @@
+package com.webcon.sus.entity;
+
+/**
+ * 登录用户信息结点
+ * @author m
+ */
+public class UserNode {
+    private String userId = "userId";
+    private String userName = "userName";
+    private boolean initialized = false;
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        initialized = false;
+        this.userId = userId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        initialized = true;
+        this.userName = userName;
+    }
+
+    public boolean getInitialized(){
+        return this.initialized;
+    }
+}

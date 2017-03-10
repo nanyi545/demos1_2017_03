@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_wheelview_dialog_bg" >
+    <TextView 
+        android:id="@+id/dialog_date_title"
+        style="@style/style_dialog_title"
+        />
+    <LinearLayout 
+        android:id="@+id/dialog_date_middle_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/dialog_date_title"
+	    android:paddingLeft="20dp"
+	    android:paddingRight="20dp"
+	    android:layout_marginTop="20dp"
+        >
+        <com.webcon.sus.dateview.WheelView
+            android:id="@+id/dialog_date_year"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            />
+        <com.webcon.sus.dateview.WheelView
+            android:id="@+id/dialog_date_month"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.2"
+            />
+        <com.webcon.sus.dateview.WheelView
+            android:id="@+id/dialog_date_day"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.2"
+            />
+    </LinearLayout>
+    <LinearLayout 
+        style="@style/style_dialog_bottom_ll"
+        android:layout_below="@id/dialog_date_middle_ll" >
+        <Button
+            android:id="@+id/dialog_date_bottom_bt_ok"
+            style="@style/style_dialog_bottom_bt"
+            android:layout_marginRight="10dp"
+            android:text="@string/btn_ok"
+            />
+        <Button
+            android:id="@+id/dialog_date_bottom_bt_cancel"
+            style="@style/style_dialog_bottom_bt"
+            android:layout_marginLeft="10dp"
+            android:text="@string/btn_cancle"
+            />
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,512 @@
+package com.webcon.wp.utils;
+
+import android.content.Context;
+import android.content.ContextWrapper;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+
+import com.webcon.sus.entity.MonitorUser;
+
+/**
+ * 通信库回调数据的接口实现类
+ * 
+ * @author Vieboo
+ * 
+ */
+public class CCallbackMethod extends ContextWrapper {
+
+	private byte[] callBackData; // 回调数据
+	private static CCallbackMethod cCallbackMethod;
+	private CallbackPackageDataArray cpDataArray;
+	private CallbackMediaDataArray cmDataArray;
+	private boolean isResolve;
+	private TakeCallbackData takeCallbackData;
+	private int exitFlag = 0; // 判断被挤下线时是否已经发送了msgType=5的广播，如果发送了就不会再发送msgType=3的广播
+	private Context context;
+	private IMediaCallback mediaCB;
+
+	public static CCallbackMethod getInstancs(Context context) {
+		if (cCallbackMethod == null) {
+			synchronized (CCallbackMethod.class) {
+				if (cCallbackMethod == null) {
+					cCallbackMethod = new CCallbackMethod(context);
+				}
+			}
+		}
+		return cCallbackMethod;
+	}
+
+	private CCallbackMethod(Context base) {
+		super(base);
+
+		context = base;
+		isResolve = true;
+		cpDataArray = new CallbackPackageDataArray();
+		cmDataArray = new CallbackMediaDataArray();
+
+		takeCallbackData = new TakeCallbackData();
+		new Thread(takeCallbackData).start();
+	}
+
+	public void setMediaCB(IMediaCallback callback) {
+		this.mediaCB = callback;
+	}
+
+	/**
+	 * 回调方法
+	 */
+	public void messageCallback() {
+        Log.i("回调", "callback");
+
+		int cbdLength = JTools.Bytes4ToInt(callBackData, 0); // 回调数据长度
+		short cbdPdu = JTools.Bytes2ToShort(callBackData, 4); // 回调数据的pdu
+
+		byte[] data = new byte[cbdLength + 4];
+		System.arraycopy(callBackData, 0, data, 0, data.length);
+
+		// 如果回调数据pdu为音视频数据将回调数据存入音视频数据缓冲区
+		if (cbdPdu == WPConstant.MONITOR_VIDEO){
+//				|| cbdPdu == WPConstant.MUTUAL_AUDIO_DATA) {
+			cmDataArray.enQueue(data);
+		}
+		// 文本信息和状态信息放入控制包回调缓冲区
+		else {
+			cpDataArray.enQueue(data);
+		}
+
+		if (takeCallbackData != null) {
+			takeCallbackData.inDataOpen();
+		}
+	}
+
+	/**
+	 * 读取缓冲区中的数据并解析
+	 */
+	private class TakeCallbackData implements Runnable {
+
+		@Override
+		public void run() {
+			try {
+				while (isResolve) {
+					if (!cpDataArray.isNotNull() && !cmDataArray.isNotNull()) {
+						synchronized (this) {
+							wait();
+						}
+					}
+					if (cpDataArray.isNotNull()) {
+						byte[] deData = cpDataArray.deQueue();
+						if (deData != null) {
+							resolveCallbackData(deData);
+						}
+					}
+					if (cmDataArray.isNotNull()) {
+						try {
+							byte[] deData = cmDataArray.deQueue();
+							if (deData != null) {
+								resolveCallbackData(deData);
+							}
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				}
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+
+		public void inDataOpen() {
+			synchronized (this) {
+				notify();
+			}
+		}
+	}
+
+	/**
+	 * 解析回调数据 msgType: 1.收到的数据回调 2.成员改变回调 3.用户退出回调 4.会议信息更改 5.别处登陆挤掉 flag:
+	 * 0.p2p加入 1.服务器转发加入 2.离开 3.服务器异常 4. 好友状态改变
+	 */
+	public void resolveCallbackData(byte[] decbData) {
+		try {
+			int offset = 0;
+			short pdu = JTools.Bytes2ToShort(decbData, offset);
+			offset += 2;
+			// System.out.println("pdu----->" + pdu);
+			short msgType = JTools.Bytes2ToShort(decbData, offset);
+			// Log.i("messageCallback", "CallBack 1------------>" + msgType);
+			offset += 2;
+			// System.out.println("msgType----->" + msgType);
+			short dataType = JTools.Bytes2ToShort(decbData, offset);
+			offset += 2;
+			// System.out.println("dataType----->" + dataType);
+			short gid = JTools.Bytes2ToShort(decbData, offset);
+			offset += 2;
+			// System.out.println("gid----->" + gid);
+			String userId = "";
+			try {
+				userId = (String) JTools.toStringList(decbData, offset,
+						WPConstant.STRING_GB2312).get(0);
+				offset = (Integer) JTools.toStringList(decbData, offset,
+						WPConstant.STRING_GB2312).get(1);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			int flag = JTools.Bytes4ToInt(decbData, offset);
+			offset += 4;
+			// System.out.println("flag----->" + flag);
+
+			int dataLen = JTools.Bytes4ToInt(decbData, offset);
+			offset += 4;
+			// System.out.println("dataLen----->" + dataLen);
+			byte[] data = new byte[dataLen];
+			System.arraycopy(decbData, offset, data, 0, dataLen);
+
+			// 收到数据回调函数
+			if (msgType == 1) {
+				onReceiveData(pdu, data, userId);
+			}
+			// 成员改变回调函数
+			// 0:p2p加入 1: 服务器转发加入 2: 离开 3: 服务器异常 4 好友状态改变
+			// 好友状态改变：低16位中的高8为 0:正常 1:主讲 2: 可以发言 3: 禁止发言 4:处于申请发言状态（data中）
+			else if (msgType == 2) {
+				Bundle bundle = new Bundle();
+				bundle.putString("UserId", userId);
+				// 还未获取默认Gid
+				if (!WPApplication.getInstance().isGetDefaultGid()) {
+					int userFlag = JTools.Bytes4ToInt(data, 0);
+					// userFlag右移16位是用户类型 3：监控用户
+					// 保存监控用户集合
+					if ((userFlag >>> 16) == 3) {
+						MonitorUser monitorUser = new MonitorUser();
+						monitorUser.setmUserId(userId);
+						monitorUser.setmIsP2PConnect(false);
+						monitorUser.setmIsSetting(false);
+						WPApplication.getInstance();
+						if (!WPApplication.monitorUserList
+								.contains(monitorUser)) {
+							WPApplication.monitorUserList.add(monitorUser);
+						}
+					}
+				}
+				// 已经获取的默认Gid
+				else {
+					// 不在会议中
+					if (gid == WPApplication.getInstance().getDefaultGid()
+							|| gid == 0) {
+						// 人员进入
+						if (flag == 0 || flag == 1) {
+							int userFlag = JTools.Bytes4ToInt(data, 0);
+							// userFlag右移16位是用户类型 3：监控用户
+							// 保存监控用户集合
+							if ((userFlag >>> 16) == 3) {
+								MonitorUser monitorUser = new MonitorUser();
+								monitorUser.setmUserId(userId);
+								monitorUser.setmIsP2PConnect(false);
+								monitorUser.setmIsSetting(false);
+								WPApplication.getInstance();
+								if (!WPApplication.monitorUserList
+										.contains(monitorUser)) {
+									WPApplication.monitorUserList
+											.add(monitorUser);
+								}
+							}
+							bundle.putInt("UserLineStatus", 1);
+							bundle.putInt("userType", userFlag >>> 16);
+						}
+						// 人员退出
+						else if (flag == 2) {
+							MonitorUser monitorUser = new MonitorUser();
+							monitorUser.setmUserId(userId);
+							if (WPApplication.monitorUserList != null
+									&& WPApplication.monitorUserList
+											.contains(monitorUser)) {
+								WPApplication.monitorUserList
+										.remove(monitorUser);
+								bundle.putInt("UserLineStatus", 7); // 监控用户退出
+							} else {
+								bundle.putInt("UserLineStatus", 2);
+							}
+						}
+						// 服务器异常
+						else if (flag == 3) {
+							bundle.putInt("UserLineStatus", 3);
+						}
+						makeBroadCast(WPConstant.USER_ONLINE_STATUS_ACTION,
+								bundle);
+					}
+				}
+
+			}
+//			// 用户退出
+//			else if (msgType == 3 || msgType == 5) {
+//				if (exitFlag == 0) {
+//					exitFlag = 1;
+//					Bundle bundle = new Bundle();
+//					bundle.putInt("msgType", msgType);
+//					makeBroadCast(WPConstant.LOGOUT_EXIT_ACTION, bundle);
+//					Log.i("LogOut", "--------------LogOut-------------");
+//				}
+//			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * msgType=1 收到数据回调解析
+	 */
+	private void onReceiveData(int pdu, byte[] data, String userId) {
+		Bundle bundle = new Bundle();
+		bundle.putString("userId", userId);
+		switch (pdu) {
+		// 请求设备在线状态返回结果 44
+		case WPConstant.RESPONSE_EQUIPMENT_ONLINE:
+			try {
+				int offset44 = 0;
+				int num = JTools.Bytes4ToInt(data, offset44);
+				int[] statusArray = new int[num];
+				String[] idArray = new String[num];
+				offset44 += 4;
+				for (int i = 0; i < num; i++) {
+					// 监控设备在线状态1：在线 0：离线
+					int lineStatus = JTools.Bytes4ToInt(data, offset44);
+					offset44 += 4;
+					statusArray[i] = lineStatus;
+
+					// 监控设备Id
+					String equipmentId = (String) JTools.toStringList(data,
+							offset44, WPConstant.STRING_UTF8).get(0);
+					offset44 = (Integer) JTools.toStringList(data, offset44,
+							WPConstant.STRING_UTF8).get(1);
+					idArray[i] = equipmentId;
+					// 监控设备设置监控用户Id
+					for (int j = 0; j < WPApplication.getInstance()
+							.getmEquipmentList().size(); j++) {
+						if ((WPApplication.getInstance().getmEquipmentList()
+								.get(j).getEqID()).equals(equipmentId)) {
+							WPApplication.getInstance().getmEquipmentList()
+									.get(j).setMonitorId(userId);
+							break;
+						}
+					}
+				}
+				// 发送广播更新树形界面
+				bundle.putIntArray("statusArray", statusArray);
+				bundle.putStringArray("idArray", idArray);
+				makeBroadCast(WPConstant.EQUIPMENT_ONLINE_STATUS_ACTION, bundle);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			break;
+		// 请求设备监控视频返回结果 2
+		case WPConstant.RESPONSE_MONITOR_VIDEO:
+			break;
+		// 监控视频 3
+		case WPConstant.MONITOR_VIDEO:
+			try {
+				// head获取数据标识 1:视频配置信息 2:视频流数据
+				int offset3 = 0;
+				String equimentId = (String) JTools.toStringList(data, offset3,
+						WPConstant.STRING_UTF8).get(0);
+				offset3 = (Integer) JTools.toStringList(data, offset3,
+						WPConstant.STRING_UTF8).get(1);
+				int flag = JTools.Bytes4ToInt(data, offset3);
+				offset3 += 4;
+				int l = equimentId.getBytes(WPConstant.STRING_UTF8).length + 1 + 4; // 设备ID和数据标识的长度
+				byte[] streamData = new byte[data.length - l];
+				System.arraycopy(data, l, streamData, 0, data.length - l);
+				if (flag == 1) {
+					byte[] headData = new byte[40];
+					System.arraycopy(streamData, 0, headData, 0,
+							headData.length);
+					// VideoDataBuffer.getVideoDataBuffer().clearData();
+					bundle.putByteArray("monitorVideoHead", headData);
+					makeBroadCast(WPConstant.MONITOR_VIDEO_HEAD_ACTION, bundle);
+				} else {
+					// VideoDataBuffer.getVideoDataBuffer().enQueue(streamData);
+					mediaCB.onData(streamData);
+				}
+				streamData = null;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			break;
+		// 停止监控视频返回结果 5
+		case WPConstant.RESPONSE_STOP_MONITOR_VIDEO:
+			break;
+//		// 加入聊天室邀请 20
+//		case WPConstant.INVITE_JOIN_MEETING:
+//			if (!WPApplication.getInstance().isHasJoinedMeeting()) {
+//			}
+//			break;
+//		// 文字聊天34
+//		case WPConstant.MUTUAL_CHAT_MESSAGE:
+//			bundle.putByteArray("chatData", data);
+//			bundle.putString("chatTime", CurrentDate.getDate());
+//			makeBroadCast(WPConstant.CHAT_MESSAGE_ACTION, bundle);
+//			break;
+//		// 音频数据35
+//		case WPConstant.MUTUAL_AUDIO_DATA:
+//			// 音频数据存入音频缓冲区
+//			AudioManager.getInstance().enAudioDate(data);
+//			break;
+//		// 流量超标提醒122
+//		case WPConstant.FLOW_OVERUSED:
+//			bundle.putByteArray("flowOverusedData", data);
+//			makeBroadCast(WPConstant.FLOW_OVERUSED_ACTION, bundle);
+//			break;
+//		// 视频请求170
+//		case WPConstant.REQUEST_MUTUAL_VIDEO:
+//			bundle.putByteArray("videoSize", data);
+//			makeBroadCast(WPConstant.REQUEST_MUTUAL_VIDEO_ACTION, bundle);
+//			break;
+//		// 视频请求返回结果171
+//		case WPConstant.RESPONSE_MUTUAL_VIDEO:
+//			bundle.putByteArray("rspData", data);
+//			makeBroadCast(WPConstant.RESPONSE_MUTUAL_VIDEO_ACTION, bundle);
+//			break;
+//		// 取消视频请求172
+//		case WPConstant.CANCEL_REQUEST_MUTUAL_VIDEO:
+//			makeBroadCast(WPConstant.CANCEL_REQ_MUTUAL_VIDEO_ACTION, bundle);
+//			break;
+//		// 会议视频数据173
+//		case WPConstant.SEND_MUTUAL_VIDEO_DATA:
+//			/**
+//			 * 数据结构 short 数据类型 0:参数信息 1:视频数据 int 数据长度 byte[] 类型0：short
+//			 * 是否旋转画面(0:不旋转 1:旋转) int 视频宽度 int 视频高度 类型1：视频数据
+//			 */
+//			// 数据类型
+//			short dType = JTools.Bytes2ToShort(data, 0);
+//
+//			// 参数信息
+//			if (dType == 0) {
+//				bundle.putByteArray("videoConfig", data);
+//				// 保存视频配置信息
+//				WPApplication.getInstance().setMutualVideoConfig(data);
+//				makeBroadCast(WPConstant.MUTUAL_VIDEO_CONFIG_ACTION, bundle);
+//			}
+//			// 视频数据
+//			else if (dType == 1) {
+//				byte[] frameData = new byte[data.length - 2];
+//				System.arraycopy(data, 2, frameData, 0, frameData.length);
+//				VideoDataBuffer.getVideoDataBuffer().enQueue(frameData);
+//				// mediaCB.onData(frameData);
+//			}
+//			break;
+//
+//		// 结束当前会议视频174
+//		case WPConstant.SHUT_DOWN_MUTUAL_VIDEO:
+//			makeBroadCast(WPConstant.SHUT_DOWN_MUTUAL_VIDEO_ACTION, bundle);
+//			break;
+		// 用户在线时服务器通知客户端报警和数据库摄像头信息修改10011
+		case WPConstant.ALARM_SERVER_TO_CLIENT:
+			int parentOffset = 0;
+			short childPdu = JTools.Bytes2ToShort(data, parentOffset);
+			parentOffset += 2;
+			try {
+				switch (childPdu) {
+				// 后台对设备或用户关联信息作了修改(子pdu2)71
+				case WPConstant.CAMERA_DB_CHANGED:
+
+					// 预留
+					parentOffset += 4;
+					// flag
+					short flag = JTools.Bytes2ToShort(data, parentOffset);
+					parentOffset += 2;
+
+					byte[] outData = new byte[data.length - parentOffset];
+					System.arraycopy(data, parentOffset, outData, 0,
+							outData.length);
+					bundle.putByteArray("outData", outData);
+					if (flag == 0) {// 修改了昵称
+						makeBroadCast(WPConstant.NICKNAME_CHANGED_ACTION,
+								bundle);
+					} else {// 组织结构变化
+						makeBroadCast(WPConstant.TREE_CHANGED_ACTION, bundle);
+					}
+					break;
+				case WPConstant.CAMERA_DB_DELETE:
+					// flag 1修改 2删除
+					flag = JTools.Bytes2ToShort(data, parentOffset);
+					parentOffset += 2;
+					outData = new byte[4 + data.length - parentOffset];
+					JTools.IntToBytes4(7, outData, 0);
+					System.arraycopy(data, parentOffset, outData, 4,
+							outData.length - 4);
+					bundle.putByteArray("outData", outData);
+					if (flag == 1) {
+						// ID
+						makeBroadCast(WPConstant.NICKNAME_CHANGED_ACTION,
+								bundle);
+					} else if (flag == 2) {
+						makeBroadCast(WPConstant.TREE_CHANGED_ACTION, bundle);
+					}
+					break;
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			break;
+		
+			//回复开启语音 125
+			case WPConstant.OPEN_RSP_OPEN_VOICE_INTERCOM:
+				bundle.putByteArray("voiceData", data);
+				makeBroadCast(WPConstant.RESPONSE_OPEN_VOICE_ACTION, bundle);
+				break;
+			//回复关闭语音对讲 127
+			case WPConstant.RSP_CLOSE_VOICE_INTERCOM:
+				bundle.putByteArray("voiceData", data);
+				makeBroadCast(WPConstant.RESPONSE_ACCEPT_VOICE_ACTION, bundle);
+				break;
+			//回复接受设备语音对讲数据 128
+			case WPConstant.ACCEPT_VOICE_DATA:
+				break;
+			//回复发送本地语音对讲数据 131
+			case WPConstant.RSP_SEND_VOICE_DATA:
+//				bundle.putByteArray("voiceData", data);
+//				makeBroadCast(WPConstant.RESPONSE_RSP_SEND_VOICE_ACTION, bundle);
+				break;
+
+		default:
+
+			break;
+		}
+	}
+
+	/**
+	 * 设置设备集合中每个设备对应的监控用户
+	 */
+
+	/**
+	 * 广播发送
+	 */
+	private void makeBroadCast(String action, Bundle bundle) {
+		Intent intent = new Intent();
+		intent.putExtras(bundle);
+		intent.setAction(action);
+		sendBroadcast(intent);
+	}
+
+	/**
+	 * 提供回调函数的类
+	 * 
+	 * @return 0成功 <0 失败
+	 */
+	public native int setCallBackObj();
+
+	/**
+	 * 后台调用java回调函数返回数据
+	 * 
+	 * @param javaPath
+	 *            java回调函数的路径
+	 * @param javaMethod
+	 *            java回调函数的方法名称
+	 * @param bufName
+	 *            返回数据存放的数组名称
+	 * @return 0成功 <0 失败
+	 */
+	public native int doWork(String javaPath, String javaMethod, String bufName);
+
+}

@@ -1,0 +1,570 @@
+package com.webcon.sus.service;
+
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.Service;
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.IBinder;
+import android.os.PowerManager;
+import android.support.v4.app.NotificationCompat;
+import android.util.Log;
+import android.widget.RemoteViews;
+import android.widget.Toast;
+
+import com.webcon.sus.activities.AlarmDetailsActivityCompat;
+import com.webcon.sus.activities.MainActivityCompat;
+import com.webcon.sus.demo.R;
+import com.webcon.sus.entity.AlarmNode;
+import com.webcon.sus.entity.BaseDevice;
+import com.webcon.sus.entity.DeviceFactory;
+import com.webcon.sus.entity.StationNode;
+import com.webcon.sus.eventObjects.ErrorEvent;
+import com.webcon.sus.eventObjects.MessageEvent;
+import com.webcon.sus.eventObjects.ServiceEvent;
+import com.webcon.sus.eventObjects.StationEvent;
+import com.webcon.sus.utils.AlarmMsgManager;
+import com.webcon.sus.utils.CommunicationUtils;
+import com.webcon.sus.utils.SUConstant;
+import com.webcon.wp.utils.CCallbackMethod;
+import com.webcon.wp.utils.NotificationCancelManager;
+import com.webcon.wp.utils.WPApplication;
+import com.webcon.wp.utils.WPConstant;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+
+import de.greenrobot.event.EventBus;
+
+/**
+ * 后台服务
+ * <p>
+ * 1.维护通信库的运行，主要是保持服务器的连接，以及回调监听；<br>
+ * 2.维护用户登录状态，以及主界面退出后重新进入的恢复（处理内部请求）；<br>
+ * 3.生存周期的始末（主要）：在Login界面登陆线程中启动，在MainActivity的退出线程中结束；<br>
+ * 4.类似于一个server端，接收一些组件或者操作的请求，然后做出处理。
+ * </p>
+ * @author m
+ */
+public class CService extends Service {
+    private static final String TAG = "CService";
+    private static final int FORE_NOTI_ID = 0x314;
+
+    private PowerManager.WakeLock mWakeLock;
+    private Context mContext;
+
+    private boolean initialized = false;
+    private boolean initError = false;
+
+    @Override
+    public IBinder onBind(Intent intent) {
+        return null;
+    }
+
+    @Override
+    public void onCreate() {
+        Log.w(TAG, "onCreate");
+        EventBus.getDefault().register(this);
+        mContext = this;
+        WPApplication.getInstance().serviceExist = true;
+        super.onCreate();
+    }
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        Log.w(TAG, "onStartCommand");
+        // 启动电量控制锁，保持cpu不睡眠
+        PowerManager mPowerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
+        mWakeLock = mPowerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, WPConstant.TAG_WP);
+        if (!mWakeLock.isHeld()) {
+            mWakeLock.acquire();
+        }
+        // 启动管理的通知栏前台
+        startForeground(FORE_NOTI_ID, createNotice());
+        //
+        int callbackObj = 0;
+        try{
+            callbackObj = CCallbackMethod.getInstance(this).setCallBackObj();
+            Log.i(TAG, "callbackObj: "+ callbackObj);
+        } catch (UnsatisfiedLinkError e){
+            e.printStackTrace();
+        }
+
+        if (callbackObj < 0) {
+            Toast.makeText(this, R.string.str_dowrokservice_toast_a, Toast.LENGTH_SHORT).show();
+        } else {
+            new DoworkThread().start();
+        }
+
+//        return START_STICKY;
+        return START_NOT_STICKY;//NOTE:先不重启，因为没有对崩溃做处理。。。。
+    }
+
+    /**
+     * doworking....
+     */
+    private class DoworkThread extends Thread {
+
+        @Override
+        public void run() {
+            Log.i(TAG, "-----Dowork-Start----");
+            if(WPApplication.DEBUG_NO_LOGIN){
+                //TODO: --then remove test---
+                testData();// 不登录
+            }else{
+                //TODO: 初始化开始
+                CommunicationUtils.getInstance().loadInitialData();
+            }
+
+            CCallbackMethod.getInstance(CService.this).doWork(
+                    "com/webcon/wp/utils/CCallbackMethod",
+                    "onCallback",
+                    "callbackBuffer"
+            );
+            Log.w("DOWORK", "------------------Dowork-Terminated-------------------");
+        }
+    }
+
+    //--------------------
+
+    @Override
+    public void onDestroy() {
+        // 注销，反初始化通信库
+        Log.w(TAG, "-- 注销退出 --");
+        if(!WPApplication.DEBUG_NO_LOGIN && !WPApplication.flag_exit){
+            // 登录的情况下
+            int logout_ = CommunicationUtils.getInstance().logout();
+            Log.i(TAG, "logout:" + logout_ );
+        }
+        int uninit_ = CommunicationUtils.getInstance().uninit();
+        Log.i(TAG, "uninit:" + uninit_);
+
+        // 释放电量锁
+        if (mWakeLock != null && mWakeLock.isHeld()) {
+            mWakeLock.release();
+            mWakeLock = null;
+        }
+        stopForeground(true);
+        // 清理
+        AlarmMsgManager.getInstance().release();
+        CCallbackMethod.getInstance(mContext).release();
+        WPApplication.getInstance().release();
+
+        super.onDestroy();
+        Log.w("ServiceExit", "-----------ServiceExit-----------");
+    }
+
+    /**
+     * 创建一个前台服务通知。。
+     */
+    private Notification createNotice(){
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
+        RemoteViews rview = new RemoteViews(getPackageName(), R.layout.remote_layout_notification_1);
+        Intent intent = new Intent(this, MainActivityCompat.class);
+        intent.putExtra(MainActivityCompat.SERVICE_TAG, 0);
+        PendingIntent pintent = PendingIntent.getActivity(this, 0, intent, 0);
+
+        builder.setContentTitle(getResources().getString(R.string.app_name))
+                .setContent(rview)
+                .setContentIntent(pintent)
+                .setTicker("<--启动无人监控服务-->")
+                .setWhen(System.currentTimeMillis())
+                .setOngoing(true)
+                .setDefaults(Notification.DEFAULT_ALL)
+                .setSmallIcon(R.drawable.icon_shield_green);
+
+        return builder.build();
+    }
+
+    /*------------------------------ EventBus ------------------------------ */
+    /**
+     * 处理错误事件
+     * <br>一般是处理解析客户端软件回应的错误，弹出Toast说明
+     */
+    public void onEventMainThread(ErrorEvent event){
+        switch(event.getType()){
+            case ErrorEvent.ERROR_EVENT_TYPE_PARSE_SUB_PDU:
+                Toast.makeText(this, event.description, Toast.LENGTH_SHORT).show();
+                break;
+            default:
+                break;
+        }
+    }
+
+    /**
+     * 后台服务事件
+     */
+    public void onEventMainThread(ServiceEvent event){
+        Log.i(TAG, "get service event:" + event.getType());
+        switch (event.getType()){
+            // 初始化完成
+            case ServiceEvent.SERVICE_EVENT_INIT_OVER:
+                initialized = true;
+                initError = false;
+                break;
+            // 收到初始化站场列表请求
+            case ServiceEvent.SERVICE_EVENT_INIT_STATION_REQ:
+                if(initialized){
+                    Log.w(TAG, "send station event from service");
+                    StationEvent m1 = new StationEvent(StationEvent.STATION_EVENT_INIT);
+                    m1.msg = 1;
+                    EventBus.getDefault().post(m1);
+                }else if(initError){
+                    EventBus.getDefault().post(new StationEvent(StationEvent.STATION_EVENT_EXCEPTION));
+                }
+                break;
+            // 收到初始化消息列表请求
+            case ServiceEvent.SERVICE_EVENT_INIT_ALARM_REQ:
+                if(initialized){
+                    Log.w(TAG, "send alarm event from service");
+                    EventBus.getDefault().post(new MessageEvent(MessageEvent.ALARM_FLAG_REFRESH));
+                }
+                break;
+            // 请求创建新消息通知
+            case ServiceEvent.SERVICE_EVENT_CREATE_NOTI:
+                AlarmNode alarm = event.getAlarm();
+                popNotification(alarm);
+                break;
+            case ServiceEvent.SERVICE_EVENT_CLEAR_NOTI:
+                NotificationCancelManager.getInstance().clearAllNotification(this);
+                break;
+            // 初始化失败
+            case ServiceEvent.SERVICE_EVENT_INIT_ERROR:
+                initError = true;
+                Toast.makeText(this, "初始化失败", Toast.LENGTH_SHORT).show();
+                break;
+            default:
+                break;
+        }
+    }
+
+    /*------------------------------ EventBus ------------------------------ */
+
+    /**
+     * 弹出一条通知
+     * ##TODO: 关于新报警的通知 有待整理
+     * @param alarm 收到的新的警报消息结点
+     */
+    private void popNotification(AlarmNode alarm){
+        if(alarm != null){
+            try {
+                int notificationID = alarm.getId();
+                InputStream is = this.getAssets().open("light.mp3");
+                File notifSound = new File(WPConstant.SOUND_PATH  + "notification_sound_light");
+                makeSoundFile(notifSound, is);
+
+                //// >>> 创建通知 >>>
+
+                Intent mIntent = new Intent();
+                Bundle bundle = new Bundle();
+                // 保留字段
+                bundle.putInt(AlarmDetailsActivityCompat.ALARM_DETAIL_TEMP, 0);
+                // 报警数据
+                bundle.putSerializable(AlarmDetailsActivityCompat.ALARM_DETAIL_DATA, alarm);
+                mIntent.putExtras(bundle);
+                // 由NotificationClickReciver处理点击事件
+                mIntent.setAction(WPConstant.ALARM_NOTIFICATION_CLICK_ACTION);
+                PendingIntent mPendingIntent = PendingIntent.getBroadcast(
+                        this, notificationID, mIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+                if(alarm.getIsSolved() == (short)0){//未处理
+                    Log.i(TAG, "未处理消息");
+                }
+
+                // 报警通知内容
+                String alarmMessage = getString(R.string.alarm_notification_info1)
+                        + alarm.getDeviceName()
+                        + getString(R.string.alarm_notification_info2);
+
+                NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
+                builder.setContentTitle(getResources().getString(R.string.app_name))
+                        .setContentTitle("新的警报")
+                        .setContentText("-发现监控异常-")
+                        .setContentIntent(mPendingIntent)
+                        .setTicker(alarmMessage)
+                        .setWhen(System.currentTimeMillis())
+                        .setOngoing(false)
+                        .setOnlyAlertOnce(true)
+                        .setAutoCancel(true)
+                        .setSound(Uri.fromFile(notifSound))
+                        .setDefaults(Notification.DEFAULT_LIGHTS | Notification.DEFAULT_VIBRATE)
+                        .setSmallIcon(R.drawable.icon_shield_green);
+
+                //
+                NotificationManager mNotificationManager = (NotificationManager)
+                        getSystemService(Context.NOTIFICATION_SERVICE);
+                // 保存报警通知ID
+                NotificationCancelManager.getInstance().addNewNotification(
+                        notificationID, NotificationCancelManager.TAG_ALARM);
+                // 发出通知
+                Notification notifi = builder.build();
+                mNotificationManager.notify(notificationID, notifi);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    //~~~
+    private void makeSoundFile(File notifSound, InputStream is) {
+        if (!notifSound.exists()) {
+            try {
+                File soundDir = new File(WPConstant.SOUND_PATH);
+                soundDir.mkdirs();
+                notifSound.createNewFile();
+                FileOutputStream fos = new FileOutputStream(notifSound);
+                byte[] data = new byte[1024];
+                int length = 0;
+                while ((length = is.read(data)) != -1) {
+                    fos.write(data, 0, length);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+    /* ------------------- --- --- --- test --- --- --- --- --------------------------------- */
+    /* ------------------ - - - - - - - test - - - - - - - - -------------------------------- */
+    /* ----------------- --- --- --- --- test --- --- --- --- -------------------------------- */
+    private BaseDevice getD(int type){
+        return DeviceFactory.getInstance().createDevice(type);
+    }
+
+    private void testData(){
+        Log.i(TAG, "testData");
+        //--1--
+        StationNode n1 = new StationNode();
+//        n1.setId(1);
+        n1.setServerId("1");
+        n1.setName("AAAAAA");
+        n1.setRemark("fruit");
+        n1.setState(SUConstant.FLAG_STATION_CLOSED);
+        n1.setRecordSum(3);
+        n1.setOnline(true);
+
+        BaseDevice d11 = getD(SUConstant.DEVICE_TYPE_MONITOR);
+        d11.setID("001001");
+        d11.setName("Orange");
+        d11.setIsAvailable(true);
+        d11.setIsAlarming(true);
+        d11.setStationId(n1.getId());
+
+        BaseDevice d12 = getD(SUConstant.DEVICE_TYPE_RADAR);
+        d12.setID("001002");
+        d12.setName("Apple");
+        d12.setIsAlarming(false);
+        d12.setIsAvailable(true);
+        d12.setStationId(n1.getId());
+
+        ArrayList<BaseDevice> device1 = new ArrayList<>();
+        device1.add(d11);
+        device1.add(d12);
+        n1.setDeviceList(device1);
+
+        AlarmNode i11 = new AlarmNode();
+        i11.setIsSolved((short) 0);
+        i11.setDeviceName("Orange");
+        i11.setAlarmDate("2015-07-06 18:40:12");
+        i11.setDeviceId("001001");
+        i11.setContent("ooo");
+        i11.setStationId(n1.getId());
+
+        AlarmNode i12 = new AlarmNode();
+        i12.setIsSolved((short)0);
+        i12.setDeviceName("Apple");
+        i12.setAlarmDate("2015-07-03 08:40:12");
+        i12.setDeviceId("001002");
+        i12.setContent("aaa");
+        i12.setStationId(n1.getId());
+
+        AlarmNode i13 = new AlarmNode();
+        i13.setIsSolved((short) 0);
+        i13.setDeviceName("Apple");
+        i13.setAlarmDate("2015-07-04 06:40:12");
+        i13.setDeviceId("001002");
+        i13.setContent("aaa");
+        i13.setStationId(n1.getId());
+
+        ArrayList<AlarmNode> a1 = new ArrayList<>();
+        a1.add(i11);
+        a1.add(i12);
+        a1.add(i13);
+
+        n1.setAlarmList(a1);
+        n1.setNewAlarm(a1.size());
+
+
+        //--2--
+        StationNode n2 = new StationNode();
+//        n2.setId(2);
+        n2.setServerId("2");
+        n2.setName("BBBBBB");
+        n2.setRemark("tree");
+        n2.setState(SUConstant.FLAG_STATION_ALARM);
+        n2.setRecordSum(7);
+        n2.setOnline(false);
+
+        BaseDevice d21 = getD(SUConstant.DEVICE_TYPE_MONITOR);
+        d21.setID("002001");
+        d21.setName("maple");
+        d21.setIsAvailable(true);
+        d21.setIsAlarming(false);
+        d21.setStationId(n2.getId());
+
+        BaseDevice d22 = getD(SUConstant.DEVICE_TYPE_ENTRANCE);
+        d22.setID("002002");
+        d22.setName("ginkgo");
+        d22.setIsAvailable(false);
+        d22.setIsAlarming(false);
+        d22.setStationId(n2.getId());
+
+        ArrayList<BaseDevice> device2 = new ArrayList<>();
+        device2.add(d21);
+        device2.add(d22);
+        n2.setDeviceList(device2);
+
+        AlarmNode i21 = new AlarmNode();
+        i21.setIsSolved((short) 0);
+        i21.setDeviceName("maple");
+        i21.setAlarmDate("2015-07-02 10:23:12");
+        i21.setDeviceId("002001");
+        i21.setContent("mmm");
+        i21.setStationId(n2.getId());
+
+        AlarmNode i22 = new AlarmNode();
+        i22.setIsSolved((short) 0);
+        i22.setDeviceName("maple");
+        i22.setAlarmDate("2015-07-02 10:12:12");
+        i22.setDeviceId("002001");
+        i22.setContent("mmm");
+        i22.setStationId(n2.getId());
+
+        AlarmNode i23 = new AlarmNode();
+        i23.setIsSolved((short) 0);
+        i23.setDeviceName("ginkgo");
+        i23.setAlarmDate("2015-07-01 12:10:12");
+        i23.setDeviceId("002002");
+        i23.setContent("ggg");
+        i23.setStationId(n2.getId());
+
+        ArrayList<AlarmNode> a2 = new ArrayList<>();
+        a2.add(i21);
+        a2.add(i22);
+        a2.add(i23);
+
+        n2.setAlarmList(a2);
+        n2.setNewAlarm(a2.size());
+
+
+        //--3--
+        StationNode n3 = new StationNode();
+//        n3.setId(3);
+        n3.setServerId("3");
+        n3.setName("CCCCCC");
+        n3.setRemark("Animal");
+        n3.setState(SUConstant.FLAG_STATION_OPENED);
+        n3.setRecordSum(0);
+        n3.setOnline(true);
+
+        BaseDevice d31 = getD(SUConstant.DEVICE_TYPE_ENTRANCE);
+        d31.setID("003001");
+        d31.setName("fox");
+        d31.setIsAlarming(true);
+        d31.setIsAvailable(true);
+        d31.setStationId(n3.getId());
+
+        BaseDevice d32 = getD(SUConstant.DEVICE_TPYE_INFRARED);
+        d32.setID("003002");
+        d32.setName("cat");
+        d32.setIsAlarming(true);
+        d32.setIsAvailable(true);
+        d32.setStationId(n3.getId());
+
+        ArrayList<BaseDevice> device3 = new ArrayList<>();
+        device3.add(d31);
+        device3.add(d32);
+        n3.setDeviceList(device3);
+
+        AlarmNode i31 = new AlarmNode();
+        i31.setIsSolved((short) 0);
+        i31.setDeviceName("fox");
+        i31.setAlarmDate("2015-07-01 10:10:12");
+        i31.setDeviceId("003001");
+        i31.setContent("fff");
+        i31.setStationId(n3.getId());
+
+        AlarmNode i32 = new AlarmNode();
+        i32.setIsSolved((short) 0);
+        i32.setDeviceName("fox");
+        i32.setAlarmDate("2015-07-02 20:10:12");
+        i32.setDeviceId("003001");
+        i32.setContent("fff");
+        i32.setStationId(n3.getId());
+
+        AlarmNode i33 = new AlarmNode();
+        i33.setIsSolved((short) 0);
+        i33.setDeviceName("cat");
+        i33.setAlarmDate("2015-07-07 13:10:12");
+        i33.setDeviceId("003002");
+        i33.setContent("ccc");
+        i33.setStationId(n3.getId());
+
+        AlarmNode i34 = new AlarmNode();
+        i34.setIsSolved((short)0);
+        i34.setDeviceName("cat");
+        i34.setAlarmDate("2015-07-10 23:10:12");
+        i34.setDeviceId("003002");
+        i34.setContent("ccc");
+        i34.setStationId(n3.getId());
+
+        ArrayList<AlarmNode> a3 = new ArrayList<>();
+        a3.add(i31);
+        a3.add(i32);
+        a3.add(i33);
+        a3.add(i34);
+
+        n3.setAlarmList(a3);
+        n3.setNewAlarm(a3.size());
+
+        ArrayList<StationNode> sn = new ArrayList<>();
+        sn.add(n1);
+        sn.add(n2);
+        sn.add(n3);
+        WPApplication.getInstance().setStationList(sn);
+
+        int newSum = 0;
+        for(StationNode n : sn){
+            newSum += n.getNewAlarm();
+        }
+        WPApplication.getInstance().setNewAlarms(newSum);
+        WPApplication.getInstance().rebuildAlarmList();
+
+        new Thread(){
+            @Override
+            public void run(){
+                Log.i(TAG, "run..");
+                initialized = true;
+                try {
+                    Thread.sleep(4000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                StationEvent event = new StationEvent(StationEvent.STATION_EVENT_INIT);
+                event.msg = 1;
+                EventBus.getDefault().post(event);
+                Log.w("Service", "post refresh stations");
+                AlarmMsgManager.getInstance().transmitCenter(AlarmMsgManager.ALARM_MANAGE_INIT, null);
+            }
+        }.start();
+
+    }
+
+}

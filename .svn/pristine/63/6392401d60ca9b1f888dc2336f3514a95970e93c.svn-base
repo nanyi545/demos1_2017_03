@@ -1,0 +1,15 @@
+package com.webcon.sus.eventObjects;
+
+/**
+ * @author m
+ */
+public class CallbackDataEvent extends BaseEvent{
+    public static final int DATA_EVENT_VIDEO = 1;
+    public static final int DATA_EVENT_ALARM = 2;
+    public static final int DATA_EVENT_STATE = 3;
+
+    public CallbackDataEvent(int type){
+        super(type);
+    }
+
+}

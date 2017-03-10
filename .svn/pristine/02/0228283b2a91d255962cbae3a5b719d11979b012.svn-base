@@ -1,0 +1,494 @@
+package com.webcon.sus.utils;
+
+
+import android.util.Log;
+
+import com.webcon.sus.entity.AlarmNode;
+import com.webcon.sus.entity.BaseDevice;
+import com.webcon.sus.entity.DeviceFactory;
+import com.webcon.sus.entity.StationNode;
+import com.webcon.wp.utils.JTools;
+import com.webcon.wp.utils.WPApplication;
+import com.webcon.wp.utils.WPConstant;
+
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+
+/**
+ * 数据的打包和解析
+ * <p>包括：和系统服务软件的连接，和数据库的连接</p>
+ * @author m
+ */
+public class DataParseUtils {
+    private static final String TAG = "DataParseUtils";
+
+    /* ---------------------------------------------------------- */
+    /**
+     * 初始化数据的解析，主要用于拆分头部
+     * | result(2) | pmid(4) | subPdu(2) | ...
+     *
+     */
+    public static boolean parseInit(byte[] data, StationNode station){
+        if(data.length == 0){
+            throw new NullPointerException();
+        }else{
+            for(byte b : data){
+                Log.i(TAG, "byte data:" + b);
+            }
+        }
+        int offset = 0;
+        // 通信层结果
+        short result = JTools.Bytes2ToShort(data, 0);
+        Log.w(TAG, "result: " + result);
+        if(result != 0){
+            //TODO: 错误处理
+            Log.e(TAG, "result error!");
+            return false;
+        }
+        offset += 2;
+        //保留字段
+        offset += 4;
+        //获取子PDU
+        short subPdu = JTools.Bytes2ToShort(data, offset);
+        offset += 2;
+        Log.i(TAG, "subPdu:" + subPdu);
+        // 子PDU数据
+        byte[] subData = new byte[data.length - offset];
+        System.arraycopy(data, offset, subData, 0, subData.length);
+        // 判断子PDU
+        switch (subPdu){
+            // 站场列表
+            case SUConstant.SUB_DB_RSP_STATIONS:
+                parseInitStations(subData);
+                break;
+            // 设备列表
+            case SUConstant.SUB_RSP_GET_DEVICES:
+                parseInitDevices(station, subData);
+                break;
+            // 报警消息列表
+            case SUConstant.SUB_RSP_GET_ALARMS:
+                parseInitAlarms(station, subData);
+                break;
+            default:
+                Log.e(TAG, "no matched sub Pdu");
+                return false;
+        }
+        return true;
+    }
+
+    /**
+     * 解析初始站场信息
+     * <p> | result(2) | num(4) | for(循环) | </p>
+     * <p> | parentId(4) (=0时，取name作为用户昵称) | grantId(4) | name(?) | type(4) | </p>
+     * @param data 子Pdu数据（不包括类型）
+     */
+    public static void parseInitStations(byte[] data){
+        ArrayList<StationNode> list = new ArrayList<>();
+        /*
+         * 生成初始station列表，
+         * >>循环解析出每个站场信息
+         * 最后保存到WPApplication中
+         */
+        int offset = 0;
+        //获取返回值
+        short result = JTools.Bytes2ToShort(data, offset);
+        offset += 2;
+        if(result != 0){
+            //TODO: 错误处理...
+            Log.e(TAG, "查询数据库错误！");
+            return;
+        }
+
+        //获取战场数量
+        int len = JTools.Bytes4ToInt(data, offset);
+        offset += 4;
+        Log.i(TAG, "station len:" + len);
+        if(len < 0){
+            //=-1 用户不在组织结构
+            Log.e(TAG, "站场数量错误!");
+            return;
+        }else{
+            int pre = offset;
+            int rear = offset;
+
+            int parentId;
+            int stationId;
+            int stationType;
+            String nodeName = null;
+            //循环解析站场结点
+            for(int i = 0; i < len; i++){
+                // 获取父节点id
+                parentId = JTools.Bytes4ToInt(data, offset);
+                offset += 4;
+
+                // 获取Id
+                stationId = JTools.Bytes4ToInt(data, offset);
+                offset += 4;
+
+                // 获取节点名
+                rear = offset;
+                pre = rear;
+                while(data[rear] != '\0' && rear < data.length){
+                    rear++;
+                }
+                try {
+                    nodeName = new String(data, pre, rear - pre, WPConstant.STRING_UTF8);
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+                offset = rear + 1;
+
+                // 获取类型
+                stationType = JTools.Bytes4ToInt(data, offset);
+                offset += 4;
+
+                if(parentId == 0 && nodeName != null){
+                    // 设置用户名
+                    WPApplication.getInstance().getCurrentUser().setUserName(nodeName);
+                    Log.i(TAG, "User NickName:" + nodeName);
+                }else if(stationType == SUConstant.DB_ORG_TYPE_STATION && nodeName != null){
+                    // 初始化结点
+                    StationNode node = new StationNode();
+                    node.setId(stationId);
+                    node.setName(nodeName);
+                    node.setState(SUConstant.STATION_STATE_CLOSED);
+                    list.add(node);
+                }
+            }
+        }
+        WPApplication.getInstance().setStationList(list);
+    }
+
+    /**
+     * 解析初始设备信息
+     * @param data 子Pdu数据（不包括类型）
+     * FIXME: 需要站场状态：如布防状态、可用状态等。
+     */
+    public static void parseInitDevices(StationNode station, byte[] data){
+        ArrayList<BaseDevice> list = new ArrayList<>();
+        /*
+         * 在相应的站场结点下，生成设备列表
+         * >>循环解析出每个设备信息
+         * 最后返回设备信息列表，用于保存到stationNode中
+         */
+        int pre = 0;
+        int rear = 0;
+        short sum = JTools.Bytes2ToShort(data, rear);
+        rear += 2;
+        for(int i = 0; i < sum; i++){
+            try{
+                //获取类别//FIXME: 忘记是什么类型的了，先假定是String的好了
+                pre = rear;
+                while(data[rear] != '\0'){
+                    rear++;
+                }
+                String type = new String(data, pre, rear - pre, WPConstant.STRING_UTF8);
+                rear++;
+
+                //获取昵称
+                pre = rear;
+                while(data[rear] != '\0'){
+                    rear++;
+                }
+                String name = new String(data, pre, rear - pre, WPConstant.STRING_UTF8);
+                rear++;
+
+                //创建设备
+                BaseDevice device = DeviceFactory.getInstance().createDevice(Integer.parseInt(type));
+                device.setName(name);
+                device.setIsAvailable(true);
+                list.add(device);
+
+                //添加到全局映射表
+                WPApplication.getInstance().addDeviceReflect(name, station.getId());
+            } catch (UnsupportedEncodingException e){
+                e.printStackTrace();
+            }
+        }
+        station.setDeviceList(list);
+    }
+
+    /**
+     * 解析初始报警信息
+     * @param data 子Pdu数据（不包括类型）
+     */
+    public static void parseInitAlarms(StationNode station, byte[] data){
+        ArrayList<AlarmNode> list = new ArrayList<>();
+        int newAlarms = 0;
+        /*
+         * 解析一个站场下的全部设备的全部未报警消息
+         * >>循环解析出每个报警消息
+         * 最后返回报警消息列表，用于保存到stationNode中
+         */
+        int pre = 0;
+        int rear = 0;
+        int step = 0;
+        short isSolved = 0; //0表示未处理 1表示已处理
+        short sum = JTools.Bytes2ToShort(data, rear);
+        rear += 2;
+        for(int i = 0; i < sum; i++){
+            try{
+                //创建报警消息
+                AlarmNode alarm = new AlarmNode();
+                step = 0;
+                while(step >= 0 && rear < data.length){
+                    //获取字符串
+                    pre = rear;
+                    while(data[rear] != '\0' && rear < data.length){
+                        rear++;
+                    }
+                    String str = new String(data, pre, rear - pre, WPConstant.STRING_UTF8);
+                    rear++;
+
+                    //处理结果
+                    switch(step){
+                        //设置报警设备名称，站场id
+                        case 0:
+                            alarm.setDeviceName(str);
+                            alarm.setStationId(station.getId());
+                            step++;
+                            break;
+                        //设置报警时间
+                        case 1:
+                            alarm.setAlarmDate(str);
+                            step++;
+                            break;
+                        //设置报警内容
+                        case 2:
+                            alarm.setContent(str);
+                            step++;
+                            break;
+                        //设置处理状态
+                        case 3:
+                            isSolved = Short.valueOf(str);
+                            if(isSolved == 0){
+                                //注意未处理报警消息的累加
+                                newAlarms++;
+                                step = -1;
+                            }else if(isSolved == 1){
+                                step++;
+                            }else{
+                                Log.e(TAG, "解析报警消息错误: 无法识别的报警状态！");
+                                return;
+                            }
+                            alarm.setIsSolved(isSolved);
+                            break;
+                        //设置处理者
+                        case 4:
+                            alarm.setSolver(str);
+                            step++;
+                            break;
+                        //设置处理时间 ??TODO: 格式有待统一
+                        case 5:
+                            alarm.setSolvedDateStr(str);
+                            step = -1;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                list.add(alarm);
+            } catch (UnsupportedEncodingException e){
+                e.printStackTrace();
+            }
+        }
+
+        station.setNewAlarm(newAlarms);
+        station.setAlarmList(list);
+    }
+
+    /* ---------------------------------------------------------- */
+
+    /**
+     * 解析控制请求回调---系统服务软件
+     * TODO: 错误处理应该集中在这里处理，返回值表示成功与否，不再做处理
+     * @param data 由sendDataToWinSys2返回的回应数据
+     */
+    public static int parsePtzRespond(byte[] data){
+        int ret = -1;
+        if(data == null || data.length == 0){
+            return -100;
+        }
+        int offset = 0;
+        // 通信层结果
+        short tcpResult = JTools.Bytes2ToShort(data, offset);
+        offset += 2;
+        if(tcpResult != 0){
+            //TODO: 发送错误处理
+            return -200;
+        }
+        // 跳过保留字段
+        offset += 4;
+        // 子PDU类型
+        short pdu = JTools.Bytes2ToShort(data, offset);
+        offset += 2;
+
+        if(pdu == SUConstant.SUB_RSP_PROCESS_ALARM){
+            // TODO: pdu文档存在问题，大概需要特别处理，注意一下。。。
+        }else{
+            //判断处理子PDU
+            //跳过保留字段
+            offset += 4;
+            ret = JTools.Bytes4ToInt(data, offset);
+            if(ret != 0){
+                //...TODO: 错误处理
+                CommonUtils.sendErrorEvent(pdu, ret);
+            }
+        }
+        return ret;
+    }
+
+    /* ---------------------------------------------------------- */
+
+    /**
+     * 创建向数据库请求初始化站场列表头:
+     * 结构：
+     * | pmid(4) | subType(2) | userId(char ..) |
+     */
+    public static byte[] createRequestDBHead(){
+        byte[] req = null;
+        int offset = 0;
+        byte[] head = new byte[4 + 2];
+        // pmid 保留
+        JTools.IntToBytes4(0, head, 0);
+        offset += 4;
+        // 子pdu类型
+        JTools.ShortToBytes2(SUConstant.SUB_DB_REQUEST_STATIONS, head, offset);
+        offset += 2;
+
+        // 用户Id
+        Log.i(TAG, "userId:" + WPApplication.getInstance().getCurrentUser().getUserId());
+        byte[] userId = getDeviceIdNet(WPApplication.getInstance().getCurrentUser().getUserId(), true);
+        req = new byte[head.length + userId.length];
+        System.arraycopy(head, 0, req, 0, head.length);
+        System.arraycopy(userId, 0, req, offset, userId.length);
+
+        return req;
+    }
+
+    /**
+     * 创建请求：主要是与服务软件的连接
+     * PDU_OpROUTER0_REQ_FromClient: 12
+     * | pmid(4) | serverId(4) | subPdu(2) | userData(4) | ... |
+     */
+    public static byte[] createRequestHead(int type, int stationId, String deviceId, int extra){
+        byte[] req = null;
+        int offset = 0;
+        byte[] head = new byte[4 + 4 + 2 + 4];
+        JTools.IntToBytes4(0, head, 0);
+        offset += 4;
+        JTools.IntToBytes4(stationId, head, offset);
+        offset += 4;
+        JTools.ShortToBytes2((short)type, head, offset);
+        offset += 2;
+        JTools.IntToBytes4(0, head, offset);
+        offset += 4;
+
+        switch (type){
+            // 请求打开喊话
+            case SUConstant.SUB_REQUEST_SPEAKER:
+                req = head;
+                break;
+            //请求设备列表
+            case SUConstant.SUB_REQUEST_GET_DEVICES:
+                req = head;
+                break;
+            //请求报警列表
+            case SUConstant.SUB_REQUEST_GET_ALARMS:
+                req = head;
+                break;
+            //报警消息处理请求
+            case SUConstant.SUB_REQUEST_PROCESS_ALARM:
+                //TODO:---应该有额外的数据。。。
+                req = head;
+                break;
+            //请求预览视频
+            case SUConstant.SUB_REQUEST_START_PREVIEW:
+                byte[] p1 = getDeviceIdNet(deviceId, false);
+                req = new byte[head.length + p1.length];
+                System.arraycopy(head, 0, req, 0, head.length);
+                System.arraycopy(p1, 0, req, offset, p1.length);
+                break;
+            //请求停止预览视频
+            case SUConstant.SUB_REQUEST_STOP_PREVIEW:
+                //无... TODO: 暂时不在子PDU中存放数据，故要退掉4字节
+                req = new byte[head.length - 4];
+                System.arraycopy(head, 0, req, 0, req.length);
+                break;
+            //云台控制请求
+            case SUConstant.SUB_REQUEST_PTZ:
+                byte[] p2 = getDeviceIdNet(deviceId, true);
+                int[] a = CommonUtils.divideIntData(extra);
+                req = new byte[head.length + p2.length + 4 + 4];
+                System.arraycopy(head, 0, req, 0, head.length);
+                System.arraycopy(p2, 0, req, offset, p2.length);
+                offset += p2.length;
+                JTools.IntToBytes4(a[0], req, offset);
+                offset += 4;
+                JTools.IntToBytes4(a[1], req, offset);
+                break;
+            //开启布防请求
+            case SUConstant.SUB_REQUEST_OPEN_DEFENCE:
+                req = head;
+                break;
+            //关闭布防请求
+            case SUConstant.SUB_REQUEST_STOP_DEFENCE:
+                //...无
+                req = head;
+                break;
+            //播放报警语音
+            case SUConstant.SUB_REQUEST_ALARM_PLAYER:
+                req = new byte[head.length + 4];
+                System.arraycopy(head, 0, req, 0, head.length);
+                JTools.IntToBytes4(extra, req, offset);
+                break;
+            //修改操作..
+            case SUConstant.SUB_REQUEST_MODIFY:
+                //TODO：未定。。。
+                //
+                break;
+            default:
+                break;
+        }
+        return req;
+    }
+
+    /**
+     * 创建对回调数据的应用 ---> 系统服务软件
+     */
+    public static byte[] createRspToWin(short socket1, short socket2){
+        byte[] rsp = new byte[8];
+        int offset = 0;
+        // 1
+        JTools.ShortToBytes2(socket1, rsp, offset);
+        offset += 2;
+        // 2
+        JTools.ShortToBytes2(socket2, rsp, offset);
+        offset += 2;
+        // 3
+        JTools.ShortToBytes2(SUConstant.CALLBACK_SUB_PDU_RSP_WIN, rsp, offset);
+        offset += 2;
+        // 4 TODO: 这个result直接等于0 可以么？
+        JTools.ShortToBytes2((short)0, rsp, offset);
+        return rsp;
+    }
+
+    private static byte[] getDeviceIdNet(String deviceId, boolean hasTail){
+        byte[] ret = null;
+        try {
+            if(hasTail){
+                ret = (deviceId + "\0").getBytes(WPConstant.STRING_UTF8);
+            }else{
+                ret = deviceId.getBytes(WPConstant.STRING_UTF8);
+        }
+    } catch (UnsupportedEncodingException e) {
+        e.printStackTrace();
+        }
+        return ret;
+    }
+
+
+    /* ---------------------------------------------------------- */
+
+
+}

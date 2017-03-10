@@ -1,0 +1,140 @@
+package com.webcon.sus.bdpush;
+
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
+import android.os.Bundle;
+
+import com.baidu.android.pushservice.CustomPushNotificationBuilder;
+import com.baidu.android.pushservice.PushConstants;
+import com.baidu.android.pushservice.PushManager;
+import com.webcon.wp.utils.WPConstant;
+
+import java.util.List;
+
+/**
+ * 百度云推送的工具类
+ * 
+ * @author Vieboo
+ * 
+ */
+public class PushUtils {
+	private static SharedPreferences mSP;
+
+	/**
+	 * 绑定和初始化Push服务(从manifest文件meta中获取api_key的值)
+	 */
+	public static void bindPushServer(Context context) {
+		PushManager.startWork(context, PushConstants.LOGIN_TYPE_API_KEY,
+				getMetaValueFromManifest(context, "api_key"));
+	}
+
+	/**
+	 * 恢复本应用Push服务
+	 */
+	public static void resumePushServer(Context context) {
+		PushManager.resumeWork(context);
+	}
+
+	/**
+	 * 停止Push服务
+	 */
+	public static void stopPushServer(Context context) {
+		PushManager.stopWork(context);
+//		//不应该在这里写的
+//		PushUtils.setBind(context, false);
+	}
+
+	/**
+	 * 查询Push服务是否被停止
+	 */
+	public static boolean isPushEnabled(Context context) {
+		return PushManager.isPushEnabled(context);
+	}
+
+	/**
+	 * 设置Tag
+	 */
+	public static void pushSetTags(Context context, List<String> tags) {
+		PushManager.setTags(context, tags);
+	}
+
+	/**
+	 * 删除Tag
+	 */
+	public static void pushDeleteTags(Context context, List<String> tags) {
+		PushManager.delTags(context, tags);
+	}
+
+	/**
+	 * 添加自定义通知
+	 */
+	public static void addCustomNotification(Context context, int id,
+			CustomPushNotificationBuilder cpnb) {
+		PushManager.setNotificationBuilder(context, id, cpnb);
+	}
+
+	/**
+	 * 列举客户端设置的所有tag 通过com.baidu.android.pushservice.action.RECEIVE
+	 * Intent发送给客户端receiver
+	 * ，通过intent.getStringArrayListExtra(PushConstants.EXTRA_TAGS_LIST)
+	 * 包含返回标签列表，返回的列表是一个ArrayList<List>。
+	 */
+	public static void pushListTags(Context context) {
+		PushManager.listTags(context);
+	}
+
+	// 用share preference来实现是否绑定的开关。在ionBind且成功时设置true，unBind且成功时设置false
+	public static boolean hasBind(Context context) {
+		if (mSP == null) {
+			mSP = context.getSharedPreferences(WPConstant.WP_SETTING, 0);
+		}
+		String flag = mSP.getString("bind_flag", "");
+		if ("ok".equalsIgnoreCase(flag)) {
+			return true;
+		}
+		return false;
+	}
+
+	public static void setBind(Context context, boolean flag) {
+		String flagStr = "not";
+		if (flag) {
+			flagStr = "ok";
+		}
+		if (mSP == null) {
+			mSP = context.getSharedPreferences(WPConstant.WP_SETTING, 0);
+		}
+		Editor editor = mSP.edit();
+		editor.putString("bind_flag", flagStr);
+		editor.commit();
+	}
+
+	/**
+	 * 从manifest文件中读取数据
+	 */
+	public static String getMetaValueFromManifest(Context context,
+			String metaKey) {
+		Bundle metaData = null;
+		String apiKey = null;
+		if (context == null || metaKey == null) {
+			return null;
+		}
+		try {
+			ApplicationInfo ai = context.getPackageManager()
+					.getApplicationInfo(context.getPackageName(),
+							PackageManager.GET_META_DATA);
+			if (null != ai) {
+				metaData = ai.metaData;
+			}
+			if (null != metaData) {
+				apiKey = metaData.getString(metaKey);
+			}
+		} catch (NameNotFoundException e) {
+
+		}
+		return apiKey;
+	}
+}

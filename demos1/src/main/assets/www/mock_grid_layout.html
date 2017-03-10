@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/html">
+	<head lang="en">
+	    <meta charset="UTF-8">
+	    <title>mock_grid_layout</title>
+		<style>
+			*{
+				padding:0;
+				margin:0;
+			}
+
+			div.container{
+				width:550px;
+				margin:0 auto;
+			}
+
+			div.header{
+				border:1px solid teal;
+				overflow: auto;
+			}
+			div.header a{
+				width:36px;
+				height:36px;
+				float:right;
+				margin:12px
+			}
+			a.a1{
+				background: pink;
+			}
+			a.a2{
+				background: salmon;
+			}
+
+			ul{
+				list-style:none;
+			}
+
+			ul li{
+				height:auto;
+				width:164px;
+				border:1px solid red;
+				float:left;
+				margin:8px;
+				position:relative;
+			}
+
+			a.img_a_large{
+			}
+
+			a.img_a_small{
+				width:41px;
+				height:41px;
+				display:inline-block;
+				float:left;
+				/**  if its child is larger than the parent, add below code to clip the child to the size of the parent element  **/
+				overflow:hidden;
+			}
+
+
+			a img.large{
+				width:164px;
+				height:164px;
+			}
+			a img.small{
+				width:41px;
+				height:41px;
+			}
+
+
+			div.personFooter{
+				background:gray;
+				text-align:center;
+			}
+
+		</style>
+
+		<script src="http://libs.baidu.com/jquery/1.9.1/jquery.js">
+		</script>
+
+		<script type="text/javascript">
+
+			function test(state){
+				console.log("---------"+state);
+			}
+
+			var currentState=1;  // 1 --> small   ,    2 --> large
+
+			function changeState(state){
+				if ((currentState==2)&& (state==1)){
+					currentState =state;
+					console.log("---small---"+currentState);
+					$('div.personInfo a.img_a').removeClass('img_a_large').addClass('img_a_small');
+					$('img.img_img').removeClass('large').addClass('small');
+					return;
+				}
+				if ((currentState==1)&& (state==2)){
+					currentState =state;
+					console.log("---large---"+currentState);
+					$('div.personInfo a.img_a').removeClass('img_a_small').addClass('img_a_large');
+					$('img.img_img').removeClass('small').addClass('large');
+					return;
+				}
+
+			}
+
+
+		</script>
+
+	</head>
+	<body>
+
+	<div class='container'>
+		<div class="header">
+			<a class="a1" href="javascript:changeState(1)"></a>
+			<a class="a2" href="javascript:changeState(2)"></a>
+		</div>
+
+
+		<ul>
+			<li>
+				<div class="personInfo">
+					<a class="img_a_large img_a">
+						<img class="large img_img" src="images/eg_bulbon.gif"/>
+					</a>
+
+					<a class="text_a" href="http://www.so.com">
+						河南安阳
+					</a>
+
+					<div>
+						得得得
+					</div>
+
+					<div>
+						去过100次
+					</div>
+
+				</div>
+
+				<div class="personFooter">
+					haha
+				</div>
+
+			</li>
+
+			<li>
+
+				<div class="personInfo">
+					<a class="img_a_large img_a">
+						<img class="large img_img" src="images/eg_bulboff.gif"/>
+					</a>
+					<a class="text_a" href="http://www.so.com">
+						西安
+					</a>
+
+					<div>
+						啊动阀
+					</div>
+
+					<div>
+						去过10次发射点发射点发射点发生大的发射点发射点发射点发射点
+					</div>
+
+				</div>
+
+				<div class="personFooter">
+					你妹
+				</div>
+
+			</li>
+
+			<li>
+				<div class="personInfo">
+					<a class="img_a_large img_a">
+						<img class="large img_img" src="images/eg_bulboff.gif"/>
+					</a>
+					<a class="text_a" href="http://www.so.com">
+						西安
+					</a>
+
+					<div>
+						啊动阀
+					</div>
+
+					<div>
+						去过10次发射点发射点发射点发生大的发射点发射点发射点发射点
+					</div>
+
+				</div>
+
+				<div class="personFooter">
+					你妹
+				</div>
+
+			</li>
+
+			<li>
+				<div class="personInfo">
+					<a class="img_a_large img_a">
+						<img class="large img_img" src="images/eg_bulboff.gif"/>
+					</a>
+					<a class="text_a" href="http://www.so.com">
+						西安
+					</a>
+
+					<div>
+						啊动阀
+					</div>
+
+					<div>
+						名古屋
+					</div>
+
+				</div>
+
+				<div class="personFooter">
+					你妹
+				</div>
+
+			</li>
+
+			<li>
+				<div class="personInfo">
+					<a class="img_a_large img_a">
+						<img class="large img_img" src="images/eg_bulboff.gif"/>
+					</a>
+					<a class="text_a" href="http://www.so.com">
+						西安
+					</a>
+
+					<div>
+						啊动阀
+					</div>
+
+					<div>
+						去过10次发射点发射点发射点发生大的发射点发射点发射点发射点
+					</div>
+
+				</div>
+
+				<div class="personFooter">
+					你妹
+				</div>
+
+			</li>
+
+
+		</ul>
+
+
+
+	</div>
+
+
+
+	</body>
+
+</html>

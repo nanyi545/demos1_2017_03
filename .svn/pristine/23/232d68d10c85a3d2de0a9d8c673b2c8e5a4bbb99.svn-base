@@ -1,0 +1,21 @@
+package com.webcon.sus.utils;
+
+import com.webcon.wp.utils.WPApplication;
+
+import java.text.MessageFormat;
+
+/**
+ * @author m
+ */
+public class CommonUtils {
+    public static String ORIGINAL_ALRAM = "！{0}条警报";
+
+    public static String placeHolderSwitch(int num){
+        return MessageFormat.format(ORIGINAL_ALRAM, num);
+    }
+
+    public static int getStamp(){
+        return ++WPApplication.getInstance().alarmSeqSeed;
+    }
+
+}

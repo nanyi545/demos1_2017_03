@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="75dp"
+    android:layout_height="75dp"
+    android:background="@color/Gray400"
+    xmlns:custom="http://schemas.android.com/apk/res-auto">
+
+
+    <test1.nh.com.demos1.customView.LoadView
+        custom:loadingBackground="@drawable/star2"
+        custom:loadingImage="@drawable/star1"
+        custom:loadingDirection="vertical"
+        android:id="@+id/loadview"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_alignParentRight="true" />
+
+
+
+</FrameLayout>

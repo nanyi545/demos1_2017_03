@@ -1,0 +1,27 @@
+package com.webcon.sus.utils;
+
+/**
+ * @author m
+ */
+public class AlarmMsgManager {
+
+    private static AlarmMsgManager my;
+
+    private AlarmMsgManager(){
+    }
+
+    public static AlarmMsgManager getInstance(){
+        if(my == null){
+            synchronized (AlarmMsgManager.class){
+                if(my == null){
+                    my = new AlarmMsgManager();
+                }
+            }
+        }
+        return my;
+    }
+
+    //------------------------------------
+
+
+}

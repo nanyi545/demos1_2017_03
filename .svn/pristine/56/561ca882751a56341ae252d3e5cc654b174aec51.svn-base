@@ -1,0 +1,173 @@
+package com.webcon.sus.utils;
+
+
+import com.webcon.sus.demo.R;
+
+public class SUConstant {
+
+    //DATA LENGTH---单位：字节Byte----
+    public static final int LEN_CHAR        = 1;
+    public static final int LEN_UN_INT      = 4;
+    public static final int LEN_UN_LONG     = 8;
+
+    //Station State Color:
+    public static final int COLOR_STATE_CLOSED      = 0xFF9E9E9E;    //R.color.Grey_;
+    public static final int COLOR_STATE_OPENED      = 0xFF00BCD4;    //R.color.Cyan_;
+    public static final int COLOR_ALARM_RED         = 0xFFE51C23;       //R.color.Red_;
+    public static final int COLOR_HEAD_BLUE_SEC     = 0xFF738FFE;   //R.color.Blue400
+    public static final int COLOR_HEAD_RED_SEC      = 0xFFE51C23;   //R.color.Red500
+    public static final int COLOR_HEAD_GREY_SEC     = 0xFFC1CDC1;   //honeydrew3
+    public static final int COLOR_HEAD_YELLOW_SEC   = 0xFFFFEE58;   //R.color.Yellow400
+    public static final int COLOR_ALARM_RED_FADE    = 0x66ad2926;
+    public static final int COLOAR_ALARM_CLICKED    = 0xFF673AB3;  //R.color.Purple300;
+    public static final int COLOAR_STATE_ONLINE     = 0xFF259B24;   //R.color.Green_
+    public static final int STATION_STATE_CLOSED    = R.drawable.icon_c_grey;
+    public static final int STATION_STATE_OPENED    = R.drawable.icon_c_green;
+    public static final int STATION_STATE_NORMAL    = R.drawable.icon_c_blue;
+    public static final int STATION_STATE_ALARM_1   = R.drawable.icon_c_yellow;
+    public static final int STATION_STATE_ALARM_2   = R.drawable.icon_c_orange;
+    public static final int STATION_STATE_ALARM_3   = R.drawable.icon_c_red;
+
+    public static final int DEVICE_LOGO_MONITOR     = R.drawable.icon_monitor;
+    public static final int DEVICE_LOGO_SENSOR      = R.drawable.icon_chip;
+    public static final int DEVICE_CHECK_WEBC       = R.drawable.icon_webc;
+
+
+    //站场状态
+    public static final int FLAG_STATION_CLOSED     = 0x100;
+    public static final int FLAG_STATION_OPENED     = 0x101;
+    public static final int FLAG_STATION_ALARM      = 0x102;
+
+
+    //设备类型
+    public static final int DEVICE_TYPE_MONITOR     = 0x201;
+    public static final int DEVICE_TYPE_RADAR       = 0x202;
+    public static final int DEVICE_TPYE_INFRARED    = 0x203;
+    public static final int DEVICE_TYPE_ENTRANCE    = 0x204;
+    public static final int DEVICE_TYPE_OTHER       = 0x209;
+
+
+    //-------CL----
+    public static final int NET_CL_INIT             = 0x300;
+    public static final int NET_CL_LOGIN            = 0x301;
+    public static final int NET_CL_GET_GID          = 0x302;
+    public static final int NET_CL_GET_CORP_ID      = 0x303;
+    public static final int NET_CL_GET_DATA         = 0x304;
+    public static final int NET_CL_SEND_DATA        = 0x305;
+    public static final int NET_CL_CREATE_P2P       = 0x306;
+    public static final int NET_CL_UINIT            = 0x30F;
+
+    //-------- ---
+    public static final int KEYBACK_TYPE_CLEAR      = 0x0;
+    public static final int KEYBACK_TYPE_STATIONS   = 0x01;
+    public static final int KEYBACK_TYPE_ALARMS     = 0x10;
+
+
+
+    /*===============================================================================*/
+    /*
+     *通讯层TCP/UDP Header定义
+     * unsigned int len		    数据包长度（udp包可忽略该项）
+     * unsigned short type		数据类别（预留）
+     * unsigned int verify		验证码= ( len + type + version ) - PDUType
+     * unsigned short version   版本控制= 0X0101
+     * unsigned short PDUType 	PDU类别
+     */
+    /** 返回：成功 */
+    public static final int RET_FAIL        = -1;
+    /** 返回：失败 */
+    public static final int RET_SUCCESS     = 0;
+
+    /* 子PDU   */
+    /** 视频预览请求 */
+    public static final short SUB_REQUEST_START_PREVIEW = 10001;
+    /** 视频数据接收 */
+    public static final short SBU_RECEIVE_PREVIEW_DATA  = 10003;
+    /** 停止预览请求 */
+    public static final short SUB_REQUEST_STOP_PREVIEW  = 10005;
+    /** 云台控制请求 */
+    public static final short SUB_REQUEST_PTZ           = 10007;
+    /** 开启布防请求 */
+    public static final short SUB_REQUEST_OPEN_DEFENCE  = 10009;
+    /** 停止布防请求 */
+    public static final short SUB_REQUEST_STOP_DEFENCE  = 10011;
+    /** 播放报警语音请求 */
+    public static final short SUB_REQUEST_ALARM_PLAYER  = 10013;
+    /** 播放喊话请求 */
+    public static final short SUB_REQUEST_SPEAKER       = 10015;
+    /** 获取站场请求 */
+    public static final short SUB_REQUEST_STATION       = 10017;
+    /** 修改站场信息请求 */
+    public static final short SUB_REQUEST_MODIFY        = 10019;
+
+    /*  >返回 =0成功，=-1失败 */
+    /** 视频预览请求结果 */
+    public static final short SUB_RET_START_PREVIEW     = 10002;
+    /** 停止预览请求结果 */
+    public static final short SUB_RET_STOP_PREVIEW      = 10006;
+    /** 云台控制请求结果 */
+    public static final short SUB_RET_PTZ               = 10008;
+    /** 开启布防请求结果 */
+    public static final short SUB_RET_OPEN_DEFENCE      = 10010;
+    /** 停止布防请求结果 */
+    public static final short SUB_RET_STOP_DEFENCE      = 10012;
+    /** 播放报警语音请求结果 */
+    public static final short SUB_RET_ALARM_PLAYER      = 10014;
+    /** 获取站场请求结果 */
+    public static final short SUB_RET_STATION           = 10018;
+    /** 修改站场信息请求结果 */
+    public static final short SUB_RET_MODIFY            = 10020;
+
+
+    //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    /* 云台控制码 */
+    /** 上移 */
+    public static final int PTZ_UP      = 1;
+    /** 下移 */
+    public static final int PTZ_DOWN    = 2;
+    /** 左移 */
+    public static final int PTZ_LEFT    = 3;
+    /** 右移 */
+    public static final int PTZ_RIGHT   = 4;
+    /** 对焦减少 */
+    public static final int PTZ_FOCUS_SHARPNESS_DECREASE    = 5;
+    /** 对焦增大 */
+    public static final int PTZ_FOCUS_SHARPNESS_INCREASE    = 6;
+    /** 聚焦减少 */
+    public static final int PTZ_FOCUS_ZOOM_DECREASE         = 7;
+    /** 聚焦增大 */
+    public static final int PTZ_FOCUS_ZOOM_INCREASE         = 8;
+    /** 光圈缩小 */
+    public static final int PTZ_APERTURE_SHRINK             = 9;
+    /** 光圈增大 */
+    public static final int PTZ_APERTURE_EXPAND             = 10;
+
+    /** 状态：停止 */
+    public static final int PTZ_STATE_STAY      = 0;
+    /** 状态：运动 */
+    public static final int PTZ_STATE_MOVING    = 1;
+
+    //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    /* 数据库返回结果定义 */
+    /** 成功 */
+    public static final int DB_RET_SUCCESS              = 0;
+    /** PDU参数不合法 */
+    public static final int DB_RET_ILLEGAL_PARAMS       = -4990;
+    /** 数据处理错误 */
+    public static final int DB_RET_ERROR_PROGRESS       = -4995;
+    /** 失去与数据库的连接 */
+    public static final int DB_RET_LOSS_CONN            = -4999;
+    /** 数据处理繁忙 */
+    public static final int DB_RET_BUSY_RESPOND         = -4998;
+    /** 用户ID不存在 */
+    public static final int DB_RET_ERROR_USER_ID        = -4003;
+    /** 用户密码错误 */
+    public static final int DB_RET_ERROR_USER_PW        = -4004;
+
+
+    /* 用户类型 */
+    public static final int USER_TYPE_PHONE             = 1;
+
+
+
+}

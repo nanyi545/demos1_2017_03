@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    tools:context="test1.nh.com.demos1.activities.CustomViewActivity2">
+
+
+    <test1.nh.com.demos1.customView.TestMeasureView
+        android:id="@+id/test1"
+        android:layout_width="wrap_content"
+        android:layout_height="120dp"
+        android:background="@color/Teal500"
+        />
+
+    <Button
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="startLoad"
+        android:onClick="startLoad"
+        />
+
+    <test1.nh.com.demos1.customView.PlayAreaView
+        android:id="@+id/test2"
+        android:layout_below="@id/test1"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:background="@color/Teal500"
+        />
+
+
+    <test1.nh.com.demos1.customView.LoadView
+        android:layout_below="@+id/test2"
+        android:background="@color/Red200"
+        custom:loadingBackground="@drawable/star2"
+        custom:loadingImage="@drawable/star1"
+        android:id="@+id/loadview_compare"
+        android:layout_width="75dp"
+        android:layout_height="75dp"/>
+
+
+
+    <test1.nh.com.demos1.customView.StageView
+        android:layout_below="@+id/loadview_compare"
+        custom:selected="true"
+        custom:upperText="hehe"
+        custom:lowerText="nima"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"></test1.nh.com.demos1.customView.StageView>
+
+
+
+
+
+</RelativeLayout>

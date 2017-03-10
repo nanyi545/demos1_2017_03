@@ -1,0 +1,268 @@
+package com.webcon.wp.utils;
+
+import android.app.Application;
+
+import com.baidu.frontia.FrontiaApplication;
+import com.webcon.sus.entity.Equipment;
+import com.webcon.sus.entity.MonitorUser;
+import com.webcon.sus.entity.StationNode;
+import com.webcon.sus.entity.TreeElement;
+import com.webcon.sus.handler.CrashHandler;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+
+/**
+ * 全局变量和静态变量
+ * 
+ * @author Vieboo
+ * 
+ */
+public class WPApplication extends Application {
+    public static final boolean DEBUG = true;
+
+    private static WPApplication wpApplication;
+
+	// 监控用户Id集合
+	public static List<MonitorUser> monitorUserList;
+
+	// 当前网络是否为移动网络
+	public static boolean phoneNet;
+
+	// 返回按键重写标识
+	private int keyBackFlag;// 0为主界面退出行为，1为用户列表后退行为，2为报警列表退出删除行为
+
+	// 当前退出动作是否为注销
+	public static boolean isCancellation = false;
+
+	// 当前程序的Uid
+	private int appUid;
+
+	// 手机类型UserFlag(5支持影视频1不支持)
+	private int userFlag = 1;
+
+	// 负责对比报警信息的设备列表
+	private List<Equipment> mEquipmentList;
+
+	// 默认企业ID
+	private int defaultCorpId;
+
+	// 默认gid
+	private short defaultGid;
+
+	// 树形结构里的所有元素
+	private List<TreeElement> treeElementLists;
+
+	// 是否已经获取默认的gid
+	private boolean isGetDefaultGid;
+
+
+
+    /*  -New- */
+    public List<StationNode> mStationList;
+
+//    public List<DeviceNode> mAllDeviceList;
+    //映射表，对应于：StationId--pos
+    public HashMap<Integer, Integer> mStationReflect;
+
+
+/* ===========================================================  */
+    public static WPApplication getInstance() {
+        return wpApplication;
+    }
+
+    @Override
+    public void onCreate() {
+        CrashHandler crashHandler = CrashHandler.getInstance();
+        crashHandler.init(this);
+        //百度推广
+        FrontiaApplication.initFrontiaApplication(getApplicationContext());
+        wpApplication = this;
+        monitorUserList = new ArrayList<MonitorUser>();
+        mStationReflect = new HashMap<>();
+        super.onCreate();
+    }
+
+
+	public int getUserFlag() {
+		return userFlag;
+	}
+
+	public void setUserFlag(int userFlag) {
+		this.userFlag = userFlag;
+	}
+    //
+    public void setStationList(List<StationNode> list){
+        this.mStationList = list;
+        refreshReflectMap();
+    }
+
+    public List<StationNode> getStationList(){
+        refreshStationList();
+        return mStationList;
+    }
+
+    /*
+     * 列表顺序出现改变的情形：
+     * 1.布防状态改变
+     */
+
+    public void refreshStationList(){
+        // ##TODO ## 排序。。
+        Collections.sort((ArrayList) mStationList);
+        refreshReflectMap();
+    }
+
+    private void refreshReflectMap(){
+        mStationReflect.clear();
+        if(mStationList != null){
+            int i = 0;
+            for(StationNode n : mStationList){
+                mStationReflect.put(n.getId(), i++);
+            }
+        }
+    }
+
+    public StationNode getStationNode(int stationId){
+        if(mStationReflect != null && mStationList != null){
+            return mStationList.get(mStationReflect.get(stationId));
+        }else{
+            return null;
+        }
+    }
+
+    //
+	public List<Equipment> getmEquipmentList() {
+		return mEquipmentList;
+	}
+
+	public void setmEquipmentList(List<Equipment> mEquipmentList) {
+		this.mEquipmentList = mEquipmentList;
+	}
+//
+//    //
+//    public void setAllDeviceList(List<DeviceNode> list){
+//        this.mAllDeviceList = list;
+//    }
+//
+//    public List<DeviceNode> getAllDeviceList(){
+//        return mAllDeviceList;
+//    }
+//    //
+
+	public int getDefaultCorpId() {
+		return defaultCorpId;
+	}
+
+	public void setDefaultCorpId(int defaultCorpId) {
+		this.defaultCorpId = defaultCorpId;
+	}
+
+    public int getKeyBackFlag() {
+        return keyBackFlag;
+    }
+
+    public void setKeyBackFlag(int keyBackFlag) {
+        if(keyBackFlag == 0){
+            this.keyBackFlag = keyBackFlag;
+        }else{
+            this.keyBackFlag |= keyBackFlag;
+        }
+
+    }
+
+	public short getDefaultGid() {
+		return defaultGid;
+	}
+
+	public void setDefaultGid(short defaultGid) {
+		this.defaultGid = defaultGid;
+	}
+
+	public List<TreeElement> getTreeElementLists() {
+		return treeElementLists;
+	}
+
+	public void setTreeElementLists(List<TreeElement> treeElementLists) {
+		this.treeElementLists = treeElementLists;
+	}
+
+	// public int getTreeLevels() {
+	// return treeLevels;
+	// }
+
+	// public void setTreeLevels(int treeLevels) {
+	// this.treeLevels = treeLevels;
+	// }
+
+	// public int getTreeWidth() {
+	// return treeWidth;
+	// }
+
+	// public void setTreeWidth(int treeWidth) {
+	// this.treeWidth = treeWidth;
+	// }
+
+
+
+
+	public boolean isGetDefaultGid() {
+		return isGetDefaultGid;
+	}
+
+	public void setGetDefaultGid(boolean isGetDefaultGid) {
+		this.isGetDefaultGid = isGetDefaultGid;
+	}
+
+	public int getAppUid() {
+		return appUid;
+	}
+
+	public void setAppUid(int appUid) {
+		this.appUid = appUid;
+	}
+
+//	public byte[] getMutualVideoConfig() {
+//		return mutualVideoConfig;
+//	}
+//
+//	public void setMutualVideoConfig(byte[] mutualVideoConfig) {
+//		this.mutualVideoConfig = mutualVideoConfig;
+//	}
+//
+//	public boolean isHasJoinedMeeting() {
+//		return hasJoinedMeeting;
+//	}
+//
+//	public void setHasJoinedMeeting(boolean hasJoinedMeeting) {
+//		this.hasJoinedMeeting = hasJoinedMeeting;
+//	}
+
+	/**
+	 * 根据用户的用户ID获取用户的昵称
+	 */
+	public String getUserNameWithId(String id) {
+		if (treeElementLists != null) {
+			for (int i = 0; i < treeElementLists.size(); i++) {
+				if (treeElementLists.get(i).getUserId().equals(id)) {
+					return treeElementLists.get(i).getUserName();
+				}
+			}
+		}
+		return id;
+	}
+
+	private TreeElement currentUser;
+
+	public TreeElement getCurrentUser() {
+		return currentUser;
+	}
+
+	public void setCurrentUser(TreeElement currentUser) {
+		this.currentUser = currentUser;
+	}
+
+
+}

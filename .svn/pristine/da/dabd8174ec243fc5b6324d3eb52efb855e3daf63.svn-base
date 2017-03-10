@@ -1,0 +1,7 @@
+package com.webcon.sus.utils;
+
+/**
+ * @author m
+ */
+public class ErrorCode {
+}

@@ -1,0 +1,48 @@
+package com.webcon.sus.entity;
+
+/**
+ * @author m
+ */
+public class MonitorNode extends BaseDevice{
+
+    private int mConNum;	        //门限次数
+    private int mConWeek;	        //报警周期
+    private String mConStartTime;	//起始时间
+    private String mConEndTime;	    //结束时间
+
+    public MonitorNode(int type){
+        super(type);
+    }
+
+    public int getConNum() {
+        return mConNum;
+    }
+
+    public void setConNum(int mConNum) {
+        this.mConNum = mConNum;
+    }
+
+    public int getConWeek() {
+        return mConWeek;
+    }
+
+    public void setConWeek(int mConWeek) {
+        this.mConWeek = mConWeek;
+    }
+
+    public String getConStartTime() {
+        return mConStartTime;
+    }
+
+    public void setConStartTime(String mConStartTime) {
+        this.mConStartTime = mConStartTime;
+    }
+
+    public String getConEndTime() {
+        return mConEndTime;
+    }
+
+    public void setConEndTime(String mConEndTime) {
+        this.mConEndTime = mConEndTime;
+    }
+}

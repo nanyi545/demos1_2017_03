@@ -1,0 +1,16 @@
+package com.webcon.sus.eventObjects;
+
+/**
+ * @author m
+ */
+public class MessageEvent extends BaseEvent{
+    public static final int ALARM_FLAG_INIT         = 1;
+    public static final int ALARM_FLAG_REFRESH      = 2;
+    public static final int ALARM_FLAG_REFRESH_SEC  = 3;
+
+    public int stationId = -1;
+
+    public MessageEvent(int type){
+        super(type);
+    }
+}

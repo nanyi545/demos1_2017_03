@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="test1.nh.com.demos1">
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <!-- 用于进行网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- 用于访问GPS定位 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!-- 获取运营商信息，用于支持提供运营商信息相关的接口 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 用于访问wifi网络信息，wifi信息会用于进行网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- 这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位 -->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <!-- 用于访问网络，网络定位需要上网 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 用于读取手机当前的状态 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- 写入扩展存储，向扩展卡写入数据，用于写入缓存定位数据 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <!-- android:theme="@style/AppTheme" -->
+    <application
+        android:name=".utils.DMapplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="3d3b206c33f492bc1c2670c0571ee49f">
+               
+        </meta-data>
+
+        <service android:name="com.amap.api.location.APSService" />
+
+        <activity
+            android:name=".activities.MainActivity_from"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="test1.nh.com.demos1.activities.MainActivity_from" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activities.ActionBarActivity1"
+            android:label="@string/title_activity_action_bar1"
+            android:parentActivityName=".activities.MainActivity_from"
+            android:theme="@style/AppbarActivity1Theme">
+
+            <!-- declear a Parent activity -->
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.MainActivity_from" />
+        </activity>
+        <activity
+            android:name=".activities.ActionBarActivity2"
+            android:label="@string/title_activity_appbar2"
+            android:theme="@style/AppbarActivity2Theme" />
+        <activity
+            android:name=".activities.DrawerActivity"
+            android:label="@string/title_activity_drawer" />
+        <activity
+            android:name=".activities.matDesign.RecyclerViewActivity"
+            android:label="@string/title_activity_material_design"
+            android:theme="@style/MDTheme">
+
+            <!-- divider line is defined in this theme -->
+            <!-- android:theme="@style/CrazyTheme" -->
+        </activity>
+        <activity
+            android:name=".activities.matDesign.MatDesignPanelActivity"
+            android:label="@string/title_activity_mat_design_panel" />
+        <activity
+            android:name=".activities.matDesign.ElevationActivity"
+            android:label="@string/title_activity_elevation"
+            android:theme="@style/MDTheme1" />
+        <activity
+            android:name=".activities.matDesign.RecyclerViewActivity2"
+            android:label="@string/title_activity_recycler_view2"
+            android:theme="@style/MDTheme">
+
+            <!-- divider line is defined in this theme -->
+        </activity>
+        <activity
+            android:name=".activities.matDesign.CardViewActivity"
+            android:label="@string/title_activity_card_view"
+            android:theme="@style/MDTheme1" />
+        <activity
+            android:name=".activities.matDesign.TintActivity"
+            android:label="@string/title_activity_tint" />
+        <activity
+            android:name=".activities.matDesign.OutLineActivity"
+            android:label="@string/title_activity_out_line" />
+        <activity
+            android:name=".activities.matDesign.VPActivity"
+            android:label="@string/title_activity_vp" />
+        <activity
+            android:name=".activities.matDesign.RecyclerViewActivity3"
+            android:label="@string/title_activity_recycler_view3" />
+        <activity android:name=".activities.leaksTest.LeakActivity" />
+        <activity
+            android:name=".activities.CustomViewActivity"
+            android:theme="@style/CostumViewTheme" />
+
+        <receiver
+            android:name=".receivers.AutoStart"
+            android:enabled="true"
+            android:exported="true"
+            android:installLocation="internalOnly"
+            android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+
+        <activity android:name=".activities.AlertTestActivity" />
+        <activity android:name=".activities.PerformanceActivity" />
+        <activity android:name=".activities.SQLiteActivity" />
+        <activity android:name=".activities.Email_IO_Activity" />
+        <activity android:name=".activities.RXjavaActivity" />
+        <activity android:name=".activities.VolleyActivity" />
+        <activity android:name=".activities.BaiduAPIActivity" />
+        <activity android:name=".activities.ImageActivity" />
+        <activity android:name=".activities.FbReboundActivity" />
+        <activity android:name=".mvpSQL.pack.SQLiteBoilerActivity" />
+        <activity android:name=".activities.ButterKnifeActivity" />
+        <activity android:name=".activities.MVP_Activity" />
+        <activity android:name=".testDemo.UnitTestWithDIActivity" />
+        <activity android:name=".write2disk.Write2diskActivity" />
+        <activity android:name=".audioTest.AudioActivity" />
+        <activity android:name=".activityManagerActivity.ActManagerActivity" />
+        <activity
+            android:name=".activities.SimCardActivity"
+            android:launchMode="singleTask"
+            android:taskAffinity="" />
+        <activity android:name=".ipcDemo.IPCactivity" />
+
+        <service android:name=".ipcDemo.IPCservice">
+            <intent-filter>
+                <action android:name="test1.nh.com.demos1.ipcDemo.IPCservice" />
+            </intent-filter>
+        </service>
+
+        <!-- android:process="aaaaaaa2"     this name will cause error -->
+        <!-- android:process=":aaaaaaa2"   : it will create a process named test1.nh.com.demos1:aaaaaaa2 -->
+        <!-- android:process="cn.asdf.test.service"   this will create a process with desired name -->
+        <service
+            android:name=".ipcDemo.aidl.IPCservice2"
+            android:process="cn.asdf.test.service">
+            <intent-filter>
+                <action android:name="test1.nh.com.demos1.ipcDemo.aidl.IPCservice2" />
+            </intent-filter>
+        </service>
+
+        <activity android:name=".launchMode.LaunchModeActivity" />
+        <activity android:name=".launchMode.DefaultLaunchActivity" />
+        <activity android:name=".broadcastReceiverDemo.BCRActivity" />
+
+        <receiver
+            android:name=".broadcastReceiverDemo.receivers.MyReceiver1"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.demo.receiver.intent1" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".broadcastReceiverDemo.receivers.MyReceiver2"
+            android:enabled="true"
+            android:exported="true" />
+        <receiver
+            android:name=".broadcastReceiverDemo.receivers.PowerIndicatorReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+            </intent-filter>
+        </receiver>
+
+        <activity android:name=".okhttpDemo.OKhttpActivity" />
+        <activity android:name=".guavaDest.GuavaTestActivity" />
+        <activity android:name=".activities.LoadingTestActivity" />
+        <activity android:name=".activities.KeyEventActivity" />
+        <activity android:name=".activities.WaterSwitchActivity" />
+        <activity android:name=".activities.matDesign.TransitionActivity1" />
+        <activity android:name=".activities.AmapActivity1" />
+        <activity android:name=".activities.DrawTestActivity" />
+        <activity android:name=".activities.ViewPagerTestActivity" />
+        <activity android:name=".activities.time_picker.TimePickerActivity" />
+        <activity android:name=".activities.hybrid_test.WebViewActivity" />
+        <activity android:name=".activities.range_seek.RangeSeekbarMainActivity" />
+        <activity android:name=".activities.PropertyAnimTestActivity" />
+        <activity android:name=".activities.selectTime.SelectTimeActivity" />
+        <activity android:name=".activities.CustomViewActivity2" />
+        <activity android:name=".activities.interactive_chart.InteractiveActivity" />
+        <activity android:name=".activities.horizontalScroll.HorizontalScrollActivity" />
+        <activity android:name=".activities.test3d.Test3dActivity" />
+        <activity android:name=".activities.fling_test.FlingTestActivity" />
+        <activity android:name=".activities.bessel.BesselActivity" />
+        <activity
+            android:name=".activities.cyclic_galary.CyclicGalaryActivity"
+            android:theme="@style/TestTheme"
+            android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".activities.generic_test.GenericTestActivity" />
+        <activity android:name=".activities.tab_layout_viewpager.TestTabActivity" />
+        <activity
+            android:name=".activities.gesture_pass.GesturePassWordActivity"
+            android:label="@string/title_activity_gesture_pass_word"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.hybrid_test.WebViewActivity2"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activities.patterns.PatternTestActivity" />
+        <activity android:name=".activities.leaksTest.LeakTest2Activity" />
+        <activity android:name=".activities.leaksTest.LeakActivity2"></activity>
+        <activity android:name=".activities.VectorDrawableActivity" />
+
+    </application>
+
+</manifest>

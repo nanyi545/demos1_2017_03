@@ -1,0 +1,274 @@
+package com.webcon.wp.utils;
+
+import android.os.Environment;
+
+import java.io.File;
+
+/**
+ * 静态常量类
+ * 
+ * @author Vieboo
+ * 
+ */
+public class WPConstant {
+
+	public static final String PACKAGE_NAME="com.webcon.sus.demo";
+
+	//-------alarm notification 的唯一标识-----
+	public static final int NOTIFICATION_ID=7000871;
+
+	// 保存文件的根目录
+	public static final String BASE_PATH = Environment
+			.getExternalStorageDirectory().getAbsolutePath()
+			+ File.separator
+			+ "webcon" + File.separator + "wp" + File.separator;
+
+	// 保存临时视频呢文件的路径
+	public static final String TEMP_VIDEO_PATH = BASE_PATH + "temp"
+			+ File.separator + "video" + File.separator;
+
+	// 保存临时错误信息文件的路径
+	public static final String TEMP_LOG_PATH = BASE_PATH + "temp"
+			+ File.separator + "Log" + File.separator;
+
+	// 向web推送服务器请求发送手机推送信息的地址
+	public static final String PHONE_PUSH_INFO_ADDRESS = "/Push/servlet/addPhoneMessage?";
+
+	// 铃声文件的路径
+	public static final String SOUND_PATH = BASE_PATH + "sound"
+			+ File.separator;
+
+	// 更新apk
+	public static final String APK_PATH = BASE_PATH + "apk" + File.separator;
+	public static final String APK_NAME = "WisdomPensionPhone.apk";
+	public static final String APK_DOWNLOAD_PATH = ":80/wpp/wppServlet/download?name=phone";
+	public static final String VERSION_DOWNLOAD_PATH = ":80/wpp/wppServlet/getVersion";
+
+	// 程序包名
+	public static final String TAG_WP = "com.webcon.wp";
+
+	// 初始化SharedPreferences常量
+	public static final String WP_SETTING = "WP_SETTING";
+
+	// SharedPreferences保存用户名常量
+	public static final String USER_NAME = "USER_NAME";
+
+	// SharedPreferences保存用户登陆密码
+	public static final String USER_PWD = "USER_PWD";
+
+	// SharedPreferences保存是否自动登陆的标识
+	public static final String AUTO_LOGIN = "AUTO_LOGIN";
+
+	// SharedPreferences保存用户登陆是否记住密码
+	public static final String USER_ISREMEMBERPWD = "USER_ISREMEMBERPWD";
+
+	// SharedPreferences保存用户服务器IP
+	public static final String SERVER_IP = "SERVER_IP";
+
+	// SharedPreferences保存用户本地端口
+	public static final String LOCAL_PORT = "LOCAL_PORT";
+
+	// 字符编码GB2312
+	public static final String STRING_GB2312 = "GB2312";
+
+	// 字符编码UTF-8
+	public static final String STRING_UTF8 = "UTF-8";
+
+	// 手机类型UserFlag(3.18改为5)
+	// public static final int USER_FLAG =1;
+
+	// 跳转登陆页面的标识
+	public static final String INTENT_LOGIN_FLAG = "IntentLoginFLag";
+
+	// AES加密算法的字符串密钥
+	public static final String AES_ENCRYPT_KEY = "webcon_wp_aes_key";
+
+//	/**
+//	 * 流量设置的值
+//	 */
+//	// 日流量是否提醒
+//	public static final String TRAFFIC_SETTING_DAY_ISCHECKED = "TRAFFIC_SETTING_DAY_ISCHECKED";
+//	// 月流量是否提醒
+//	public static final String TRAFFIC_SETTING_MONTH_ISCHECKED = "TRAFFIC_SETTING_MONTH_ISCHECKED";
+//	// 日流量的提醒上限值
+//	public static final String TRAFFIC_SETTING_DAY_VAULE = "TRAFFIC_SETTING_DAY_VAULE";
+//	// 月流量的提醒上限值
+//	public static final String TRAFFIC_SETTING_MONTH_VAULE = "TRAFFIC_SETTING_MONTH_VAULE";
+//
+//	// 报警列表更新的action
+//	public static final String ALARM_LIST_CHANGE_ACTION = "com.webcon.wp.personal.action.AlarmListChangeAction";
+
+	// 用户掉线或者被挤掉线退出action
+	public static final String LOGOUT_EXIT_ACTION = "com.webcon.wp.personal.action.LogoutExitAction";
+//
+//	// 用户在线状态改变action
+//	public static final String USER_ONLINE_STATUS_ACTION = "com.webcon.wp.personal.action.UserOnlineStatusAction";
+//
+//	// 监控设备在线状态action
+//	public static final String EQUIPMENT_ONLINE_STATUS_ACTION = "com.webcon.wp.personal.action.EquipmentOnlineStatusAction";
+//
+//	// 接收监控视频头部的action
+//	public static final String MONITOR_VIDEO_HEAD_ACTION = "com.webcon.wp.personal.action.MonitorVideoHeadAction";
+//
+//	// 接收监控设备列表，启动AlarmJudbmentService判断
+//	public static final String START_JUDGMENT_SERVICE_ACTION = "com.webcon.wp.personal.action.StartJudgmentServiceAction";
+//
+//	// 邀请加入聊天室的action
+//	public static final String INVITE_JOIN_MUTUAL_ACTION = "com.webcon.wp.personal.action.InviteJoinMutualAction";
+//
+//	// 用户加入聊天室的action
+//	public static final String JOIN_MUTUAL_ACTION = "com.webcon.wp.personal.action.JoinMutualAction";
+//
+//	// 用户离开聊天室的action
+//	public static final String LEAVE_MUTUAL_ACTION = "com.webcon.wp.personal.action.LeaveMutualAction";
+//
+//	// 文字聊天action
+//	public static final String CHAT_MESSAGE_ACTION = "com.webcon.wp.personal.action.ChatMessageAction";
+//
+//	// 监控设备流量超出提示action
+//	public static final String FLOW_OVERUSED_ACTION = "com.webcon.wp.personal.action.FlowOverusedAction";
+//
+//	// 监听时间为23:59的action
+//	public static final String TIME_IN_24_ACTION = "com.webcon.wp.personal.action.TimeIn24Action";
+//
+//	// 收到视频请求的action
+//	public static final String REQUEST_MUTUAL_VIDEO_ACTION = "com.webcon.wp.personal.action.RequestMutualVideoAction";
+//
+//	// 视频请求返回结果的action
+//	public static final String RESPONSE_MUTUAL_VIDEO_ACTION = "com.webcon.wp.personal.action.ResponseMutualVideoAction";
+//
+//	//回复开启语音
+//	public static final String RESPONSE_OPEN_VOICE_ACTION = "com.webcon.wp.personal.action.ResponseOpenVoiceAction";
+//
+//	//接受设备语音对讲数据
+//	public static final String RESPONSE_ACCEPT_VOICE_ACTION = "com.webcon.wp.personal.action.ResponseAcceptVoiceAction";
+//
+//	//回复关闭语音对讲
+//	public static final String RESPONSE_RSP_CLOSE_VOICE_ACTION = "com.webcon.wp.personal.action.ResponseRspCloseVoiceAction";
+//
+//	//回复发送本地语音对讲数据
+//	public static final String RESPONSE_RSP_SEND_VOICE_ACTION = "com.webcon.wp.personal.action.ResponseRspSendVoiceAction";
+//
+//	// 取消视频请求的action
+//	public static final String CANCEL_REQ_MUTUAL_VIDEO_ACTION = "com.webcon.wp.personal.action.CancelReqMutualVideoAction";
+//
+//	// 接收到会议视频配置参数的action
+//	public static final String MUTUAL_VIDEO_CONFIG_ACTION = "com.webcon.wp.personal.action.MutualVideoConfigAction";
+//
+//	// 结束关闭视频通话action
+//	public static final String SHUT_DOWN_MUTUAL_VIDEO_ACTION = "com.webcon.wp.personal.action.ShutDownMutualVideoAction";
+
+	// 用户在线时服务器通知客户端报警和数据库摄像头信息修改
+	// public static final String ALARM_SERVER_TO_CLIENT_ACTION =
+	// "com.webcon.wp.action.AlarmServerToClientAction";
+
+	// 修改了昵称
+	public static final String NICKNAME_CHANGED_ACTION = "com.webcon.wp.personal.action.NicknameChangedAction";
+	// 数组织结构改变
+	public static final String TREE_CHANGED_ACTION = "com.webcon.wp.personal.action.TreeChangedAction";
+
+	// 报警数据更新的action
+	public static final String ALARM_INFO_UPDATE_ATION = "com.webcon.wp.personal.action.AlarmInfoUpdateAction";
+
+	// 显示新报警数量的action
+	public static final String NEW_ALARM_NUM_ACTION = "com.webcon.wp.personal.action.NewAlarmNumAction";
+
+	// 处理报警信息的广播
+	public static final String RESOLVE_ALARM_ACTION = "com.webcon.wp.personal.action.ResolveAlarmAction";
+
+	// 点击报警云推送的通知触发的action
+	public static final String ALARM_NOTIFICATION_CLICK_ACTION = "com.webcon.wp.personal.action.AlarmNotificationClickAction";
+
+	// actions to monitor the state of alarm notifications
+	public static final String ALARM_NOTIFICATION_POP = "com.webcon.wp.personal.action.AlarmNotificationPop";
+	public static final String ALARM_NOTIFICATION_DISMISS = "com.webcon.wp.personal.action.AlarmNotificationDismissed";
+
+
+	// states of alarm notification
+	public static final int ALARM_NOTIFICATION_OFF=-11279;
+	public static final int ALARM_NOTIFICATION_ON=11169;
+
+	/************************** PDU ***************************/
+//	// 获取树形列表Pdu
+//	public static final short GET_TREE_DATA = 106;
+//	// 获取监控配置信息Pdu
+//	public static final short GET_CAMERA_CONFIG = 108;
+//	// 修改监控配置信息Pdu
+//	public static final short SET_CAMERA_CONFIG = 98;
+//	// 查询监控消息Pdu
+//	// public static final short GET_ALARM_INFO = 92;
+	// 查询监控消息Pdu（分页）
+	public static final short GET_ALARM_INFO_PAGE = 114;
+//	// 向监控用户请求设备的在线状态Pdu
+//	public static final short REQUEST_EQUIPMENT_ONLINE = 43;
+//	// 监控用户返回在线状态Pdu
+//	public static final short RESPONSE_EQUIPMENT_ONLINE = 44;
+//	// 监控视频请求Pdu
+//	public static final short REQUEST_MONITOR_VIDEO = 1;
+//	// 请求监控视频返回结果Pud
+//	public static final short RESPONSE_MONITOR_VIDEO = 2;
+//	// 视频数据Pdu
+//	public static final short MONITOR_VIDEO = 3;
+//	// 停止监控视频请求Pdu
+//	public static final short REQUEST_STOP_MONITOR_VIDOE = 4;
+//	// 停止监控视频返回结果Pdu
+//	public static final short RESPONSE_STOP_MONITOR_VIDEO = 5;
+//	// 邀请用户加入聊天室
+//	public static final short INVITE_JOIN_MEETING = 20;
+//	// 发送接收文字聊天信息的pdu
+//	public static final short MUTUAL_CHAT_MESSAGE = 34;
+//	// 发送接收音频信息的pdu
+//	public static final short MUTUAL_AUDIO_DATA = 35;
+//	// 聊天室请求视频PDU
+//	public static final short REQUEST_MUTUAL_VIDEO = 170;
+//	// 聊天室请求视频返回结果PDU
+//	public static final short RESPONSE_MUTUAL_VIDEO = 171;
+//	// 取消视频请求
+//	public static final short CANCEL_REQUEST_MUTUAL_VIDEO = 172;
+//	// 会议视频数据发送
+//	public static final short SEND_MUTUAL_VIDEO_DATA = 173;
+//	// 断开会议视频连接
+//	public static final short SHUT_DOWN_MUTUAL_VIDEO = 174;
+//	// 获取监控设备流量信息的pdu
+//	public static final short REQUEST_CAMERA_FLOW = 116;
+//	// 返回监控设备流量信息的pdu
+//	public static final short RESPONSE_CAMERA_FLOW = 117;
+//	// 流量超标提醒pdu
+//	public static final short FLOW_OVERUSED = 122;
+//	// 流量超标接收回复pdu
+//	public static final short RESPONSE_FLOW_OVERUSED = 123;
+//	// 获取离线时产生的报警信息
+//	public static final short REQUEST_UNONLINE_ALARM = 128;
+//	// 获取离线时产生报警信息的返回数据
+//	public static final short RESPONSE_UNONLINE_ALARM = 129;
+//	// 将已经查询到的离线的报警信息通知给数据库
+//	public static final short RECEIVE_UNONLINE_ALARM_TO_DB = 132;
+//	// pdu132通知数据库的返回结果
+//	public static final short RESULT_UNONLINE_ALARM_TO_DB = 133;
+//	// 服务器主动通知客户端的公共通道(主pdu)
+//	public static final short ALARM_SERVER_TO_CLIENT = 10011;
+//	// 接收在线时产生的报警信息(子pdu1)
+//	 public static final short RECEIVE_ONLINE_ALARM = 70;
+//	// 用户关联信息作了修改(子pdu2)
+//	public static final short CAMERA_DB_CHANGED = 71;
+//
+//	// 摄像头后台改动
+//	public static final short CAMERA_DB_DELETE = 72;
+//	// 修改昵称
+//	public static final short MODIFY_NICK = 170;
+//	// 修改密码
+//	public static final short MODIFY_PASSWORD = 154;
+//	// 查找用户是否存在
+//	public static final short DBSUB_FindUserExist_Req_FromCli = 158;
+//
+//	// /////////////////////////////////////////////////////////云对讲
+//	public static final short OPEN_VOICE_INTERCOM = 124;// 请求开启语音对讲
+//	public static final short OPEN_RSP_OPEN_VOICE_INTERCOM = 125;// 回复开启语音
+//	public static final short CLOSE_VOICE_INTERCOM = 126;// 关闭语音对讲
+//	public static final short RSP_CLOSE_VOICE_INTERCOM = 127;// 回复关闭语音对讲
+//	public static final short ACCEPT_VOICE_DATA = 128;// 接受设备语音对讲数据
+//	public static final short RSP_ACCEPT_VOICE_DATA = 129;// 回复接受设备语音对讲数据
+//	public static final short SEND_VOICE_DATA = 130;// 发送本地语音对讲数据
+//	public static final short RSP_SEND_VOICE_DATA = 131;// 回复发送本地语音对讲数据
+
+}

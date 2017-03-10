@@ -1,0 +1,335 @@
+package com.webcon.sus.activities;
+
+
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import com.webcon.sus.adapter.MyAlarmListAdapter;
+import com.webcon.sus.demo.R;
+import com.webcon.sus.entity.AlarmNode;
+import com.webcon.sus.eventObjects.MessageEvent;
+import com.webcon.sus.utils.SUConstant;
+import com.webcon.wp.utils.PublicMethodUtil;
+import com.webcon.wp.utils.WPApplication;
+
+import java.util.List;
+
+import de.greenrobot.event.EventBus;
+
+/**
+ * @author m
+ */
+public class AlarmMainFragment extends Fragment {
+
+    private Context mContext;
+    private ListView mAlarmListView;
+    private MyAlarmListAdapter mAlarmAdapter;
+    private LinearLayout linear_container;
+    private TextView tv_empty;
+
+    //---全选操作--Discard--
+    private List<AlarmNode> deleteAlarmList;
+    private RelativeLayout bottomMenuRL;
+    private TextView selectAllTV, deleteTV;
+    private boolean isFirstClick = false; // 防止长按listview的item以后也会出发onclick事件
+
+    //------------------
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
+        init(getArguments());
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View layout = inflater.inflate(R.layout.fragment_alarm_main, container, false);
+        //列表
+        mAlarmListView = (ListView) layout.findViewById(R.id.list_alarms);
+        mAlarmListView.setOnItemClickListener(itemClickListener);
+        mAlarmListView.setOnItemLongClickListener(itemLongClickListener);
+        //组件
+        tv_empty = (TextView) layout.findViewById(R.id.tv_empty);
+        linear_container = (LinearLayout) layout.findViewById(R.id.linear_alarm_container);
+        //其他 ##discard
+        bottomMenuRL = (RelativeLayout) layout.findViewById(R.id.alarm_list_bottom_menu);
+        selectAllTV = (TextView) layout.findViewById(R.id.alarm_list_top_menu_selectall);
+        deleteTV = (TextView) layout.findViewById(R.id.alarm_list_top_menu_delete);
+        selectAllTV.setOnClickListener(clickListener);
+        deleteTV.setOnClickListener(clickListener);
+        return layout;
+    }
+
+    private void init(Bundle bundle) {
+        mContext = getActivity();
+        //初始化时，从本地获取之前的报警消息>>保存到DB的情况下。。
+        //....（略）...则需要先初始化ListView
+        //
+    }
+
+    private void refreshFragment() {
+        Log.i("AlarmMain", "refreshFragment");
+        if (mAlarmAdapter == null) {
+            mAlarmAdapter = new MyAlarmListAdapter(mContext, getAlarmList());
+            mAlarmListView.setAdapter(mAlarmAdapter);
+            checkAndRefresh(getAlarmList().size());
+        } else {
+            refreshAdapter();
+        }
+    }
+
+    private void refreshAdapter() {
+        Log.i("AlarmMain", "refreshAdapter");
+        if (mAlarmAdapter != null) {
+            checkAndRefresh(getAlarmList().size());
+            WPApplication.getInstance().refreshAlarmList();
+            mAlarmAdapter.notifyDataSetChanged();
+        }
+    }
+
+    private void checkAndRefresh(int size) {
+        Log.i("AlarmMain", "check and refresh");
+        if (size > 0) {
+            linear_container.setVisibility(View.VISIBLE);
+            tv_empty.setVisibility(View.GONE);
+        } else {
+            linear_container.setVisibility(View.GONE);
+            tv_empty.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private List<AlarmNode> getAlarmList() {
+        return WPApplication.getInstance().getAllAlarmList();
+    }
+
+    /**
+     * listView列表长点击事件
+     * <p>暂时放弃处理</p>
+     */
+    AdapterView.OnItemLongClickListener itemLongClickListener = new AdapterView.OnItemLongClickListener() {
+
+        @Override
+        public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+            if (WPApplication.getInstance().DEBUG) {
+                return true;
+            }
+            if (bottomMenuRL.getVisibility() != View.VISIBLE) {
+                linear_container.setPadding(0, 0, 0, PublicMethodUtil.getInstance().px2dip(mContext, 40));
+                WPApplication.getInstance().setKeyBackFlag(SUConstant.KEYBACK_TYPE_ALARMS);
+
+                // 显示checkBox
+                mAlarmAdapter.setSelectCheckBoxFlag(true);
+                mAlarmAdapter.getIsCheckedList().set(arg2, true);
+                deleteAlarmList.add(getAlarmList().get(arg2));
+                mAlarmAdapter.notifyDataSetChanged();
+                isFirstClick = true;
+                // 如果报警列表只有一条报警信息时全选按钮显示为“取消全选”
+                if (getAlarmList().size() == 1) {
+                    selectAllTV.setText(mContext.getString(R.string.str_alarm_list_tv_cancelselectall));
+                }
+                bottomMenuRL.setVisibility(View.VISIBLE);
+            }
+            return false;
+        }
+
+    };
+
+    /**
+     * listView Item点击事件
+     */
+    AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
+
+        @Override
+        public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
+            //点击条目一定要分清楚已处理的和未处理的这两种情况
+            if (bottomMenuRL.getVisibility() == View.VISIBLE) {
+                //全选操作什么的....
+//                if (!isFirstClick) {
+//                    AlarmListAdapter.AlarmViewHodler holder = (AlarmListAdapter.AlarmViewHodler) arg1.getTag();
+//                    holder.selectCB.toggle();
+//                    if (mAlarmAdapter.getIsCheckedList().get(arg2)) {
+//                        deleteAlarmList.remove(alarmInfoList.get(arg2));
+//                        mAlarmAdapter.getIsCheckedList().set(arg2, false);
+//                    } else {
+//                        deleteAlarmList.add(alarmInfoList.get(arg2));
+//                        alarmListAdapter.getIsCheckedList().set(arg2, true);
+//                    }
+//                    if (alarmListAdapter.isSelectAll()) {
+//                        selectAllTV
+//                                .setText(R.string.str_alarm_list_tv_cancelselectall);
+//                    } else {
+//                        selectAllTV
+//                                .setText(R.string.str_alarm_list_tv_selectall);
+//                    }
+//                } else {
+//                    isFirstClick = false;
+//                }
+            } else {
+                Bundle bundle = new Bundle();
+                AlarmNode alarm = getAlarmList().get(position);
+                /* 跳转标识 flag
+                 * 0:程序未启动的情况下从登陆页面直接跳转
+                 * 1:点击报警列表跳转
+                 * 2:程序在启动状态下点击通知跳转 */
+                bundle.putInt(AlarmDetailsActivityCompat.ALARM_DETAIL_FLAG, 1);
+                // 保留字段（推送的报警信息里会有，获取的默认填0）
+                bundle.putInt(AlarmDetailsActivityCompat.ALARM_DETAIL_TEMP, 0);
+                // 报警信息对象
+                bundle.putSerializable(AlarmDetailsActivityCompat.ALARM_DETAIL_DATA, alarm);
+
+                // 跳转到报警信息详细页面
+                Intent intent = new Intent(mContext, AlarmDetailsActivityCompat.class);
+                intent.putExtras(bundle);
+                mContext.startActivity(intent);
+            }
+        }
+
+    };
+
+    /**
+     * view点击事件
+     */
+    View.OnClickListener clickListener = new View.OnClickListener() {
+
+        @Override
+        public void onClick(View v) {
+//            if (v == selectAllTV) {
+//                if (bottomMenuRL.getVisibility() == View.VISIBLE) {
+//                    if (selectAllTV
+//                            .getText()
+//                            .toString()
+//                            .equals(mContext
+//                                    .getString(R.string.str_alarm_list_tv_selectall))) {
+//                        mAlarmAdapter.selectAll();
+//                        mAlarmAdapter.notifyDataSetChanged();
+//                        deleteAlarmList.clear();
+//                        for (int i = 0; i < getAlarmList().size(); i++) {
+//                            deleteAlarmList.add(getAlarmList().get(i));
+//                        }
+//                        selectAllTV
+//                                .setText(R.string.str_alarm_list_tv_cancelselectall);
+//                    } else {
+//                        mAlarmAdapter.resetIsCheckedList();
+//                        mAlarmAdapter.notifyDataSetChanged();
+//                        deleteAlarmList.clear();
+//                        selectAllTV
+//                                .setText(R.string.str_alarm_list_tv_selectall);
+//                    }
+//                }
+//            }
+//            //删除
+//            else if (v == deleteTV) {
+//                if (bottomMenuRL.getVisibility() == View.VISIBLE) {
+//                    if (deleteAlarmList.size() > 0) {
+//                        PublicMethodUtil
+//                                .getInstance()
+//                                .makeAlertDialogBuilder(mContext,
+//                                        R.string.str_alarm_list_dialog_title,
+//                                        R.string.str_alarm_list_dialog_message,
+//                                        R.string.btn_ok, R.string.btn_cancle,
+//                                        dialogClickListener, null).show();
+//                    } else {
+//                        cancelDelete(false);
+//                    }
+//                }
+//            }
+        }
+    };
+
+    /**
+     * AlartDialog按钮点击监听事件
+     */
+    DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+//            // 删除数据  数据库中删除该条记录 报警列表里面移除改记录
+//            //将选中的记录保存到DELETE表里面
+//            alarmDao.deleteAlarmInsertOrRelaceData(userName, deleteAlarmList);
+//            if (alarmDao.alarmDeleteData(userName, deleteAlarmList)) {
+//                for (int i = 0; i < deleteAlarmList.size(); i++) {
+//                    for (int j = 0; j < alarmInfoList.size(); j++) {
+//                        if (alarmInfoList.get(j).getAlarmEqId().equals(deleteAlarmList.get(i).getAlarmEqId())
+//                                && alarmInfoList.get(j).getAlarmDateTime().equals(deleteAlarmList.get(i).getAlarmDateTime())
+//                                && alarmInfoList.get(j).getAlarmType() == deleteAlarmList.get(i).getAlarmType()) {
+//                            alarmInfoList.remove(j);
+//                            break;
+//                        }
+//                    }
+//                }
+//            }
+//            cancelDelete(true);
+//            if (alarmInfoList.size() == 0) {
+//                alarmListLL.setVisibility(View.GONE);
+//                noneAlarm.setVisibility(View.VISIBLE);
+//            }
+//
+//            // 发送未处理报警条数更新的广播
+//            Intent intent = new Intent();
+//            intent.setAction(WPConstant.NEW_ALARM_NUM_ACTION);
+//            mContext.sendBroadcast(intent);
+        }
+    };
+
+
+    @Override
+    public void onDestroy() {
+        EventBus.getDefault().unregister(this);
+        super.onDestroy();
+    }
+
+
+    public void onBackPressed() {
+//        cancelDelete(false);
+    }
+
+
+    @Override
+    public void onPause() {
+//        cancelDelete(false);
+        super.onPause();
+    }
+
+    /**
+     * 取消删模式
+     */
+    private void cancelDelete(boolean hasDelete) {
+        if (bottomMenuRL.getVisibility() == View.VISIBLE) {
+            bottomMenuRL.setVisibility(View.INVISIBLE);
+            linear_container.setPadding(0, 0, 0, 0);
+            WPApplication.getInstance().setKeyBackFlag(0);
+
+            deleteAlarmList.clear();
+            selectAllTV.setText(mContext
+                    .getString(R.string.str_alarm_list_tv_selectall));
+
+            // 隐藏checkBox
+            mAlarmAdapter.setSelectCheckBoxFlag(false);
+            // 清除checkBox的选中状态
+            if (hasDelete) {
+                mAlarmAdapter.afterDeleteChangeIsCheckedListSize();
+            } else {
+                mAlarmAdapter.resetIsCheckedList();
+            }
+            mAlarmAdapter.notifyDataSetChanged();
+        }
+    }
+
+    public void onEventMainThread(MessageEvent event) {
+        refreshFragment();
+    }
+
+
+}

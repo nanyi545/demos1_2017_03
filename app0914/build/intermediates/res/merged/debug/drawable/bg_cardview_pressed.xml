@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <corners android:radius="@dimen/cardview_radius"/>
+    <solid android:color="@color/Transparent"/>
+    <stroke android:color="@color/profile_press_blue" android:width="@dimen/cardview_radius"/>
+</shape>

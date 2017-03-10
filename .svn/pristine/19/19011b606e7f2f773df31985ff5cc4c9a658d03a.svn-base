@@ -1,0 +1,170 @@
+package com.webcon.sus.entity;
+
+
+import android.util.Log;
+
+import com.webcon.sus.utils.SUConstant;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+/**
+ * 站场结点
+ * <p>包括包含设备列表和该站场报警消息列表等数据</p>
+ * @author m
+ */
+public class StationNode implements Comparable<StationNode>{
+    /** 设备列表 */
+    private List<BaseDevice> mDevices;
+    /** 报警消息列表 */
+    private List<AlarmNode> mAlarms;
+
+    /** 调用标识 */
+    private int identifier = 0;
+    /** 实际ID */
+    private String mId = "";
+    /** 站场名称 */
+    private String mName = "";
+    /** 站场地址 */
+    private String mAddress = "";
+    /** 备注消息(保留) */
+    private String mRemark = "";
+    /** 是否存活 */
+    private boolean isAlive = false;
+    /** 新报警消息数量 */
+    private int mNewAlarm = 0;
+    /** 站场状态：开启、关闭、有新报警 */
+    private int mState = SUConstant.FLAG_STATION_CLOSED;
+
+
+    // getter & setter
+    public List<BaseDevice> getDeviceList(){
+        if(mDevices == null){
+            Log.e("StationNode", "devices list is null");
+            throw new NullPointerException();
+        }
+        return mDevices;
+    }
+
+    public void setDeviceList(List<BaseDevice> list){
+        this.mDevices = list;
+        if(mDevices != null){
+            Collections.sort((ArrayList) mDevices);
+        }
+    }
+
+    public List<AlarmNode> getAlarmList(){
+        //TODO ## 需要排序
+        return mAlarms;
+    }
+
+    public void setAlarmList(List<AlarmNode> list){
+        this.mAlarms = list;
+    }
+
+    public int getIdentifier(){
+        return this.identifier;
+    }
+
+//    public void setIdentifier(int identifier){
+//        this.identifier = identifier;
+//    }
+
+    public String getId() {
+        return mId;
+    }
+
+    public void setId(String id) {
+        this.mId = id;
+        this.identifier = id.hashCode();
+    }
+
+    public int getState() {
+        return mState;
+    }
+
+    public void setState(int mState) {
+        if(mState == SUConstant.FLAG_STATION_OPENED && mNewAlarm != 0){
+            mState = SUConstant.FLAG_STATION_ALARM;
+        }
+        this.mState = mState;
+    }
+
+    public int getNewAlarm() {
+        return mNewAlarm;
+    }
+
+    public void setNewAlarm(int newAlarm) {
+        if(mState != SUConstant.FLAG_STATION_CLOSED){
+            if(newAlarm > 0){
+                mState = SUConstant.FLAG_STATION_ALARM;
+            }else{
+                mState = SUConstant.FLAG_STATION_OPENED;
+            }
+        }
+    }
+
+    public void substractAlarm(){
+        setNewAlarm(mNewAlarm - 1);
+    }
+
+    public String getName() {
+        return mName;
+    }
+
+    public void setName(String mName) {
+        this.mName = mName;
+    }
+
+    public String getAddress() {
+        return mAddress;
+    }
+
+    public void setAddress(String mAddress) {
+        this.mAddress = mAddress;
+    }
+
+    public String getRemark() {
+        return mRemark;
+    }
+
+    public void setRemark(String mRemark) {
+        this.mRemark = mRemark;
+    }
+
+    public boolean isAlive() {
+        return isAlive;
+    }
+
+    public void setAlive(boolean isAlive) {
+        this.isAlive = isAlive;
+    }
+
+    public boolean isDefend(){
+        if(mState == SUConstant.FLAG_STATION_OPENED || mState == SUConstant.FLAG_STATION_ALARM){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+
+    @Override
+    public int compareTo(StationNode another) {
+        if(another.getState() < mState){
+            return -1;
+        }else if(another.getState() > mState){
+            return 1;
+        }else{
+            if(another.getIdentifier() > identifier){
+                return -1;
+            }else if(another.getIdentifier() < identifier){
+                return 1;
+            }else{
+                return 0;
+            }
+        }
+    }
+
+}

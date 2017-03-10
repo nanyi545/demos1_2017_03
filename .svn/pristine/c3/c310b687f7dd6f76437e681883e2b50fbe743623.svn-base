@@ -1,0 +1,150 @@
+package com.webcon.sus.utils;
+
+import android.media.AudioTrack;
+
+import com.webcon.sus.eventObjects.AudioEvent;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import de.greenrobot.event.EventBus;
+import vieboo.test.record.utils.IRecordData;
+import vieboo.test.record.utils.TransferDecoding;
+
+/**
+ * 录音播放工具
+ * @author m
+ */
+public class AudioPlayer {
+    private static final String TAG = "AudioPlayer";
+    //------------------------\
+    private File mFile;
+    private FileInputStream fis;
+    private final int readSize = AudioUtils.TRACK_BUFFER_SIZE;
+    private byte[] buffer;
+
+    private boolean isPlaying = false;
+    private int applyType;
+    private IRecordData callback;
+    private TransferDecoding mDecoder;
+    private AudioTrack mTrack;
+
+    //------------------------
+    public AudioPlayer(IRecordData callback){
+        if(callback == null){
+            applyType = AudioUtils.APPLY_TYPE_LOCAL;
+        }else{
+            this.callback = callback;
+            applyType = AudioUtils.APPLY_TYPE_ONLINE;
+        }
+        init();
+    }
+
+    private void init(){
+        buffer = new byte[readSize];
+        checkFile();
+        initDecoder();
+    }
+
+    private void initDecoder(){
+        mDecoder = new TransferDecoding();
+        mDecoder.g722_decoder_init(AudioUtils.BITRATE, AudioUtils.SAMEPLE_RATE_HZ);
+
+        //录音播放缓冲区
+        int trackBufferSize = AudioTrack.getMinBufferSize(
+                AudioUtils.SAMEPLE_RATE_HZ, AudioUtils.CHANNEL_CONFIG, AudioUtils.AUDIO_FORMAT);
+
+        //实例化AudioTrack对象
+        mTrack = new AudioTrack(AudioUtils.STREAM_TYPE, AudioUtils.SAMEPLE_RATE_HZ,
+                AudioUtils.CHANNEL_CONFIG, AudioUtils.AUDIO_FORMAT, trackBufferSize, AudioUtils.STREAM_MODE);
+
+    }
+
+    private void checkFile(){
+        mFile = new File(AudioUtils.WAV_FILE);
+        if(!mFile.exists() || mFile.length() <= 0){
+            return;
+        }
+        try {
+            fis = new FileInputStream(mFile);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void start(){
+        if(isPlaying){
+            return;
+        }
+        isPlaying = true;
+        new PlayThread().start();
+    }
+
+    public void stop(){
+        isPlaying = false;
+    }
+
+    private void release(){
+        mTrack.stop();
+        mTrack.release();
+        mTrack = null;
+        mDecoder.g722_decoder_release();
+        try {
+            fis.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        EventBus.getDefault().post(new AudioEvent(AudioEvent.AUDIO_EVENT_PLAY_COMPLETE));
+    }
+
+    private void execute(byte[] buffer, int length){
+        switch (applyType){
+            case AudioUtils.APPLY_TYPE_LOCAL:
+                byte[] playBuffer = new byte[length];	//原始数据
+                System.arraycopy(buffer, 0, playBuffer, 0, length);
+                byte[] finalData = new byte[AudioUtils.RECORD_BUFFER_SIZE]; //用于播放的数据
+
+                //解码
+                if(mDecoder.g722_decoder(finalData, playBuffer, length) > 0){
+                    mTrack.write(finalData, 0, finalData.length);
+                }
+                break;
+            case AudioUtils.APPLY_TYPE_ONLINE:
+                callback.onRecordData(buffer, length);
+                break;
+            default:
+                break;
+        }
+
+    }
+
+    //---------------------------
+    /**
+     * 解码播放线程
+     *
+     */
+    class PlayThread extends Thread{
+        @Override
+        public void run(){
+            mTrack.play();
+            int length = 0;
+            //开始播放
+            try {
+                while(isPlaying){
+                    length = fis.read(buffer);
+                    if(length < 0){
+                        isPlaying = false;
+                        break;
+                    }
+                    execute(buffer, length);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                release();
+            }
+        }
+    }
+}

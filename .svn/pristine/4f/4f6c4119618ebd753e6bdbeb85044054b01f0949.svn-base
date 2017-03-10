@@ -1,0 +1,106 @@
+<android.support.v4.widget.DrawerLayout
+    android:id="@+id/navigation_drawerlayout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/Indigo50"
+    tools:context="com.webcon.sus.activities.MainActivityCompat">
+
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/coorlayout_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include layout="@layout/toolbar_main"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            <!-- 导航框内容 -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/linear_tab_head"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/main_bn_tab_userlist"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/Blue_"
+                        android:focusable="false"
+                        android:paddingBottom="12dp"
+                        android:paddingTop="8dp"
+                        android:text="@string/str_station"
+                        android:textColor="@color/White"
+                        android:textSize="16sp"/>
+
+                    <Button
+                        android:id="@+id/main_bn_tab_alarmlist"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/Blue_"
+                        android:focusable="false"
+                        android:paddingBottom="12dp"
+                        android:paddingTop="8dp"
+                        android:text="@string/str_alarm"
+                        android:textColor="@color/White"
+                        android:textSize="16sp"/>
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/main_iv_cursor"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_alignBottom="@id/linear_tab_head"
+                    android:layout_gravity="center_horizontal"
+                    android:contentDescription="@string/str_null"
+                    android:scaleType="matrix"
+                    android:src="@drawable/bg_mutual_main_cursorimg"/>
+
+                <TextView
+                    android:id="@+id/main_tv_tab_newalarmnum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginRight="35dp"
+                    android:background="@drawable/bg_main_tab_newalarmnum"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:paddingLeft="1dp"
+                    android:paddingRight="1dp"
+                    android:singleLine="true"
+                    android:text="@string/alarm_num_init"
+                    android:textColor="@android:color/white"
+                    android:visibility="gone"/>
+            </RelativeLayout>
+
+            <!-- 内容 -->
+            <android.support.v4.view.ViewPager
+                android:id="@+id/main_vp_pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+    </android.support.design.widget.CoordinatorLayout>
+
+    <!-- 菜单页面 -->
+    <fragment
+        android:id="@+id/navigation_drawer"
+        android:name="com.webcon.sus.activities.NavigationDrawerFragment"
+        android:layout_width="@dimen/navigation_drawer_width"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        tools:layout="@layout/fragment_navigation_drawer"/>
+
+</android.support.v4.widget.DrawerLayout>

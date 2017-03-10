@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 边角角度 -->
+    <corners android:topLeftRadius="7dip" android:bottomLeftRadius="7dip" />
+    
+    <!-- 边框 -->
+<!--     <stroke android:width="2px" android:color="#2e2d2d"/> -->
+    
+    <!-- 渐变色 -->
+    <gradient 
+    	android:startColor="#2e2d2d"
+    	android:endColor="#2e2d2d"
+    	android:angle="270"
+    />
+</shape>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navItem1"
+        android:title="@string/nav_menu_user_setting"/>
+    <item
+        android:id="@+id/navItem2"
+        android:title="@string/nav_menu_logout"/>
+    <item
+        android:id="@+id/navItem3"
+        android:title="@string/nav_menu_quit"/>
+</menu>

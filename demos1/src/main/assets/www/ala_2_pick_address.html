@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+<link rel="stylesheet" type="text/css" href="/Public/Api2/css/common.css?v=">
+<script type="text/javascript" src="/Public/Api2/js/jquery.js"></script>
+<script type="text/javascript" src="/Public/Api2/js/jquery-2.0.1.min.js"></script>
+<script type="text/javascript" src="/Public/Api2/js/common.js"></script>
+</head>
+<body>
+
+<link rel="stylesheet" type="text/css" href="/Public/Api2/css/address.css?v=1">
+<div class="address ">
+    <div class="head">
+        <!-- <a class="left" href="javascript:" onclick="window.history.back();"></a> -->
+        <a class="left" href="javascript:" onclick="goBackToApp();"></a>
+        <div class="center">
+            服务地址
+        </div>
+    </div>
+    <div class="content">         
+            <div class="address-wrapper">
+                    <a class="address-item" href="http://testapi.nbaljz.cn/Api2/Single/payaircon/type/7/single_id/2.html?address_id=382">
+                        <div class="name">554</div>
+                        <div class="sex">先生</div>
+                        <div class="tel">17090555555</div>
+                                                    <div class="type1 clearfix">公司</div>                                                <div class="add">浙江省宁波市海曙区华楼巷31天一豪景JJ历历可见可口可乐了可口可乐了可口可乐了可口可乐了可口可乐了 有电梯</div>                 
+                    </a>
+                    <a class="addr-add-item" href="/Api2/Single/addr_edit/id/382.html">
+                        <div class="add-right"></div>
+                    </a>
+                </div><div class="address-wrapper">
+                    <a class="address-item" href="http://testapi.nbaljz.cn/Api2/Single/payaircon/type/7/single_id/2.html?address_id=380">
+                        <div class="name">我问问</div>
+                        <div class="sex">先生</div>
+                        <div class="tel">17000000000</div>
+                                                    <div class="type2 clearfix"></div>                        <div class="add">浙江省宁波市海曙区开明街128号城隍庙商业步行街喝喝酒 有电梯</div>                 
+                    </a>
+                    <a class="addr-add-item" href="/Api2/Single/addr_edit/id/380.html">
+                        <div class="add-right"></div>
+                    </a>
+                </div><div class="address-wrapper">
+                    <a class="address-item" href="http://testapi.nbaljz.cn/Api2/Single/payaircon/type/7/single_id/2.html?address_id=379">
+                        <div class="name">uuUI及i</div>
+                        <div class="sex">先生</div>
+                        <div class="tel">17000000000</div>
+                        <div class="type2 clearfix">家</div>                                                                            <div class="add">浙江省宁波市海曙区地铁1号线,地铁2号线鼓楼5666 有电梯</div>                 
+                    </a>
+                    <a class="addr-add-item" href="/Api2/Single/addr_edit/id/379.html">
+                        <div class="add-right"></div>
+                    </a>
+                </div>        </div>
+            </div>
+<a class="add-btn" href="/Api2/Single/addr_add.html">
+    <div class="add-icon"></div>
+    <div class="text">新增地址</div>
+</a>
+
+<script type="text/javascript">
+    var page=1;
+    $("#load").click(function () {
+        page = page+1;
+        $.getJSON("/Api2/Single/addr_list.html", {p:page, flag:1}, function(data){
+            $.each(data, function(i, item){
+                $(".content").append("<a class='address-item' href='?id="+ item.id +"'><div class='name'>"+ item.realname +"</div><div class='sex'>女士</div><div class='tel'>"+ item.cellphone +"</div><div class='type"+ item.label2 +" clearfix'>"+ item.label +"</div><div class='add'>"+ item.server_address + item.detail_address +" 无电梯</div><div class='add-right'></div></a>");
+            });
+        });
+    });
+</script>
+		<script type="text/javascript" src="/Public/Api2/js/layer/layer.js"></script>
+		<script type="text/javascript">
+		    // 下单页返回提示
+		    $(".pay-back").click(function(){
+		        var url = $(this).attr("url");
+		        //询问框
+		        layer.open({
+					content: '下单尚未完成，确定退出？'
+					,btn: ['确定', '取消']
+					,yes: function(index, layero){
+						window.location.href=url;
+					}
+				});
+		    });
+
+		    // 拨打电话
+		    function callPhone(phone) {
+		        var eqpt = 'other';
+		        if(eqpt == 'android'){
+		            //调用android程序中的方法，并传递参数
+		            window.AndroidWebView.callPhoneFromH5(phone);
+		        }else if(eqpt == 'ios'){
+		            //调用iOS程序中的方法，并传递参数
+		            //"getOrderIdFromH5://"为自定义协议头;
+		            //order_id为要传给OC的值,以":|"作为分隔
+		            window.location.href="tel:"+phone;
+		        }else{
+		            return false;
+		        }
+		    }
+
+		    // 返回页面
+		    function goBackToApp() {
+		        var eqpt = 'other';
+		        var page = 'home';
+		        if(eqpt == 'android'){
+		            //调用android程序中的方法，并传递参数
+		            window.AndroidWebView.goBackFromH5(page);
+		        }else if(eqpt == 'ios'){
+		            //调用iOS程序中的方法，并传递参数
+		            //"getOrderIdFromH5://"为自定义协议头;
+		            //order_id为要传给OC的值,以":|"作为分隔
+		            window.location.href="goBackFromH5://"+":|"+page;
+		        }else{
+		            return false;
+		        }
+		    }
+
+		    // 未登录提示客户端返回用户MOBILE
+		    function getUserCodeFromApp() {
+		        var eqpt = 'other';
+		        var h5_url = 'http://testapi.nbaljz.cn/Api2/Single/addr_list.html';
+		        if(eqpt == 'android'){
+		            //调用android程序中的方法，并传递参数
+		            window.AndroidWebView.sendUserCodeToH5(h5_url);
+		        }else if(eqpt == 'ios'){
+		            //调用iOS程序中的方法，并传递参数
+		            //"getOrderIdFromH5://"为自定义协议头;
+		            //order_id为要传给OC的值,以":|"作为分隔
+		            window.location.href="sendUserCodeToH5://"+":|"+h5_url;
+		        }else{
+		            return false;
+		        }
+		    }
+
+		    // 发送订单ID参数到客户端
+		    function sendOrderIdToApp(order_id) {
+		        var eqpt = 'other';
+		        if(eqpt == 'android'){
+		            //调用android程序中的方法，并传递参数
+		            window.AndroidWebView.getOrderIdFromH5(order_id);
+		        }else if(eqpt == 'ios'){
+		            //调用iOS程序中的方法，并传递参数
+		            //"getOrderIdFromH5://"为自定义协议头;
+		            //order_id为要传给OC的值,以":|"作为分隔
+		            window.location.href="getOrderIdFromH5://"+":|"+order_id;
+		        }else{
+		            return false;
+		        }
+		    }
+		</script>  
+	</body>
+</html>

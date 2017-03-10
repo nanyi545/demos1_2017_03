@@ -1,0 +1,162 @@
+package rm.module_net;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Handler;
+import android.support.design.widget.Snackbar;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.TypedValue;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
+
+import com.webcon.wp.utils.MyAdapter;
+import com.webcon.wp.utils.NativeInterface;
+
+
+public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener{
+    private static final String TAG = "MainActivity";
+//    private Handler mHandler = new Handler();
+    private RecyclerView mRecycler;
+    private LinearLayoutManager mRecyclerManager;
+    private SwipeRefreshLayout mSwipe;
+    private int firstVisibleItem;
+    private Button bn_jump1, bn_jump2;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        bn_jump1 = (Button)findViewById(R.id.bn_jump1);
+        bn_jump1.setText("跳转1");
+        bn_jump1.setOnClickListener(clickListener);
+        bn_jump2 = (Button)findViewById(R.id.bn_jump2);
+        bn_jump2.setText("跳转2");
+        bn_jump2.setOnClickListener(clickListener);
+//        mHandler.postDelayed(mRun, 2000);
+        //
+        mSwipe = (SwipeRefreshLayout)findViewById(R.id.swipe_layout);
+        mSwipe.setColorSchemeColors(R.color.material_blue_grey_800);
+        mSwipe.setOnRefreshListener(this);
+        mSwipe.setVerticalFadingEdgeEnabled(false);
+        mSwipe.setProgressViewOffset(true, 0, (int) TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP, 24, getResources().getDisplayMetrics()));
+        mSwipe.setRefreshing(true);
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mSwipe.setRefreshing(false);
+            }
+        }, 2000);
+        // -----
+
+        // ----recyclerView----
+        mRecycler = (RecyclerView)findViewById(R.id.recycler_view);
+        //如果可以确定每个item的高度是固定的，设置这个选项可以提高性能
+        mRecycler.setHasFixedSize(true);
+        // 线性
+        mRecyclerManager = new LinearLayoutManager(this);
+        mRecycler.setLayoutManager(mRecyclerManager);
+        mRecycler.setItemAnimator(new DefaultItemAnimator());
+        //
+        String[] data = {"aaa", "bbb", "ccc", "ddd", "eee", "fff", "ggg"};
+        MyAdapter mAdapter = new MyAdapter(data);
+        mRecycler.setAdapter(mAdapter);
+        mRecycler.setItemAnimator(new DefaultItemAnimator());
+        mAdapter.setOnItemClickListener(new MyAdapter.OnRecyclerViewItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Toast.makeText(MainActivity.this, "onItemClick: " + position, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onItemLongClick(View view, int position) {
+                Toast.makeText(MainActivity.this, "onItemLongClick: " + position, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // 点击事件
+
+    }
+
+    private View.OnClickListener clickListener = new View.OnClickListener(){
+        @Override
+        public void onClick(View v){
+            if(v == bn_jump1){
+                Intent intent = new Intent(MainActivity.this, Main2Activity.class);
+                startActivity(intent);
+                finish();
+            }
+            if(v == bn_jump2){
+                Intent intent = new Intent(MainActivity.this, Main3Activity.class);
+                startActivity(intent);
+                finish();
+            }
+        }
+    };
+
+    private void testJni(){
+        NativeInterface.getInstance().init();
+    }
+
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private Runnable mRun = new Runnable() {
+        @Override
+        public void run() {
+            testJni();
+        }
+    };
+
+
+    @Override
+    public void onRefresh() {
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mSwipe.setRefreshing(false);
+            }
+        }, 2000);
+        Snackbar.make(mSwipe, "Hello SnackBar!", Snackbar.LENGTH_SHORT)
+                .setAction("Undo", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // Perform anything for the action selected
+                    }
+                })
+                .setDuration(Snackbar.LENGTH_SHORT).show();
+    }
+    private Handler handler = new Handler();
+
+}

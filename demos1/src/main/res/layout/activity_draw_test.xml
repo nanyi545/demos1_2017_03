@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <test1.nh.com.demos1.customView.DragLayout
+        android:id="@+id/drag_container"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+
+        <ImageView
+            android:id="@+id/drag_view1"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/Purple300" />
+
+
+        <ImageView
+            android:id="@+id/drag_view2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@color/Red300" />
+    </test1.nh.com.demos1.customView.DragLayout>
+
+
+
+    <com.daimajia.swipe.SwipeLayout
+        android:layout_below="@+id/drag_container"
+        android:id="@+id/sample1"
+        android:layout_width="match_parent"
+        android:layout_height="80dp">
+        <!-- Bottom View Start-->
+        <LinearLayout
+            android:background="#66ddff00"
+            android:id="@+id/bottom_wrapper"
+            android:layout_width="160dp"
+            android:weightSum="1"
+            android:layout_height="match_parent">
+            <!--What you want to show-->
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@color/Blue400"
+                />
+        </LinearLayout>
+        <!-- Bottom View End-->
+
+        <!-- Surface View Start -->
+        <LinearLayout
+            android:padding="10dp"
+            android:background="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <!--What you want to show in SurfaceView-->
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@color/Teal400"
+                />
+        </LinearLayout>
+        <!-- Surface View End -->
+    </com.daimajia.swipe.SwipeLayout>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_below="@+id/sample1"
+        android:id="@+id/test_rv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+
+</RelativeLayout>
+
+

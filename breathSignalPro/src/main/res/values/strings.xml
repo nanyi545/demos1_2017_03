@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">breath signal process</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_serial_test">SerialTestActivity</string>
+</resources>

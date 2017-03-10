@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>日期对象 </title>
+    <script type="text/javascript">
+
+
+
+ var mydate=new Date();
+  document.write("当前时间："+mydate+"<br>");
+  mydate.setTime( mydate.getTime()  + 2* 60 * 60 * 1000);
+  document.write("推迟二小时时间：" + mydate+"<br>");
+
+
+
+  var weekday=["星期日","星期一","星期二","星期三","星期四","星期五","星期六"];
+  document.write("今天是：" + weekday[mydate.getDay()]+"<br>");
+
+
+
+</script>
+</head>
+<body>
+</body>
+</html>

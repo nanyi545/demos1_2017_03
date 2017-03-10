@@ -1,0 +1,229 @@
+package com.webcon.sus.adapter;
+
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.CheckBox;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.webcon.sus.demo.R;
+import com.webcon.sus.entity.TreeElement;
+
+import java.util.List;
+
+public class EquipmentGridAdapter extends BaseAdapter {
+
+	private Context mContext;
+	private int checkedFlag;
+	private List<TreeElement> treeList;
+
+	private LayoutInflater layoutInflater;
+
+	private Bitmap pcBitmap, phoneBitmap, cameraUserBitmap, folderOpenBitmap,
+			folderCloseBitmap, iptvBitmap, cameraBitmap, userBitmap;
+
+	public EquipmentGridAdapter(Context context, List<TreeElement> list,
+			int flag) {
+		this.mContext = context;
+		this.treeList = list;
+		this.checkedFlag = flag;
+		this.layoutInflater = (LayoutInflater) context
+				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+		BitmapFactory.Options opt = new BitmapFactory.Options();
+		opt.inPreferredConfig = Bitmap.Config.RGB_565;
+		opt.inPurgeable = true;
+		opt.inInputShareable = true;
+
+		pcBitmap = BitmapFactory.decodeResource(
+				context.getResources(), R.drawable.pc_tree_type, opt);
+		phoneBitmap = BitmapFactory.decodeResource(
+				context.getResources(), R.drawable.phone_tree_type, opt);
+		cameraUserBitmap = BitmapFactory.decodeResource(
+				context.getResources(), R.drawable.camera_user_tree_type, opt);
+		folderOpenBitmap = BitmapFactory.decodeResource(
+				context.getResources(), R.drawable.folder_open_tree_type, opt);
+		folderCloseBitmap = BitmapFactory.decodeResource(
+				context.getResources(), R.drawable.folder_close_tree_type, opt);
+		iptvBitmap = BitmapFactory.decodeResource(
+				context.getResources(), R.drawable.iptv_tree_type, opt);
+		cameraBitmap = BitmapFactory.decodeResource(
+				context.getResources(), R.drawable.camera_tree_type, opt);
+		userBitmap = BitmapFactory.decodeResource(
+				context.getResources(), R.drawable.user_tree_type, opt);
+
+
+		// 获取资源图片
+//		InputStream is = context.getResources().openRawResource(
+//				R.drawable.pc_tree_type);
+//		pcBitmap = BitmapFactory.decodeStream(is, null, opt);
+//
+//		is = context.getResources().openRawResource(R.drawable.phone_tree_type);
+//		phoneBitmap = BitmapFactory.decodeStream(is, null, opt);
+//
+//		is = context.getResources().openRawResource(
+//				R.drawable.camera_user_tree_type);
+//		cameraUserBitmap = BitmapFactory.decodeStream(is, null, opt);
+//
+//		is = context.getResources().openRawResource(
+//				R.drawable.folder_open_tree_type);
+//		folderOpenBitmap = BitmapFactory.decodeStream(is, null, opt);
+//
+//		is = context.getResources().openRawResource(
+//				R.drawable.folder_close_tree_type);
+//		folderCloseBitmap = BitmapFactory.decodeStream(is, null, opt);
+//
+//		is = context.getResources().openRawResource(R.drawable.iptv_tree_type);
+//		iptvBitmap = BitmapFactory.decodeStream(is, null, opt);
+//
+//		is = context.getResources()
+//				.openRawResource(R.drawable.camera_tree_type);
+//		cameraBitmap = BitmapFactory.decodeStream(is, null, opt);
+//
+//		is = context.getResources().openRawResource(R.drawable.user_tree_type);
+//		userBitmap = BitmapFactory.decodeStream(is, null, opt);
+//
+//		try {
+//			is.close();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+
+		/*
+		 * pcBitmap = BitmapFactory.decodeResource(context.getResources(),
+		 * R.drawable.pc_tree_type); phoneBitmap =
+		 * BitmapFactory.decodeResource(context.getResources(),
+		 * R.drawable.phone_tree_type); cameraUserBitmap =
+		 * BitmapFactory.decodeResource(context.getResources(),
+		 * R.drawable.camera_user_tree_type); folderOpenBitmap =
+		 * BitmapFactory.decodeResource(context.getResources(),
+		 * R.drawable.folder_open_tree_type); folderCloseBitmap =
+		 * BitmapFactory.decodeResource( context.getResources(),
+		 * R.drawable.folder_close_tree_type); iptvBitmap =
+		 * BitmapFactory.decodeResource(context.getResources(),
+		 * R.drawable.iptv_tree_type); cameraBitmap =
+		 * BitmapFactory.decodeResource(context.getResources(),
+		 * R.drawable.camera_tree_type); userBitmap =
+		 * BitmapFactory.decodeResource(context.getResources(),
+		 * R.drawable.user_tree_type);
+		 */
+	}
+
+	@Override
+	public int getCount() {
+		return treeList.size();
+	}
+
+	@Override
+	public Object getItem(int position) {
+		return treeList.get(position);
+	}
+
+	@Override
+	public long getItemId(int position) {
+		return position;
+	}
+
+	@Override
+	public View getView(int position, View convertView, ViewGroup parent) {
+		ViewHolder holder = null;
+		if (convertView == null) {
+			holder = new ViewHolder();
+			convertView = layoutInflater.inflate(
+					R.layout.layout_equipment_item, null);
+			holder.image = (ImageView) convertView
+					.findViewById(R.id.equipment_item_img);
+			holder.name = (TextView) convertView
+					.findViewById(R.id.equipment_item_txt);
+			holder.check = (CheckBox) convertView
+					.findViewById(R.id.equipment_item_chk);
+			convertView.setTag(holder);
+		} else {
+			holder = (ViewHolder) convertView.getTag();
+		}
+		switch (treeList.get(position).getUserType()) {
+		// pc
+		case 0:
+			holder.image.setImageBitmap(pcBitmap);
+			break;
+		// phone
+		case 1:
+			holder.image.setImageBitmap(phoneBitmap);
+			break;
+		// pad
+		case 2:
+			holder.image.setImageBitmap(pcBitmap);
+			break;
+		// cameraUser
+		case 3:
+			holder.image.setImageBitmap(cameraUserBitmap);
+			break;
+		// folder
+		case 4:
+			holder.image.setImageBitmap(folderCloseBitmap);
+			break;
+		// iptv
+		case 6:
+			holder.image.setImageBitmap(iptvBitmap);
+			break;
+		// camera
+		case 7:
+			holder.image.setImageBitmap(cameraBitmap);
+			break;
+		// user
+		case -1:
+			holder.image.setImageBitmap(userBitmap);
+			break;
+		default:
+			holder.image.setImageBitmap(null);
+			break;
+
+		}
+
+		if (treeList.get(position).getOnlineStatus() == 1) {
+			holder.name.setTextColor(Color.GREEN);
+		} else {
+			holder.name.setTextColor(mContext.getResources().getColor(
+					R.color.color_font_lightgray));
+		}
+
+		holder.name.setText(treeList.get(position).getUserName());
+
+		if (checkedFlag == 1) { //表示被选中，但是相关需求已被放弃
+			if ((treeList.get(position).getOnlineStatus() == 1 && (treeList
+					.get(position).getUserType() == 0
+					|| treeList.get(position).getUserType() == 1 || treeList
+					.get(position).getUserType() == 2))) {
+				holder.check.setVisibility(View.VISIBLE);
+				holder.check.setChecked(treeList.get(position).isChecked());
+			} else {
+				holder.check.setVisibility(View.GONE);
+			}
+		}
+		return convertView;
+	}
+
+    public void release(){
+        pcBitmap.recycle();
+        phoneBitmap.recycle();
+        cameraUserBitmap.recycle();
+//        folderOpenBitmap.recycle();
+        folderCloseBitmap.recycle();
+        iptvBitmap.recycle();
+        cameraBitmap.recycle();
+        userBitmap.recycle();
+    }
+
+	private class ViewHolder {
+		ImageView image;
+		TextView name;
+		CheckBox check;
+	}
+
+}

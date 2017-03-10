@@ -1,0 +1,1 @@
+include ':app', ':MaterialDesign', ':module_audio', ':module_monitoring', ':module_net'

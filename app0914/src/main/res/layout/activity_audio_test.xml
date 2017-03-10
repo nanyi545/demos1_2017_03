@@ -1,0 +1,74 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.webcon.sus.develop_test.audioTest.AudioTestActivity">
+
+    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="START rec"
+        android:id="@+id/button_start"
+        android:layout_below="@+id/textView" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="STOP rec"
+        android:id="@+id/button2_stop"
+        android:layout_below="@+id/button_start"
+        android:layout_alignParentLeft="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="play"
+        android:id="@+id/button_play"
+        android:layout_below="@+id/button2_stop"
+        android:layout_alignParentLeft="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="START REC--2"
+        android:id="@+id/button"
+        android:layout_alignBottom="@+id/button_start"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="38dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="STOP REC--2"
+        android:id="@+id/button2"
+        android:layout_alignBottom="@+id/button2_stop"
+        android:layout_alignLeft="@+id/button" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PLAY--2"
+        android:id="@+id/button3"
+        android:layout_alignBottom="@+id/button_play"
+        android:layout_alignLeft="@+id/button2" />
+
+
+
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:layout_below="@+id/button_play"
+        android:id="@+id/chart1"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp" />
+
+
+
+</RelativeLayout>

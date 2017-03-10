@@ -1,0 +1,33 @@
+*{
+  margin:0;  /**to get rid off the potential default margin/padding**/
+  padding:0;
+}
+
+.container {
+  position: relative;
+  border: solid 1px blue;
+}
+ul {
+  position: absolute;
+  width:100px;
+  left:0px;
+  padding-left: 20px;
+  border: solid 1px red;
+}
+section {
+  /* position is static by default */
+  margin-left: 100px;
+  border: solid 1px green;
+}
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 70px;
+  background-color: green;
+  width: 100%;
+  border: solid 1px black;
+}
+body {
+  margin-bottom: 120px;
+}

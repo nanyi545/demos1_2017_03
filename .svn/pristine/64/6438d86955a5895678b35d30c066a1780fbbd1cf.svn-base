@@ -1,0 +1,37 @@
+package com.webcon.sus.utils;
+
+import com.webcon.wp.utils.WPApplication;
+
+import java.text.MessageFormat;
+
+/**
+ * @author m
+ */
+public class CommonUtils {
+    public static String ORIGINAL_ALRAM = "！{0}条警报";
+
+    public static String placeHolderSwitch(int num){
+        return MessageFormat.format(ORIGINAL_ALRAM, num);
+    }
+
+    public static int getStamp(){
+        return ++WPApplication.getInstance().alarmSeqSeed;
+    }
+
+    /**
+     * 分开两个int
+     */
+    public static int[] divideIntData(int req){
+        int[] a = new int[2];
+        a[1] = req & 0xF;
+        a[0] = req >> 8;
+        return a;
+    }
+
+    /**
+     * 合并两个int
+     */
+    public static int mergeIntData(int command, int state){
+        return command<<8 + state;
+    }
+}

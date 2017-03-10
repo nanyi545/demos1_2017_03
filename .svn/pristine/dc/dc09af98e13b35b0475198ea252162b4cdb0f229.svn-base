@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/toolbar_station"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@color/Blue400"
+    android:minHeight="?attr/actionBarSize">
+    <ImageButton
+        android:id="@+id/bn_station_back"
+        android:layout_width="36dp"
+        android:layout_height="match_parent"
+        android:src="@drawable/abc_ic_ab_back_mtrl_am_alpha"
+        android:background="@color/Transparent"
+        android:contentDescription="@string/str_null"/>
+
+    <TextView
+        android:id="@+id/tv_station_head_name"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/mg_m_2"
+        android:gravity="center_vertical"
+        android:text="@string/str_test_device"
+        android:textSize="@dimen/tsize_4"
+        android:textColor="@color/Grey50"/>
+
+    <TextView
+        android:id="@+id/tv_station_head_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/mg_s_6"
+        android:gravity="center_vertical"
+        android:text="@string/str_test_device"
+        android:textColor="@color/Grey300"
+        android:textSize="@dimen/tsize_6"/>
+
+</LinearLayout>

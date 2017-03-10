@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:id="@+id/container"
+    tools:context=".activities.selectTime.SelectTimeActivity">
+
+    <Button
+        android:id="@+id/test1_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="select time"
+        android:onClick="selectTime"
+        />
+
+
+    <NumberPicker
+        android:layout_below="@+id/test1_btn"
+        android:id="@+id/show_num_picker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp" />
+
+    <biz.kasual.materialnumberpicker.MaterialNumberPicker
+        android:layout_below="@+id/show_num_picker"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:npMinValue="1"
+        app:npMaxValue="50"
+        app:npDefaultValue="10"
+        app:npBackgroundColor="@color/Teal50"
+        app:npSeparatorColor="@color/Teal200"
+        app:npTextColor="@color/Teal600"
+        app:npTextSize="25sp"/>
+
+
+
+
+</RelativeLayout>

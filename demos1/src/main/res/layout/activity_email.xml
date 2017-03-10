@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:fadeScrollbars="false"
+    android:scrollbars="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context=".activities.Email_IO_Activity">
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="sendSimpleEmail"
+            android:text="send simple email"></Button>
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/button1"
+            android:onClick="sendSimpleEmailApache"
+            android:text="send simple email(apache)"></Button>
+
+        <Button
+            android:id="@+id/button7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/button2"
+            android:onClick="sendEmailWithAttach"
+            android:text="send email with TEXT atta"></Button>
+
+        <Button
+            android:id="@+id/button8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/button7"
+            android:onClick="sendEmailWithAttach"
+            android:text="send email with IMAGE atta"></Button>
+
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/button8"
+            android:onClick="writeToFile_byteBased"
+            android:text="write2F-bBase-FileOutputStream"></Button>
+
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/button3"
+            android:onClick="writeToFile_charBased"
+            android:text="write2F-charBased-FileWriter"></Button>
+
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/button4"
+            android:onClick="readFiles_inDirectory"
+            android:text="read files under a directory"></Button>
+
+        <Button
+            android:id="@+id/button6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/button5"
+            android:onClick="printStorageDirs"
+            android:text="Int/Ext Storage DIRs"></Button>
+
+        <Button
+            android:id="@+id/button9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/button6"
+            android:onClick="wirte2sdCard"
+            android:text="print files in SD"></Button>
+
+
+        <Button
+            android:id="@+id/button10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/button9"
+            android:onClick="createFileInCache"
+            android:text="create a file"></Button>
+
+        <Button
+            android:id="@+id/button11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/button10"
+            android:onClick="randomAccessFileDemo"
+            android:text="RANDOM access file demo"></Button>
+        <Button
+            android:id="@+id/button12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/button11"
+            android:onClick="encodingDemo"
+            android:text="encoding demo"></Button>
+
+        <Button
+            android:id="@+id/button13"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/button12"
+            android:onClick="writeIntArray"
+            android:text="naive write/read Int Array demo"></Button>
+
+        <Button
+            android:id="@+id/button14"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/button13"
+            android:onClick="writeIntArrayRX"
+            android:text="RX-write/read Int Array demo"></Button>
+
+
+
+
+
+
+    </RelativeLayout>
+</ScrollView>

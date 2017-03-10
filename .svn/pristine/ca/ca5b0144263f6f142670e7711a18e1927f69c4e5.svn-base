@@ -1,0 +1,292 @@
+package rm.module_monitoring;
+
+
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
+import android.view.View;
+import android.widget.Button;
+
+import com.hikvision.netsdk.ExceptionCallBack;
+import com.hikvision.netsdk.HCNetSDK;
+import com.hikvision.netsdk.NET_DVR_DEVICEINFO_V30;
+import com.hikvision.netsdk.NET_DVR_PREVIEWINFO;
+import com.hikvision.netsdk.RealPlayCallBack;
+
+import org.MediaPlayer.PlayM4.Player;
+
+
+public class MonitoringVideoActivity extends AppCompatActivity
+        implements SurfaceHolder.Callback, View.OnClickListener{
+    //
+    private static final String TAG = "Monitoring";
+    private static final String D_IP = "192.168.1.105";
+    private static final String D_USER = "admin";
+    private static final String D_PW = "12345";
+    private static final short D_PORT = 8000;
+
+    //
+    private SurfaceView mSurfaceView;
+    private Button bn_l, bn_t, bn_r, bn_b, bn_m, bn_s;
+    private int controlCode = 0;
+    private int speed = 7;
+
+    private Player mPlayer;
+    private int mPort = 0;
+    private int loginId = -1;
+    private int playerHandler = -1;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+        Log.i(TAG, "onCreate 1");
+        if(!initSDK()){
+            this.finish();
+            return;
+        }
+        Log.i(TAG, "onCreate 2");
+        initView();
+        Log.i(TAG, "onCreate 3");
+    }
+
+    private boolean initSDK(){
+        mPlayer = Player.getInstance();
+
+        if(mPlayer == null){
+            logErr("player init failed!");
+            MonitoringVideoActivity.this.finish();
+            return false;
+        }
+
+        mPort = mPlayer.getPort();
+        logInfo("port:" + mPort);
+        if(!mPlayer.setStreamOpenMode(mPort, Player.STREAM_REALTIME)){
+            logErr("set stream mode error");
+            return false;
+        }
+
+        return true;
+    }
+
+    private void initView(){
+        setContentView(R.layout.layout_monitoring_video);
+        mSurfaceView = (SurfaceView)findViewById(R.id.surface1);
+        mSurfaceView.getHolder().addCallback(this);
+
+        bn_b = (Button)findViewById(R.id.bn_cc_down);
+        bn_l = (Button)findViewById(R.id.bn_cc_left);
+        bn_r = (Button)findViewById(R.id.bn_cc_right);
+        bn_t = (Button)findViewById(R.id.bn_cc_up);
+        bn_m = (Button)findViewById(R.id.bn_cc_magnify);
+        bn_s = (Button)findViewById(R.id.bn_cc_shrink);
+        bn_b.setOnClickListener(this);
+        bn_l.setOnClickListener(this);
+        bn_r.setOnClickListener(this);
+        bn_t.setOnClickListener(this);
+        bn_m.setOnClickListener(this);
+        bn_s.setOnClickListener(this);
+
+    }
+
+    //---------------------------
+    private RealPlayCallBack getRealPlayCallback(){
+        return new RealPlayCallBack() {
+            @Override
+            public void fRealDataCallBack(int iRealHandle, int iDataType, byte[] pDataBuffer, int iDataSize) {
+                onData(iRealHandle, iDataType, pDataBuffer, iDataSize);
+            }
+        };
+    }
+
+    private void onData(int iRealHandle, int iDataType, byte[] pDataBuffer, int iDataSize){
+//        Log.w(TAG, "onData " + iRealHandle + " " + iDataSize);
+
+        switch (iDataType){
+            case HCNetSDK.NET_DVR_SYSHEAD:  //系统头
+                if(iDataSize > 0){
+                    mPlayer.openStream(mPort, pDataBuffer, iDataSize, 1024 * 800);
+                    mPlayer.setDisplayBuf(mPort, 15);
+                    mPlayer.play(mPort, mSurfaceView.getHolder());
+                    break;
+                }
+                break;
+            case HCNetSDK.NET_DVR_STREAMDATA: //码流数据
+                if(iDataSize > 0 && iRealHandle != -1){
+                    if(!mPlayer.inputData(mPort, pDataBuffer, iDataSize)){
+//                        logErr("input data error!");
+                        break;
+                    }
+                }
+                break;
+            default:
+                if(iDataSize > 0 && iRealHandle != -1){
+                    if(!mPlayer.inputData(mPort, pDataBuffer, iDataSize)){
+                        logErr("input data error!");
+                        break;
+                    }
+                }
+                break;
+        }
+
+    }
+
+    private void quit(){
+        Log.i(TAG, "quit");
+        mPlayer.stop(mPort);
+        mPlayer.closeStream(mPort);
+        mPlayer.freePort(mPort);
+
+        HCNetSDK.getInstance().NET_DVR_StopRealPlay(playerHandler);
+        HCNetSDK.getInstance().NET_DVR_Logout_V30(loginId);
+        HCNetSDK.getInstance().NET_DVR_Cleanup();
+    }
+
+    private void ptzControlWithSpeecStart(int conmmand){
+        if(playerHandler != -1){
+            if(!HCNetSDK.getInstance().NET_DVR_PTZControlWithSpeed(playerHandler, conmmand, 0, speed)){
+                logErr("ptz start error");
+            }else{
+                logInfo("pts start success!");
+            }
+        }
+    }
+    private void ptzControlWithSpeecStop(int conmmand){
+        if(playerHandler != -1){
+           if(!HCNetSDK.getInstance().NET_DVR_PTZControlWithSpeed(playerHandler, conmmand, 1, speed)){
+                logErr("ptz stop error");
+            }else{
+               logInfo("pts stop success!");
+           }
+        }
+    }
+
+    private Runnable mRun = new Runnable() {
+        @Override
+        public void run() {
+            ptzControlWithSpeecStop(controlCode);
+        }
+    };
+
+    private void control(View v, int command){
+        logInfo("-<control>-");
+        ptzControlWithSpeecStart(command);
+        controlCode = command;
+        v.postDelayed(mRun, 1000);
+    }
+
+
+    //----------
+    @Override
+    public void onClick(View v){
+        Log.i(TAG, "on click");
+        /*
+        TILT_UP 21 云台上仰
+        TILT_DOWN 22 云台下俯
+        PAN_LEFT 23 云台左转
+        PAN_RIGHT 24 云台右转
+
+        ZOOM_IN 11 焦距变大(倍率变大)
+        ZOOM_OUT 12 焦距变小(倍率变小)
+
+        FOCUS_NEAR 13 焦点前调
+        FOCUS_FAR 14 焦点后调
+
+        IRIS_OPEN 15 光圈扩大
+        IRIS_CLOSE 16 光圈缩小
+         */
+        if(bn_b == v){
+            control(v, 22);
+        }
+        if(bn_t == v){
+            control(v, 21);
+        }
+        if(bn_l == v){
+            control(v, 23);
+        }
+        if(bn_r == v){
+            control(v, 24);
+        }
+        if(bn_m == v){
+            control(v, 11);
+        }
+        if(bn_s == v){
+            control(v, 12);
+        }
+    }
+
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+    }
+
+
+    //-----------------
+    @Override
+    public void surfaceCreated(SurfaceHolder holder) {
+
+    }
+
+    @Override
+    public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+        new LoginThread().start();
+    }
+
+    @Override
+    public void surfaceDestroyed(SurfaceHolder holder) {
+        quit();
+    }
+
+    private void logErr(String s){
+        Log.e(TAG, "error: " + s);
+    }
+
+    private void logInfo(String s){
+        Log.i(TAG, "info: " + s);
+    }
+
+
+    //--------------------
+    private class LoginThread extends Thread{
+        @Override
+        public void run(){
+            //初始化
+            if(!HCNetSDK.getInstance().NET_DVR_Init()){
+                logErr("net init failed!");
+                return;
+            }
+            //设置重连
+            HCNetSDK.getInstance().NET_DVR_SetConnectTime(2000);
+            HCNetSDK.getInstance().NET_DVR_SetReconnect(10000, true);
+
+            //注册设备
+            NET_DVR_DEVICEINFO_V30 mDeviceInfo = new NET_DVR_DEVICEINFO_V30();
+            loginId = HCNetSDK.getInstance().NET_DVR_Login_V30(D_IP, D_PORT, D_USER, D_PW, mDeviceInfo);
+            if(loginId != 0){
+                logErr("login error code: " + loginId);
+                logErr("login error: " + HCNetSDK.getInstance().NET_DVR_GetLastError());
+            } else{
+                logInfo("login success");
+            }
+
+            //设置异常消息回调函数
+            HCNetSDK.getInstance().NET_DVR_SetExceptionCallBack(new ExceptionCallBack() {
+                @Override
+                public void fExceptionCallBack(int dwType, int lUserID, int lHandle) {
+                    logErr("exception type:" + dwType);
+                }
+            });
+
+
+            //启动预览并设置回调数据流
+            Log.i(TAG, "start Connect");
+            NET_DVR_PREVIEWINFO mPreviewInfo = new NET_DVR_PREVIEWINFO();
+            mPreviewInfo.lChannel = 1;      //预览通道号
+            mPreviewInfo.dwStreamType = 0;  //0-主码流，1-子码流，2-码流3，3-码流4，以此类推
+            mPreviewInfo.dwLinkMode = 0;    //0- TCP方式，1- UDP方式，2- 多播方式，3- RTP方式，4-RTP/RTSP，5-RSTP/HTTP
+            playerHandler = HCNetSDK.getInstance().NET_DVR_RealPlay_V40(loginId, mPreviewInfo, getRealPlayCallback());
+            logInfo("playerHandler: " + playerHandler);
+        }
+    }
+}

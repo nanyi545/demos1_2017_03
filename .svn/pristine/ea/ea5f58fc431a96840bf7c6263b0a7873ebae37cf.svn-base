@@ -1,0 +1,154 @@
+package com.webcon.sus.adapter;
+
+
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.CheckBox;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import com.webcon.sus.demo.R;
+import com.webcon.sus.entity.AlarmNode;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class MyAlarmListAdapter extends BaseAdapter {
+
+    private List<AlarmNode> alarmList;
+    private LayoutInflater layoutInflater;
+    private boolean selectCheckBoxFlag;
+    private List<Boolean> isCheckedList;
+    private Context context;
+
+    public MyAlarmListAdapter(Context context, List<AlarmNode> list) {
+        this.context = context;
+        this.alarmList = list;
+        this.layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        isCheckedList = new ArrayList<Boolean>();
+        for (int i = 0; i < list.size(); i++) {
+            isCheckedList.add(false);
+        }
+    }
+
+    @Override
+    public int getCount() {
+        return alarmList.size();
+    }
+
+    @Override
+    public Object getItem(int arg0) {
+        return alarmList.get(arg0);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        AlarmViewHodler holder = null;
+        if (convertView == null) {
+            holder = new AlarmViewHodler();
+            convertView = layoutInflater.inflate(R.layout.layout_tab_alarm_list_item, null);
+            holder.numRL = (RelativeLayout) convertView.findViewById(R.id.alarm_list_item_rl_num);
+            holder.selectCB = (CheckBox) convertView.findViewById(R.id.alarm_list_item_cb_check);
+            holder.numTV = (TextView) convertView.findViewById(R.id.alarm_list_item_tv_number);
+            holder.eqNameTv = (TextView) convertView.findViewById(R.id.alarm_list_item_tv_eqname);
+            holder.timeTV = (TextView) convertView.findViewById(R.id.alarm_list_item_tv_time);
+            holder.infoTV = (TextView) convertView.findViewById(R.id.alarm_list_item_tv_info);
+            convertView.setTag(holder);
+        } else {
+            holder = (AlarmViewHodler) convertView.getTag();
+        }
+        // 未处理加背景
+        if (alarmList.get(position).getIsSolved() == 0) {
+            holder.numRL.setBackgroundResource(R.drawable.bg_tab_alarmlist_resolve);
+        } else {
+            holder.numRL.setBackgroundDrawable(null);
+        }
+
+        if (selectCheckBoxFlag) {
+            holder.selectCB.setVisibility(View.VISIBLE);
+        } else {
+            holder.selectCB.setVisibility(View.INVISIBLE);
+        }
+        holder.selectCB.setChecked(isCheckedList.get(position));
+        holder.numTV.setText((position + 1) + "");
+        holder.eqNameTv.setText(alarmList.get(position).getDeviceName());
+
+        // 报警时间和日期
+        String dateTime = alarmList.get(position).getAlarmDate();
+        dateTime = dateTime.replaceFirst(" ", "\n");
+        holder.timeTV.setText(dateTime);
+
+        // 报警内容
+        String content = alarmList.get(position).getContent();
+        holder.infoTV.setText(content);
+
+        return convertView;
+    }
+
+    public class AlarmViewHodler {
+        public RelativeLayout numRL;
+        public CheckBox selectCB;
+        public TextView numTV;
+        public TextView eqNameTv;
+        public TextView timeTV;
+        public TextView infoTV;
+    }
+
+    public void setSelectCheckBoxFlag(boolean selectCheckBoxFlag) {
+        this.selectCheckBoxFlag = selectCheckBoxFlag;
+    }
+
+    public List<Boolean> getIsCheckedList() {
+        return isCheckedList;
+    }
+
+    /**
+     * 重置isCheckedList 让所有checkBox默认为未选中状态(取消全选)
+     */
+    public void resetIsCheckedList() {
+        for (int i = 0; i < isCheckedList.size(); i++) {
+            isCheckedList.set(i, false);
+        }
+    }
+
+    /**
+     * 删除数据后改变isCheckedList的长度
+     */
+    public void afterDeleteChangeIsCheckedListSize() {
+        isCheckedList.clear();
+        for (int i = 0; i < alarmList.size(); i++) {
+            isCheckedList.add(false);
+        }
+    }
+
+    /**
+     * 全选
+     */
+    public void selectAll() {
+        for (int i = 0; i < isCheckedList.size(); i++) {
+            isCheckedList.set(i, true);
+        }
+    }
+
+    /**
+     * 判断是否为全选状态
+     */
+    public boolean isSelectAll() {
+        for (int i = 0; i < isCheckedList.size(); i++) {
+            if (!isCheckedList.get(i)) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+

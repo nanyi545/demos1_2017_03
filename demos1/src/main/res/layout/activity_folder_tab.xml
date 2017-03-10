@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relative_page"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".activities.CustomViewActivity">
+
+    <test1.nh.com.demos1.customView.MyView2
+        android:id="@+id/costum1"
+        android:layout_width="100dp"
+        android:layout_height="100dp"></test1.nh.com.demos1.customView.MyView2>
+
+
+    <!--custom:showText="true"-->
+    <test1.nh.com.demos1.customView.PieChartc
+        android:id="@+id/costum3"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/costum1"></test1.nh.com.demos1.customView.PieChartc>
+
+    <Button
+        android:id="@+id/Reset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/costum3"
+        android:text="New Button" />
+
+
+    <test1.nh.com.demos1.customView.MyView3
+        android:id="@+id/myview3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Reset"
+        android:background="@color/Teal100"
+        custom:imageSource="@drawable/ic_alarm_add_black_36dp"
+        custom:textBackground="@color/Red200"
+        custom:textContent="custom view test 3" />
+
+    <Button
+        android:id="@+id/controlShape"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/myview3"
+        android:text="change shape"></Button>
+
+    <test1.nh.com.demos1.customView.ExpandView
+        android:id="@+id/ev1"
+        android:layout_width="162dp"
+        android:layout_height="54dp"
+        android:layout_below="@id/controlShape"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp">
+
+        <!--android:scaleType="center"-->
+        <test1.nh.com.demos1.customView.CircleImageView
+            android:id="@+id/cv1"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_account_balance_black_24dp"
+            custom:border_color="@color/Transparent"
+            custom:border_width="10dp" />
+
+        <test1.nh.com.demos1.customView.CircleImageView
+            android:id="@+id/cv2"
+            android:layout_width="54dp"
+
+            android:layout_height="54dp"
+            android:layout_gravity="center"
+            android:layout_toRightOf="@id/cv1"
+            android:src="@drawable/ic_launcher"
+            custom:border_color="@color/Transparent"
+            custom:border_width="10dp" />
+
+        <test1.nh.com.demos1.customView.CircleImageView
+            android:id="@+id/cv3"
+            android:layout_width="54dp"
+
+            android:layout_height="54dp"
+            android:layout_gravity="center"
+            android:layout_toRightOf="@id/cv2"
+            android:src="@drawable/ic_dialpad_black_18dp"
+            custom:border_color="@color/Transparent"
+            custom:border_width="10dp" />
+    </test1.nh.com.demos1.customView.ExpandView>
+
+
+    <RelativeLayout
+        android:id="@+id/container_rel"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/controlShape"
+        android:layout_toRightOf="@+id/controlShape">
+
+        <test1.nh.com.demos1.customView.CircleViewPlus
+            android:id="@+id/cvplus"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            custom:arcBarColor="@color/Red200"
+            custom:progressBarColor="@color/Blue500"
+            custom:progressTextColor="@color/White"
+            />
+    </RelativeLayout>
+
+
+
+
+    <test1.nh.com.demos1.customView.LoadView
+        android:background="@color/Teal500"
+        custom:loadingBackground="@drawable/star2"
+        custom:loadingImage="@drawable/star1"
+        android:id="@+id/loadview"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_alignParentRight="true" />
+
+
+    <test1.nh.com.demos1.customView.WaveView
+        android:layout_below="@id/ev1"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:id="@+id/wave"
+        />
+
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:gravity="right"
+        android:textAlignment="gravity"
+        android:id="@+id/animate_tv"
+        android:background="@color/Blue100"
+        android:layout_below="@+id/container_rel"
+        android:layout_alignLeft="@+id/container_rel"
+        android:layout_alignStart="@+id/container_rel"></TextView>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="showPop"
+        android:onClick="showPop"
+        android:id="@+id/button48"
+        android:layout_alignTop="@+id/ev1"
+        android:layout_toRightOf="@+id/Reset"
+        android:layout_toEndOf="@+id/Reset" />
+
+
+
+    <test1.nh.com.demos1.customView.CustomView
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/loadview"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        custom:border_color1="@color/Amber200"
+        custom:border_width1="1dp"
+        />
+
+
+</RelativeLayout>

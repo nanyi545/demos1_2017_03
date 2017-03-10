@@ -1,0 +1,495 @@
+package com.webcon.sus.utils;
+
+import android.util.Log;
+
+import com.webcon.sus.entity.AlarmNode;
+import com.webcon.sus.entity.StationNode;
+import com.webcon.sus.eventObjects.MessageEvent;
+import com.webcon.sus.eventObjects.ServiceEvent;
+import com.webcon.sus.eventObjects.StationEvent;
+import com.webcon.wp.utils.JTools;
+import com.webcon.wp.utils.NativeInterface;
+import com.webcon.wp.utils.WPApplication;
+
+import de.greenrobot.event.EventBus;
+
+/**
+ * 通信库工具类
+ * <p>UI层调用这里，在这里调用JNI接口</p>
+ * @author m
+ */
+public class CommunicationUtils extends DataParseUtils{
+    private static final String TAG = "Communication";
+    /* ******** */
+    private static CommunicationUtils me;
+    /** 视频回调接口 */
+    private IVideoCallback iVideoCallback;
+    private boolean initialized = false;
+
+    /** 回复的数据缓存 */
+    private byte[] rspBuffer = new byte[1024];
+
+    /* ************ */
+
+    /** 通信工具类，包装了通信的发送处理，以及回调解析处理 */
+    private CommunicationUtils(){
+    }
+
+    /** 获取实例 */
+    public static CommunicationUtils getInstance(){
+        if(me == null){
+            synchronized (CommunicationUtils.class){
+                if(me == null){
+                    me = new CommunicationUtils();
+                }
+            }
+        }
+        return me;
+    }
+
+    /**
+     * 注册视频回调监听
+     */
+    public void registerVideoCallback(IVideoCallback iVideoCallback){
+        this.iVideoCallback = iVideoCallback;
+    }
+
+    /**
+     * 视频预览回调接口
+     * @param iDataType 视频数据类型：头部、数据
+     * @param pDataBuffer 视频数据
+     * @param iDataSize 视频数据大小
+     */
+    public void onVideoData(int iDataType, byte[] pDataBuffer, int iDataSize){
+        iVideoCallback.onData(iDataType, pDataBuffer, iDataSize);
+    }
+
+    /**
+     * 反注册视频回调监听
+     */
+    public void unregisterVideoCallback(){
+        iVideoCallback = null;
+    }
+
+    /**
+     * 初始化数据
+     */
+    public void loadInitialData(){
+        new Thread(new InitRunnble()).start();
+    }
+
+
+    /* ********************通信接口调用******************** */
+
+    /**
+     * 初始化通信库
+     */
+    public int init(){
+        int ret = NativeInterface.getInstance().init();
+        initialized = true;
+        return ret;
+    }
+
+    public boolean isInitialized(){
+        return initialized;
+    }
+
+    /**
+     * 反初始化通信库
+     */
+    public int uninit(){
+        int ret = NativeInterface.getInstance().unInit();
+        initialized = false;
+        return ret;
+    }
+
+    /**
+     * 登录实现
+     * ##FIXME: netType是啥？(눈_눈)
+     */
+    public int login(String serverIp, int serverPort, byte[] userName, String userPwd, int netType){
+        return NativeInterface.getInstance().login(
+                serverIp, serverPort, userName, userPwd, SUConstant.USER_TYPE_PHONE, netType);
+    }
+
+    /**
+     * 退出登录
+     */
+    public int logout(){
+        return NativeInterface.getInstance().logout();
+    }
+
+    /* ********************与站场系统服务软件的连接******************** */
+    /**
+     * 开启布防
+     */
+    public void openDefence(int stationId) {
+        new Thread(new ButtonRunnable(SUConstant.FLAG_STATION_OPENED, stationId)).start();
+    }
+
+    /**
+     * 关闭布防
+     */
+    public void closeDefence(int stationId){
+        new Thread(new ButtonRunnable(SUConstant.FLAG_STATION_CLOSED, stationId)).start();
+    }
+
+    /**
+     * 播放语音喊话
+     */
+    public void sendVoice(int stationId, String monitorName, byte[] data, int length){
+        byte[] head = createRequestSys(SUConstant.SUB_REQUEST_SPEAKER, stationId, monitorName, 0);
+        if(head != null){
+            byte[] sendData = new byte[head.length + 4 + length];
+            int offset = head.length;
+            JTools.IntToBytes4(length, sendData, offset);
+            offset += 4;
+            System.arraycopy(data, 0, sendData, offset, data.length);
+            NativeInterface.getInstance().sendDataToWinSys(
+                    SUConstant.CALLBACK_PDU_DATA_TYPE_M, SUConstant.PDU_C_CLI_REQ_WIN, sendData, sendData.length);
+        }
+    }
+
+    /**
+     * 接收到回调数据后，给服务软件的回复（基本上是对新报警消息的回复）
+     */
+    public void respondWin(byte[] data){
+        NativeInterface.getInstance().sendDataToWinSys(
+                SUConstant.CALLBACK_PDU_DATA_TYPE_RSP, SUConstant.PDU_B_CLI_RSP_WIN, data, data.length);
+    }
+
+    /**
+     * 接收到回调数据后，回复给中心服务器
+     */
+    public void respondServer(byte[] data){
+        //// TODO: 15-8-11
+    }
+
+    /**
+     * 云台控制
+     */
+    public void requestPtz(int stationId, String monitorName, int ptzType, boolean ptzState){
+        if(ptzType > 0){
+            int ptzCode = CommonUtils.mergeIntData(ptzType,
+                    ptzState ? SUConstant.PTZ_STATE_MOVING : SUConstant.PTZ_STATE_STAY);
+            byte[] req = createRequestSys(SUConstant.SUB_REQUEST_PTZ, stationId, monitorName, ptzCode);
+            if(req != null){
+                int ret = NativeInterface.getInstance().sendDataToWinSys2(
+                        SUConstant.PDU_C_CLI_REQ_WIN, req, req.length, rspBuffer, rspBuffer.length);
+                if(ret >= 0){
+                    parsePtzRespond(getNewData(rspBuffer, ret));
+                }
+            }
+        }
+    }
+
+    /**
+     * 对设备的请求
+     */
+    public void requestPtzDevice(short pdu, byte[] req){
+        int ret = NativeInterface.getInstance().sendDataToWinSys2(pdu, req, req.length, rspBuffer, rspBuffer.length);
+        if(ret >= 0){
+            parsePtzRespond(getNewData(rspBuffer, ret));
+        }
+    }
+
+    /**
+     * 请求处理一条消息
+     * <br>·若请求成功，则返回0
+     * <br>·若请求失败，-1.连接错误，-2.已被处理
+     * @param mNode 待处理报警消息
+     */
+    public boolean requestSolveAlarm(AlarmNode mNode){
+        // ----------remove MyTest----------
+        if(WPApplication.DEBUG){
+            return true;
+        }
+
+        byte[] req = createRequestSys(
+                SUConstant.SUB_REQUEST_PROCESS_ALARM, mNode.getStationId(), mNode.getDeviceName(), 0);
+        if(req != null){
+            int ret = NativeInterface.getInstance().sendDataToWinSys2(
+                    SUConstant.PDU_C_CLI_REQ_WIN, req, req.length, rspBuffer, rspBuffer.length);
+            if(ret >= 0){
+                return parsePtzRespond(getNewData(rspBuffer, ret));
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 请求数据库修改用户：昵称或密码
+     */
+    public boolean requestModifyUser(byte[] req){
+        if(req != null && req.length > 0){
+            int ret = NativeInterface.getInstance().getDBData(
+                    SUConstant.PDU_A_CLI_REQ_DB, req, req.length, rspBuffer, rspBuffer.length);
+            Log.w(TAG, "result:" + ret);
+            if(ret >= 0){
+                return parseDBRsp(getNewData(rspBuffer, ret));
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 请求修改站场名称
+     */
+    public boolean requestModifyStationName(byte[] req){
+        if(req != null && req.length > 0){
+            int ret = NativeInterface.getInstance().sendDataToWinSys2(
+                    SUConstant.PDU_C_CLI_REQ_WIN, req, req.length, rspBuffer, rspBuffer.length);
+            if(ret >= 0){
+                return parsePtzRespond(getNewData(rspBuffer, ret));
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 请求刷新站场数据，包括设备信息、报警消息
+     * @param stationId 站场Id
+     */
+    public synchronized void requestRefreshStationInformation(int stationId){
+        int ret;
+        /* 获取设备列表 */
+        byte[] reqDevices = createRequestSys(SUConstant.SUB_REQUEST_GET_DEVICES, stationId, null, 0);
+        if(reqDevices == null){
+            Log.e(TAG, "req is null");
+            return;
+        }
+        ret = NativeInterface.getInstance().sendDataToWinSys2(
+                SUConstant.PDU_C_CLI_REQ_WIN,
+                reqDevices, reqDevices.length,
+                rspBuffer, rspBuffer.length);
+        if(ret < 0){
+            logError(ret, 1300);
+            return;
+        }
+        Log.i(TAG, "ret:" + ret);
+        //#解析结果
+        if(!parseInit(getNewData(rspBuffer, ret),
+                WPApplication.getInstance().getStationNode(stationId))){
+            Log.e(TAG, "解析站场设备错误！");
+        }
+
+        /* 获取报警列表 */
+        byte[] reqAlarm = createRequestSys(SUConstant.SUB_REQUEST_GET_ALARMS, stationId, null, 0);
+        if(reqAlarm == null){
+            Log.e(TAG, "req is null");
+            return;
+        }
+        ret = NativeInterface.getInstance().sendDataToWinSys2(
+                SUConstant.PDU_C_CLI_REQ_WIN,
+                reqAlarm, reqAlarm.length,
+                rspBuffer, rspBuffer.length);
+        if(ret < 0){
+            logError(ret, 1400);
+            return;
+        }
+        //#解析结果
+        if(!parseInit(getNewData(rspBuffer, ret),
+                WPApplication.getInstance().getStationNode(stationId))){
+            Log.e(TAG, "解析报警消息错误！");
+        }
+    }
+
+    /**
+     * 刷新全部站场列表的数据：①初始化时；②站场离线状态改变时
+     * 然后重新生成全局报警消息列表
+     * 刷新数据后，还需发布事件，刷新显示
+     */
+    public void refreshAllStationInformation(){
+        for(StationNode node : WPApplication.getInstance().getStationList()){
+            node.refreshInformation();
+        }
+        // 生成全局报警消息列表
+        WPApplication.getInstance().rebuildAlarmList();
+    }
+
+    /* ********************** 其他 ****************** */
+    /**
+     * 释放工作
+     * <p>反初始化、清理内存等。。。</p>
+     */
+    public void release(){
+
+    }
+
+
+    public byte[] getNewData(byte[] data, int len){
+        if(len == 0){
+            len = data.length;
+        }
+        byte[] newData = new byte[len];
+        System.arraycopy(data, 0, newData, 0, len);
+        return newData;
+    }
+
+    private int[] getStationIds(){
+        int[] stations = new int[WPApplication.getInstance().getStationList().size()];
+        int i = 0;
+        for(StationNode n : WPApplication.getInstance().getStationList()){
+            stations[i++] = n.getId();
+        }
+        return stations;
+    }
+
+    /* ***************************************** Thread ****************************** */
+    /**
+     * 布防按钮
+     */
+    private class ButtonRunnable implements Runnable {
+
+        private int ss = 0;
+        private int id = 0;
+
+        public ButtonRunnable(int ss, int id){
+            this.ss = ss;
+            this.id = id;
+        }
+
+        @Override
+        public void run() {
+            //-- remove MyTest----
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            boolean ret = true;
+
+            //------↓正式代码↓-----
+//            boolean ret = false;
+//            short pdu = (ss == SUConstant.FLAG_STATION_OPENED) ?
+//                    SUConstant.SUB_REQUEST_OPEN_DEFENCE : SUConstant.SUB_REQUEST_STOP_DEFENCE;
+//            byte[] req = createRequestToWin(pdu, id, null, 0);
+//
+//            try{
+//                if(req != null){
+//                    NativeInterface.getInstance().sendDataToWinSys2(
+//                            (short) ss, req, req.length, rspBuffer, rspLen);
+//                    ret = parsePtzRespond(getNewData(rspBuffer));
+//                }
+//            }catch(UnsatisfiedLinkError e){
+//                e.printStackTrace();
+//            }
+            //------------------
+
+            if(ret){
+                WPApplication.getInstance().getStationNode(id).setState(ss);
+                // 通知站场状态改变事件
+                StationEvent event= new StationEvent(StationEvent.STATION_EVENT_REFRESH);
+                event.stationId = id;
+                event.msg = ss;
+                EventBus.getDefault().post(event);
+            }else{
+//                ss = (ss == SUConstant.FLAG_STATION_OPENED) ?
+//                        SUConstant.FLAG_STATION_CLOSED : SUConstant.FLAG_STATION_OPENED;
+//                WPApplication.getInstance().getStationNode(id).setState(ss);
+//                // 通知站场状态改变事件
+//                StationEvent event= new StationEvent(StationEvent.STATION_EVENT_REFRESH);
+//                event.stationId = id;
+//                event.msg = ss;
+//                EventBus.getDefault().post(event);
+//                // 错误消息
+//                CommonUtils.sendErrorEvent(pdu, 0);
+            }
+        }
+    }
+
+    /*--------------------初始化开始      -----------*/
+    private void logError(int e, int t){
+        Log.e(TAG, "error:" + t + "/" + e);
+    }
+
+    /**★☆★☆★☆★☆★☆★☆★☆★☆★
+     * 初始化线程：
+     */
+    private class InitRunnble implements Runnable{
+
+        public InitRunnble(){
+
+        }
+
+        @Override
+        public void run(){
+            int ret = 0;
+            byte[] retData = new byte[1024 * 4];
+
+            Log.i(TAG, "①>>>>init station list");
+            byte[] req1 = createRequestBDGetStations();
+            if(req1 == null){
+                Log.e(TAG, "req is null");
+                return;
+            }
+            ret = NativeInterface.getInstance().getDBData(
+                    SUConstant.PDU_A_CLI_REQ_DB,
+                    req1, req1.length,
+                    retData, retData.length);
+            if(ret < 0){
+                logError(ret, 1100);
+                initErrorService();
+                return;
+            }
+            Log.i(TAG, "ret:" + ret);
+            //#解析结果
+            if(!parseInit(getNewData(retData, ret), null)){
+                Log.e(TAG, "解析站场列表错误！");
+                initErrorService();
+                return;
+            }
+
+            //---mytest---------
+            if(WPApplication.DEBUG){
+                EventBus.getDefault().post(new ServiceEvent(ServiceEvent.SERVICE_EVENT_INIT_OVER));
+                //发送通知>>刷新站场列表
+                StationEvent event = new StationEvent(StationEvent.STATION_EVENT_INIT);
+                event.msg = ret;
+                EventBus.getDefault().post(event);
+                return;
+            }//-----------------------------------
+
+
+            Log.i(TAG, "②>>>>init station state");
+            byte[] req2 = createRequestServerStations(getStationIds());
+            if(req2 == null){
+                Log.e(TAG, "req is null");
+                return;
+            }
+            // TODO.... ret = NativeInterface...
+            // ....
+            // ....
+            if(ret < 0){
+                logError(ret, 1200);
+                return;
+            }
+            Log.i(TAG, "ret:" + ret);
+            //#解析结果
+            if(!parseServerStationsData(getNewData(retData, ret))){
+                Log.e(TAG, "解析站场状态错误！");
+            }
+
+            //发送通知>>刷新站场列表
+            StationEvent event = new StationEvent(StationEvent.STATION_EVENT_INIT);
+            event.msg = ret;
+            EventBus.getDefault().post(event);
+            //-------
+
+            // 请求站场的数据：设备列表、报警列表
+            Log.i(TAG, "③>>>>assign all stations");
+            refreshAllStationInformation();
+
+            // 初始化完成
+            EventBus.getDefault().post(new ServiceEvent(ServiceEvent.SERVICE_EVENT_INIT_OVER));
+            //发送请求，刷新，已经加载完设备信息和报警信息
+            AlarmMsgManager.getInstance().transmitCenter(MessageEvent.ALARM_FLAG_INIT, null);
+        }
+    }
+
+    private void initErrorService(){
+        EventBus.getDefault().post(new ServiceEvent(ServiceEvent.SERVICE_EVENT_INIT_ERROR));
+    }
+    /*--------------------初始化结束      -----------*/
+
+}

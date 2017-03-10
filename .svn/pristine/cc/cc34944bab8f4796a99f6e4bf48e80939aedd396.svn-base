@@ -1,0 +1,174 @@
+package com.webcon.sus.entity;
+
+
+import android.util.Log;
+
+import com.webcon.sus.utils.SUConstant;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+/**
+ * 站场结点
+ * <p>包括包含设备列表和该站场报警消息列表等数据</p>
+ * @author m
+ */
+public class StationNode implements Comparable<StationNode>{
+
+    private List<DeviceNode> mDevices;
+    private List<AlarmInfo> mAlarms;
+
+    private int seq = 0;
+    private int sId = 0;
+    private String sAddress = "";
+    private String name = "";
+    private String detail = "";
+    private boolean onDefence = false;
+    private boolean aliveState = false;
+    private int mAlarmAllMsg = 0;
+    private int mAlarmNewMsg = 0;
+    private int mState = SUConstant.FLAG_STATION_CLOSED;
+
+    public StationNode(){
+    }
+
+    // setter & getter
+    public void setDeviceList(List<DeviceNode> list){
+        this.mDevices = list;
+    }
+
+    public List<DeviceNode> getDeviceList(){
+        if(mDevices == null){
+            Log.e("StationNode", "devices list is null");
+            throw new NullPointerException();
+        }
+        // ##TODO ##排序
+        Collections.sort((ArrayList) mDevices);
+        return mDevices;
+    }
+
+    public void setAlarmInfoList(List<AlarmInfo> list){
+        this.mAlarms = list;
+    }
+
+    public List<AlarmInfo> getAlarmInfoList(){
+        return mAlarms;
+    }
+
+    public int getSeq() {
+        return seq;
+    }
+
+    public void setSeq(int seq) {
+        this.seq = seq;
+    }
+
+    public int getId() {
+        return sId;
+    }
+
+    public void setId(int sId) {
+        this.sId = sId;
+    }
+
+    public int getState() {
+        return mState;
+    }
+
+    public void setState(int mState) {
+        switch(mState){
+            case SUConstant.FLAG_STATION_CLOSED:
+                setOnDefence(false);
+                setOnDefence(false);
+                break;
+            case SUConstant.FLAG_STATION_OPENED:
+                if(mAlarmNewMsg != 0){
+                    mState = SUConstant.FLAG_STATION_ALARM;
+                }
+            case SUConstant.FLAG_STATION_ALARM:
+                setOnDefence(true);
+                setOnDefence(true);
+                break;
+            default:
+        }
+        this.mState = mState;
+    }
+
+    public int getAlarmNewMsg() {
+        return mAlarmNewMsg;
+    }
+
+    public void setAlarmNewMsg(int mAlarmNewMsg) {
+        if(mAlarmNewMsg > 0 && mState != SUConstant.FLAG_STATION_CLOSED){
+            mState = SUConstant.FLAG_STATION_ALARM;
+        }
+        this.mAlarmNewMsg = mAlarmNewMsg;
+    }
+
+    public int getAlarmAllMsg() {
+        return mAlarmAllMsg;
+    }
+
+    public void setAlarmAllMsg(int mAlarmAllMsg) {
+        this.mAlarmAllMsg = mAlarmAllMsg;
+    }
+
+    public boolean isAliveState() {
+        return aliveState;
+    }
+
+    public void setAliveState(boolean aliveState) {
+        this.aliveState = aliveState;
+    }
+
+    public boolean isOnDefence() {
+        return onDefence;
+    }
+
+    private void setOnDefence(boolean state){
+        this.onDefence = state;
+    }
+
+    public String getAddress() {
+        return sAddress;
+    }
+
+    public void setAddress(String sAddress) {
+        this.sAddress = sAddress;
+    }
+
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDetail() {
+        return detail;
+    }
+
+    public void setDetail(String detail) {
+        this.detail = detail;
+    }
+
+    @Override
+    public int compareTo(StationNode another) {
+        if(another.getState() < mState){
+            return -1;
+        }else if(another.getState() > mState){
+            return 1;
+        }else{
+            if(another.getId() < sId){
+                return -1;
+            }else if(another.getId() > sId){
+                return 1;
+            }else{
+                return 0;
+            }
+        }
+    }
+}

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:orientation="vertical"
+        android:padding="20dp" >
+
+        <com.webcon.sus.view.CornerButton
+            android:id="@+id/monitoring_menu_bt_rename"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/bg_xml_menubtn_a"
+            android:text="@string/str_modify_name_title" />
+
+         <com.webcon.sus.view.CornerButton
+            android:id="@+id/monitoring_menu_bt_alarm"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+              android:layout_marginTop="15dp"
+            android:background="@drawable/bg_xml_menubtn_a"
+            android:text="@string/str_xml_camera_config_bt_check" />
+
+        <com.webcon.sus.view.CornerButton
+            android:id="@+id/monitoring_menu_bt_video"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/bg_xml_menubtn_a"
+            android:text="@string/str_xml_monitoring_btn_video" />
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$/animatedVdrawable" vcs="svn" />
+    <mapping directory="$PROJECT_DIR$/demos1" vcs="svn" />
+    <mapping directory="$PROJECT_DIR$/hybridtest" vcs="svn" />
+    <mapping directory="$PROJECT_DIR$/materialdemo" vcs="svn" />
+    <mapping directory="$PROJECT_DIR$/themeapp" vcs="svn" />
+  </component>
+</project>

@@ -1,0 +1,79 @@
+<html>
+
+    <head>
+        <meta charset="utf-8"/>
+        <style type="text/css">
+			svg.svg_b{
+				display:block;
+			}
+
+
+        </style>
+
+
+        <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+
+        <script type="text/javascript">
+        </script>
+        
+        
+
+
+
+    </head>
+
+    <script>
+
+    </script>
+
+
+
+    <body>
+
+
+		<svg width="500" height="500">
+
+			<g  transform="matrix(.5 0 0 .5 0 0)">
+
+			<defs>
+				<path d="M200 400 L150 400 L150 200 L100 250 L275 75 L450 250" stroke-linejoin="round" id="l2" stroke-width="30" stroke-linecap="round" fill="none" ></path>
+				<path d="M450 250 L250 250" stroke-linejoin="round" id="l3" stroke-width="30" stroke-linecap="round" fill="none" ></path>
+				<path d="M450 300 L250 300" stroke-linejoin="round" id="l4" stroke-width="30" stroke-linecap="round" fill="none" ></path>
+				<path d="M450 350 L250 350" stroke-linejoin="round" id="l5" stroke-width="30" stroke-linecap="round" fill="none" ></path>
+			</defs>
+
+			<use xlink:href="#l2" stroke="Orange" stroke-dasharray="0,886" >
+				<animate attributeName="stroke-dasharray" dur="2s" to="886,0" repeatCount="1" fill="freeze" ></animate>
+			</use>
+			<use xlink:href="#l3" stroke="Orange" stroke-dasharray="0,300" visibility="hidden">
+				<set attributeName="visibility" attributeType="XML"
+					 from="hidden"  to="visible"
+					 begin="2s" dur="0s"
+					 fill="freeze" repeatCount="1"/>
+				<animate attributeName="stroke-dasharray"  dur="0.5s" to="200,0" repeatCount="1" fill="freeze" begin="2s"></animate>
+			</use>
+			<use xlink:href="#l4" stroke="Orange" stroke-dasharray="0,300" visibility="hidden">
+				<set attributeName="visibility" attributeType="XML"
+					 from="hidden"  to="visible"
+					 begin="2s" dur="0s"
+					 fill="freeze" repeatCount="1"/>
+				<animate attributeName="stroke-dasharray"  dur="0.5s" to="200,0" repeatCount="1" fill="freeze" begin="2s"></animate>
+			</use>
+			<use xlink:href="#l5" stroke="Orange" stroke-dasharray="0,300" visibility="hidden">
+				<set attributeName="visibility" attributeType="XML"
+					 from="hidden"  to="visible"
+					 begin="2s" dur="0s"
+					 fill="freeze" repeatCount="1"/>
+				<animate attributeName="stroke-dasharray"  dur="0.5s" to="200,0" repeatCount="1" fill="freeze" begin="2s"></animate>
+			</use>
+
+			</g>
+
+		</svg>
+
+
+
+	</body>
+</html>
+
+

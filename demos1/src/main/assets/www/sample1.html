@@ -1,0 +1,72 @@
+<html>
+
+    <head>
+        <meta charset="utf-8"/>
+        <style type="text/css">
+            a.inline_a{
+                clear:right;
+                display:block;
+                border:1px solid red;
+                max-width:80em;
+                min-width:20em;
+                position:relative;
+            }
+            #a2{
+                display:block;
+                position:absolute ;
+                left:30em;
+            }
+            p{
+                border:1px solid green;
+            }
+
+            img {
+                float: right;
+                margin: 0em 0em 1em 1em;
+            }
+
+        </style>
+
+
+        <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $(".inline_a").click(function() {
+                    console.log("position:"+$(this).css("position")+"   display:"+$(this).css("display")+"    max-width:"+$(this).css("max-width") );  // default position is static
+                });
+            });
+        </script>
+        
+        
+
+
+
+    </head>
+
+    <script>
+
+    </script>
+
+
+
+    <body>
+
+
+    <h1>My First Heading</h1>
+
+
+    <img src="images/eg_bulbon.gif" alt="hehe nmb">
+
+    <p>My first paragraph My first paragraph My first paragraph My first paragraph My first paragraph My first paragraph My first paragraph My first paragraph My first paragraph My first paragraph My first paragraph My first paragraph
+        My first paragraph My first paragraph My first paragraph My first paragraph My first paragraph My first paragraph My first paragraph My first paragraph My first paragraph My first paragraph My first paragraph My first paragraph My first paragraph
+    </p>
+
+    <a class="inline_a">anchor1 anchor1 anchor1 anchor1 anchor1 anchor1 anchor1 anchor1 anchor1 anchor1 anchor1 anchor1 anchor1 anchor1 anchor1 anchor1 anchor1 anchor1 </a>
+    <a class="inline_a" id="a2">anchor2</a>
+
+
+    </body>
+</html>
+
+

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.nanyi545.www.materialdemo.nestedScroll.no_coordinator_test.testWithCostumView.CostumScrollView2 xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="350dp"
+    android:background="@color/Red100"
+    tools:context=".nestedScroll.no_coordinator_test.testWithCostumView.NoCoorNestedScrollTestActivity">
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="300dp"
+        android:orientation="vertical"
+        >
+
+        <com.nanyi545.www.materialdemo.nestedScroll.no_coordinator_test.testWithCostumView.NestedScrollingChildView2
+            android:background="@color/Teal100"
+            android:layout_width="wrap_content"
+            android:layout_height="250dp" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:src="@drawable/grad_teal"/>
+        
+    </LinearLayout>
+
+
+
+
+</com.nanyi545.www.materialdemo.nestedScroll.no_coordinator_test.testWithCostumView.CostumScrollView2>

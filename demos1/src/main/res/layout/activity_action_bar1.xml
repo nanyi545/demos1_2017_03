@@ -1,0 +1,63 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:mlp="http://schemas.android.com/apk/res-auto"
+    android:paddingLeft="3dp"
+    android:paddingRight="1dp"
+    android:paddingTop="1dp"
+    android:paddingBottom="1dp"
+    tools:context="test1.nh.com.demos1.activities.ActionBarActivity1">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        />
+    <!--android:theme="@style/ThemeOverlay.AppCompat.ActionBar"-->
+    <!--app:popupTheme="@style/ThemeOverlay.AppCompat.Light"-->
+
+    <TextView
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="100dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@color/Teal300"
+        android:id="@+id/tv_indicator"
+        ></TextView>
+
+    <FrameLayout
+        android:id="@+id/frame_defence_container"
+        android:layout_below="@+id/tv_indicator"
+        android:layout_width="144dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="20dp"
+        android:layout_gravity="center_horizontal">
+        <Button
+            android:id="@+id/bn_switch_defence"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="18sp"
+            android:text="---启动loading---"
+            android:background="@color/Red100"
+            android:textColor="@color/Red500"/>
+        <!--android:visibility="gone"-->
+        <com.lsjwzh.widget.materialloadingprogressbar.CircleProgressBar
+            android:id="@+id/mlp_loading_defence"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:background="@color/Teal100"
+            android:layout_gravity="center_horizontal"
+            mlp:mlpb_enable_circle_background="false"
+            mlp:mlpb_progress_stoke_width="3dp"
+            mlp:mlpb_progress_color="@color/White"
+            />
+    </FrameLayout>
+
+
+
+
+</RelativeLayout>

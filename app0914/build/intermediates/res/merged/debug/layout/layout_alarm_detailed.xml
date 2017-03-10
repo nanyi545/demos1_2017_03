@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_white"
+    android:orientation="vertical" >
+
+    <include layout="@layout/layout_include_back_head" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp" >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical" >
+
+            <TextView
+                android:id="@+id/notifi_alarm_tv_name"
+                style="@style/style_notifi_alarm_tv_directory"
+                android:text="@string/str_notifi_alarm_tv_name" />
+
+            <TextView
+                android:id="@+id/notifi_alarm_tv_value_name"
+                style="@style/style_notifi_alarm_tv_value"
+                android:layout_toRightOf="@+id/notifi_alarm_tv_name" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center_vertical" >
+
+            <TextView
+                android:id="@+id/notifi_alarm_tv_time"
+                style="@style/style_notifi_alarm_tv_directory"
+                android:text="@string/str_notifi_alarm_tv_time" />
+
+            <TextView
+                android:id="@+id/notifi_alarm_tv_value_time"
+                style="@style/style_notifi_alarm_tv_value"
+                android:layout_toRightOf="@+id/notifi_alarm_tv_time" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center_vertical" >
+
+            <TextView
+                android:id="@+id/notifi_alarm_tv_type"
+                style="@style/style_notifi_alarm_tv_directory"
+                android:text="@string/str_notifi_alarm_tv_type" />
+
+            <TextView
+                android:id="@+id/notifi_alarm_tv_value_type"
+                style="@style/style_notifi_alarm_tv_value"
+                android:layout_toRightOf="@+id/notifi_alarm_tv_type" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/notifi_alarm_strength_rl"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center_vertical" >
+
+            <TextView
+                android:id="@+id/notifi_alarm_tv_strength"
+                style="@style/style_notifi_alarm_tv_directory"
+                android:text="@string/str_notifi_alarm_tv_strength" />
+
+            <TextView
+                android:id="@+id/notifi_alarm_tv_value_strength"
+                style="@style/style_notifi_alarm_tv_value"
+                android:layout_toRightOf="@+id/notifi_alarm_tv_strength" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/notifi_alarm_info_rl"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center_vertical" >
+
+            <TextView
+                android:id="@+id/notifi_alarm_tv_info"
+                style="@style/style_notifi_alarm_tv_directory"
+                android:text="@string/str_notifi_alarm_tv_info" />
+
+            <TextView
+                android:id="@+id/notifi_alarm_tv_value_info"
+                style="@style/style_notifi_alarm_tv_value"
+                android:layout_toRightOf="@+id/notifi_alarm_tv_info" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/notifi_alarm_dealnick_rl"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center_vertical" >
+
+            <TextView
+                android:id="@+id/notifi_alarm_tv_dealnick"
+                style="@style/style_notifi_alarm_tv_directory"
+                android:text="@string/str_notifi_alarm_tv_dealnick" />
+
+            <TextView
+                android:id="@+id/notifi_alarm_tv_value_dealnick"
+                style="@style/style_notifi_alarm_tv_value"
+                android:layout_toRightOf="@+id/notifi_alarm_tv_dealnick" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/notifi_alarm_dealtime_rl"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center_vertical" >
+
+            <TextView
+                android:id="@+id/notifi_alarm_tv_dealtime"
+                style="@style/style_notifi_alarm_tv_directory"
+                android:text="@string/str_notifi_alarm_tv_dealtime" />
+
+            <TextView
+                android:id="@+id/notifi_alarm_tv_value_dealtime"
+                style="@style/style_notifi_alarm_tv_value"
+                android:layout_toRightOf="@+id/notifi_alarm_tv_dealtime" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

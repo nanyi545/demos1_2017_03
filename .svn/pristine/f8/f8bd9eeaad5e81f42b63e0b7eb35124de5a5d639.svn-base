@@ -1,0 +1,172 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_white"
+    android:orientation="vertical"
+    tools:context="com.webcon.sus.activities.AlarmDetailsActivityCompat">
+
+    <include layout="@layout/layout_include_back_head" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp" >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical" >
+
+            <TextView
+                android:id="@+id/tv_alarm_detail_name"
+                style="@style/style_notifi_alarm_tv_directory"
+                android:text="@string/str_notifi_alarm_tv_name" />
+
+            <TextView
+                android:id="@+id/tv_alarm_detail_name_value"
+                style="@style/style_notifi_alarm_tv_value"
+                android:layout_toRightOf="@+id/tv_alarm_detail_name" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center_vertical" >
+
+            <TextView
+                android:id="@+id/tv_alarm_detail_date"
+                style="@style/style_notifi_alarm_tv_directory"
+                android:text="@string/str_notifi_alarm_tv_time" />
+
+            <TextView
+                android:id="@+id/tv_alarm_detail_date_value"
+                style="@style/style_notifi_alarm_tv_value"
+                android:layout_toRightOf="@+id/tv_alarm_detail_date" />
+        </RelativeLayout>
+
+        <!--<RelativeLayout-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="20dp"-->
+            <!--android:gravity="center_vertical" >-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/tv_alarm_detail_type"-->
+                <!--style="@style/style_notifi_alarm_tv_directory"-->
+                <!--android:text="@string/str_notifi_alarm_tv_type" />-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/tv_alarm_detail_type_value"-->
+                <!--style="@style/style_notifi_alarm_tv_value"-->
+                <!--android:layout_toRightOf="@+id/tv_alarm_detail_type" />-->
+        <!--</RelativeLayout>-->
+
+        <!--<RelativeLayout-->
+            <!--android:id="@+id/rl_alarm_detail_degree"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="20dp"-->
+            <!--android:gravity="center_vertical" >-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/tv_alarm_detail_degree"-->
+                <!--style="@style/style_notifi_alarm_tv_directory"-->
+                <!--android:text="@string/str_notifi_alarm_tv_strength" />-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/tv_alarm_detail_degree_value"-->
+                <!--style="@style/style_notifi_alarm_tv_value"-->
+                <!--android:layout_toRightOf="@+id/tv_alarm_detail_degree" />-->
+        <!--</RelativeLayout>-->
+
+        <RelativeLayout
+            android:id="@+id/rl_alarm_detail_content"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center_vertical" >
+
+            <TextView
+                android:id="@+id/tv_alarm_detail_content"
+                style="@style/style_notifi_alarm_tv_directory"
+                android:text="@string/str_notifi_alarm_tv_info" />
+
+            <TextView
+                android:id="@+id/tv_alarm_detail_content_value"
+                style="@style/style_notifi_alarm_tv_value"
+                android:layout_toRightOf="@+id/tv_alarm_detail_content" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_alarm_detail_solve_state"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center_vertical" >
+
+            <TextView
+                android:id="@+id/tv_alarm_detail_solve_state"
+                style="@style/style_notifi_alarm_tv_directory"
+                android:text="@string/str_notifi_alarm_tv_state" />
+            <TextView
+                android:id="@+id/tv_alarm_detail_solve_state_value"
+                style="@style/style_notifi_alarm_tv_value"
+                android:layout_toRightOf="@+id/tv_alarm_detail_solve_state" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_alarm_detail_solver"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center_vertical" >
+
+            <TextView
+                android:id="@+id/tv_alarm_detail_solver"
+                style="@style/style_notifi_alarm_tv_directory"
+                android:text="@string/str_notifi_alarm_tv_dealnick" />
+
+            <TextView
+                android:id="@+id/tv_alarm_detail_solver_value"
+                style="@style/style_notifi_alarm_tv_value"
+                android:layout_toRightOf="@+id/tv_alarm_detail_solver" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_alarm_detail_solve_date"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center_vertical" >
+
+            <TextView
+                android:id="@+id/tv_alarm_detail_solve_date"
+                style="@style/style_notifi_alarm_tv_directory"
+                android:text="@string/str_notifi_alarm_tv_dealtime" />
+
+            <TextView
+                android:id="@+id/tv_alarm_detail_solve_date_value"
+                style="@style/style_notifi_alarm_tv_value"
+                android:layout_toRightOf="@+id/tv_alarm_detail_solve_date" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/bn_alarm_details_solver_confirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:padding="4dp"
+        android:text="@string/str_mark_alarm"
+        android:textColor="@color/Blue_"
+        android:textSize="14sp"
+        android:background="@drawable/selector_bn_login"/>
+
+
+</LinearLayout>

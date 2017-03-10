@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- com.gc.materialdesign.views.Card -->
+<!-- android.support.v7.widget.CardView -->
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:cardView="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    cardView:contentPaddingLeft="20dp"
+    cardView:contentPaddingRight="20dp"
+    cardView:contentPaddingTop="8dp"
+    cardView:contentPaddingBottom="8dp"
+    cardView:cardCornerRadius="0dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/device_item_logo"
+            android:layout_width="@dimen/img_s"
+            android:layout_height="@dimen/img_s"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/icon_camera"
+            android:contentDescription="@string/str_null"/>
+        <TextView
+            android:id="@+id/device_item_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/device_item_logo"
+            android:layout_marginLeft="14dp"
+            android:text="@string/str_test_device"
+            android:textSize="@dimen/tsize_6"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/device_item_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/device_item_name"
+            android:layout_marginLeft="20dp"
+            android:visibility="gone"
+            android:text="@string/str_test_device_detail"
+            android:textColor="@color/Grey600"
+            android:textSize="14sp"/>
+
+        <LinearLayout
+            android:id="@+id/linear_device_icon_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="14dp"
+            android:gravity="center"
+            android:padding="10dp">
+            <ImageView
+                android:id="@+id/device_item_check"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/icon_webc"
+                android:contentDescription="@string/str_null"/>
+        </LinearLayout>
+    </RelativeLayout>
+</android.support.v7.widget.CardView>
+

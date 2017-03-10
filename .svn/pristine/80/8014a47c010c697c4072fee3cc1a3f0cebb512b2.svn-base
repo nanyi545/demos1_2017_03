@@ -1,0 +1,56 @@
+package com.webcon.sus.entity;
+
+/**
+ * 监控用户实体类
+ */
+public class MonitorUser {
+
+	private String mUserId;
+	private boolean mIsP2PConnect;	//是否建立P2P点对点连接成功
+	private boolean mIsSetting;		//是否已经建立过P2P连接
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((mUserId == null) ? 0 : mUserId.hashCode());
+		return result;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		MonitorUser other = (MonitorUser) obj;
+		if (mUserId == null) {
+			if (other.mUserId != null)
+				return false;
+		} else if (!mUserId.equals(other.mUserId))
+			return false;
+		return true;
+	}
+	
+	public String getmUserId() {
+		return mUserId;
+	}
+	public void setmUserId(String mUserId) {
+		this.mUserId = mUserId;
+	}
+	public boolean ismIsP2PConnect() {
+		return mIsP2PConnect;
+	}
+	public void setmIsP2PConnect(boolean mIsP2PConnect) {
+		this.mIsP2PConnect = mIsP2PConnect;
+	}
+	public boolean ismIsSetting() {
+		return mIsSetting;
+	}
+	public void setmIsSetting(boolean mIsSetting) {
+		this.mIsSetting = mIsSetting;
+	}
+	
+}

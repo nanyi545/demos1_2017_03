@@ -1,0 +1,877 @@
+package com.webcon.sus.activities;
+
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.pm.ActivityInfo;
+import android.graphics.Color;
+import android.media.AudioFormat;
+import android.media.AudioRecord;
+import android.media.MediaRecorder;
+import android.os.Bundle;
+import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
+import android.os.PowerManager;
+import android.os.PowerManager.WakeLock;
+import android.support.annotation.NonNull;
+import android.util.Log;
+import android.view.KeyEvent;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.WindowManager;
+import android.widget.ImageButton;
+
+import com.hikvision.netsdk.HCNetSDK;
+import com.webcon.sus.demo.R;
+import com.webcon.sus.entity.Equipment;
+import com.webcon.sus.entity.MonitorUser;
+import com.webcon.wp.utils.ApplicationManager;
+import com.webcon.wp.utils.CCallbackMethod;
+import com.webcon.wp.utils.IMediaCallback;
+import com.webcon.wp.utils.NativeInterface;
+import com.webcon.wp.utils.PublicMethodUtil;
+import com.webcon.wp.utils.VideoDataBuffer;
+import com.webcon.wp.utils.WPApplication;
+import com.webcon.wp.utils.WPConstant;
+
+import org.MediaPlayer.PlayM4.Player;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
+import java.nio.ByteBuffer;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import vieboo.test.record.utils.TransferDecoding;
+
+/**
+ * 监控视频页面
+ * 
+ * @author Vieboo
+ * 
+ */
+public class MonitoringVideoActivity extends BaseActivity implements
+		SurfaceHolder.Callback, OnClickListener, IMediaCallback{
+    private final String TAG = "MonitoringVideoActivity";
+
+	private Context mContext;
+	private String equipmentId;
+	private byte[] equipByte;
+	private SurfaceView surfaceView;
+	private SurfaceHolder surfaceHolder;
+	private ProgressDialog monitorVideoLoading;
+	private boolean isPlaying;
+	private WakeLock mWakeLock;
+	private MonitoringVideoReceiver monitoringVideoReceiver;
+	private MonitorUser monitorUser = null;
+
+	private boolean reqSuccess = false; // 是否请求成功
+	private byte[] headData;
+	private Player playerSdk = null;
+	private static int play_port = 0;
+	private static final int Play_frame = 15;
+
+	private ImageButton shutDownIB;
+
+	private Timer videoRequestFaildTimer;
+	private VideoRequestFaildTimerTask vrfTimerTask;
+
+	private static int audioSource = MediaRecorder.AudioSource.MIC;
+	//设置音频采样率(44100是目前的标准，但是某些设备仍然支持22050，16000，11025)
+	private static int sampleRateInHz = 8000;
+	//设置音频录制的声道CHANNEL_IN_STEREO为双声道，CHANNEL_IN_MONO为单声道
+	private static int channelConfig = AudioFormat.CHANNEL_IN_MONO;
+	//音频数据格式：PCM 16位每个样本，保证设备支持。 PCM 8位每个样本，不一定能得到设备支持
+	private static int audioFormat = AudioFormat.ENCODING_PCM_16BIT;
+	private boolean isRecording = true;
+	private String filePath = "/sdcard/AudioRecord.pcm";
+	// 缓存字节大小
+	private int bufferSizeInBytes = 0;
+	private static final String audioName = "/sdcard/love.raw";
+	private static final String newAudioName = "/sdcard/new.wav";
+	private boolean isRecord = false;
+	private FileOutputStream fos;	
+	private AudioRecord audioRecord;
+	private ByteBuffer mByteBuffer = ByteBuffer.allocate(320);
+	private TransferDecoding encoding;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+//		if (!initeSdk())
+//        {
+//        	this.finish();
+//        	return;
+//        }
+		initView();
+		creatAudioRecord();
+	}
+
+	private void creatAudioRecord() {
+		bufferSizeInBytes = AudioRecord.getMinBufferSize(sampleRateInHz,
+				channelConfig, audioFormat);
+		audioRecord = new AudioRecord(audioSource, sampleRateInHz,
+				channelConfig, audioFormat, bufferSizeInBytes);
+	}
+
+	private boolean initeSdk() {
+        Log.i(TAG, "init HCNetSDK");
+		//init net sdk
+    	if (!HCNetSDK.getInstance().NET_DVR_Init())
+    	{
+    		Log.e(TAG, "HCNetSDK init is failed!");
+    		return false;
+    	}
+    	HCNetSDK.getInstance().NET_DVR_SetLogToFile(3, "/mnt/sdcard/sdklog/",true);
+    	return true;
+	}
+
+	private void initView() {
+		// 强制切换成横屏
+		if (getRequestedOrientation() != ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {
+			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+		}
+		// 全屏显示
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+				WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+		setContentView(R.layout.layout_monitoringvideo);
+		mContext = this;
+		ApplicationManager.getInstance().addActivity(this);
+
+		//数据用回调返回显示（4.2.4之前版本都是经过缓冲区取出来显示的）
+		CCallbackMethod.getInstancs(mContext).setMediaCB(this);
+
+		surfaceView = (SurfaceView) findViewById(R.id.monitoring_video_sfv_surfaceview);
+		shutDownIB = (ImageButton) findViewById(R.id.monitoring_video_ib_shutdown);
+		shutDownIB.setOnClickListener(this);
+		
+		//test
+		findViewById(R.id.monitoring_voice_send_btn).setOnClickListener(this);
+
+		// 监控设备的Id
+		equipmentId = (getIntent().getExtras()).getString("equipmentId");
+        Log.w(TAG, "设备ID：" + equipmentId);
+		try {
+			equipByte = (equipmentId + "\0").getBytes(WPConstant.STRING_UTF8);
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+
+		surfaceHolder = surfaceView.getHolder();
+		surfaceHolder.addCallback(this);
+
+		// 注册广播
+		monitoringVideoReceiver = new MonitoringVideoReceiver();
+		IntentFilter filter = new IntentFilter();
+		filter.addAction(WPConstant.MONITOR_VIDEO_HEAD_ACTION);
+//		filter.addAction(WPConstant.FLOW_OVERUSED_ACTION);
+		filter.addAction(WPConstant.EQUIPMENT_ONLINE_STATUS_ACTION);
+		filter.addAction(WPConstant.LOGOUT_EXIT_ACTION);
+//		filter.addAction(WPConstant.RESPONSE_OPEN_VOICE_ACTION);
+//		filter.addAction(WPConstant.RESPONSE_RSP_SEND_VOICE_ACTION);
+		registerReceiver(monitoringVideoReceiver, filter);
+
+		PowerManager pManager = (PowerManager) getSystemService(POWER_SERVICE);
+		mWakeLock = pManager.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK,
+				"MonitoringVideo");
+		mWakeLock.acquire();
+
+		monitorVideoLoading = PublicMethodUtil.getInstance()
+				.makeProgressDialog(mContext, R.string.str_null,
+						R.string.str_monitoringvideo_loading_loadvideo, false,
+						false);
+		monitorVideoLoading.show();
+		new Thread(new LoadMonitorVideoThread()).start();
+
+		// 请求视频20ms后无数据关闭当前请求页面
+		videoRequestFaildTimer = new Timer();
+		vrfTimerTask = new VideoRequestFaildTimerTask();
+		videoRequestFaildTimer.schedule(vrfTimerTask, 20000);
+		//g722 编码库
+//		encoding = new TransferDecoding();
+	}
+
+	/**
+	 * 监控视频页面的Handler
+	 */
+	Handler monitorVideoHandler = new Handler() {
+
+		@Override
+		public void handleMessage(Message msg) {
+			switch (msg.what) {
+			case -1:
+				showToast(mContext,
+						R.string.str_monitoringvideo_toast_loadvideofaild);
+				closeLoading();
+				break;
+			case 10:
+				closeLoading();
+				break;
+			case -2:
+				showToast(mContext,
+						R.string.str_monitoringvideo_toast_flowused_f);
+				closeLoading();
+				break;
+			default:
+				break;
+			}
+		}
+	};
+
+    @Override
+    public void releaseHandler(){
+        monitorVideoHandler.removeCallbacksAndMessages(null);
+    }
+
+	/**
+	 * 请求监控设备的视频
+	 */
+	private class LoadMonitorVideoThread implements Runnable {
+		@Override
+		public void run() {
+			List<Equipment> equipmentList = WPApplication.getInstance()
+					.getmEquipmentList();
+			Message msg = new Message();
+			if (equipmentList != null) {
+				String monitorUserId = null;
+				for (int i = 0; i < equipmentList.size(); i++) {
+					if (equipmentId.equals(equipmentList.get(i).getEqID())) {
+						monitorUserId = equipmentList.get(i).getMonitorId();
+						break;
+					}
+				}
+				if (monitorUserId != null && !monitorUserId.equals("")
+						&& monitorUserId.length() > 0) {
+					for (int i = 0; i < WPApplication.monitorUserList.size(); i++) {
+						if (monitorUserId.equals(WPApplication.monitorUserList
+								.get(i).getmUserId())) {
+							if (!WPApplication.monitorUserList.get(i)
+									.ismIsSetting()) {
+								int createP2PResult = NativeInterface
+										.getInstance().CreateP2P(
+												(short) 1,
+												WPApplication.monitorUserList
+														.get(i).getmUserId(),
+												5000);
+								Log.i("CreateP2PResult",
+										"createP2PResult----------->"
+												+ createP2PResult);
+								if (createP2PResult == 0) {
+									WPApplication.monitorUserList.get(i)
+											.setmIsP2PConnect(true);
+								} else {
+									WPApplication.monitorUserList.get(i)
+											.setmIsP2PConnect(false);
+								}
+								WPApplication.monitorUserList.get(i)
+										.setmIsSetting(true);
+							}
+							monitorUser = WPApplication.monitorUserList.get(i);
+							break;
+						}
+					}
+					if (monitorUser != null) {
+						try {
+							int getMonitoringVideoResult = NativeInterface
+									.getInstance().sendData((short) 0,
+											(short) 1,
+											monitorUser.getmUserId(),
+											WPConstant.REQUEST_MONITOR_VIDEO,
+											equipByte, equipByte.length,
+											monitorUser.ismIsP2PConnect());
+							Log.i("GetMonitoringVideo",
+									"getMonitoringVideoResult--------------->"
+											+ getMonitoringVideoResult);
+							if (getMonitoringVideoResult < 0) {
+								msg.what = -1;
+							}
+						} catch (Exception e) {
+							msg.what = -1;
+							e.printStackTrace();
+						}
+					} else {
+						msg.what = -1;
+					}
+				} else {
+					msg.what = -1;
+				}
+			} else {
+				msg.what = -1;
+			}
+			monitorVideoHandler.sendMessage(msg);
+		}
+	}
+	
+	private class LoadMonitorVoiceThread implements Runnable{
+
+		@Override
+		public void run() {
+			if (monitorUser != null) {
+				try {
+					int getMonitoringVoiceResult = NativeInterface
+							.getInstance().sendData(
+									(short) 0,
+									(short) 1,
+									monitorUser.getmUserId(),
+									WPConstant.OPEN_VOICE_INTERCOM,
+									equipByte, 
+									equipByte.length,
+									monitorUser.ismIsP2PConnect());
+					Log.i(TAG, "sendVoiceRequestResult: " + getMonitoringVoiceResult);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+	}
+
+	/**
+	 * 向监控用户发送停止视频的请求
+	 */
+	private class StopVideoRequstThread implements Runnable {
+		@Override
+		public void run() {
+
+			int cancelVideoResult = -1;
+			int cancelVoiceResult = -1;
+			int numFlag = 0; // 请求5次失败后停止请求
+			while (cancelVideoResult != 0 && numFlag < 5) {
+				cancelVideoResult = NativeInterface.getInstance().sendData(
+						(short) 0, 
+						(short) 1, 
+						monitorUser.getmUserId(),
+						WPConstant.REQUEST_STOP_MONITOR_VIDOE, 
+						equipByte,
+						equipByte.length, 
+						monitorUser.ismIsP2PConnect());
+				Log.i("CancelVideoResult", "cancelVideoResult------>"+ cancelVideoResult);
+				
+				//关闭视频的同时关闭语音对讲
+				cancelVoiceResult = NativeInterface.getInstance().sendData(
+						(short) 0, 
+						(short) 1, 
+						monitorUser.getmUserId(),
+						WPConstant.CLOSE_VOICE_INTERCOM, 
+						equipByte,
+						equipByte.length, 
+						monitorUser.ismIsP2PConnect());
+				Log.i("CancelVoiceResult", "cancelVoiceResult------>"+ cancelVoiceResult);
+				
+				numFlag += 1;
+			}
+		}
+	}
+
+	/**
+	 * 实例化播放库
+	 */
+	private boolean initPlayerSDK() {
+        Log.i(TAG, "init player sdk");
+		playerSdk = Player.getInstance();
+		if (playerSdk == null) {
+			return false;
+		}
+		// 指定1画面预览，若4画面预览，此处指定为4
+		play_port = playerSdk.getPort();
+		playerSdk.setDisplayBuf(play_port, 15);
+		if (!playerSdk.setStreamOpenMode(play_port, Player.STREAM_REALTIME)) {
+			Log.e(TAG, "setStreamoOpenModeiswrong");
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * 开始播放
+	 */
+	private void startPlay() {
+        Log.i(TAG, "start play");
+		playerSdk.openStream(play_port, headData, headData.length, 600 * 1024);
+		playerSdk.setDisplayBuf(play_port, Play_frame);
+		playerSdk.play(play_port, surfaceHolder);
+		playerSdk.playSound(play_port);
+        Log.i(TAG, "set over");
+		// 播放头部
+		playerSdk.inputData(play_port, headData, headData.length);
+        Log.i(TAG, "input head");
+		
+		// 发送一个msg通知UI线程关闭Progressdialog
+		Message msg = new Message();
+		msg.what = 10;
+		monitorVideoHandler.sendMessage(msg);
+	}
+
+	/**
+	 * 关闭loading窗口
+	 */
+	private void closeLoading() {
+		if (monitorVideoLoading.isShowing()) {
+			monitorVideoLoading.dismiss();
+		}
+	}
+
+	/**
+	 * 资源释放
+	 */
+	private void clearUp() {
+
+		if (!playerSdk.stop(play_port)) {
+			return;
+		}
+		if (!playerSdk.stopSound()) {
+			return;
+		}
+		if (!playerSdk.closeStream(play_port)) {
+			return;
+		}
+		if (!playerSdk.freePort(play_port)) {
+			return;
+		}
+	}
+
+	/**
+	 * 接收视频头部 播放视频数据的广播 设备异常离线
+	 */
+	private class MonitoringVideoReceiver extends BroadcastReceiver {
+
+		@Override
+		public void onReceive(Context arg0, Intent arg1) {
+			Bundle bundle = arg1.getExtras();
+			// 视频头部
+			if (arg1.getAction().equals(WPConstant.MONITOR_VIDEO_HEAD_ACTION)) {
+				reqSuccess = true;
+				headData = bundle.getByteArray("monitorVideoHead");
+				videoRequestFaildTimer.cancel();
+				isPlaying = true;
+				startPlay();
+			}
+//			//请求语音回来的响应结果
+//			else if(arg1.getAction().equals(WPConstant.RESPONSE_OPEN_VOICE_ACTION)){
+//				byte[] openVoiceResponseData = bundle.getByteArray("voiceData");
+//				Short shResult = JTools.Bytes2ToShort(openVoiceResponseData, 0);
+//				System.out.println("125 result: "+shResult);
+//				//test g711
+////				sendVoiceData();
+//				//test PCM
+//				sendOriginalVoice();
+//			}
+//			//回复发送本地语音对讲数据 不需要
+//			else if(arg1.getAction().equals(WPConstant.RESPONSE_RSP_SEND_VOICE_ACTION)){
+//			}
+
+			// 监控设备在线状态获取
+			else if (arg1.getAction().equals(
+					WPConstant.EQUIPMENT_ONLINE_STATUS_ACTION)) {
+				int[] statusArray = bundle.getIntArray("statusArray");
+				String[] idArray = bundle.getStringArray("idArray");
+				for (int i = 0; i < idArray.length; i++) {
+					if (equipmentId.equals(idArray[i])) {
+						if (statusArray[i] == 0) {
+							AlertDialog.Builder builder = new Builder(mContext);
+							builder.setTitle("警告");
+							builder.setMessage("设备网络异常，请稍后重新预览！");
+							builder.setPositiveButton("退出",
+									new DialogInterface.OnClickListener() {
+
+										@Override
+										public void onClick(
+												DialogInterface dialog,
+												int which) {
+											quit();
+											MonitoringVideoActivity.this
+													.finish();
+										}
+									});
+							builder.create().show();
+						}
+					}
+				}
+			}
+			else if(arg1.getAction().equals(WPConstant.LOGOUT_EXIT_ACTION)){
+				quit();
+				surfaceView.setBackgroundColor(Color.BLACK);
+			}
+		}
+		
+
+	}
+
+	@Override
+	public void onClick(View v) {
+		// 关闭视频连接按钮
+		if (v == shutDownIB) {
+			quit();
+			MonitoringVideoActivity.this.finish();	
+			
+			//关闭采集语音 编码
+			close();
+		}
+		if(v.getId() == R.id.monitoring_voice_send_btn){
+			new Thread(new LoadMonitorVoiceThread()).start();
+		}
+	}
+
+
+	private void close() {
+		if (audioRecord != null) {
+			System.out.println("stopRecord");
+			isRecord = false;// 停止文件写入
+			audioRecord.stop();
+			audioRecord.release();// 释放资源
+			audioRecord = null;
+		}
+	}
+
+	public void sendOriginalVoice() {
+		audioRecord.startRecording();
+		isRecord = true;
+		new Thread(new AudioRecordThread()).start();
+	}
+	
+	private class AudioRecordThread implements Runnable {
+
+		@Override
+		public void run() {
+			writeDateTOFile();// 往文件中写入裸数据
+			copyWaveFile(audioName, newAudioName);// 给裸数据加上头
+		}
+
+	}
+
+	private void createFile() {
+		File file = new File(filePath);
+		if(file.exists()){
+			file.delete();
+		}
+		try {
+			file.createNewFile();
+			fos = new FileOutputStream(file);
+		} 
+		catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void copyWaveFile(String inFileName, String outFileName) {
+		FileInputStream in = null;
+		FileOutputStream out = null;
+		long totalAudioLen = 0;
+		long totalDataLen = totalAudioLen + 36;
+		long longSampleRate = sampleRateInHz;
+		int channels = 2;
+		long byteRate = 16 * sampleRateInHz * channels / 8;
+		byte[] data = new byte[bufferSizeInBytes];
+		try {
+			in = new FileInputStream(inFileName);
+			out = new FileOutputStream(outFileName);
+			totalAudioLen = in.getChannel().size();
+			totalDataLen = totalAudioLen + 36;
+			WriteWaveFileHeader(out, totalAudioLen, totalDataLen,
+					longSampleRate, channels, byteRate);
+			while (in.read(data) != -1) {
+				out.write(data);
+			}
+			in.close();
+			out.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void WriteWaveFileHeader(FileOutputStream out, long totalAudioLen,
+			long totalDataLen, long longSampleRate, int channels, long byteRate) throws IOException {
+		byte[] header = new byte[44];
+		header[0] = 'R';
+		header[1] = 'I';
+		header[2] = 'F';
+		header[3] = 'F';
+		header[4] = (byte) (totalDataLen & 0xff);
+		header[5] = (byte) ((totalDataLen >> 8) & 0xff);
+		header[6] = (byte) ((totalDataLen >> 16) & 0xff);
+		header[7] = (byte) ((totalDataLen >> 24) & 0xff);
+		header[8] = 'W';
+		header[9] = 'A';
+		header[10] = 'V';
+		header[11] = 'E';
+		header[12] = 'f';
+		header[13] = 'm';
+		header[14] = 't';
+		header[15] = ' ';
+		header[16] = 16;
+		header[17] = 0;
+		header[18] = 0;
+		header[19] = 0;
+		header[20] = 1;
+		header[21] = 0;
+		header[22] = (byte) channels;
+		header[23] = 0;
+		header[24] = (byte) (longSampleRate & 0xff);
+		header[25] = (byte) ((longSampleRate >> 8) & 0xff);
+		header[26] = (byte) ((longSampleRate >> 16) & 0xff);
+		header[27] = (byte) ((longSampleRate >> 24) & 0xff);
+		header[28] = (byte) (byteRate & 0xff);
+		header[29] = (byte) ((byteRate >> 8) & 0xff);
+		header[30] = (byte) ((byteRate >> 16) & 0xff);
+		header[31] = (byte) ((byteRate >> 24) & 0xff);
+		header[32] = (byte) (2 * 16 / 8); // block align
+		header[33] = 0;
+		header[34] = 16; // bits per sample
+		header[35] = 0;
+		header[36] = 'd';
+		header[37] = 'a';
+		header[38] = 't';
+		header[39] = 'a';
+		header[40] = (byte) (totalAudioLen & 0xff);
+		header[41] = (byte) ((totalAudioLen >> 8) & 0xff);
+		header[42] = (byte) ((totalAudioLen >> 16) & 0xff);
+		header[43] = (byte) ((totalAudioLen >> 24) & 0xff);
+		out.write(header, 0, 44);
+	}
+
+	public void writeDateTOFile() {
+		byte[] audiodata = new byte[bufferSizeInBytes];
+		FileOutputStream fos = null;
+		int readsize = 0;
+		try {
+			File file = new File(audioName);
+			if (file.exists()) {
+				file.delete();
+			}
+			fos = new FileOutputStream(file);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		while (isRecord) {
+			readsize = audioRecord.read(audiodata, 0, bufferSizeInBytes);
+			if (AudioRecord.ERROR_INVALID_OPERATION != readsize && fos != null) {
+				try {
+					fos.write(audiodata);
+					//发送到网络
+					sendVoiceData(audiodata);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+
+		}
+		try {
+            if(fos != null){
+                fos.close();
+            }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void sendVoiceData() {
+		InputStream in = null;
+		OutputStream out = null;
+		try {
+			byte[] tempbytes = new byte[160];
+			int byteread = 0;
+			in = this.getAssets().open("text.g711");
+			String path = Environment.getExternalStorageDirectory().getPath();
+//			File filedir = new File(path);
+//			File file = new File(filedir,"text.txt");
+//			if(!file.exists()){
+//				file.createNewFile();
+//			}
+			out = new FileOutputStream(path+"/text.g711");
+			while ((byteread = in.read(tempbytes)) != -1) {
+				System.out.write(tempbytes, 0, byteread);
+				out.write(tempbytes,0,byteread);
+				/*if (monitorUser != null) {
+					try {
+						int getMonitoringVoiceResult = NativeInterface
+								.getInstance().sendData(
+										(short) 0,
+										(short) 1,
+										monitorUser.getmUserId(),
+										WPConstant.SEND_VOICE_DATA,
+										tempbytes, 
+										tempbytes.length,
+										monitorUser.ismIsP2PConnect());
+						System.out.println("sendVoiceResult: "+getMonitoringVoiceResult);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}*/
+			}
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		} finally {
+			if (in != null) {
+				try {
+					in.close();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+			}
+			if(out != null){
+				try {
+					out.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+
+	private void quit() {
+		if (isPlaying) {
+			isPlaying = false;
+			if (playerSdk != null) {
+				clearUp();
+				playerSdk = null;
+			}
+		}
+
+		videoRequestFaildTimer.cancel();
+
+		// 向监控端发送停止视频请求
+		new Thread(new StopVideoRequstThread()).start();
+
+		mWakeLock.release();
+        HCNetSDK.getInstance().NET_DVR_Cleanup();
+
+		unregisterReceiver(monitoringVideoReceiver);
+	}
+
+	@Override
+	public boolean onKeyDown(int keyCode, @NonNull KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+
+			quit();
+		}
+		return super.onKeyDown(keyCode, event);
+	}
+
+	/**
+	 * 请求视频失败，退出当前页面
+	 * 
+	 * @author Vieboo
+	 * 
+	 */
+	private class VideoRequestFaildTimerTask extends TimerTask {
+		@Override
+		public void run() {
+			if (!isPlaying) {
+				Message msg = new Message();
+				msg.what = -2;
+				monitorVideoHandler.sendMessage(msg);
+				// 向监控端发送停止视频请求
+				new Thread(new StopVideoRequstThread()).start();
+
+				mWakeLock.release();
+
+				unregisterReceiver(monitoringVideoReceiver);
+
+				MonitoringVideoActivity.this.finish();
+			}
+		}
+	}
+
+	@Override
+	public void surfaceCreated(SurfaceHolder holder) {
+		initPlayerSDK();
+	}
+
+	@Override
+	public void surfaceChanged(SurfaceHolder holder, int format, int width,
+			int height) {
+		if (reqSuccess) {
+			if (!monitorVideoLoading.isShowing()) {
+				monitorVideoLoading.show();
+			}
+			// 清除没有之前没有播放但是收到的数据
+			VideoDataBuffer.getVideoDataBuffer().clearOldData();
+			isPlaying = true;
+			startPlay();
+		}
+	}
+
+	@Override
+	public void surfaceDestroyed(SurfaceHolder holder) {
+		if (isPlaying) {
+			isPlaying = false;
+			if (playerSdk != null) {
+				clearUp();
+				playerSdk = null;
+			}
+		}
+	}
+
+	@Override
+	public void onData(byte[] streamData) {
+		if (isPlaying)
+            Log.d(TAG, "onData -stream -video");
+			if (!playerSdk.inputData(play_port, streamData, streamData.length)) {
+				Log.e(TAG, "player_inputData is failed!");
+				if (playerSdk.getLastError(play_port) == 11) {
+					if (playerSdk != null) {
+						clearUp();
+						playerSdk = null;
+					}
+					initPlayerSDK();
+					startPlay();
+				}
+			}
+	}
+
+	private void sendVoiceData(byte[] finalData) {
+		byte [] sendByte = new byte[320+equipByte.length];
+		if (monitorUser != null) {
+			System.arraycopy(equipByte, 0, sendByte, 0, equipByte.length);
+			System.arraycopy(finalData, 0, sendByte, equipByte.length, 320);
+		try {
+			int getMonitoringVoiceResult = NativeInterface
+					.getInstance().sendData(
+							(short) 0,
+							(short) 1,
+							monitorUser.getmUserId(),
+							WPConstant.SEND_VOICE_DATA,
+							sendByte,
+							sendByte.length,
+							monitorUser.ismIsP2PConnect());
+				System.out.println("sendVoiceResult: "+getMonitoringVoiceResult+"data length: "+sendByte.length);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		
+		byte [] sendByte1 = new byte[320+equipByte.length];
+		System.arraycopy(equipByte, 0, sendByte1, 0, equipByte.length);
+		System.arraycopy(finalData, 320, sendByte1, equipByte.length, 320);
+		try {
+			int getMonitoringVoiceResult = NativeInterface
+					.getInstance().sendData(
+							(short) 0,
+							(short) 1,
+							monitorUser.getmUserId(),
+							WPConstant.SEND_VOICE_DATA,
+							sendByte1,
+							sendByte1.length,
+							monitorUser.ismIsP2PConnect());
+				System.out.println("sendVoiceResult: "+getMonitoringVoiceResult+"data length: "+sendByte.length);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+}

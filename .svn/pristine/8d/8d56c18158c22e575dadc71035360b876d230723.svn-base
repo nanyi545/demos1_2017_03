@@ -1,0 +1,274 @@
+package com.webcon.sus.utils;
+
+
+import com.webcon.sus.demo.R;
+
+/**
+ * 全部的PDU类型，以及一大堆常量
+ * @author m
+ */
+public class SUConstant {
+    public static final int APP_NOT_EXIST   = -1;
+    public static final int APP_RUNNING_M   = 0;
+    public static final int APP_EXIT_MAIN   = 1;
+    public static final int APP_EXIT_DETAIL = 2;
+
+
+    // Color:
+    public static final int COLOR_STATE_OFFLINE     = 0x669E9E9E;    //R.color.Grey_;
+    public static final int COLOR_STATE_ONLINE      = 0xFF00BCD4;    //R.color.Cyan_;
+
+    public static final int COLOR_HEAD_BLUE_SEC     = 0xFF738FFE;   //R.color.Blue400
+    public static final int COLOR_HEAD_RED_SEC      = 0xFFE51C23;   //R.color.Red500
+    public static final int COLOR_HEAD_GREY_SEC     = 0xFFC1CDC1;   //honeydrew3
+    public static final int COLOR_HEAD_YELLOW_SEC   = 0xFFFFEE58;   //R.color.Yellow400
+
+    public static final int COLOR_ALARM_RED         = 0xFFE51C23;       //R.color.Red_;
+    public static final int COLOR_ALARM_RED_FADE    = 0x66ad2926;
+    public static final int COLOR_ALARM_ORANGE      = 0xFFFF5722;
+    public static final int COLOR_ALARM_ORANGE_FADE = 0x66e2582c;
+    public static final int COLOR_ALARM_GREY_FADE   = 0x669E9E9E;
+    public static final int COLOR_ALARM_GREEN       = 0xFFA6EE54;
+    public static final int COLOR_ALARM_GREEN_FADE  = 0x667CB738;
+    public static final int COLOR_ALARM_PURPLE      = 0xCC673AB3;
+    public static final int COLOR_ALARM_PURPLE_FADE = 0x66574870;
+
+    public static final int COLOAR_ALARM_CLICKED    = 0xFF673AB3;  //R.color.Purple300;
+    public static final int COLOAR_STATE_ONLINE     = 0xFF259B24;   //R.color.Green_
+
+    public static final int STATION_STATE_OFFLINE   = R.drawable.icon_c_grey;
+    public static final int STATION_STATE_CLOSED    = R.drawable.icon_c_grey;
+    public static final int STATION_STATE_OPENED    = R.drawable.icon_c_green;
+    public static final int STATION_STATE_NORMAL    = R.drawable.icon_c_blue;
+    public static final int STATION_STATE_ALARM_1   = R.drawable.icon_c_yellow;
+    public static final int STATION_STATE_ALARM_2   = R.drawable.icon_c_orange;
+    public static final int STATION_STATE_ALARM_3   = R.drawable.icon_c_red;
+
+    public static final int DEVICE_LOGO_MONITOR     = R.drawable.icon_monitor;
+    public static final int DEVICE_LOGO_SENSOR      = R.drawable.icon_chip;
+    public static final int DEVICE_CHECK_WEBC       = R.drawable.icon_webc;
+
+    //站场状态 --登录后
+    public static final int FLAG_STATION_CLOSED     = 0x100;
+    public static final int FLAG_STATION_OPENED     = 0x101;
+    public static final int FLAG_STATION_ALARM      = 0x102;
+
+    //设备类型
+    public static final int DEVICE_TYPE_RADAR       = 1;
+    public static final int DEVICE_TYPE_MONITOR     = 2;
+    public static final int DEVICE_TPYE_INFRARED    = 3;
+    public static final int DEVICE_TYPE_ENTRANCE    = 4;
+    public static final int DEVICE_TYPE_OTHER       = 5;
+
+    //-------- ---
+    public static final int KEYBACK_TYPE_CLEAR      = 0x0;
+    public static final int KEYBACK_TYPE_STATIONS   = 0x01;
+    public static final int KEYBACK_TYPE_ALARMS     = 0x10;
+
+    public static final String LOGIN_FLAG_AUTO_NOT  = "0";
+    public static final String LOGIN_FLAG_AUTO      = "1";
+
+    public static final short PARSE_RSP_ERROR_WRONG_DATA    = -1;
+    public static final short PARSE_RSP_ERROR_COMMUNICATION = -2;
+
+    public static final short STATION_FLAG_ONLINE   = 1;
+    public static final short STATION_FLAG_OFFLINE  = 2;
+
+
+
+    /*===============================================================================*/
+    /*===============================================================================*/
+    /*===============================================================================*/
+    /* -通道 PDU- */
+    /**
+     * 客户端发送给DB的请求
+     * PDU：| pmid(4):预留 | subPduType(2):子PDU类型 | ...|
+     */
+    public static final short PDU_A_CLI_REQ_DB    = 31;
+    /**
+     * 客户端收到DB的回复
+     * PDU： | result(2):0表示成功 | pmid(4):预留 | subPduType(2) | ...|
+     */
+    public static final short PDU_A_DB_RSP_CLI    = 32;
+    /**
+     * 客户端回调接收 系统服务软件-转发数据包PDU
+     */
+    public static final short PDU_B_WIN_SEND_CLI  = 14;
+    /**
+     * 客户端 回复系统服务软件的数据包PDU
+     */
+    public static final short PDU_B_CLI_RSP_WIN   = 15;
+    /**
+     * 客户端向系统服务软件的请求
+     * PDU： | pmid(4):预留 | serverId | subPduType(2):子PDU类型 | ...|
+     */
+    public static final short PDU_C_CLI_REQ_WIN   = 12;
+    /**
+     * 客户端收到系统服务软件的回复
+     * PDU： | result(2):0表示成功 | pmid(4):预留 | subPduType(2) | ...|
+     */
+    public static final short PDU_C_WIN_RSP_CLI   = 13;
+
+    /**
+     * 客户端向中心服务器的请求
+     * PDU：| pmid(4):预留 | subPduType(2) | ... |
+     */
+    public static final short PDU_D_CLI_REQ_SERVER = 33;
+    /**
+     * 客户端收到服务器的回应
+     * PDU：| result(2):0表示通信层成功 | pmid(4):预留 | subPduType(2) | ... |
+     */
+    public static final short PDU_D_SERVER_RSP_CLI  = 34;
+
+    /* MsgType */
+    /*--- 回调数据包 msgType ---*/
+    /** 回调：收到数据回调函数 */
+    public static final short CALLBACK_PDU_MSG_TYPE_OnReceivedData  = 1;
+    /** 回调：用户另一地方登陆 */
+    public static final short CALLBACK_PDU_MSG_TYPE_OnSecondLogined = 5;
+    /** 回应的子PDU */
+    public static final short CALLBACK_SUB_PDU_RSP_WIN      = 101;
+
+    /* DataType */
+    /** 控制包-请求 */
+    public static final short CALLBACK_PDU_DATA_TYPE_REQ    = 1;
+    /** 控制包-回复 */
+    public static final short CALLBACK_PDU_DATA_TYPE_RSP    = 2;
+    /** 音视频包-发送 */
+    public static final short CALLBACK_PDU_DATA_TYPE_M      = 3;
+
+    /* 子PDU   */
+    // 中心服务器--------------
+    /** 请求站场状态信息 */
+    public static final short SUB_SERVER_REQUEST_STATIONS   = 35;
+    /** 站场状态信息回复 */
+    public static final short SUB_SERVER_RSP_STATIONS       = 36;
+    /** 场上下线通知 */
+    public static final short SUB_SERVER_NOTIFY_ONLINE      = 37;
+    /** 站场上下线通知回复 */
+    public static final short SUB_SERVER_RSP_ONLINE         = 38;
+
+    // 数据库-------------
+    /** 向数据库请求站场列表 */
+    public static final short SUB_DB_REQUEST_STATIONS   = 20106;
+    /** 数据库回应站场列表请求 */
+    public static final short SUB_DB_RSP_STATIONS       = 20107;
+    /** 请求数据库修改用户昵称 */
+    public static final short SUB_DB_REQUEST_MODIFY_UN  = 76;
+    /** 数据库回应修改用户结果 */
+    public static final short SUB_DB_RSP_MODIFY_UN      = 77;
+    /** 请求数据库修改用户密码 */
+    public static final short SUB_DB_REQUEST_MODIFY_PW  = 74;
+    /** 数据库回应修改用户密码 */
+    public static final short SUB_DB_RSP_MODIFY_PW      = 75;
+
+
+    // 站场-----------------
+    /** 视频预览请求 */
+    public static final short SUB_REQUEST_START_PREVIEW = 10001;
+    /** 视频数据接收 */
+    public static final short SUB_PREVIEW_DATA          = 10003;
+    /** 停止预览请求 */
+    public static final short SUB_REQUEST_STOP_PREVIEW  = 10005;
+    /** 云台控制请求 */
+    public static final short SUB_REQUEST_PTZ           = 10007;
+    /** 开启布防请求 */
+    public static final short SUB_REQUEST_OPEN_DEFENCE  = 10009;
+    /** 停止布防请求 */
+    public static final short SUB_REQUEST_STOP_DEFENCE  = 10011;
+    /** 播放报警语音请求  **没有关闭的请求  */
+    public static final short SUB_REQUEST_ALARM_PLAYER  = 10013;
+    /** 播放喊话请求  **没有关闭的请求 **也不需要返回值 */
+    public static final short SUB_REQUEST_SPEAKER       = 10015;
+    /** 获取站场请求（设备） */
+    public static final short SUB_REQUEST_GET_DEVICES   = 10017;
+    /** 修改站场信息请求 */
+    public static final short SUB_REQUEST_MODIFY        = 10019;
+    /** 获取战场请求（报警） */
+    public static final short SUB_REQUEST_GET_ALARMS    = 10021;
+    /** 报警消息处理请求 */
+    public static final short SUB_REQUEST_PROCESS_ALARM = 10024;
+    /** 向站场注册 *///FIXME:xxx
+    public static final short SUB_REQUEST_REGISTER      = 0xF1;
+    /** 向站场反注册 *///FIXME:xxx
+    public static final short SUB_REQUEST_UNREGISTER   = 0xF2;
+
+
+    /*  >返回 =0成功，=-1失败 */
+    /** 视频预览请求结果 */
+    public static final short SUB_RSP_START_PREVIEW     = 10002;
+    /** 停止预览请求结果 */
+    public static final short SUB_RSP_STOP_PREVIEW      = 10006;
+    /** 云台控制请求结果 */
+    public static final short SUB_RSP_PTZ               = 10008;
+    /** 开启布防请求结果 */
+    public static final short SUB_RSP_OPEN_DEFENCE      = 10010;
+    /** 停止布防请求结果 */
+    public static final short SUB_RSP_STOP_DEFENCE      = 10012;
+    /** 播放报警语音请求结果 */
+    public static final short SUB_RSP_ALARM_PLAYER      = 10014;
+    /** 获取站场请求结果（设备） */
+    public static final short SUB_RSP_GET_DEVICES       = 10018;
+    /** 修改站场信息请求结果 */
+    public static final short SUB_RSP_MODIFY            = 10020;
+    /** 请求站场报警消息结果 */
+    public static final short SUB_RSP_GET_ALARMS        = 10022;
+    /** 新报警消息 */
+    public static final short SUB_NEW_ALARM             = 10023;
+    /** 报警消息处理结果 */
+    public static final short SUB_RSP_PROCESS_ALARM     = 10025;
+
+
+    /* 云台控制码 */
+    /** 上移 */
+    public static final int PTZ_UP      = 1;
+    /** 下移 */
+    public static final int PTZ_DOWN    = 2;
+    /** 左移 */
+    public static final int PTZ_LEFT    = 3;
+    /** 右移 */
+    public static final int PTZ_RIGHT   = 4;
+    /** 对焦减少 */
+    public static final int PTZ_FOCUS_SHARPNESS_DECREASE    = 5;
+    /** 对焦增大 */
+    public static final int PTZ_FOCUS_SHARPNESS_INCREASE    = 6;
+    /** 聚焦减少 */
+    public static final int PTZ_FOCUS_ZOOM_DECREASE         = 7;
+    /** 聚焦增大 */
+    public static final int PTZ_FOCUS_ZOOM_INCREASE         = 8;
+    /** 光圈缩小 */
+    public static final int PTZ_APERTURE_SHRINK             = 9;
+    /** 光圈增大 */
+    public static final int PTZ_APERTURE_EXPAND             = 10;
+
+    /** 状态：停止 */
+    public static final int PTZ_STATE_STAY      = 0;
+    /** 状态：运动 */
+    public static final int PTZ_STATE_MOVING    = 1;
+
+    //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    /* 数据库返回结果定义 */
+    /** 成功 */
+    public static final int DB_RET_SUCCESS              = 0;
+    /** 数据处理错误 */
+    public static final int DB_RET_ERROR_PROGRESS       = -4995;
+    /** 用户ID不存在 */
+    public static final int DB_RET_ERROR_USER_ID        = -4004;
+    /** 数据库解析：结点类型：结点 */
+    public static final int DB_ORG_TYPE_NODE            = 1;
+    /** 数据库解析：结点类型：站场 */
+    public static final int DB_ORG_TYPE_STATION         = 2;
+
+
+    //----------------------------------------------//
+    /* -------------- 其他 ----------------------- */
+
+    /* 用户类型 */
+    public static final int USER_TYPE_PHONE             = 1;
+
+    /* -------- */
+    public static final int CALLBACK_NEW_ALARM          = 0xA01;
+    public static final int CALLBACK_PREVIEW_DATA       = 0xA02;
+    public static final int CALLBACK_STATE_CHANGE       = 0xA03;
+
+}

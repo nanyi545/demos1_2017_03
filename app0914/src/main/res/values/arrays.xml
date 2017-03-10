@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="array_camera_config_week">
+        <item>星期一</item>
+        <item>星期二</item>
+        <item>星期三</item>
+        <item>星期四</item>
+        <item>星期五</item>
+        <item>星期六</item>
+        <item>星期日</item>
+    </string-array>
+    <string-array name="array_camera_config_week_tv">
+        <item>周一</item>
+        <item>周二</item>
+        <item>周三</item>
+        <item>周四</item>
+        <item>周五</item>
+        <item>周六</item>
+        <item>周日</item>
+    </string-array>
+    <string-array name="array_camera_monitor_annal_msgtype_tv">
+        <item>所有报警类型</item>
+        <item>摄像头进出记录</item>
+        <item>摄像头报警</item>
+        <item>传感器报警</item>
+        <item>门禁报警</item>
+        <item>烟雾探测器报警</item>
+        <item>燃气探测器报警</item>
+    </string-array>
+    <string-array name="array_camera_alarm_type_light">
+        <item>摄像头流量超标</item>
+        <item>摄像头硬盘错误</item>
+        <item>摄像头网络异常</item>
+    </string-array>
+    <string-array name="array_camera_alarm_type_weight">
+        <item>摄像头行为规律异常</item>
+        <item>摄像头监测到危险动作</item>
+        <item>GPS定位超出范围</item>
+        <item>GPS定位失去目标</item>
+    </string-array>
+    <string-array name="array_camera_alarm_type_carsh">
+        <item>摄像头主动一键报警</item>
+        <item>传感器生理参数异常报警</item>
+        <item>门禁报警</item>
+        <item>烟雾探测器报警</item>
+        <item>燃气探测器报警</item>
+    </string-array>
+
+
+</resources>

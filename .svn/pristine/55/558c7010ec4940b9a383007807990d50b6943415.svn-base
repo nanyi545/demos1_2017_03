@@ -1,0 +1,25 @@
+package com.webcon.sus.utils;
+
+/**
+ * @author m
+ */
+public class PduCode {
+    //
+    public static final int PDU_FLAG_LOGIN = 0;
+
+    public static final int PDU_FLAG_CLOSE_DEFEND = 0;
+    public static final int PDU_FLAG_OPEND_DEFEND = 0;
+
+    public static final int PDU_FLAG_SEND_VOICE = 0;
+    public static final int PDU_FLAG_OPEN_VOICE = 0;
+    public static final int PDU_FLAG_CLOSE_VOICE = 0;
+    public static final int PDU_FLAG_REQUEST_ALARM = 0;
+
+    public static final int PDU_FLAG_OPEN_MONITORING = 0;
+    public static final int PDU_FLAG_CLOSE_MONITORING = 0;
+
+
+
+
+
+}

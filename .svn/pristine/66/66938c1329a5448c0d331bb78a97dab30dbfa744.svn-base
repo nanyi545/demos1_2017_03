@@ -1,0 +1,39 @@
+package vieboo.test.record.utils;
+
+public class TransferDecoding {
+	
+	/**
+	 * flag:0转码    	1解码
+	 */
+//	public TransferDecoding(int flag, int bit, int sample){
+//		
+//		if(flag == 0){
+//			g722_encoder_init(bit, sample);
+//		}else if(flag == 1){
+//			g722_decoder_init(bit, sample);
+//		}
+//		
+//	}
+	//编码相关
+	public native void g722_encoder_init(int bitrate, int samplerate);
+	
+	public native int g722_encoder(byte[] encodingData, byte[] orifinnalData, int length);
+	
+	public native void g722_encoder_release();
+
+	//解码相关
+	public native void g722_decoder_init(int bitrate, int samplerate);
+	
+	public native int g722_decoder(byte[] orifinnalData, byte[] decodingData, int length);
+	
+	public native void g722_decoder_release();
+
+    //其他
+	public native int test_byte(byte[] test_data);
+
+	static{
+        //g722编解码库
+		System.loadLibrary("g722");
+		System.loadLibrary("coding");
+	}
+}

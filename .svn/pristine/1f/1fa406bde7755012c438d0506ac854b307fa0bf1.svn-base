@@ -1,0 +1,288 @@
+<resources>
+
+    <!--<string name="app_name">南鸿居家养老家庭版</string>-->
+    <string name="app_name">站场无人值守系统</string>
+    <string name="corp_abbr">南鸿</string>
+    <string name="app_abbr">杭州南鸿通信</string>
+    <string name="btn_ok">确定</string>
+    <string name="btn_default">默认</string>
+    <string name="btn_cancle">取消</string>
+    <string name="btn_back">返回</string>
+    <string name="btn_serarch">搜索</string>
+    <string name="btn_exit">退出</string>
+    <string name="btn_save">保存</string>
+    <string name="btn_accept">接受</string>
+    <string name="btn_refuse">拒绝</string>
+    <string name="btn_reset">重置</string>
+    <string name="btn_check">验证</string>
+    <string name="dialog_title_prompt">提示</string>
+    <string name="str_null"> </string>
+    <string name="alarm_num_init">0</string>
+    <string name="alarm_notification_title">发现监控异常</string>
+    <string name="alarm_notification_info1">监控设备[</string>
+    <string name="alarm_notification_info2">]发现监控异常监控！</string>
+    <string name="alarm_details_page">报警详情</string>
+
+    <!-- layout_appstart.xml -->
+    <string name="str_xml_appstart_tv_logining">正在登陆</string>
+    <string name="str_xml_appstart_tv_cancel_logining">取消中</string>
+    <string name="str_xml_appstart_tv_cancel">取 消</string>
+
+    <!-- layout_login_compat.xml -->
+    <string name="str_xml_login_username">用户名:</string>
+    <string name="str_xml_login_userpwd">密码:</string>
+    <string name="str_xml_login_ip">服务器IP</string>
+    <string name="str_xml_login_port">本地端口</string>
+    <string name="str_xml_login_rememberpwd">记住密码</string>
+
+    <!-- layout_main_compat.xml -->
+    <string name="str_xml_main_tab_monitoring">成员</string>
+    <string name="str_xml_main_tab_alert">报警</string>
+
+    <!-- layout_tab_monitoring_menu.xml -->
+    <string name="str_xml_monitoring_btn_setting">监控设置</string>
+    <string name="str_xml_monitoring_btn_video">监控预览</string>
+    <string name="str_xml_monitoring_btn_rename">名称设置</string>
+
+    <!-- layout_tab_alarm.xml -->
+    <string name="str_xml_alarm_tv_nonealarm">没有报警信息</string>
+    <string name="str_xml_alarm_tv_alarmlist_title_num">编号</string>
+    <string name="str_xml_alarm_tv_alarmlist_title_name">设备名称</string>
+    <string name="str_xml_alarm_tv_alarmlist_title_time">报警时间</string>
+    <string name="str_xml_alarm_tv_alarmlist_title_info">报警内容</string>
+
+    <!-- layout_camera_config.xml -->
+    <string name="str_xml_camera_config_name">设备名称:</string>
+    <string name="str_xml_camera_config_flow">使用流量:</string>
+    <string name="str_xml_camera_config_num">进入门限:</string>
+    <string name="str_xml_camera_config_time">监控时间:</string>
+    <string name="str_xml_camera_config_date">监控周期:</string>
+    <string name="str_xml_camera_config_remark">备注信息:</string>
+    <string name="str_xml_camera_config_bt_check">报警搜索</string>
+    <string name="str_xml_camera_config_bt_sub">提交</string>
+    <string name="str_xml_camera_config_bt_refresh">刷新</string>
+    <string name="str_xml_camera_config_rename_failed1">设备昵称修改失败</string>
+    <string name="str_xml_camera_config_rename_failed2">原昵称不匹配</string>
+
+    <!-- layout_camera_monitor_annal.xml -->
+    <string name="str_xml_camera_monitor_annal_title">报警信息</string>
+    <string name="str_xml_camera_monitor_annal_tv_msgtype">报警类型:</string>
+    <string name="str_xml_camera_monitor_annal_tv_msgtime">报警时间:</string>
+    <string name="str_xml_camera_monitor_annal_tv_msgdate">报警日期:</string>
+    <string name="str_xml_camera_monitor_annal_tv_msg_none">未找到查询的报警信息</string>
+    <string name="str_xml_camera_monitor_annal_tv_msg_search">正在查询报警信息&#8230;</string>
+
+    <!-- layout_camera_monitor_annal_msglist_bottom.xml -->
+    <string name="camera_monitor_annal_msglist_bottom_loading">正在加载报警信息&#8230;</string>
+    <string name="camera_monitor_annal_msglist_bottom_none">没有更多的报警信息了</string>
+
+    <!-- LoginActivityCompat.java -->
+    <string name="str_login_default_ip">180.153.155.7</string>
+    <string name="str_login_default_port">9800</string>
+    <string name="str_login_toast_a">请输入用户名、密码！</string>
+    <string name="str_login_toast_b">您输入的服务器IP地址有误，请重新输入！</string>
+    <string name="str_login_toast_c">本地端口必须为一个偶数，请重新输入！</string>
+    <string name="str_login_toast_d">请输入服务器IP、本地端口！</string>
+    <string name="str_login_loading_message">正在登陆请稍等&#8230;</string>
+    <string name="str_login_loading_cancel_message">正在取消中&#8230;</string>
+    <string name="str_login_toast_login_error">登陆失败，请检查输入的信息是否正确！</string>
+    <string name="str_login_toast_login_f404">登陆失败，请重新登陆！</string>
+    <string name="str_login_toast_login_f4004">用户名不存在，请重新输入登陆！</string>
+    <string name="str_login_toast_login_f4005">密码错误，请重新输入登陆！</string>
+    <string name="str_login_toast_login_9">您输入的服务器IP有误！请检查重新输入！</string>
+    <string name="str_login_toast_login_f7">登陆超时，请重新登陆！</string>
+    <string name="str_login_toast_login_1">端口被占用，请更换端口重新登录！</string>
+    <string name="str_login_toast_login_2">服务器出现异常，请及时与管理员联系！</string>
+    <string name="str_login_dialog_netfaild_title">提示</string>
+    <string name="str_login_dialog_netfaild_message">网络连接失败，请确认网络已连接。</string>
+    <string name="str_login_dialog_netset">网络连接失败，是否进行网络设置？</string>
+    <string name="str_login_dialog_faildautologin">登陆超时正在重新登陆&#8230;</string>
+
+    <!-- MainActivityCompat.java -->
+    <string name="str_main_dialog_title">退出</string>
+    <string name="str_main_dialog_message">确定要退出吗？</string>
+    <string name="str_menu_main_createmutual">创建新会话</string>
+    <string name="str_menu_main_flow">流量统计</string>
+    <string name="str_menu_main_cancellation">注销</string>
+    <string name="str_loading_create_mutual">正在创建会话，请稍等&#8230;</string>
+    <string name="str_loading_cancellation">正在注销登陆，请稍等&#8230;</string>
+    <string name="str_toast_create_mutual_faild">创建会话失败，请重新创建</string>
+    <string name="str_main_toast_back_agin">再按一次退出</string>
+    <string name="str_main_dialog_cancellation_message">注销后将收不到报警信息，确定要注销当前用户吗？</string>
+
+    <!-- TabEquipmentListActivity.java -->
+    <string name="str_equipmentlist_loading_tree">正在加载数据列表请稍等&#8230;</string>
+    <string name="str_equipmentlist_toask_loadtreefaild">加载数据列表失败！</string>
+    <string name="str_equipmentlist_toask_loadtreefaildreload">加载数据列表失败，正在重新加载数据&#8230;</string>
+    <string name="str_equipmentlist_toask_linestatusfaild">获取用户在线状态失败！</string>
+    <string name="str_equipmentlist_toask_unlinenovideo">当前监控设备运行异常，无法浏览监控视频！</string>
+    <string name="str_equipmentlist_alert_treefaild_title">提示</string>
+    <string name="str_equipmentlist_alert_treefaild_message">加载数据列表出错，请保证网络顺畅状态下重新登录。</string>
+    <string name="str_equipmentlist_alert_treefaild_eixtbt">退出</string>
+
+    <!-- 视频预览-obsolete -->
+    <string name="str_monitoringvideo_loading_loadvideo">正在加载视频数据请稍等&#8230;</string>
+    <string name="str_monitoringvideo_toast_loadvideofaild">加载视频数据失败！</string>
+    <string name="str_monitoringvideo_toast_videoplayfaild">视频播放失败！</string>
+    <string name="str_monitoringvideo_toast_flowused_a">今日流量使用已突破</string>
+    <string name="str_monitoringvideo_toast_flowused_b">当月流量使用已突破</string>
+    <string name="str_monitoringvideo_toast_flowused_c">当前监控设备当月流量已经用完，</string>
+    <string name="str_monitoringvideo_toast_flowused_d">分钟后结束预览，为了不影响您的正常使用，请您增加流量。</string>
+    <string name="str_monitoringvideo_toast_flowused_e">监控设备终止视频传输</string>
+    <string name="str_monitoringvideo_toast_flowused_f">视频数据请求超时！</string>
+    <string name="str_monitoringvideo_toast_flowused_g">播放库初始化错误！</string>
+    <string name="str_monitoringvideo_toast_flowused_h">请求连接失败！</string>
+    <string name="str_monitoringvideo_toast_flowused_i">请求失败！</string>
+
+    <!-- CameraConfigActivity.java -->
+    <string name="str_cameraconfig_loading_getconfig">正在加载当前设备的配置信息请稍等&#8230;</string>
+    <string name="str_cameraconfig_loading_changeconfig">正在修改配置信息请稍等&#8230;</string>
+    <string name="str_cameraconfig_toast_getconfigfaild">加载配置信息失败!</string>
+    <string name="str_cameraconfig_toast_setconfigfaild">修改配置信息失败!</string>
+    <string name="str_cameraconfig_toast_setconfigsuccess">修改配置信息成功!</string>
+    <string name="str_cameraconfig_toast_numnotnull">请输入门限次数!</string>
+    <string name="str_cameraconfig_toast_timeerror">监控结束时间不能小于监控开始时间!</string>
+    <string name="str_cameraconfig_tv_flow">正在获取中&#8230;</string>
+    <string name="str_cameraconfig_tv_flow_faild">获取失败</string>
+
+    <!-- CameraMonitorAnnalActivity.java -->
+    <string name="str_camera_monitor_annal_msglist_title_num">序号</string>
+    <string name="str_camera_monitor_annal_msglist_title_type">类型</string>
+    <string name="str_camera_monitor_annal_msglist_title_time">时间</string>
+    <string name="str_camera_monitor_annal_msglist_title_message">强度</string>
+    <string name="str_camera_monitor_annal_dialog_date_year">年</string>
+    <string name="str_camera_monitor_annal_dialog_date_month">月</string>
+    <string name="str_camera_monitor_annal_dialog_date_day">日</string>
+    <string name="str_camera_monitor_annal_dialog_date_start_title">请选择起始日期：</string>
+    <string name="str_camera_monitor_annal_dialog_date_end_title">请选择结束日期：</string>
+    <string name="str_camera_monitor_annal_dialog_time_hour">点</string>
+    <string name="str_camera_monitor_annal_dialog_time_minute">分</string>
+    <string name="str_camera_monitor_annal_dialog_time_second">秒</string>
+    <string name="str_camera_monitor_annal_dialog_time_start_title">请选择起始时间：</string>
+    <string name="str_camera_monitor_annal_dialog_time_end_title">请选择结束时间：</string>
+    <string name="str_camera_monitor_annal_toast_timeerroe">结束时间不能小于起始时间</string>
+    <string name="str_camera_monitor_annal_toast_dateerroe">结束日期不能小于起始时间</string>
+    <string name="str_camera_monitor_annal_toast_alarmmsgsearcherror">消息查询失败！</string>
+
+    <!-- TabAlarmActivity.java -->
+    <string name="str_alarm_list_dialog_title">删除</string>
+    <string name="str_alarm_list_dialog_message">确定删除吗？</string>
+    <string name="str_alarm_list_toast_deletesuccess">删除成功</string>
+    <string name="str_alarm_list_toast_deletefaild">删除失败</string>
+    <string name="str_alarm_list_tv_selectall">全选</string>
+    <string name="str_alarm_list_tv_cancelselectall">取消全选</string>
+    <string name="str_alarm_list_tv_delete">删除</string>
+    <string name="str_alarm_list_toast_newalarm">有新的报警！</string>
+
+    <!-- CService.java -->
+    <string name="str_dowrokservice_toast_a">服务器加载错误！</string>
+
+    <!-- LogoutExitReceiver -->
+    <string name="dialog_logoutexitreceiver_title">提示</string>
+    <string name="dialog_logoutexitreceiver_messagebe">当前帐号在异地登陆，请检查帐号的安全！</string>
+    <string name="dialog_logoutexitreceiver_messageself">网络连接出错！请退出后重新登陆！</string>
+    <string name="dialog_logoutexitreceiver_messagefree">免费体验已结束，即将退出。\n如您想继续体验，请致电:\n0571&#8211;88081230&#8211;8001!</string>
+    <string name="dialog_logoutexitreceiver_button">退出</string>
+    <string name="dialog_logoutexit_message_crash">很抱歉，程序出现异常，即将退出。\n如您需要帮助，请致电:\n0571&#8211;88081230&#8211;8001</string>
+
+    <!-- CloudControl -->
+    <string name="str_cloud_control_zoom">变焦</string>
+    <string name="str_cloud_control_focus">聚焦</string>
+    <string name="str_cloud_control_aperture">光圈</string>
+
+
+
+    <!-- layout_notifi_alarm.xml -->
+    <string name="str_notifi_alarm_tv_name">设备名称：</string>
+    <string name="str_notifi_alarm_tv_time">报警时间：</string>
+    <string name="str_notifi_alarm_tv_strength">报警等级：</string>
+    <string name="str_notifi_alarm_tv_info">报警内容：</string>
+    <string name="str_notifi_alarm_tv_state">处理状态：</string>
+    <string name="str_notifi_alarm_tv_dealnick">&#160;&#160;&#160;&#160;处理者：</string>
+    <string name="str_notifi_alarm_tv_dealtime">处理时间：</string>
+    <string name="str_notifi_alarm_tv_type">报警类型：</string>
+    <string name="str_notifi_alarm_level_light">次要报警</string>
+    <string name="str_notifi_alarm_level_weight">重度报警</string>
+    <string name="str_notifi_alarm_level_crash">紧急报警</string>
+    <string name="str_notifi_alarm_level_infrared">红外线捕获</string>
+    <!--
+         <string name="str_notifi_alarm_tv_msg_101">摄像头流量超标</string>
+    <string name="str_notifi_alarm_tv_msg_102">摄像头硬盘错误</string>
+    <string name="str_notifi_alarm_tv_msg_103">摄像头网络异常</string>
+    <string name="str_notifi_alarm_tv_msg_201">摄像头行为规律异常</string>
+    <string name="str_notifi_alarm_tv_msg_202">摄像头监测到危险动作</string>
+    <string name="str_notifi_alarm_tv_msg_203">GPS定位超出范围</string>
+    <string name="str_notifi_alarm_tv_msg_204">GPS定位失去目标</string>
+    <string name="str_notifi_alarm_tv_msg_301">摄像头主动一键报警</string>
+    <string name="str_notifi_alarm_tv_msg_302">传感器生理参数异常报警</string>
+    <string name="str_notifi_alarm_tv_msg_303">门禁报警</string>
+    <string name="str_notifi_alarm_tv_msg_304">烟雾探测器报警</string>
+    <string name="str_notifi_alarm_tv_msg_305">燃气探测器报警</string>
+
+
+    -->
+
+    <string name="str_notifi_alarm_tv_unknow">未知</string>
+
+    <!-- NotificationAlarmActvitiy.java -->
+    <string name="str_notifi_alarm_info_a">监控用户[</string>
+    <string name="str_notifi_alarm_info_b">]在</string>
+    <string name="str_notifi_alarm_info_c">时发现监控异常，请及时联系查看异常原因！</string>
+
+    <!-- DialogUtil.java -->
+    <string name="str_modify_name_title">更改昵称</string>
+    <string name="str_modify_name_null">请输入昵称！</string>
+    <string name="str_modify_name_length">昵称长度应小于15位,请重新输入！</string>
+    <string name="str_modify_name_special">昵称中不能包含特殊字符:&#033;&#064;&#035;&#036;&#037;&#094;&#038;&#042;&#040;&#041;&#044;&#046;&#047;&#059;\&#039;\\&#060;&#062;&#063;&#058;,请重新输入！</string>
+    <string name="str_modify_password_title">修改密码</string>
+    <string name="str_modify_password_hint">输入密码</string>
+    <string name="str_modify_password_hint1">再次输入密码</string>
+    <string name="str_modify_password_length">密码长度应为4&#8211;16位字符,请重新输入！</string>
+    <string name="str_modify_password_special">密码中不能包含特殊字符: &#062;、&#060;以及空格,请重新输入！</string>
+    <string name="str_modify_password_same">为了账号安全,密码不能由同一个字符组成,请重新输入！</string>
+    <string name="str_modify_password_order">为了账号安全,密码不为连续字符,请重新输入！</string>
+    <string name="str_modify_password_notsame">两次密码不一致，请重新输入！"</string>
+
+    <!-- Menu -->
+    <string name="action_settings">Settings</string>
+    <string name="action_settings_new_mutual">创建新会话</string>
+    <string name="action_logo">Logo</string>
+    <string name="title_activity_main_activity_compat">MainActivityCompat</string>
+
+    <string name="hello_world">Hello world!</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Drawer -->
+    <string name="navigation_drawer_open">open</string>
+    <string name="navigation_drawer_close">close</string>
+    <!--<string name="drawer_list_1">修改密码</string>-->
+    <string name="drawer_list_1">用户信息</string>
+    <string name="drawer_list_2">警告预设</string>
+    <string name="drawer_list_3">报警查询</string>
+    <string name="drawer_list_4">注销登陆</string>
+    <string name="drawer_list_5">退出</string>
+    <string name="drawer_list_6">用户设置</string>
+    <string name="text_test">test</string>
+    <string name="str_userid">用户ID:</string>
+    <string name="str_username">用户名:</string>
+    <string name="corp_title">南鸿居家养老</string>
+
+    <!-- PersonalInformation -->
+    <string name="str_pi_nickname">昵称</string>
+    <string name="str_pi_nickname_sample">nickname</string>
+    <string name="str_pi_account">账号</string>
+    <string name="str_pi_account_sample">account</string>
+    <string name="str_pi_passwd">密码</string>
+    <string name="str_pi_passwd_sample">******</string>
+    <string name="title_activity_login_activity_compat">LoginActivityCompat</string>
+    <string name="title_activity_expel_audio">ExpelAudioActivity</string>
+    <string name="title_activity_station_details">StationDetailsActivity</string>
+    <string name="title_activity_station_list">StationListActivity</string>
+    <string name="title_activity_station_information">StationInformationActivity</string>
+    <string name="title_activity_device_information">DeviceInformationActivity</string>
+    <string name="title_activity_mornitor_activity_compat">MornitorActivityCompat</string>
+    <string name="title_activity_alarm_details_activity_compat">AlarmDetailsActivityCompat</string>
+
+</resources>

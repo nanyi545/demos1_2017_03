@@ -1,0 +1,47 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
+
+    defaultConfig {
+        applicationId "rm.module_net"
+        minSdkVersion 15
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+repositories {
+    maven { url "https://jitpack.io" }  ////mpAndroidChart
+    jcenter()
+}
+
+
+final RX_VERSION = '1.1.0'
+final ASDK_VERSION = '23'
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    testCompile 'junit:junit:4.12'
+
+
+    compile "io.reactivex:rxjava:${RX_VERSION}"
+    compile "io.reactivex:rxandroid:${RX_VERSION}"
+    compile 'com.github.PhilJay:MPAndroidChart:v2.1.5'
+
+    compile 'com.android.support:appcompat-v7:23.0.1'
+
+    compile 'org.adw.library:discrete-seekbar:1.0.1'  // material seekbar from github  --> need support-v4  !!
+    compile "com.android.support:support-v4:${ASDK_VERSION}.+"
+
+    compile 'com.wnafee:vector-compat:1.0.5' // morph button  //incase of proguard:  -keep class com.wnafee.vector.** {*;}  //  SDK>=14
+
+}
