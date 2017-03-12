@@ -54,6 +54,11 @@
             android:onClick="jumpPullToRefresh3"
             android:text="test pull to refresh -- coordinator  +  CollapseHolder " />
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="jumpPullToRefresh4"
+            android:text="test pull to refresh -- just like 饿了么 " />
 
 
         <Button

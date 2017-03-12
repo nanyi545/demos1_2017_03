@@ -25,24 +25,30 @@ public class CustomAppbarLoBehaviour3 extends AppBarLayout.Behavior {
 
 
 
-
-
     @Override
     public void onNestedPreScroll(CoordinatorLayout coordinatorLayout, AppBarLayout child, View target, int dx, int dy, int[] consumed) {
         Log.i("kkk","----nested pre scroll::::"+dy+"  child:"+child.getClass().getName()+"   target:"+target.getClass().getName()+"  AppBarLayout:"  +"  coor scrollY:"+coordinatorLayout.getScrollY());  //
 
         boolean appBarFullyExpanded=(child.getHeight()==child.getBottom());
-        if((dy<0)&&(target instanceof RecyclerView)&&(((RecyclerView) target).computeVerticalScrollOffset()==0)&&appBarFullyExpanded){
-//            coordinatorLayout.scrollBy(0,dy);
-//            ((CoordinatorPullToRefresh)coordinatorLayout).scrollBy(0,dy);
-            ((CoordinatorPullToRefresh)coordinatorLayout).dragDown1(dy);
+
+        if(coordinatorLayout instanceof CoordinatorPullToRefresh){
+            if((dy<0)&&(target instanceof RecyclerView)&&(((RecyclerView) target).computeVerticalScrollOffset()==0)&&appBarFullyExpanded){
+                ((CoordinatorPullToRefresh)coordinatorLayout).dragDown1(dy);
+            }
+
+            if((dy<0)&&(target instanceof NestedScrollView)&&(((NestedScrollView) target).computeVerticalScrollOffset()==0)&&appBarFullyExpanded){
+                ((CoordinatorPullToRefresh)coordinatorLayout).dragDown1(dy);
+            }
         }
 
-        if((dy<0)&&(target instanceof NestedScrollView)&&(((NestedScrollView) target).computeVerticalScrollOffset()==0)&&appBarFullyExpanded){
-            ((CoordinatorPullToRefresh)coordinatorLayout).dragDown1(dy);
+        if(coordinatorLayout instanceof CoordinatorPullToRefresh2){
+            if((target instanceof RecyclerView)&&(((RecyclerView) target).computeVerticalScrollOffset()==0)&&appBarFullyExpanded){
+                ((CoordinatorPullToRefresh2)coordinatorLayout).dragDown(dy);
+            }
+
         }
 
-        if (coordinatorLayout.getScrollY()<0)return;
+//        if (coordinatorLayout.getScrollY()<0)return; ///???
 
         super.onNestedPreScroll(coordinatorLayout, child, target, dx, dy, consumed);
     }
@@ -52,7 +58,7 @@ public class CustomAppbarLoBehaviour3 extends AppBarLayout.Behavior {
         Log.i("kkk","----nested scroll:dyConsumed:"+dyConsumed+"   dyUnconsumed:"+dyUnconsumed);  //
 
 
-        if (coordinatorLayout.getScrollY()<0)return;
+//        if (coordinatorLayout.getScrollY()<0)return; // ???
 
         super.onNestedScroll(coordinatorLayout, child, target, dxConsumed, dyConsumed, dxUnconsumed, dyUnconsumed);
     }
@@ -93,7 +99,9 @@ public class CustomAppbarLoBehaviour3 extends AppBarLayout.Behavior {
          *  ???---why called twice--???
          *
          */
-        ((CoordinatorPullToRefresh)coordinatorLayout).releaseDrag();
+        if (coordinatorLayout instanceof  CoordinatorPullToRefresh) ((CoordinatorPullToRefresh)coordinatorLayout).releaseDrag();
+        if (coordinatorLayout instanceof  CoordinatorPullToRefresh2) ((CoordinatorPullToRefresh2)coordinatorLayout).releaseDrag();
+
 
         super.onStopNestedScroll(coordinatorLayout, abl, target);
     }

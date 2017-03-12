@@ -1,5 +1,9 @@
 [
     {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\animatedVdrawable\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\ic_launcher.png",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\animatedVdrawable\\src\\main\\res\\drawable-mdpi\\ic_launcher.png"
+    },
+    {
         "merged": "D:\\asprojects\\demos\\demos1_2016_10\\animatedVdrawable\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\ic_launcher.png",
         "source": "D:\\asprojects\\demos\\demos1_2016_10\\animatedVdrawable\\src\\main\\res\\drawable-mdpi\\ic_launcher.png"
     }

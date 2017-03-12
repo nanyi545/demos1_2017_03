@@ -1,5 +1,556 @@
 [
     {
+        "outputFile": "D:\\ASprojects\\station_2_23\\demo_2017_03\\animatedVdrawable\\build\\intermediates\\res\\merged\\debug\\values\\values.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 44,
+                    "endOffset": 95
+                },
+                "from": {
+                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\animatedVdrawable\\src\\main\\res\\values\\colors.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 2,
+                        "startOffset": 54,
+                        "endColumn": 42,
+                        "endOffset": 94
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 3,
+                    "startColumn": 4,
+                    "startOffset": 100,
+                    "endColumn": 35,
+                    "endOffset": 131
+                },
+                "from": {
+                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\animatedVdrawable\\src\\main\\res\\values\\colors.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 2,
+                        "startOffset": 135,
+                        "endColumn": 33,
+                        "endOffset": 166
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 4,
+                    "startColumn": 4,
+                    "startOffset": 136,
+                    "endColumn": 39,
+                    "endOffset": 171
+                },
+                "from": {
+                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\animatedVdrawable\\src\\main\\res\\values\\colors.xml",
+                    "position": {
+                        "startLine": 1,
+                        "startColumn": 2,
+                        "startOffset": 15,
+                        "endColumn": 37,
+                        "endOffset": 50
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 5,
+                    "startColumn": 4,
+                    "startOffset": 176,
+                    "endColumn": 38,
+                    "endOffset": 210
+                },
+                "from": {
+                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\animatedVdrawable\\src\\main\\res\\values\\colors.xml",
+                    "position": {
+                        "startLine": 5,
+                        "startColumn": 2,
+                        "startOffset": 170,
+                        "endColumn": 36,
+                        "endOffset": 204
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 6,
+                    "startColumn": 4,
+                    "startOffset": 215,
+                    "endColumn": 37,
+                    "endOffset": 248
+                },
+                "from": {
+                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\animatedVdrawable\\src\\main\\res\\values\\colors.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 2,
+                        "startOffset": 98,
+                        "endColumn": 35,
+                        "endOffset": 131
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 7,
+                    "startColumn": 4,
+                    "startOffset": 253,
+                    "endColumn": 57,
+                    "endOffset": 306
+                },
+                "from": {
+                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\animatedVdrawable\\src\\main\\res\\values\\dimens.xml",
+                    "position": {
+                        "startLine": 1,
+                        "startColumn": 4,
+                        "startOffset": 17,
+                        "endColumn": 57,
+                        "endOffset": 70
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 8,
+                    "startColumn": 4,
+                    "startOffset": 311,
+                    "endColumn": 55,
+                    "endOffset": 362
+                },
+                "from": {
+                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\animatedVdrawable\\src\\main\\res\\values\\dimens.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 76,
+                        "endColumn": 55,
+                        "endOffset": 127
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 9,
+                    "startColumn": 4,
+                    "startOffset": 367,
+                    "endColumn": 41,
+                    "endOffset": 404
+                },
+                "from": {
+                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\animatedVdrawable\\src\\main\\res\\values\\dimens.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 171,
+                        "endColumn": 41,
+                        "endOffset": 208
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 10,
+                    "startColumn": 4,
+                    "startOffset": 409,
+                    "endColumn": 36,
+                    "endOffset": 441
+                },
+                "from": {
+                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\animatedVdrawable\\src\\main\\res\\values\\dimens.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 4,
+                        "startOffset": 133,
+                        "endColumn": 36,
+                        "endOffset": 165
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 11,
+                    "startColumn": 4,
+                    "startOffset": 446,
+                    "endColumn": 58,
+                    "endOffset": 500
+                },
+                "from": {
+                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\animatedVdrawable\\src\\main\\res\\values\\integers.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 2,
+                        "startOffset": 59,
+                        "endColumn": 56,
+                        "endOffset": 113
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 12,
+                    "startColumn": 4,
+                    "startOffset": 505,
+                    "endColumn": 44,
+                    "endOffset": 545
+                },
+                "from": {
+                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\animatedVdrawable\\src\\main\\res\\values\\integers.xml",
+                    "position": {
+                        "startLine": 1,
+                        "startColumn": 2,
+                        "startOffset": 15,
+                        "endColumn": 42,
+                        "endOffset": 55
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 13,
+                    "startColumn": 4,
+                    "startOffset": 550,
+                    "endColumn": 43,
+                    "endOffset": 589
+                },
+                "from": {
+                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\animatedVdrawable\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 7,
+                        "startColumn": 4,
+                        "startOffset": 323,
+                        "endColumn": 43,
+                        "endOffset": 362
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 14,
+                    "startColumn": 4,
+                    "startOffset": 594,
+                    "endColumn": 61,
+                    "endOffset": 651
+                },
+                "from": {
+                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\animatedVdrawable\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 57,
+                        "endColumn": 61,
+                        "endOffset": 114
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 15,
+                    "startColumn": 4,
+                    "startOffset": 656,
+                    "endColumn": 39,
+                    "endOffset": 691
+                },
+                "from": {
+                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\animatedVdrawable\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 9,
+                        "startColumn": 4,
+                        "startOffset": 370,
+                        "endColumn": 39,
+                        "endOffset": 405
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 16,
+                    "startColumn": 4,
+                    "startOffset": 696,
+                    "endColumn": 47,
+                    "endOffset": 739
+                },
+                "from": {
+                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\animatedVdrawable\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 16,
+                        "startColumn": 4,
+                        "startOffset": 574,
+                        "endColumn": 47,
+                        "endOffset": 617
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 17,
+                    "startColumn": 4,
+                    "startOffset": 744,
+                    "endColumn": 81,
+                    "endOffset": 821
+                },
+                "from": {
+                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\animatedVdrawable\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 122,
+                        "endColumn": 81,
+                        "endOffset": 199
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 18,
+                    "startColumn": 4,
+                    "startOffset": 826,
+                    "endColumn": 55,
+                    "endOffset": 877
+                },
+                "from": {
+                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\animatedVdrawable\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 13,
+                        "startColumn": 4,
+                        "startOffset": 470,
+                        "endColumn": 55,
+                        "endOffset": 521
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 19,
+                    "startColumn": 4,
+                    "startOffset": 882,
+                    "endLine": 21,
+                    "endColumn": 11,
+                    "endOffset": 1171
+                },
+                "from": {
+                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\animatedVdrawable\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 45,
+                        "startColumn": 2,
+                        "startOffset": 1155,
+                        "endLine": 47,
+                        "endColumn": 11,
+                        "endOffset": 1446
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 22,
+                    "startColumn": 4,
+                    "startOffset": 1176,
+                    "endColumn": 43,
+                    "endOffset": 1215
+                },
+                "from": {
+                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\animatedVdrawable\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 14,
+                        "startColumn": 4,
+                        "startOffset": 527,
+                        "endColumn": 43,
+                        "endOffset": 566
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 23,
+                    "startColumn": 4,
+                    "startOffset": 1220,
+                    "endLine": 28,
+                    "endColumn": 11,
+                    "endOffset": 1330
+                },
+                "from": {
+                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\animatedVdrawable\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 19,
+                        "startColumn": 0,
+                        "startOffset": 623,
+                        "endLine": 24,
+                        "endColumn": 11,
+                        "endOffset": 738
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 29,
+                    "startColumn": 4,
+                    "startOffset": 1335,
+                    "endLine": 34,
+                    "endColumn": 11,
+                    "endOffset": 1447
+                },
+                "from": {
+                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\animatedVdrawable\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 25,
+                        "startColumn": 2,
+                        "startOffset": 742,
+                        "endLine": 30,
+                        "endColumn": 11,
+                        "endOffset": 859
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 35,
+                    "startColumn": 4,
+                    "startOffset": 1452,
+                    "endLine": 38,
+                    "endColumn": 11,
+                    "endOffset": 1531
+                },
+                "from": {
+                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\animatedVdrawable\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 41,
+                        "startColumn": 2,
+                        "startOffset": 1069,
+                        "endLine": 44,
+                        "endColumn": 11,
+                        "endOffset": 1151
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 39,
+                    "startColumn": 4,
+                    "startOffset": 1536,
+                    "endLine": 42,
+                    "endColumn": 11,
+                    "endOffset": 1613
+                },
+                "from": {
+                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\animatedVdrawable\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 37,
+                        "startColumn": 2,
+                        "startOffset": 985,
+                        "endLine": 40,
+                        "endColumn": 11,
+                        "endOffset": 1065
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 43,
+                    "startColumn": 4,
+                    "startOffset": 1618,
+                    "endLine": 48,
+                    "endColumn": 11,
+                    "endOffset": 1731
+                },
+                "from": {
+                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\animatedVdrawable\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 31,
+                        "startColumn": 2,
+                        "startOffset": 863,
+                        "endLine": 36,
+                        "endColumn": 11,
+                        "endOffset": 981
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 49,
+                    "startColumn": 4,
+                    "startOffset": 1736,
+                    "endColumn": 59,
+                    "endOffset": 1791
+                },
+                "from": {
+                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\animatedVdrawable\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 6,
+                        "startColumn": 4,
+                        "startOffset": 262,
+                        "endColumn": 59,
+                        "endOffset": 317
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 50,
+                    "startColumn": 4,
+                    "startOffset": 1796,
+                    "endColumn": 55,
+                    "endOffset": 1847
+                },
+                "from": {
+                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\animatedVdrawable\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 5,
+                        "startColumn": 4,
+                        "startOffset": 205,
+                        "endColumn": 55,
+                        "endOffset": 256
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 51,
+                    "startColumn": 4,
+                    "startOffset": 1852,
+                    "endColumn": 53,
+                    "endOffset": 1901
+                },
+                "from": {
+                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\animatedVdrawable\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 11,
+                        "startColumn": 4,
+                        "startOffset": 413,
+                        "endColumn": 53,
+                        "endOffset": 462
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 52,
+                    "startColumn": 4,
+                    "startOffset": 1906,
+                    "endLine": 56,
+                    "endColumn": 10,
+                    "endOffset": 2160
+                },
+                "from": {
+                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\animatedVdrawable\\src\\main\\res\\values\\styles.xml",
+                    "position": {
+                        "startLine": 1,
+                        "startColumn": 2,
+                        "startOffset": 15,
+                        "endLine": 5,
+                        "endColumn": 10,
+                        "endOffset": 273
+                    }
+                }
+            }
+        ]
+    },
+    {
         "outputFile": "D:\\asprojects\\demos\\demos1_2016_10\\animatedVdrawable\\build\\intermediates\\res\\merged\\debug\\values\\values.xml",
         "map": [
             {

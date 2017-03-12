@@ -84,9 +84,6 @@ public class CoordinatorPullToRefresh extends CoordinatorPullable {
 
     public void releaseDrag(){
         int dy =  - getScrollY();
-
-        Log.i("fff","--release: dy:"+dy+"  trigger release:"+(dy>0)+"   totalDrag now at:"+totalDrag);
-
         if(dy>0){
             mScroller.startScroll(0, getScrollY(), 0, dy,400);
             totalDrag=0;

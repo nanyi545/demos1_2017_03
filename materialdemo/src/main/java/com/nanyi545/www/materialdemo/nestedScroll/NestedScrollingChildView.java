@@ -107,7 +107,7 @@ public class NestedScrollingChildView extends View implements NestedScrollingChi
 
   @Override
   public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-//    Log.i("bbb","Nested scroll child -- onscroll");
+    Log.i("bbb","Nested scroll child -- onscroll  dy:"+distanceY);
     dispatchNestedPreScroll(0, (int) distanceY, null, null);
     dispatchNestedScroll(0, 0, 0, 0, null);
     return true;

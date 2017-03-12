@@ -27,6 +27,12 @@
 
 
 
+    <EditText
+        android:background="@color/Red100"
+        android:layout_toRightOf="@+id/collapse_holder"
+        android:layout_width="100dp"
+        android:layout_height="50dp" />
+
     <Button
         android:id="@+id/expand_btn"
         android:layout_below="@+id/collapse_holder"
@@ -38,7 +44,8 @@
 
     <Button
         android:id="@+id/collapse_btn"
-        android:layout_below="@+id/expand_btn"
+        android:layout_below="@+id/collapse_holder"
+        android:layout_toRightOf="@+id/expand_btn"
         android:text="collapse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -48,7 +55,7 @@
 
 
     <com.nanyi545.www.materialdemo.collapse_layout.CollapsHolder
-        android:layout_below="@+id/collapse_btn"
+        android:layout_below="@+id/expand_btn"
         android:background="@color/Teal100"
         android:id="@+id/collapse_holder1"
         android:layout_width="wrap_content"

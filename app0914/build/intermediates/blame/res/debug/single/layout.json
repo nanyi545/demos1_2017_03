@@ -8,48 +8,44 @@
         "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\layout\\layout_usermsg.xml"
     },
     {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_camera_monitor_annal_dialog_msgtype_list_item.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\layout\\layout_camera_monitor_annal_dialog_msgtype_list_item.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_include_back_head.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\layout\\layout_include_back_head.xml"
+    },
+    {
         "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_simple_overlay_action_mode.xml",
         "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\abc_screen_simple_overlay_action_mode.xml"
     },
     {
-        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_mode_close_item_material.xml",
-        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\abc_action_mode_close_item_material.xml"
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_camera_monitor_annal_msglist_item.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\layout\\layout_camera_monitor_annal_msglist_item.xml"
     },
     {
-        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_big_media_narrow.xml",
-        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\notification_template_big_media_narrow.xml"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_login_compat.xml",
-        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\layout\\layout_login_compat.xml"
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_expel_audio.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\layout\\layout_expel_audio.xml"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_tab_text.xml",
         "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\design\\22.2.1\\res\\layout\\layout_tab_text.xml"
     },
     {
-        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_tab_icon.xml",
-        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\design\\22.2.1\\res\\layout\\layout_tab_icon.xml"
-    },
-    {
         "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_camera_monitor_annal_dialog_msgtype_list_item.xml",
         "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\layout\\layout_camera_monitor_annal_dialog_msgtype_list_item.xml"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_station_inform.xml",
-        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\layout\\layout_station_inform.xml"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_item_header.xml",
         "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\design\\22.2.1\\res\\layout\\design_navigation_item_header.xml"
     },
     {
-        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_radio.xml",
-        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\abc_list_menu_item_radio.xml"
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_main_compat.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\layout\\layout_main_compat.xml"
     },
     {
-        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\select_dialog_singlechoice_material.xml",
-        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\select_dialog_singlechoice_material.xml"
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_item.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\design\\22.2.1\\res\\layout\\design_navigation_item.xml"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\drawer_list_item.xml",
@@ -60,24 +56,32 @@
         "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\abc_search_dropdown_item_icons_2line.xml"
     },
     {
-        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_include_back_head_round.xml",
-        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\layout\\layout_include_back_head_round.xml"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_search_view.xml",
-        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\abc_search_view.xml"
-    },
-    {
         "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_include_back_head.xml",
         "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\layout\\layout_include_back_head.xml"
     },
     {
-        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_expanded_menu_layout.xml",
-        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\abc_expanded_menu_layout.xml"
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_activity_chooser_view_list_item.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\abc_activity_chooser_view_list_item.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_appstart.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\layout\\layout_appstart.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_snackbar.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\design\\22.2.1\\res\\layout\\layout_snackbar.xml"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\part_login_welcome_content.xml",
         "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\layout\\part_login_welcome_content.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_lines.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\notification_template_lines.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_camera_monitor_annal.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\layout\\layout_camera_monitor_annal.xml"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_menu.xml",
@@ -92,16 +96,12 @@
         "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\abc_screen_toolbar.xml"
     },
     {
-        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_station_devices.xml",
-        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\layout\\fragment_station_devices.xml"
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_search_dropdown_item_icons_2line.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\abc_search_dropdown_item_icons_2line.xml"
     },
     {
-        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\support_simple_spinner_dropdown_item.xml",
-        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\support_simple_spinner_dropdown_item.xml"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_popup_menu_item_layout.xml",
-        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\abc_popup_menu_item_layout.xml"
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_tab_text.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\design\\22.2.1\\res\\layout\\layout_tab_text.xml"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_alarm_detailed.xml",
@@ -112,10 +112,6 @@
         "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\layout\\list_item_device_list.xml"
     },
     {
-        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\popwindow_setting.xml",
-        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\layout\\popwindow_setting.xml"
-    },
-    {
         "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_dialog_title_material.xml",
         "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\abc_dialog_title_material.xml"
     },
@@ -124,12 +120,12 @@
         "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\layout\\layout_appstart.xml"
     },
     {
-        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_tab_alarm.xml",
-        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\layout\\layout_tab_alarm.xml"
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_simple_dropdown_hint.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\abc_simple_dropdown_hint.xml"
     },
     {
-        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_menu_item_layout.xml",
-        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\abc_action_menu_item_layout.xml"
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_popup_menu_item_layout.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\abc_popup_menu_item_layout.xml"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\toolbar_main.xml",
@@ -144,12 +140,408 @@
         "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\abc_screen_content_include.xml"
     },
     {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\list_item_device_list.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\layout\\list_item_device_list.xml"
+    },
+    {
         "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\activity_audio_test.xml",
         "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\layout\\activity_audio_test.xml"
     },
     {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\select_dialog_multichoice_material.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\select_dialog_multichoice_material.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_menu_layout.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\abc_action_menu_layout.xml"
+    },
+    {
         "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\toolbar_station.xml",
         "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\layout\\toolbar_station.xml"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_simple_dropdown_hint.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\abc_simple_dropdown_hint.xml"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_welcome.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\layout\\layout_welcome.xml"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_bar_title_item.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\abc_action_bar_title_item.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_menu.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\design\\22.2.1\\res\\layout\\design_navigation_menu.xml"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_simple.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\abc_screen_simple.xml"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_dialog_time.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\layout\\layout_dialog_time.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\nav_header.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\layout\\nav_header.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_alarm_detailed.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\layout\\layout_alarm_detailed.xml"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_lines.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\notification_template_lines.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_mode_bar.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\abc_action_mode_bar.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\part_login_head.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\layout\\part_login_head.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_alarmlist.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\layout\\fragment_alarmlist.xml"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\remote_layout_notification_1.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\layout\\remote_layout_notification_1.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_menu_item_layout.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\abc_action_menu_item_layout.xml"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\list_item_station_list.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\layout\\list_item_station_list.xml"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_tab_alarm_list_item.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\layout\\layout_tab_alarm_list_item.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_camera_monitor_annal_dialog_msgtype_list.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\layout\\layout_camera_monitor_annal_dialog_msgtype_list.xml"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_media.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\notification_template_media.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_main_head.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\layout\\layout_main_head.xml"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_snackbar.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\design\\22.2.1\\res\\layout\\layout_snackbar.xml"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\select_dialog_multichoice_material.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\select_dialog_multichoice_material.xml"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_userlist.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\layout\\fragment_userlist.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_tab_alarm_list_item.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\layout\\layout_tab_alarm_list_item.xml"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\rv_drawer_item.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\layout\\rv_drawer_item.xml"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_bar_up_container.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\abc_action_bar_up_container.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_select_dialog_material.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\abc_select_dialog_material.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\rv_drawer_item.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\layout\\rv_drawer_item.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_item_separator.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\design\\22.2.1\\res\\layout\\design_navigation_item_separator.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\activity_audio_test.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\layout\\activity_audio_test.xml"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_mode_bar.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\abc_action_mode_bar.xml"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\notification_media_action.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\notification_media_action.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\support_simple_spinner_dropdown_item.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\support_simple_spinner_dropdown_item.xml"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_item_subheader.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\design\\22.2.1\\res\\layout\\design_navigation_item_subheader.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_mode_close_item_material.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\abc_action_mode_close_item_material.xml"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_equipment_item.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\layout\\layout_equipment_item.xml"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\activity_jnitest.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\layout\\activity_jnitest.xml"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_station_details.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\layout\\layout_station_details.xml"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_select_dialog_material.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\abc_select_dialog_material.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_big_media.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\notification_template_big_media.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_station_inform.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\layout\\layout_station_inform.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\part_login_verify.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\layout\\part_login_verify.xml"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_activity_chooser_view.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\abc_activity_chooser_view.xml"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\send_msg_layout.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\layout\\send_msg_layout.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\toolbar_main.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\layout\\toolbar_main.xml"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\nav_header.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\layout\\nav_header.xml"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_snackbar_include.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\design\\22.2.1\\res\\layout\\layout_snackbar_include.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_icon.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\abc_list_menu_item_icon.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_snackbar_include.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\design\\22.2.1\\res\\layout\\layout_snackbar_include.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\select_dialog_singlechoice_material.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\select_dialog_singlechoice_material.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_login_compat.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\layout\\layout_login_compat.xml"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_icon.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\abc_list_menu_item_icon.xml"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\list_item_track.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\layout\\list_item_track.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\drawer_list_item.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\layout\\drawer_list_item.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_dialog_date.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\layout\\layout_dialog_date.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_expanded_menu_layout.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\abc_expanded_menu_layout.xml"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_mode_close_item_material.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\abc_action_mode_close_item_material.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_part_time.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\notification_template_part_time.xml"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_login_compat.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\layout\\layout_login_compat.xml"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_big_media_narrow.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\notification_template_big_media_narrow.xml"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_tab_icon.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\design\\22.2.1\\res\\layout\\layout_tab_icon.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\part_login_welcome_content.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\layout\\part_login_welcome_content.xml"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_station_inform.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\layout\\layout_station_inform.xml"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_radio.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\abc_list_menu_item_radio.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_tab_alarm.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\layout\\layout_tab_alarm.xml"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\select_dialog_singlechoice_material.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\select_dialog_singlechoice_material.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_bar_title_item.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\abc_action_bar_title_item.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_dialog_modify.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\layout\\layout_dialog_modify.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_media.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\notification_template_media.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\send_msg_layout.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\layout\\send_msg_layout.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_usermsg.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\layout\\layout_usermsg.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_item_header.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\design\\22.2.1\\res\\layout\\design_navigation_item_header.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_include_back_head_round.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\layout\\layout_include_back_head_round.xml"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_search_view.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\abc_search_view.xml"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_include_back_head_round.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\layout\\layout_include_back_head_round.xml"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_expanded_menu_layout.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\abc_expanded_menu_layout.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_userlist.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\layout\\fragment_userlist.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_simple_overlay_action_mode.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\abc_screen_simple_overlay_action_mode.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_checkbox.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\abc_list_menu_item_checkbox.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_big_media_narrow.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\notification_template_big_media_narrow.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_alarm_details_compat.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\layout\\layout_alarm_details_compat.xml"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_station_devices.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\layout\\fragment_station_devices.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_layout.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\abc_list_menu_item_layout.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\popwindow_setting.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\layout\\popwindow_setting.xml"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\support_simple_spinner_dropdown_item.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\support_simple_spinner_dropdown_item.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\notification_media_action.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\notification_media_action.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_part_chronometer.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\notification_template_part_chronometer.xml"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_popup_menu_item_layout.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\abc_popup_menu_item_layout.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_alarm_sec.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\layout\\fragment_alarm_sec.xml"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\popwindow_setting.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\layout\\popwindow_setting.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_content_include.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\abc_screen_content_include.xml"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_tab_alarm.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\layout\\layout_tab_alarm.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_station_alarm.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\layout\\fragment_station_alarm.xml"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_menu_item_layout.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\abc_action_menu_item_layout.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\list_item_track.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\layout\\list_item_track.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_bar_up_container.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\abc_action_bar_up_container.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\activity_jnitest.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\layout\\activity_jnitest.xml"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\select_dialog_item_material.xml",
@@ -164,10 +556,6 @@
         "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\notification_template_part_chronometer.xml"
     },
     {
-        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_simple_dropdown_hint.xml",
-        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\abc_simple_dropdown_hint.xml"
-    },
-    {
         "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_alarm_details_compat.xml",
         "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\layout\\layout_alarm_details_compat.xml"
     },
@@ -176,36 +564,40 @@
         "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\layout\\layout_camera_monitor_annal_msglist_item.xml"
     },
     {
-        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_welcome.xml",
-        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\layout\\layout_welcome.xml"
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\notification_media_cancel_action.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\notification_media_cancel_action.xml"
     },
     {
-        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_bar_title_item.xml",
-        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\abc_action_bar_title_item.xml"
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_activity_chooser_view.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\abc_activity_chooser_view.xml"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\part_login_head.xml",
         "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\layout\\part_login_head.xml"
     },
     {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_welcome.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\layout\\layout_welcome.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_station_list.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\layout\\fragment_station_list.xml"
+    },
+    {
         "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_station_list.xml",
         "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\layout\\fragment_station_list.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_tab_icon.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\design\\22.2.1\\res\\layout\\layout_tab_icon.xml"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_activity_chooser_view_list_item.xml",
         "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\abc_activity_chooser_view_list_item.xml"
     },
     {
-        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_simple.xml",
-        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\abc_screen_simple.xml"
-    },
-    {
         "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_alert_dialog_material.xml",
         "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\abc_alert_dialog_material.xml"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_dialog_time.xml",
-        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\layout\\layout_dialog_time.xml"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\part_login_verify.xml",
@@ -216,20 +608,20 @@
         "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\layout\\layout_expel_audio.xml"
     },
     {
-        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_lines.xml",
-        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\notification_template_lines.xml"
-    },
-    {
         "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_main_compat.xml",
         "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\layout\\layout_main_compat.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_alarm_main.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\layout\\fragment_alarm_main.xml"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_checkbox.xml",
         "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\abc_list_menu_item_checkbox.xml"
     },
     {
-        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\remote_layout_notification_1.xml",
-        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\layout\\remote_layout_notification_1.xml"
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_search_view.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\abc_search_view.xml"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\notification_media_cancel_action.xml",
@@ -240,48 +632,28 @@
         "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\layout\\layout_camera_monitor_annal_dialog_msgtype_list.xml"
     },
     {
-        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_item.xml",
-        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\design\\22.2.1\\res\\layout\\design_navigation_item.xml"
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\list_item_device_rv.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\layout\\list_item_device_rv.xml"
     },
     {
-        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\list_item_station_list.xml",
-        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\layout\\list_item_station_list.xml"
+        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_item.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\design\\22.2.1\\res\\layout\\design_navigation_item.xml"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_station_alarm.xml",
         "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\layout\\fragment_station_alarm.xml"
     },
     {
-        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_tab_alarm_list_item.xml",
-        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\layout\\layout_tab_alarm_list_item.xml"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_media.xml",
-        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\notification_template_media.xml"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_snackbar.xml",
-        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\design\\22.2.1\\res\\layout\\layout_snackbar.xml"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\select_dialog_multichoice_material.xml",
-        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\select_dialog_multichoice_material.xml"
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_device_information.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\layout\\layout_device_information.xml"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_dialog_date.xml",
         "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\layout\\layout_dialog_date.xml"
     },
     {
-        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_userlist.xml",
-        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\layout\\fragment_userlist.xml"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\rv_drawer_item.xml",
-        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\layout\\rv_drawer_item.xml"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_bar_up_container.xml",
-        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\abc_action_bar_up_container.xml"
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\select_dialog_item_material.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\select_dialog_item_material.xml"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_layout.xml",
@@ -304,83 +676,95 @@
         "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\design\\22.2.1\\res\\layout\\design_navigation_item_separator.xml"
     },
     {
-        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_mode_bar.xml",
-        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\abc_action_mode_bar.xml"
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_camera_monitor_annal_msglist_bottom.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\layout\\layout_camera_monitor_annal_msglist_bottom.xml"
     },
     {
-        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\notification_media_action.xml",
-        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\notification_media_action.xml"
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_navigation_drawer.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\layout\\fragment_navigation_drawer.xml"
     },
     {
-        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_item_subheader.xml",
-        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\design\\22.2.1\\res\\layout\\design_navigation_item_subheader.xml"
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_item_subheader.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\design\\22.2.1\\res\\layout\\design_navigation_item_subheader.xml"
     },
     {
-        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\activity_jnitest.xml",
-        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\layout\\activity_jnitest.xml"
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_station_details.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\layout\\layout_station_details.xml"
     },
     {
-        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_equipment_item.xml",
-        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\layout\\layout_equipment_item.xml"
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_alert_dialog_material.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\abc_alert_dialog_material.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_station_devices.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\layout\\fragment_station_devices.xml"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_part_time.xml",
         "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\notification_template_part_time.xml"
     },
     {
-        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_station_details.xml",
-        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\layout\\layout_station_details.xml"
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_equipment_item.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\layout\\layout_equipment_item.xml"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_big_media.xml",
         "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\notification_template_big_media.xml"
     },
     {
-        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_select_dialog_material.xml",
-        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\abc_select_dialog_material.xml"
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_dialog_time.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\layout\\layout_dialog_time.xml"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_alarm_sec.xml",
         "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\layout\\fragment_alarm_sec.xml"
     },
     {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\remote_layout_notification_1.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\layout\\remote_layout_notification_1.xml"
+    },
+    {
         "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_main_head.xml",
         "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\layout\\layout_main_head.xml"
     },
     {
-        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_activity_chooser_view.xml",
-        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\abc_activity_chooser_view.xml"
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_simple.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\abc_screen_simple.xml"
     },
     {
-        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\send_msg_layout.xml",
-        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\layout\\send_msg_layout.xml"
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_radio.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\abc_list_menu_item_radio.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\list_item_station_list.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\layout\\list_item_station_list.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_toolbar.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\abc_screen_toolbar.xml"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_camera_monitor_annal.xml",
         "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\layout\\layout_camera_monitor_annal.xml"
     },
     {
-        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\nav_header.xml",
-        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\layout\\nav_header.xml"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_snackbar_include.xml",
-        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\design\\22.2.1\\res\\layout\\layout_snackbar_include.xml"
-    },
-    {
         "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_alarm_main.xml",
         "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\layout\\fragment_alarm_main.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\toolbar_station.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\layout\\toolbar_station.xml"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_dialog_modify.xml",
         "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\layout\\layout_dialog_modify.xml"
     },
     {
-        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\list_item_track.xml",
-        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\layout\\list_item_track.xml"
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_dialog_title_material.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\abc_dialog_title_material.xml"
     },
     {
-        "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_icon.xml",
-        "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\abc_list_menu_item_icon.xml"
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_bar_view_list_nav_layout.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\layout\\abc_action_bar_view_list_nav_layout.xml"
     }
 ]

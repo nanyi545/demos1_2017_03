@@ -1,7 +1,15 @@
 [
     {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\animatedVdrawable\\build\\intermediates\\res\\merged\\debug\\anim\\appear.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\animatedVdrawable\\src\\main\\res\\anim\\appear.xml"
+    },
+    {
         "merged": "D:\\asprojects\\demos\\demos1_2016_10\\animatedVdrawable\\build\\intermediates\\res\\merged\\debug\\anim\\gray_to_pink.xml",
         "source": "D:\\asprojects\\demos\\demos1_2016_10\\animatedVdrawable\\src\\main\\res\\anim\\gray_to_pink.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\animatedVdrawable\\build\\intermediates\\res\\merged\\debug\\anim\\gray_to_pink.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\animatedVdrawable\\src\\main\\res\\anim\\gray_to_pink.xml"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2016_10\\animatedVdrawable\\build\\intermediates\\res\\merged\\debug\\anim\\minutes_rotation.xml",
@@ -20,6 +28,14 @@
         "source": "D:\\asprojects\\demos\\demos1_2016_10\\animatedVdrawable\\src\\main\\res\\anim\\hours_rotation.xml"
     },
     {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\animatedVdrawable\\build\\intermediates\\res\\merged\\debug\\anim\\path_morph.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\animatedVdrawable\\src\\main\\res\\anim\\path_morph.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\animatedVdrawable\\build\\intermediates\\res\\merged\\debug\\anim\\hours_rotation.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\animatedVdrawable\\src\\main\\res\\anim\\hours_rotation.xml"
+    },
+    {
         "merged": "D:\\asprojects\\demos\\demos1_2016_10\\animatedVdrawable\\build\\intermediates\\res\\merged\\debug\\anim\\smile.xml",
         "source": "D:\\asprojects\\demos\\demos1_2016_10\\animatedVdrawable\\src\\main\\res\\anim\\smile.xml"
     },
@@ -28,7 +44,23 @@
         "source": "D:\\asprojects\\demos\\demos1_2016_10\\animatedVdrawable\\src\\main\\res\\anim\\ic_download_animator.xml"
     },
     {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\animatedVdrawable\\build\\intermediates\\res\\merged\\debug\\anim\\smile.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\animatedVdrawable\\src\\main\\res\\anim\\smile.xml"
+    },
+    {
         "merged": "D:\\asprojects\\demos\\demos1_2016_10\\animatedVdrawable\\build\\intermediates\\res\\merged\\debug\\anim\\path_morph.xml",
         "source": "D:\\asprojects\\demos\\demos1_2016_10\\animatedVdrawable\\src\\main\\res\\anim\\path_morph.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\animatedVdrawable\\build\\intermediates\\res\\merged\\debug\\anim\\rotation.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\animatedVdrawable\\src\\main\\res\\anim\\rotation.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\animatedVdrawable\\build\\intermediates\\res\\merged\\debug\\anim\\minutes_rotation.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\animatedVdrawable\\src\\main\\res\\anim\\minutes_rotation.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\animatedVdrawable\\build\\intermediates\\res\\merged\\debug\\anim\\ic_download_animator.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\animatedVdrawable\\src\\main\\res\\anim\\ic_download_animator.xml"
     }
 ]

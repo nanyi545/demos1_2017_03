@@ -23,6 +23,7 @@ import com.nanyi545.www.materialdemo.quickRet.QuickRetActivity;
 import com.nanyi545.www.materialdemo.testPullToRefresh.TestPullRefreshActivity;
 import com.nanyi545.www.materialdemo.testPullToRefresh.TestPullRefreshActivity2;
 import com.nanyi545.www.materialdemo.testPullToRefresh.TestPullRefreshActivity3;
+import com.nanyi545.www.materialdemo.testPullToRefresh.TestPullRefreshActivity4;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -69,6 +70,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void jumpPullToRefresh3(View v){
         TestPullRefreshActivity3.start(this);
+    }
+
+    public void jumpPullToRefresh4(View v){
+        TestPullRefreshActivity4.start(this);
     }
 
 

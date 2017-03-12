@@ -41,15 +41,7 @@ public class CustomScrollingViewBehaviour3 extends AppBarLayout.ScrollingViewBeh
             AppBarLayout appBar=(AppBarLayout)dependency;
             if (manager==null){
                 manager=CollapsHolder.CollapsHolderManager.getInstance(appBar, R.id.collapse_holder2,R.id.collapse_holder1);
-                appBar.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Log.i("kkk","--click--");
-                        manager.smoothCollapseAll(false);  // smooth expand
-                    }
-                });
             }
-
         }
 
         return ret;

@@ -25,13 +25,14 @@ public class ImageBehaviour extends CoordinatorLayout.Behavior<ImageView> {
     @Override
     public void onNestedScroll(CoordinatorLayout coordinatorLayout, ImageView child, View target, int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed) {
         Log.i("bbb","imageView---- nested scroll");
+//        coordinatorLayout.scrollBy(dxConsumed,dyConsumed);
         super.onNestedScroll(coordinatorLayout, child, target, dxConsumed, dyConsumed, dxUnconsumed, dyUnconsumed);
     }
 
     @Override
     public void onNestedPreScroll(CoordinatorLayout coordinatorLayout, ImageView child, View target, int dx, int dy, int[] consumed) {
-        Log.i("bbb","imageView---- nested pre scroll");
-        coordinatorLayout.scrollBy(dx,dy);
+        Log.i("bbb","imageView---- nested pre scroll dy:"+dy);
+        coordinatorLayout.scrollBy(0,dy);
         super.onNestedPreScroll(coordinatorLayout, child, target, dx, dy, consumed);
     }
 

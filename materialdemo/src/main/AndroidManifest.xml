@@ -54,7 +54,10 @@
         <activity
             android:name=".coordinatorWithoutAppbarLO.CoordinatorWithoutCollapTLOActivity3"
             android:theme="@style/AppTheme.NoTitle.TransparentSystemBar" />
-        <activity android:name=".testPullToRefresh.TestPullRefreshActivity3"
+        <activity
+            android:name=".testPullToRefresh.TestPullRefreshActivity3"
+            android:theme="@style/AppTheme.NoTitle.TransparentSystemBar" />
+        <activity android:name=".testPullToRefresh.TestPullRefreshActivity4"
             android:theme="@style/AppTheme.NoTitle.TransparentSystemBar"></activity>
     </application>
 

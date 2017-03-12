@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.nanyi545.www.materialdemo.testPullToRefresh.CoordinatorPullToRefresh2 xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_test_pull_refresh4"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.nanyi545.www.materialdemo.testPullToRefresh.TestPullRefreshActivity4">
+
+    <android.support.design.widget.AppBarLayout
+        android:paddingTop="24dp"
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:background="@color/Blue600">
+
+        <com.nanyi545.www.materialdemo.collapse_layout.CollapsHolder
+            android:id="@+id/collapse_holder1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/Red300">
+
+            <ImageView
+                android:layout_marginLeft="16dp"
+                android:id="@+id/location_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/ic_media_play" />
+
+
+            <TextView
+                android:layout_marginLeft="8dp"
+                android:layout_toRightOf="@+id/location_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="heheda"
+                android:textSize="30sp" />
+
+            <ImageView
+                android:layout_marginRight="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:src="@android:drawable/ic_media_play" />
+
+        </com.nanyi545.www.materialdemo.collapse_layout.CollapsHolder>
+
+        <ImageView
+            android:id="@+id/gap"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_below="@id/collapse_holder1"
+            android:src="@color/Red200" />
+
+        <com.nanyi545.www.materialdemo.collapse_layout.CollapsHolder
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:id="@+id/collapse_holder2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/gap"
+            android:background="@color/Red600">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="8dp"
+                android:text="麦当劳 德克士 汉堡王 麻辣香锅 鸡排 我呀便当"
+                android:textSize="16sp" />
+
+        </com.nanyi545.www.materialdemo.collapse_layout.CollapsHolder>
+
+
+
+    </android.support.design.widget.AppBarLayout>
+
+    <!--app:layout_behavior="@string/appbar_scrolling_view_behavior"-->
+    <com.nanyi545.www.materialdemo.testPullToRefresh.StoppableScrollView
+        android:id="@+id/ssv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="com.nanyi545.www.materialdemo.testPullToRefresh.CustomScrollingViewBehaviour5"
+        >
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1\n2\n3\n4\n5\n"
+                />
+
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="2000dp"
+                android:src="@drawable/side_nav_bar"/>
+
+        </LinearLayout>
+
+
+    </com.nanyi545.www.materialdemo.testPullToRefresh.StoppableScrollView>
+
+
+
+</com.nanyi545.www.materialdemo.testPullToRefresh.CoordinatorPullToRefresh2>
