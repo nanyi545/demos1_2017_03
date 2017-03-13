@@ -4,8 +4,20 @@
         "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\menu\\menu_station_information.xml"
     },
     {
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\menu\\menu_alarm_details_activity_compat.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\menu\\menu_alarm_details_activity_compat.xml"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\menu\\menu_station_information.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\menu\\menu_station_information.xml"
+    },
+    {
         "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\menu\\nav_menu.xml",
         "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\menu\\nav_menu.xml"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\menu\\nav_menu.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\menu\\nav_menu.xml"
     },
     {
         "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\menu\\nav_menu.xml",
@@ -28,12 +40,24 @@
         "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\menu\\menu_station_details.xml"
     },
     {
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\menu\\menu_toolbar_nosettings.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\menu\\menu_toolbar_nosettings.xml"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\menu\\menu_toolbar_settings.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\menu\\menu_toolbar_settings.xml"
+    },
+    {
         "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\menu\\menu_toolbar_settings.xml",
         "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\menu\\menu_toolbar_settings.xml"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\menu\\menu_station_information.xml",
         "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\menu\\menu_station_information.xml"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\menu\\menu_audio_test.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\menu\\menu_audio_test.xml"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\menu\\menu_toolbar_nosettings.xml",
@@ -50,6 +74,10 @@
     {
         "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\menu\\menu_main_compat.xml",
         "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\menu\\menu_main_compat.xml"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\menu\\menu_expel_audio.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\menu\\menu_expel_audio.xml"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\menu\\menu_expel_audio.xml",
@@ -72,6 +100,14 @@
         "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\menu\\menu_main.xml"
     },
     {
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\menu\\menu_mornitor_activity_compat.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\menu\\menu_mornitor_activity_compat.xml"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\menu\\menu_main.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\menu\\menu_main.xml"
+    },
+    {
         "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\menu\\menu_audio_test.xml",
         "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\menu\\menu_audio_test.xml"
     },
@@ -82,6 +118,18 @@
     {
         "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\menu\\menu_main_compat.xml",
         "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\menu\\menu_main_compat.xml"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\menu\\menu_station_details.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\menu\\menu_station_details.xml"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\menu\\menu_device_information.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\menu\\menu_device_information.xml"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\menu\\menu_main_compat.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\menu\\menu_main_compat.xml"
     },
     {
         "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\menu\\menu_alarm_details_activity_compat.xml",

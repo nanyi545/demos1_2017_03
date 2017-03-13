@@ -1,5 +1,257 @@
 [
     {
+        "outputFile": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\values-ko\\values-ko.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 94,
+                    "endOffset": 145
+                },
+                "from": {
+                    "file": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ko\\values-ko.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 295,
+                        "endColumn": 94,
+                        "endOffset": 385
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 3,
+                    "startColumn": 4,
+                    "startOffset": 150,
+                    "endColumn": 93,
+                    "endOffset": 239
+                },
+                "from": {
+                    "file": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ko\\values-ko.xml",
+                    "position": {
+                        "startLine": 5,
+                        "startColumn": 4,
+                        "startOffset": 391,
+                        "endColumn": 93,
+                        "endOffset": 480
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 4,
+                    "startColumn": 4,
+                    "startOffset": 244,
+                    "endColumn": 101,
+                    "endOffset": 341
+                },
+                "from": {
+                    "file": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ko\\values-ko.xml",
+                    "position": {
+                        "startLine": 6,
+                        "startColumn": 4,
+                        "startOffset": 486,
+                        "endColumn": 101,
+                        "endOffset": 583
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 5,
+                    "startColumn": 4,
+                    "startOffset": 346,
+                    "endColumn": 81,
+                    "endOffset": 423
+                },
+                "from": {
+                    "file": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ko\\values-ko.xml",
+                    "position": {
+                        "startLine": 7,
+                        "startColumn": 4,
+                        "startOffset": 589,
+                        "endColumn": 81,
+                        "endOffset": 666
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 6,
+                    "startColumn": 4,
+                    "startOffset": 428,
+                    "endColumn": 97,
+                    "endOffset": 521
+                },
+                "from": {
+                    "file": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ko\\values-ko.xml",
+                    "position": {
+                        "startLine": 8,
+                        "startColumn": 4,
+                        "startOffset": 672,
+                        "endColumn": 97,
+                        "endOffset": 765
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 7,
+                    "startColumn": 4,
+                    "startOffset": 526,
+                    "endColumn": 105,
+                    "endOffset": 627
+                },
+                "from": {
+                    "file": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ko\\values-ko.xml",
+                    "position": {
+                        "startLine": 9,
+                        "startColumn": 4,
+                        "startOffset": 771,
+                        "endColumn": 105,
+                        "endOffset": 872
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 8,
+                    "startColumn": 4,
+                    "startOffset": 632,
+                    "endColumn": 97,
+                    "endOffset": 725
+                },
+                "from": {
+                    "file": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ko\\values-ko.xml",
+                    "position": {
+                        "startLine": 10,
+                        "startColumn": 4,
+                        "startOffset": 878,
+                        "endColumn": 97,
+                        "endOffset": 971
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 9,
+                    "startColumn": 4,
+                    "startOffset": 730,
+                    "endColumn": 94,
+                    "endOffset": 820
+                },
+                "from": {
+                    "file": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ko\\values-ko.xml",
+                    "position": {
+                        "startLine": 11,
+                        "startColumn": 4,
+                        "startOffset": 977,
+                        "endColumn": 94,
+                        "endOffset": 1067
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 10,
+                    "startColumn": 4,
+                    "startOffset": 825,
+                    "endColumn": 94,
+                    "endOffset": 915
+                },
+                "from": {
+                    "file": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ko\\values-ko.xml",
+                    "position": {
+                        "startLine": 12,
+                        "startColumn": 4,
+                        "startOffset": 1073,
+                        "endColumn": 94,
+                        "endOffset": 1163
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 11,
+                    "startColumn": 4,
+                    "startOffset": 920,
+                    "endColumn": 99,
+                    "endOffset": 1015
+                },
+                "from": {
+                    "file": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ko\\values-ko.xml",
+                    "position": {
+                        "startLine": 13,
+                        "startColumn": 4,
+                        "startOffset": 1169,
+                        "endColumn": 99,
+                        "endOffset": 1264
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 12,
+                    "startColumn": 4,
+                    "startOffset": 1020,
+                    "endColumn": 95,
+                    "endOffset": 1111
+                },
+                "from": {
+                    "file": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ko\\values-ko.xml",
+                    "position": {
+                        "startLine": 14,
+                        "startColumn": 4,
+                        "startOffset": 1270,
+                        "endColumn": 95,
+                        "endOffset": 1361
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 13,
+                    "startColumn": 4,
+                    "startOffset": 1116,
+                    "endColumn": 98,
+                    "endOffset": 1210
+                },
+                "from": {
+                    "file": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ko\\values-ko.xml",
+                    "position": {
+                        "startLine": 15,
+                        "startColumn": 4,
+                        "startOffset": 1367,
+                        "endColumn": 98,
+                        "endOffset": 1461
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 14,
+                    "startColumn": 4,
+                    "startOffset": 1215,
+                    "endColumn": 114,
+                    "endOffset": 1325
+                },
+                "from": {
+                    "file": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ko\\values-ko.xml",
+                    "position": {
+                        "startLine": 16,
+                        "startColumn": 4,
+                        "startOffset": 1467,
+                        "endColumn": 114,
+                        "endOffset": 1577
+                    }
+                }
+            }
+        ]
+    },
+    {
         "outputFile": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\values-ko\\values-ko.xml",
         "map": [
             {

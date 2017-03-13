@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".testPullToRefresh.TestPullRefreshA4_SearchActivity">
+
+
+
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar"
+        android:paddingTop="24dp"
+        android:background="@color/Blue600"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+        <RelativeLayout
+            android:id="@+id/searchHolder"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_below="@id/collapse_holder1" >
+
+
+
+            <EditText
+                android:textSize="14sp"
+                android:textColor="#000000"
+                android:id="@+id/searcher"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:paddingLeft="80dp"
+                android:hint="搜索商家，商品名称"
+                android:textColorHint="#555555"
+                android:layout_centerInParent="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/select_address"
+                android:drawableLeft="@drawable/select"
+                />
+
+        </RelativeLayout>
+
+
+
+
+
+    </android.support.design.widget.AppBarLayout>
+
+
+
+
+    <android.support.v4.widget.NestedScrollView
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="1000dp"
+                android:src="@drawable/grad_red"/>
+
+
+        </LinearLayout>
+
+
+
+    </android.support.v4.widget.NestedScrollView>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</android.support.design.widget.CoordinatorLayout>

@@ -44,6 +44,10 @@ public class CollapsHolder extends RelativeLayout implements GestureDetector.OnG
     }
 
 
+    public int getAppearantHeight(){
+        return initialHeight+currentShift;
+    }
+
     private void init() {
 
         Log.i("ccc","collapseHolder--constructor");

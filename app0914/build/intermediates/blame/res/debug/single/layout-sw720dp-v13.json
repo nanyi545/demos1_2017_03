@@ -4,6 +4,10 @@
         "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\layout-sw720dp\\layout_monitor_compat.xml"
     },
     {
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout-sw720dp-v13\\layout_monitor_compat.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\layout-sw720dp\\layout_monitor_compat.xml"
+    },
+    {
         "merged": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\layout-sw720dp-v13\\layout_monitor_compat.xml",
         "source": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\src\\main\\res\\layout-sw720dp\\layout_monitor_compat.xml"
     }
