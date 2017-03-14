@@ -1,509 +1,5 @@
 [
     {
-        "outputFile": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\values-kn-rIN\\values-kn-rIN.xml",
-        "map": [
-            {
-                "to": {
-                    "startLine": 2,
-                    "startColumn": 4,
-                    "startOffset": 55,
-                    "endColumn": 117,
-                    "endOffset": 168
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-kn-rIN\\values-kn-rIN.xml",
-                    "position": {
-                        "startLine": 4,
-                        "startColumn": 4,
-                        "startOffset": 295,
-                        "endColumn": 117,
-                        "endOffset": 408
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 3,
-                    "startColumn": 4,
-                    "startOffset": 173,
-                    "endColumn": 111,
-                    "endOffset": 280
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-kn-rIN\\values-kn-rIN.xml",
-                    "position": {
-                        "startLine": 5,
-                        "startColumn": 4,
-                        "startOffset": 413,
-                        "endColumn": 111,
-                        "endOffset": 520
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 4,
-                    "startColumn": 4,
-                    "startOffset": 285,
-                    "endColumn": 112,
-                    "endOffset": 393
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-kn-rIN\\values-kn-rIN.xml",
-                    "position": {
-                        "startLine": 6,
-                        "startColumn": 4,
-                        "startOffset": 525,
-                        "endColumn": 112,
-                        "endOffset": 633
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 5,
-                    "startColumn": 4,
-                    "startOffset": 398,
-                    "endColumn": 87,
-                    "endOffset": 481
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-kn-rIN\\values-kn-rIN.xml",
-                    "position": {
-                        "startLine": 7,
-                        "startColumn": 4,
-                        "startOffset": 638,
-                        "endColumn": 87,
-                        "endOffset": 721
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 6,
-                    "startColumn": 4,
-                    "startOffset": 486,
-                    "endColumn": 106,
-                    "endOffset": 588
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-kn-rIN\\values-kn-rIN.xml",
-                    "position": {
-                        "startLine": 8,
-                        "startColumn": 4,
-                        "startOffset": 726,
-                        "endColumn": 106,
-                        "endOffset": 828
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 7,
-                    "startColumn": 4,
-                    "startOffset": 593,
-                    "endColumn": 126,
-                    "endOffset": 715
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-kn-rIN\\values-kn-rIN.xml",
-                    "position": {
-                        "startLine": 9,
-                        "startColumn": 4,
-                        "startOffset": 833,
-                        "endColumn": 126,
-                        "endOffset": 955
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 8,
-                    "startColumn": 4,
-                    "startOffset": 720,
-                    "endColumn": 115,
-                    "endOffset": 831
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-kn-rIN\\values-kn-rIN.xml",
-                    "position": {
-                        "startLine": 10,
-                        "startColumn": 4,
-                        "startOffset": 960,
-                        "endColumn": 115,
-                        "endOffset": 1071
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 9,
-                    "startColumn": 4,
-                    "startOffset": 836,
-                    "endColumn": 110,
-                    "endOffset": 942
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-kn-rIN\\values-kn-rIN.xml",
-                    "position": {
-                        "startLine": 11,
-                        "startColumn": 4,
-                        "startOffset": 1076,
-                        "endColumn": 110,
-                        "endOffset": 1182
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 10,
-                    "startColumn": 4,
-                    "startOffset": 947,
-                    "endColumn": 98,
-                    "endOffset": 1041
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-kn-rIN\\values-kn-rIN.xml",
-                    "position": {
-                        "startLine": 12,
-                        "startColumn": 4,
-                        "startOffset": 1187,
-                        "endColumn": 98,
-                        "endOffset": 1281
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 11,
-                    "startColumn": 4,
-                    "startOffset": 1046,
-                    "endColumn": 112,
-                    "endOffset": 1154
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-kn-rIN\\values-kn-rIN.xml",
-                    "position": {
-                        "startLine": 13,
-                        "startColumn": 4,
-                        "startOffset": 1286,
-                        "endColumn": 112,
-                        "endOffset": 1394
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 12,
-                    "startColumn": 4,
-                    "startOffset": 1159,
-                    "endColumn": 103,
-                    "endOffset": 1258
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-kn-rIN\\values-kn-rIN.xml",
-                    "position": {
-                        "startLine": 14,
-                        "startColumn": 4,
-                        "startOffset": 1399,
-                        "endColumn": 103,
-                        "endOffset": 1498
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 13,
-                    "startColumn": 4,
-                    "startOffset": 1263,
-                    "endColumn": 113,
-                    "endOffset": 1372
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-kn-rIN\\values-kn-rIN.xml",
-                    "position": {
-                        "startLine": 15,
-                        "startColumn": 4,
-                        "startOffset": 1503,
-                        "endColumn": 113,
-                        "endOffset": 1612
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 14,
-                    "startColumn": 4,
-                    "startOffset": 1377,
-                    "endColumn": 125,
-                    "endOffset": 1498
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-kn-rIN\\values-kn-rIN.xml",
-                    "position": {
-                        "startLine": 16,
-                        "startColumn": 4,
-                        "startOffset": 1617,
-                        "endColumn": 125,
-                        "endOffset": 1738
-                    }
-                }
-            }
-        ]
-    },
-    {
-        "outputFile": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\values-kn-rIN\\values-kn-rIN.xml",
-        "map": [
-            {
-                "to": {
-                    "startLine": 2,
-                    "startColumn": 4,
-                    "startOffset": 55,
-                    "endColumn": 117,
-                    "endOffset": 168
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-kn-rIN\\values-kn-rIN.xml",
-                    "position": {
-                        "startLine": 4,
-                        "startColumn": 4,
-                        "startOffset": 295,
-                        "endColumn": 117,
-                        "endOffset": 408
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 3,
-                    "startColumn": 4,
-                    "startOffset": 173,
-                    "endColumn": 111,
-                    "endOffset": 280
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-kn-rIN\\values-kn-rIN.xml",
-                    "position": {
-                        "startLine": 5,
-                        "startColumn": 4,
-                        "startOffset": 413,
-                        "endColumn": 111,
-                        "endOffset": 520
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 4,
-                    "startColumn": 4,
-                    "startOffset": 285,
-                    "endColumn": 112,
-                    "endOffset": 393
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-kn-rIN\\values-kn-rIN.xml",
-                    "position": {
-                        "startLine": 6,
-                        "startColumn": 4,
-                        "startOffset": 525,
-                        "endColumn": 112,
-                        "endOffset": 633
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 5,
-                    "startColumn": 4,
-                    "startOffset": 398,
-                    "endColumn": 87,
-                    "endOffset": 481
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-kn-rIN\\values-kn-rIN.xml",
-                    "position": {
-                        "startLine": 7,
-                        "startColumn": 4,
-                        "startOffset": 638,
-                        "endColumn": 87,
-                        "endOffset": 721
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 6,
-                    "startColumn": 4,
-                    "startOffset": 486,
-                    "endColumn": 106,
-                    "endOffset": 588
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-kn-rIN\\values-kn-rIN.xml",
-                    "position": {
-                        "startLine": 8,
-                        "startColumn": 4,
-                        "startOffset": 726,
-                        "endColumn": 106,
-                        "endOffset": 828
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 7,
-                    "startColumn": 4,
-                    "startOffset": 593,
-                    "endColumn": 126,
-                    "endOffset": 715
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-kn-rIN\\values-kn-rIN.xml",
-                    "position": {
-                        "startLine": 9,
-                        "startColumn": 4,
-                        "startOffset": 833,
-                        "endColumn": 126,
-                        "endOffset": 955
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 8,
-                    "startColumn": 4,
-                    "startOffset": 720,
-                    "endColumn": 115,
-                    "endOffset": 831
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-kn-rIN\\values-kn-rIN.xml",
-                    "position": {
-                        "startLine": 10,
-                        "startColumn": 4,
-                        "startOffset": 960,
-                        "endColumn": 115,
-                        "endOffset": 1071
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 9,
-                    "startColumn": 4,
-                    "startOffset": 836,
-                    "endColumn": 110,
-                    "endOffset": 942
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-kn-rIN\\values-kn-rIN.xml",
-                    "position": {
-                        "startLine": 11,
-                        "startColumn": 4,
-                        "startOffset": 1076,
-                        "endColumn": 110,
-                        "endOffset": 1182
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 10,
-                    "startColumn": 4,
-                    "startOffset": 947,
-                    "endColumn": 98,
-                    "endOffset": 1041
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-kn-rIN\\values-kn-rIN.xml",
-                    "position": {
-                        "startLine": 12,
-                        "startColumn": 4,
-                        "startOffset": 1187,
-                        "endColumn": 98,
-                        "endOffset": 1281
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 11,
-                    "startColumn": 4,
-                    "startOffset": 1046,
-                    "endColumn": 112,
-                    "endOffset": 1154
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-kn-rIN\\values-kn-rIN.xml",
-                    "position": {
-                        "startLine": 13,
-                        "startColumn": 4,
-                        "startOffset": 1286,
-                        "endColumn": 112,
-                        "endOffset": 1394
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 12,
-                    "startColumn": 4,
-                    "startOffset": 1159,
-                    "endColumn": 103,
-                    "endOffset": 1258
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-kn-rIN\\values-kn-rIN.xml",
-                    "position": {
-                        "startLine": 14,
-                        "startColumn": 4,
-                        "startOffset": 1399,
-                        "endColumn": 103,
-                        "endOffset": 1498
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 13,
-                    "startColumn": 4,
-                    "startOffset": 1263,
-                    "endColumn": 113,
-                    "endOffset": 1372
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-kn-rIN\\values-kn-rIN.xml",
-                    "position": {
-                        "startLine": 15,
-                        "startColumn": 4,
-                        "startOffset": 1503,
-                        "endColumn": 113,
-                        "endOffset": 1612
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 14,
-                    "startColumn": 4,
-                    "startOffset": 1377,
-                    "endColumn": 125,
-                    "endOffset": 1498
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-kn-rIN\\values-kn-rIN.xml",
-                    "position": {
-                        "startLine": 16,
-                        "startColumn": 4,
-                        "startOffset": 1617,
-                        "endColumn": 125,
-                        "endOffset": 1738
-                    }
-                }
-            }
-        ]
-    },
-    {
         "outputFile": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\values-kn-rIN\\values-kn-rIN.xml",
         "map": [
             {
@@ -519,9 +15,9 @@
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
-                        "startOffset": 299,
+                        "startOffset": 295,
                         "endColumn": 117,
-                        "endOffset": 412
+                        "endOffset": 408
                     }
                 }
             },
@@ -538,9 +34,9 @@
                     "position": {
                         "startLine": 5,
                         "startColumn": 4,
-                        "startOffset": 418,
+                        "startOffset": 413,
                         "endColumn": 111,
-                        "endOffset": 525
+                        "endOffset": 520
                     }
                 }
             },
@@ -557,9 +53,9 @@
                     "position": {
                         "startLine": 6,
                         "startColumn": 4,
-                        "startOffset": 531,
+                        "startOffset": 525,
                         "endColumn": 112,
-                        "endOffset": 639
+                        "endOffset": 633
                     }
                 }
             },
@@ -576,9 +72,9 @@
                     "position": {
                         "startLine": 7,
                         "startColumn": 4,
-                        "startOffset": 645,
+                        "startOffset": 638,
                         "endColumn": 87,
-                        "endOffset": 728
+                        "endOffset": 721
                     }
                 }
             },
@@ -595,9 +91,9 @@
                     "position": {
                         "startLine": 8,
                         "startColumn": 4,
-                        "startOffset": 734,
+                        "startOffset": 726,
                         "endColumn": 106,
-                        "endOffset": 836
+                        "endOffset": 828
                     }
                 }
             },
@@ -614,9 +110,9 @@
                     "position": {
                         "startLine": 9,
                         "startColumn": 4,
-                        "startOffset": 842,
+                        "startOffset": 833,
                         "endColumn": 126,
-                        "endOffset": 964
+                        "endOffset": 955
                     }
                 }
             },
@@ -633,9 +129,9 @@
                     "position": {
                         "startLine": 10,
                         "startColumn": 4,
-                        "startOffset": 970,
+                        "startOffset": 960,
                         "endColumn": 115,
-                        "endOffset": 1081
+                        "endOffset": 1071
                     }
                 }
             },
@@ -652,9 +148,9 @@
                     "position": {
                         "startLine": 11,
                         "startColumn": 4,
-                        "startOffset": 1087,
+                        "startOffset": 1076,
                         "endColumn": 110,
-                        "endOffset": 1193
+                        "endOffset": 1182
                     }
                 }
             },
@@ -671,9 +167,9 @@
                     "position": {
                         "startLine": 12,
                         "startColumn": 4,
-                        "startOffset": 1199,
+                        "startOffset": 1187,
                         "endColumn": 98,
-                        "endOffset": 1293
+                        "endOffset": 1281
                     }
                 }
             },
@@ -690,9 +186,9 @@
                     "position": {
                         "startLine": 13,
                         "startColumn": 4,
-                        "startOffset": 1299,
+                        "startOffset": 1286,
                         "endColumn": 112,
-                        "endOffset": 1407
+                        "endOffset": 1394
                     }
                 }
             },
@@ -709,9 +205,9 @@
                     "position": {
                         "startLine": 14,
                         "startColumn": 4,
-                        "startOffset": 1413,
+                        "startOffset": 1399,
                         "endColumn": 103,
-                        "endOffset": 1512
+                        "endOffset": 1498
                     }
                 }
             },
@@ -728,9 +224,9 @@
                     "position": {
                         "startLine": 15,
                         "startColumn": 4,
-                        "startOffset": 1518,
+                        "startOffset": 1503,
                         "endColumn": 113,
-                        "endOffset": 1627
+                        "endOffset": 1612
                     }
                 }
             },
@@ -747,9 +243,9 @@
                     "position": {
                         "startLine": 16,
                         "startColumn": 4,
-                        "startOffset": 1633,
+                        "startOffset": 1617,
                         "endColumn": 125,
-                        "endOffset": 1754
+                        "endOffset": 1738
                     }
                 }
             }

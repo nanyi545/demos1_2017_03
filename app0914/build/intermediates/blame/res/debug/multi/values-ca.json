@@ -1,509 +1,5 @@
 [
     {
-        "outputFile": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\values-ca\\values-ca.xml",
-        "map": [
-            {
-                "to": {
-                    "startLine": 2,
-                    "startColumn": 4,
-                    "startOffset": 55,
-                    "endColumn": 117,
-                    "endOffset": 168
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ca\\values-ca.xml",
-                    "position": {
-                        "startLine": 4,
-                        "startColumn": 4,
-                        "startOffset": 291,
-                        "endColumn": 117,
-                        "endOffset": 404
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 3,
-                    "startColumn": 4,
-                    "startOffset": 173,
-                    "endColumn": 105,
-                    "endOffset": 274
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ca\\values-ca.xml",
-                    "position": {
-                        "startLine": 5,
-                        "startColumn": 4,
-                        "startOffset": 409,
-                        "endColumn": 105,
-                        "endOffset": 510
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 4,
-                    "startColumn": 4,
-                    "startOffset": 279,
-                    "endColumn": 106,
-                    "endOffset": 381
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ca\\values-ca.xml",
-                    "position": {
-                        "startLine": 6,
-                        "startColumn": 4,
-                        "startOffset": 515,
-                        "endColumn": 106,
-                        "endOffset": 617
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 5,
-                    "startColumn": 4,
-                    "startOffset": 386,
-                    "endColumn": 82,
-                    "endOffset": 464
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ca\\values-ca.xml",
-                    "position": {
-                        "startLine": 7,
-                        "startColumn": 4,
-                        "startOffset": 622,
-                        "endColumn": 82,
-                        "endOffset": 700
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 6,
-                    "startColumn": 4,
-                    "startOffset": 469,
-                    "endColumn": 107,
-                    "endOffset": 572
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ca\\values-ca.xml",
-                    "position": {
-                        "startLine": 8,
-                        "startColumn": 4,
-                        "startOffset": 705,
-                        "endColumn": 107,
-                        "endOffset": 808
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 7,
-                    "startColumn": 4,
-                    "startOffset": 577,
-                    "endColumn": 125,
-                    "endOffset": 698
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ca\\values-ca.xml",
-                    "position": {
-                        "startLine": 9,
-                        "startColumn": 4,
-                        "startOffset": 813,
-                        "endColumn": 125,
-                        "endOffset": 934
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 8,
-                    "startColumn": 4,
-                    "startOffset": 703,
-                    "endColumn": 110,
-                    "endOffset": 809
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ca\\values-ca.xml",
-                    "position": {
-                        "startLine": 10,
-                        "startColumn": 4,
-                        "startOffset": 939,
-                        "endColumn": 110,
-                        "endOffset": 1045
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 9,
-                    "startColumn": 4,
-                    "startOffset": 814,
-                    "endColumn": 108,
-                    "endOffset": 918
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ca\\values-ca.xml",
-                    "position": {
-                        "startLine": 11,
-                        "startColumn": 4,
-                        "startOffset": 1050,
-                        "endColumn": 108,
-                        "endOffset": 1154
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 10,
-                    "startColumn": 4,
-                    "startOffset": 923,
-                    "endColumn": 97,
-                    "endOffset": 1016
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ca\\values-ca.xml",
-                    "position": {
-                        "startLine": 12,
-                        "startColumn": 4,
-                        "startOffset": 1159,
-                        "endColumn": 97,
-                        "endOffset": 1252
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 11,
-                    "startColumn": 4,
-                    "startOffset": 1021,
-                    "endColumn": 109,
-                    "endOffset": 1126
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ca\\values-ca.xml",
-                    "position": {
-                        "startLine": 13,
-                        "startColumn": 4,
-                        "startOffset": 1257,
-                        "endColumn": 109,
-                        "endOffset": 1362
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 12,
-                    "startColumn": 4,
-                    "startOffset": 1131,
-                    "endColumn": 103,
-                    "endOffset": 1230
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ca\\values-ca.xml",
-                    "position": {
-                        "startLine": 14,
-                        "startColumn": 4,
-                        "startOffset": 1367,
-                        "endColumn": 103,
-                        "endOffset": 1466
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 13,
-                    "startColumn": 4,
-                    "startOffset": 1235,
-                    "endColumn": 107,
-                    "endOffset": 1338
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ca\\values-ca.xml",
-                    "position": {
-                        "startLine": 15,
-                        "startColumn": 4,
-                        "startOffset": 1471,
-                        "endColumn": 107,
-                        "endOffset": 1574
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 14,
-                    "startColumn": 4,
-                    "startOffset": 1343,
-                    "endColumn": 122,
-                    "endOffset": 1461
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ca\\values-ca.xml",
-                    "position": {
-                        "startLine": 16,
-                        "startColumn": 4,
-                        "startOffset": 1579,
-                        "endColumn": 122,
-                        "endOffset": 1697
-                    }
-                }
-            }
-        ]
-    },
-    {
-        "outputFile": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\values-ca\\values-ca.xml",
-        "map": [
-            {
-                "to": {
-                    "startLine": 2,
-                    "startColumn": 4,
-                    "startOffset": 55,
-                    "endColumn": 117,
-                    "endOffset": 168
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ca\\values-ca.xml",
-                    "position": {
-                        "startLine": 4,
-                        "startColumn": 4,
-                        "startOffset": 291,
-                        "endColumn": 117,
-                        "endOffset": 404
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 3,
-                    "startColumn": 4,
-                    "startOffset": 173,
-                    "endColumn": 105,
-                    "endOffset": 274
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ca\\values-ca.xml",
-                    "position": {
-                        "startLine": 5,
-                        "startColumn": 4,
-                        "startOffset": 409,
-                        "endColumn": 105,
-                        "endOffset": 510
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 4,
-                    "startColumn": 4,
-                    "startOffset": 279,
-                    "endColumn": 106,
-                    "endOffset": 381
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ca\\values-ca.xml",
-                    "position": {
-                        "startLine": 6,
-                        "startColumn": 4,
-                        "startOffset": 515,
-                        "endColumn": 106,
-                        "endOffset": 617
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 5,
-                    "startColumn": 4,
-                    "startOffset": 386,
-                    "endColumn": 82,
-                    "endOffset": 464
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ca\\values-ca.xml",
-                    "position": {
-                        "startLine": 7,
-                        "startColumn": 4,
-                        "startOffset": 622,
-                        "endColumn": 82,
-                        "endOffset": 700
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 6,
-                    "startColumn": 4,
-                    "startOffset": 469,
-                    "endColumn": 107,
-                    "endOffset": 572
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ca\\values-ca.xml",
-                    "position": {
-                        "startLine": 8,
-                        "startColumn": 4,
-                        "startOffset": 705,
-                        "endColumn": 107,
-                        "endOffset": 808
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 7,
-                    "startColumn": 4,
-                    "startOffset": 577,
-                    "endColumn": 125,
-                    "endOffset": 698
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ca\\values-ca.xml",
-                    "position": {
-                        "startLine": 9,
-                        "startColumn": 4,
-                        "startOffset": 813,
-                        "endColumn": 125,
-                        "endOffset": 934
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 8,
-                    "startColumn": 4,
-                    "startOffset": 703,
-                    "endColumn": 110,
-                    "endOffset": 809
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ca\\values-ca.xml",
-                    "position": {
-                        "startLine": 10,
-                        "startColumn": 4,
-                        "startOffset": 939,
-                        "endColumn": 110,
-                        "endOffset": 1045
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 9,
-                    "startColumn": 4,
-                    "startOffset": 814,
-                    "endColumn": 108,
-                    "endOffset": 918
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ca\\values-ca.xml",
-                    "position": {
-                        "startLine": 11,
-                        "startColumn": 4,
-                        "startOffset": 1050,
-                        "endColumn": 108,
-                        "endOffset": 1154
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 10,
-                    "startColumn": 4,
-                    "startOffset": 923,
-                    "endColumn": 97,
-                    "endOffset": 1016
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ca\\values-ca.xml",
-                    "position": {
-                        "startLine": 12,
-                        "startColumn": 4,
-                        "startOffset": 1159,
-                        "endColumn": 97,
-                        "endOffset": 1252
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 11,
-                    "startColumn": 4,
-                    "startOffset": 1021,
-                    "endColumn": 109,
-                    "endOffset": 1126
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ca\\values-ca.xml",
-                    "position": {
-                        "startLine": 13,
-                        "startColumn": 4,
-                        "startOffset": 1257,
-                        "endColumn": 109,
-                        "endOffset": 1362
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 12,
-                    "startColumn": 4,
-                    "startOffset": 1131,
-                    "endColumn": 103,
-                    "endOffset": 1230
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ca\\values-ca.xml",
-                    "position": {
-                        "startLine": 14,
-                        "startColumn": 4,
-                        "startOffset": 1367,
-                        "endColumn": 103,
-                        "endOffset": 1466
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 13,
-                    "startColumn": 4,
-                    "startOffset": 1235,
-                    "endColumn": 107,
-                    "endOffset": 1338
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ca\\values-ca.xml",
-                    "position": {
-                        "startLine": 15,
-                        "startColumn": 4,
-                        "startOffset": 1471,
-                        "endColumn": 107,
-                        "endOffset": 1574
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 14,
-                    "startColumn": 4,
-                    "startOffset": 1343,
-                    "endColumn": 122,
-                    "endOffset": 1461
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ca\\values-ca.xml",
-                    "position": {
-                        "startLine": 16,
-                        "startColumn": 4,
-                        "startOffset": 1579,
-                        "endColumn": 122,
-                        "endOffset": 1697
-                    }
-                }
-            }
-        ]
-    },
-    {
         "outputFile": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\values-ca\\values-ca.xml",
         "map": [
             {
@@ -519,9 +15,9 @@
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
-                        "startOffset": 295,
+                        "startOffset": 291,
                         "endColumn": 117,
-                        "endOffset": 408
+                        "endOffset": 404
                     }
                 }
             },
@@ -538,9 +34,9 @@
                     "position": {
                         "startLine": 5,
                         "startColumn": 4,
-                        "startOffset": 414,
+                        "startOffset": 409,
                         "endColumn": 105,
-                        "endOffset": 515
+                        "endOffset": 510
                     }
                 }
             },
@@ -557,9 +53,9 @@
                     "position": {
                         "startLine": 6,
                         "startColumn": 4,
-                        "startOffset": 521,
+                        "startOffset": 515,
                         "endColumn": 106,
-                        "endOffset": 623
+                        "endOffset": 617
                     }
                 }
             },
@@ -576,9 +72,9 @@
                     "position": {
                         "startLine": 7,
                         "startColumn": 4,
-                        "startOffset": 629,
+                        "startOffset": 622,
                         "endColumn": 82,
-                        "endOffset": 707
+                        "endOffset": 700
                     }
                 }
             },
@@ -595,9 +91,9 @@
                     "position": {
                         "startLine": 8,
                         "startColumn": 4,
-                        "startOffset": 713,
+                        "startOffset": 705,
                         "endColumn": 107,
-                        "endOffset": 816
+                        "endOffset": 808
                     }
                 }
             },
@@ -614,9 +110,9 @@
                     "position": {
                         "startLine": 9,
                         "startColumn": 4,
-                        "startOffset": 822,
+                        "startOffset": 813,
                         "endColumn": 125,
-                        "endOffset": 943
+                        "endOffset": 934
                     }
                 }
             },
@@ -633,9 +129,9 @@
                     "position": {
                         "startLine": 10,
                         "startColumn": 4,
-                        "startOffset": 949,
+                        "startOffset": 939,
                         "endColumn": 110,
-                        "endOffset": 1055
+                        "endOffset": 1045
                     }
                 }
             },
@@ -652,9 +148,9 @@
                     "position": {
                         "startLine": 11,
                         "startColumn": 4,
-                        "startOffset": 1061,
+                        "startOffset": 1050,
                         "endColumn": 108,
-                        "endOffset": 1165
+                        "endOffset": 1154
                     }
                 }
             },
@@ -671,9 +167,9 @@
                     "position": {
                         "startLine": 12,
                         "startColumn": 4,
-                        "startOffset": 1171,
+                        "startOffset": 1159,
                         "endColumn": 97,
-                        "endOffset": 1264
+                        "endOffset": 1252
                     }
                 }
             },
@@ -690,9 +186,9 @@
                     "position": {
                         "startLine": 13,
                         "startColumn": 4,
-                        "startOffset": 1270,
+                        "startOffset": 1257,
                         "endColumn": 109,
-                        "endOffset": 1375
+                        "endOffset": 1362
                     }
                 }
             },
@@ -709,9 +205,9 @@
                     "position": {
                         "startLine": 14,
                         "startColumn": 4,
-                        "startOffset": 1381,
+                        "startOffset": 1367,
                         "endColumn": 103,
-                        "endOffset": 1480
+                        "endOffset": 1466
                     }
                 }
             },
@@ -728,9 +224,9 @@
                     "position": {
                         "startLine": 15,
                         "startColumn": 4,
-                        "startOffset": 1486,
+                        "startOffset": 1471,
                         "endColumn": 107,
-                        "endOffset": 1589
+                        "endOffset": 1574
                     }
                 }
             },
@@ -747,9 +243,9 @@
                     "position": {
                         "startLine": 16,
                         "startColumn": 4,
-                        "startOffset": 1595,
+                        "startOffset": 1579,
                         "endColumn": 122,
-                        "endOffset": 1713
+                        "endOffset": 1697
                     }
                 }
             }

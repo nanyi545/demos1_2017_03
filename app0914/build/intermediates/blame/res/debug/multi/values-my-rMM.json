@@ -1,509 +1,5 @@
 [
     {
-        "outputFile": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\values-my-rMM\\values-my-rMM.xml",
-        "map": [
-            {
-                "to": {
-                    "startLine": 2,
-                    "startColumn": 4,
-                    "startOffset": 55,
-                    "endColumn": 108,
-                    "endOffset": 159
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-my-rMM\\values-my-rMM.xml",
-                    "position": {
-                        "startLine": 4,
-                        "startColumn": 4,
-                        "startOffset": 295,
-                        "endColumn": 108,
-                        "endOffset": 399
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 3,
-                    "startColumn": 4,
-                    "startOffset": 164,
-                    "endColumn": 104,
-                    "endOffset": 264
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-my-rMM\\values-my-rMM.xml",
-                    "position": {
-                        "startLine": 5,
-                        "startColumn": 4,
-                        "startOffset": 404,
-                        "endColumn": 104,
-                        "endOffset": 504
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 4,
-                    "startColumn": 4,
-                    "startOffset": 269,
-                    "endColumn": 116,
-                    "endOffset": 381
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-my-rMM\\values-my-rMM.xml",
-                    "position": {
-                        "startLine": 6,
-                        "startColumn": 4,
-                        "startOffset": 509,
-                        "endColumn": 116,
-                        "endOffset": 621
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 5,
-                    "startColumn": 4,
-                    "startOffset": 386,
-                    "endColumn": 92,
-                    "endOffset": 474
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-my-rMM\\values-my-rMM.xml",
-                    "position": {
-                        "startLine": 7,
-                        "startColumn": 4,
-                        "startOffset": 626,
-                        "endColumn": 92,
-                        "endOffset": 714
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 6,
-                    "startColumn": 4,
-                    "startOffset": 479,
-                    "endColumn": 111,
-                    "endOffset": 586
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-my-rMM\\values-my-rMM.xml",
-                    "position": {
-                        "startLine": 8,
-                        "startColumn": 4,
-                        "startOffset": 719,
-                        "endColumn": 111,
-                        "endOffset": 826
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 7,
-                    "startColumn": 4,
-                    "startOffset": 591,
-                    "endColumn": 135,
-                    "endOffset": 722
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-my-rMM\\values-my-rMM.xml",
-                    "position": {
-                        "startLine": 9,
-                        "startColumn": 4,
-                        "startOffset": 831,
-                        "endColumn": 135,
-                        "endOffset": 962
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 8,
-                    "startColumn": 4,
-                    "startOffset": 727,
-                    "endColumn": 124,
-                    "endOffset": 847
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-my-rMM\\values-my-rMM.xml",
-                    "position": {
-                        "startLine": 10,
-                        "startColumn": 4,
-                        "startOffset": 967,
-                        "endColumn": 124,
-                        "endOffset": 1087
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 9,
-                    "startColumn": 4,
-                    "startOffset": 852,
-                    "endColumn": 111,
-                    "endOffset": 959
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-my-rMM\\values-my-rMM.xml",
-                    "position": {
-                        "startLine": 11,
-                        "startColumn": 4,
-                        "startOffset": 1092,
-                        "endColumn": 111,
-                        "endOffset": 1199
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 10,
-                    "startColumn": 4,
-                    "startOffset": 964,
-                    "endColumn": 101,
-                    "endOffset": 1061
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-my-rMM\\values-my-rMM.xml",
-                    "position": {
-                        "startLine": 12,
-                        "startColumn": 4,
-                        "startOffset": 1204,
-                        "endColumn": 101,
-                        "endOffset": 1301
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 11,
-                    "startColumn": 4,
-                    "startOffset": 1066,
-                    "endColumn": 125,
-                    "endOffset": 1187
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-my-rMM\\values-my-rMM.xml",
-                    "position": {
-                        "startLine": 13,
-                        "startColumn": 4,
-                        "startOffset": 1306,
-                        "endColumn": 125,
-                        "endOffset": 1427
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 12,
-                    "startColumn": 4,
-                    "startOffset": 1192,
-                    "endColumn": 110,
-                    "endOffset": 1298
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-my-rMM\\values-my-rMM.xml",
-                    "position": {
-                        "startLine": 14,
-                        "startColumn": 4,
-                        "startOffset": 1432,
-                        "endColumn": 110,
-                        "endOffset": 1538
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 13,
-                    "startColumn": 4,
-                    "startOffset": 1303,
-                    "endColumn": 109,
-                    "endOffset": 1408
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-my-rMM\\values-my-rMM.xml",
-                    "position": {
-                        "startLine": 15,
-                        "startColumn": 4,
-                        "startOffset": 1543,
-                        "endColumn": 109,
-                        "endOffset": 1648
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 14,
-                    "startColumn": 4,
-                    "startOffset": 1413,
-                    "endColumn": 122,
-                    "endOffset": 1531
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-my-rMM\\values-my-rMM.xml",
-                    "position": {
-                        "startLine": 16,
-                        "startColumn": 4,
-                        "startOffset": 1653,
-                        "endColumn": 122,
-                        "endOffset": 1771
-                    }
-                }
-            }
-        ]
-    },
-    {
-        "outputFile": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\values-my-rMM\\values-my-rMM.xml",
-        "map": [
-            {
-                "to": {
-                    "startLine": 2,
-                    "startColumn": 4,
-                    "startOffset": 55,
-                    "endColumn": 108,
-                    "endOffset": 159
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-my-rMM\\values-my-rMM.xml",
-                    "position": {
-                        "startLine": 4,
-                        "startColumn": 4,
-                        "startOffset": 295,
-                        "endColumn": 108,
-                        "endOffset": 399
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 3,
-                    "startColumn": 4,
-                    "startOffset": 164,
-                    "endColumn": 104,
-                    "endOffset": 264
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-my-rMM\\values-my-rMM.xml",
-                    "position": {
-                        "startLine": 5,
-                        "startColumn": 4,
-                        "startOffset": 404,
-                        "endColumn": 104,
-                        "endOffset": 504
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 4,
-                    "startColumn": 4,
-                    "startOffset": 269,
-                    "endColumn": 116,
-                    "endOffset": 381
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-my-rMM\\values-my-rMM.xml",
-                    "position": {
-                        "startLine": 6,
-                        "startColumn": 4,
-                        "startOffset": 509,
-                        "endColumn": 116,
-                        "endOffset": 621
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 5,
-                    "startColumn": 4,
-                    "startOffset": 386,
-                    "endColumn": 92,
-                    "endOffset": 474
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-my-rMM\\values-my-rMM.xml",
-                    "position": {
-                        "startLine": 7,
-                        "startColumn": 4,
-                        "startOffset": 626,
-                        "endColumn": 92,
-                        "endOffset": 714
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 6,
-                    "startColumn": 4,
-                    "startOffset": 479,
-                    "endColumn": 111,
-                    "endOffset": 586
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-my-rMM\\values-my-rMM.xml",
-                    "position": {
-                        "startLine": 8,
-                        "startColumn": 4,
-                        "startOffset": 719,
-                        "endColumn": 111,
-                        "endOffset": 826
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 7,
-                    "startColumn": 4,
-                    "startOffset": 591,
-                    "endColumn": 135,
-                    "endOffset": 722
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-my-rMM\\values-my-rMM.xml",
-                    "position": {
-                        "startLine": 9,
-                        "startColumn": 4,
-                        "startOffset": 831,
-                        "endColumn": 135,
-                        "endOffset": 962
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 8,
-                    "startColumn": 4,
-                    "startOffset": 727,
-                    "endColumn": 124,
-                    "endOffset": 847
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-my-rMM\\values-my-rMM.xml",
-                    "position": {
-                        "startLine": 10,
-                        "startColumn": 4,
-                        "startOffset": 967,
-                        "endColumn": 124,
-                        "endOffset": 1087
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 9,
-                    "startColumn": 4,
-                    "startOffset": 852,
-                    "endColumn": 111,
-                    "endOffset": 959
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-my-rMM\\values-my-rMM.xml",
-                    "position": {
-                        "startLine": 11,
-                        "startColumn": 4,
-                        "startOffset": 1092,
-                        "endColumn": 111,
-                        "endOffset": 1199
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 10,
-                    "startColumn": 4,
-                    "startOffset": 964,
-                    "endColumn": 101,
-                    "endOffset": 1061
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-my-rMM\\values-my-rMM.xml",
-                    "position": {
-                        "startLine": 12,
-                        "startColumn": 4,
-                        "startOffset": 1204,
-                        "endColumn": 101,
-                        "endOffset": 1301
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 11,
-                    "startColumn": 4,
-                    "startOffset": 1066,
-                    "endColumn": 125,
-                    "endOffset": 1187
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-my-rMM\\values-my-rMM.xml",
-                    "position": {
-                        "startLine": 13,
-                        "startColumn": 4,
-                        "startOffset": 1306,
-                        "endColumn": 125,
-                        "endOffset": 1427
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 12,
-                    "startColumn": 4,
-                    "startOffset": 1192,
-                    "endColumn": 110,
-                    "endOffset": 1298
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-my-rMM\\values-my-rMM.xml",
-                    "position": {
-                        "startLine": 14,
-                        "startColumn": 4,
-                        "startOffset": 1432,
-                        "endColumn": 110,
-                        "endOffset": 1538
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 13,
-                    "startColumn": 4,
-                    "startOffset": 1303,
-                    "endColumn": 109,
-                    "endOffset": 1408
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-my-rMM\\values-my-rMM.xml",
-                    "position": {
-                        "startLine": 15,
-                        "startColumn": 4,
-                        "startOffset": 1543,
-                        "endColumn": 109,
-                        "endOffset": 1648
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 14,
-                    "startColumn": 4,
-                    "startOffset": 1413,
-                    "endColumn": 122,
-                    "endOffset": 1531
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-my-rMM\\values-my-rMM.xml",
-                    "position": {
-                        "startLine": 16,
-                        "startColumn": 4,
-                        "startOffset": 1653,
-                        "endColumn": 122,
-                        "endOffset": 1771
-                    }
-                }
-            }
-        ]
-    },
-    {
         "outputFile": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\values-my-rMM\\values-my-rMM.xml",
         "map": [
             {
@@ -519,9 +15,9 @@
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
-                        "startOffset": 299,
+                        "startOffset": 295,
                         "endColumn": 108,
-                        "endOffset": 403
+                        "endOffset": 399
                     }
                 }
             },
@@ -538,9 +34,9 @@
                     "position": {
                         "startLine": 5,
                         "startColumn": 4,
-                        "startOffset": 409,
+                        "startOffset": 404,
                         "endColumn": 104,
-                        "endOffset": 509
+                        "endOffset": 504
                     }
                 }
             },
@@ -557,9 +53,9 @@
                     "position": {
                         "startLine": 6,
                         "startColumn": 4,
-                        "startOffset": 515,
+                        "startOffset": 509,
                         "endColumn": 116,
-                        "endOffset": 627
+                        "endOffset": 621
                     }
                 }
             },
@@ -576,9 +72,9 @@
                     "position": {
                         "startLine": 7,
                         "startColumn": 4,
-                        "startOffset": 633,
+                        "startOffset": 626,
                         "endColumn": 92,
-                        "endOffset": 721
+                        "endOffset": 714
                     }
                 }
             },
@@ -595,9 +91,9 @@
                     "position": {
                         "startLine": 8,
                         "startColumn": 4,
-                        "startOffset": 727,
+                        "startOffset": 719,
                         "endColumn": 111,
-                        "endOffset": 834
+                        "endOffset": 826
                     }
                 }
             },
@@ -614,9 +110,9 @@
                     "position": {
                         "startLine": 9,
                         "startColumn": 4,
-                        "startOffset": 840,
+                        "startOffset": 831,
                         "endColumn": 135,
-                        "endOffset": 971
+                        "endOffset": 962
                     }
                 }
             },
@@ -633,9 +129,9 @@
                     "position": {
                         "startLine": 10,
                         "startColumn": 4,
-                        "startOffset": 977,
+                        "startOffset": 967,
                         "endColumn": 124,
-                        "endOffset": 1097
+                        "endOffset": 1087
                     }
                 }
             },
@@ -652,9 +148,9 @@
                     "position": {
                         "startLine": 11,
                         "startColumn": 4,
-                        "startOffset": 1103,
+                        "startOffset": 1092,
                         "endColumn": 111,
-                        "endOffset": 1210
+                        "endOffset": 1199
                     }
                 }
             },
@@ -671,9 +167,9 @@
                     "position": {
                         "startLine": 12,
                         "startColumn": 4,
-                        "startOffset": 1216,
+                        "startOffset": 1204,
                         "endColumn": 101,
-                        "endOffset": 1313
+                        "endOffset": 1301
                     }
                 }
             },
@@ -690,9 +186,9 @@
                     "position": {
                         "startLine": 13,
                         "startColumn": 4,
-                        "startOffset": 1319,
+                        "startOffset": 1306,
                         "endColumn": 125,
-                        "endOffset": 1440
+                        "endOffset": 1427
                     }
                 }
             },
@@ -709,9 +205,9 @@
                     "position": {
                         "startLine": 14,
                         "startColumn": 4,
-                        "startOffset": 1446,
+                        "startOffset": 1432,
                         "endColumn": 110,
-                        "endOffset": 1552
+                        "endOffset": 1538
                     }
                 }
             },
@@ -728,9 +224,9 @@
                     "position": {
                         "startLine": 15,
                         "startColumn": 4,
-                        "startOffset": 1558,
+                        "startOffset": 1543,
                         "endColumn": 109,
-                        "endOffset": 1663
+                        "endOffset": 1648
                     }
                 }
             },
@@ -747,9 +243,9 @@
                     "position": {
                         "startLine": 16,
                         "startColumn": 4,
-                        "startOffset": 1669,
+                        "startOffset": 1653,
                         "endColumn": 122,
-                        "endOffset": 1787
+                        "endOffset": 1771
                     }
                 }
             }

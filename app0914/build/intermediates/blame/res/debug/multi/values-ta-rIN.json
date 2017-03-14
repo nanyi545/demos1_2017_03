@@ -1,257 +1,5 @@
 [
     {
-        "outputFile": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\values-ta-rIN\\values-ta-rIN.xml",
-        "map": [
-            {
-                "to": {
-                    "startLine": 2,
-                    "startColumn": 4,
-                    "startOffset": 55,
-                    "endColumn": 113,
-                    "endOffset": 164
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ta-rIN\\values-ta-rIN.xml",
-                    "position": {
-                        "startLine": 4,
-                        "startColumn": 4,
-                        "startOffset": 295,
-                        "endColumn": 113,
-                        "endOffset": 404
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 3,
-                    "startColumn": 4,
-                    "startOffset": 169,
-                    "endColumn": 104,
-                    "endOffset": 269
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ta-rIN\\values-ta-rIN.xml",
-                    "position": {
-                        "startLine": 5,
-                        "startColumn": 4,
-                        "startOffset": 409,
-                        "endColumn": 104,
-                        "endOffset": 509
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 4,
-                    "startColumn": 4,
-                    "startOffset": 274,
-                    "endColumn": 114,
-                    "endOffset": 384
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ta-rIN\\values-ta-rIN.xml",
-                    "position": {
-                        "startLine": 6,
-                        "startColumn": 4,
-                        "startOffset": 514,
-                        "endColumn": 114,
-                        "endOffset": 624
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 5,
-                    "startColumn": 4,
-                    "startOffset": 389,
-                    "endColumn": 88,
-                    "endOffset": 473
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ta-rIN\\values-ta-rIN.xml",
-                    "position": {
-                        "startLine": 7,
-                        "startColumn": 4,
-                        "startOffset": 629,
-                        "endColumn": 88,
-                        "endOffset": 713
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 6,
-                    "startColumn": 4,
-                    "startOffset": 478,
-                    "endColumn": 106,
-                    "endOffset": 580
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ta-rIN\\values-ta-rIN.xml",
-                    "position": {
-                        "startLine": 8,
-                        "startColumn": 4,
-                        "startOffset": 718,
-                        "endColumn": 106,
-                        "endOffset": 820
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 7,
-                    "startColumn": 4,
-                    "startOffset": 585,
-                    "endColumn": 125,
-                    "endOffset": 706
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ta-rIN\\values-ta-rIN.xml",
-                    "position": {
-                        "startLine": 9,
-                        "startColumn": 4,
-                        "startOffset": 825,
-                        "endColumn": 125,
-                        "endOffset": 946
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 8,
-                    "startColumn": 4,
-                    "startOffset": 711,
-                    "endColumn": 101,
-                    "endOffset": 808
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ta-rIN\\values-ta-rIN.xml",
-                    "position": {
-                        "startLine": 10,
-                        "startColumn": 4,
-                        "startOffset": 951,
-                        "endColumn": 101,
-                        "endOffset": 1048
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 9,
-                    "startColumn": 4,
-                    "startOffset": 813,
-                    "endColumn": 103,
-                    "endOffset": 912
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ta-rIN\\values-ta-rIN.xml",
-                    "position": {
-                        "startLine": 11,
-                        "startColumn": 4,
-                        "startOffset": 1053,
-                        "endColumn": 103,
-                        "endOffset": 1152
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 10,
-                    "startColumn": 4,
-                    "startOffset": 917,
-                    "endColumn": 96,
-                    "endOffset": 1009
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ta-rIN\\values-ta-rIN.xml",
-                    "position": {
-                        "startLine": 12,
-                        "startColumn": 4,
-                        "startOffset": 1157,
-                        "endColumn": 96,
-                        "endOffset": 1249
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 11,
-                    "startColumn": 4,
-                    "startOffset": 1014,
-                    "endColumn": 109,
-                    "endOffset": 1119
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ta-rIN\\values-ta-rIN.xml",
-                    "position": {
-                        "startLine": 13,
-                        "startColumn": 4,
-                        "startOffset": 1254,
-                        "endColumn": 109,
-                        "endOffset": 1359
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 12,
-                    "startColumn": 4,
-                    "startOffset": 1124,
-                    "endColumn": 101,
-                    "endOffset": 1221
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ta-rIN\\values-ta-rIN.xml",
-                    "position": {
-                        "startLine": 14,
-                        "startColumn": 4,
-                        "startOffset": 1364,
-                        "endColumn": 101,
-                        "endOffset": 1461
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 13,
-                    "startColumn": 4,
-                    "startOffset": 1226,
-                    "endColumn": 106,
-                    "endOffset": 1328
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ta-rIN\\values-ta-rIN.xml",
-                    "position": {
-                        "startLine": 15,
-                        "startColumn": 4,
-                        "startOffset": 1466,
-                        "endColumn": 106,
-                        "endOffset": 1568
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 14,
-                    "startColumn": 4,
-                    "startOffset": 1333,
-                    "endColumn": 118,
-                    "endOffset": 1447
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ta-rIN\\values-ta-rIN.xml",
-                    "position": {
-                        "startLine": 16,
-                        "startColumn": 4,
-                        "startOffset": 1573,
-                        "endColumn": 118,
-                        "endOffset": 1687
-                    }
-                }
-            }
-        ]
-    },
-    {
         "outputFile": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\values-ta-rIN\\values-ta-rIN.xml",
         "map": [
             {
@@ -267,258 +15,6 @@
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
-                        "startOffset": 299,
-                        "endColumn": 113,
-                        "endOffset": 408
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 3,
-                    "startColumn": 4,
-                    "startOffset": 169,
-                    "endColumn": 104,
-                    "endOffset": 269
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ta-rIN\\values-ta-rIN.xml",
-                    "position": {
-                        "startLine": 5,
-                        "startColumn": 4,
-                        "startOffset": 414,
-                        "endColumn": 104,
-                        "endOffset": 514
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 4,
-                    "startColumn": 4,
-                    "startOffset": 274,
-                    "endColumn": 114,
-                    "endOffset": 384
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ta-rIN\\values-ta-rIN.xml",
-                    "position": {
-                        "startLine": 6,
-                        "startColumn": 4,
-                        "startOffset": 520,
-                        "endColumn": 114,
-                        "endOffset": 630
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 5,
-                    "startColumn": 4,
-                    "startOffset": 389,
-                    "endColumn": 88,
-                    "endOffset": 473
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ta-rIN\\values-ta-rIN.xml",
-                    "position": {
-                        "startLine": 7,
-                        "startColumn": 4,
-                        "startOffset": 636,
-                        "endColumn": 88,
-                        "endOffset": 720
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 6,
-                    "startColumn": 4,
-                    "startOffset": 478,
-                    "endColumn": 106,
-                    "endOffset": 580
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ta-rIN\\values-ta-rIN.xml",
-                    "position": {
-                        "startLine": 8,
-                        "startColumn": 4,
-                        "startOffset": 726,
-                        "endColumn": 106,
-                        "endOffset": 828
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 7,
-                    "startColumn": 4,
-                    "startOffset": 585,
-                    "endColumn": 125,
-                    "endOffset": 706
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ta-rIN\\values-ta-rIN.xml",
-                    "position": {
-                        "startLine": 9,
-                        "startColumn": 4,
-                        "startOffset": 834,
-                        "endColumn": 125,
-                        "endOffset": 955
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 8,
-                    "startColumn": 4,
-                    "startOffset": 711,
-                    "endColumn": 101,
-                    "endOffset": 808
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ta-rIN\\values-ta-rIN.xml",
-                    "position": {
-                        "startLine": 10,
-                        "startColumn": 4,
-                        "startOffset": 961,
-                        "endColumn": 101,
-                        "endOffset": 1058
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 9,
-                    "startColumn": 4,
-                    "startOffset": 813,
-                    "endColumn": 103,
-                    "endOffset": 912
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ta-rIN\\values-ta-rIN.xml",
-                    "position": {
-                        "startLine": 11,
-                        "startColumn": 4,
-                        "startOffset": 1064,
-                        "endColumn": 103,
-                        "endOffset": 1163
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 10,
-                    "startColumn": 4,
-                    "startOffset": 917,
-                    "endColumn": 96,
-                    "endOffset": 1009
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ta-rIN\\values-ta-rIN.xml",
-                    "position": {
-                        "startLine": 12,
-                        "startColumn": 4,
-                        "startOffset": 1169,
-                        "endColumn": 96,
-                        "endOffset": 1261
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 11,
-                    "startColumn": 4,
-                    "startOffset": 1014,
-                    "endColumn": 109,
-                    "endOffset": 1119
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ta-rIN\\values-ta-rIN.xml",
-                    "position": {
-                        "startLine": 13,
-                        "startColumn": 4,
-                        "startOffset": 1267,
-                        "endColumn": 109,
-                        "endOffset": 1372
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 12,
-                    "startColumn": 4,
-                    "startOffset": 1124,
-                    "endColumn": 101,
-                    "endOffset": 1221
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ta-rIN\\values-ta-rIN.xml",
-                    "position": {
-                        "startLine": 14,
-                        "startColumn": 4,
-                        "startOffset": 1378,
-                        "endColumn": 101,
-                        "endOffset": 1475
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 13,
-                    "startColumn": 4,
-                    "startOffset": 1226,
-                    "endColumn": 106,
-                    "endOffset": 1328
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ta-rIN\\values-ta-rIN.xml",
-                    "position": {
-                        "startLine": 15,
-                        "startColumn": 4,
-                        "startOffset": 1481,
-                        "endColumn": 106,
-                        "endOffset": 1583
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 14,
-                    "startColumn": 4,
-                    "startOffset": 1333,
-                    "endColumn": 118,
-                    "endOffset": 1447
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ta-rIN\\values-ta-rIN.xml",
-                    "position": {
-                        "startLine": 16,
-                        "startColumn": 4,
-                        "startOffset": 1589,
-                        "endColumn": 118,
-                        "endOffset": 1703
-                    }
-                }
-            }
-        ]
-    },
-    {
-        "outputFile": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\values-ta-rIN\\values-ta-rIN.xml",
-        "map": [
-            {
-                "to": {
-                    "startLine": 2,
-                    "startColumn": 4,
-                    "startOffset": 55,
-                    "endColumn": 113,
-                    "endOffset": 164
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ta-rIN\\values-ta-rIN.xml",
-                    "position": {
-                        "startLine": 4,
-                        "startColumn": 4,
                         "startOffset": 295,
                         "endColumn": 113,
                         "endOffset": 404
@@ -534,7 +30,7 @@
                     "endOffset": 269
                 },
                 "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ta-rIN\\values-ta-rIN.xml",
+                    "file": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ta-rIN\\values-ta-rIN.xml",
                     "position": {
                         "startLine": 5,
                         "startColumn": 4,
@@ -553,7 +49,7 @@
                     "endOffset": 384
                 },
                 "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ta-rIN\\values-ta-rIN.xml",
+                    "file": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ta-rIN\\values-ta-rIN.xml",
                     "position": {
                         "startLine": 6,
                         "startColumn": 4,
@@ -572,7 +68,7 @@
                     "endOffset": 473
                 },
                 "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ta-rIN\\values-ta-rIN.xml",
+                    "file": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ta-rIN\\values-ta-rIN.xml",
                     "position": {
                         "startLine": 7,
                         "startColumn": 4,
@@ -591,7 +87,7 @@
                     "endOffset": 580
                 },
                 "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ta-rIN\\values-ta-rIN.xml",
+                    "file": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ta-rIN\\values-ta-rIN.xml",
                     "position": {
                         "startLine": 8,
                         "startColumn": 4,
@@ -610,7 +106,7 @@
                     "endOffset": 706
                 },
                 "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ta-rIN\\values-ta-rIN.xml",
+                    "file": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ta-rIN\\values-ta-rIN.xml",
                     "position": {
                         "startLine": 9,
                         "startColumn": 4,
@@ -629,7 +125,7 @@
                     "endOffset": 808
                 },
                 "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ta-rIN\\values-ta-rIN.xml",
+                    "file": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ta-rIN\\values-ta-rIN.xml",
                     "position": {
                         "startLine": 10,
                         "startColumn": 4,
@@ -648,7 +144,7 @@
                     "endOffset": 912
                 },
                 "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ta-rIN\\values-ta-rIN.xml",
+                    "file": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ta-rIN\\values-ta-rIN.xml",
                     "position": {
                         "startLine": 11,
                         "startColumn": 4,
@@ -667,7 +163,7 @@
                     "endOffset": 1009
                 },
                 "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ta-rIN\\values-ta-rIN.xml",
+                    "file": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ta-rIN\\values-ta-rIN.xml",
                     "position": {
                         "startLine": 12,
                         "startColumn": 4,
@@ -686,7 +182,7 @@
                     "endOffset": 1119
                 },
                 "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ta-rIN\\values-ta-rIN.xml",
+                    "file": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ta-rIN\\values-ta-rIN.xml",
                     "position": {
                         "startLine": 13,
                         "startColumn": 4,
@@ -705,7 +201,7 @@
                     "endOffset": 1221
                 },
                 "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ta-rIN\\values-ta-rIN.xml",
+                    "file": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ta-rIN\\values-ta-rIN.xml",
                     "position": {
                         "startLine": 14,
                         "startColumn": 4,
@@ -724,7 +220,7 @@
                     "endOffset": 1328
                 },
                 "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ta-rIN\\values-ta-rIN.xml",
+                    "file": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ta-rIN\\values-ta-rIN.xml",
                     "position": {
                         "startLine": 15,
                         "startColumn": 4,
@@ -743,7 +239,7 @@
                     "endOffset": 1447
                 },
                 "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ta-rIN\\values-ta-rIN.xml",
+                    "file": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-ta-rIN\\values-ta-rIN.xml",
                     "position": {
                         "startLine": 16,
                         "startColumn": 4,

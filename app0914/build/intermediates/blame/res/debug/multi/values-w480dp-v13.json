@@ -15,9 +15,9 @@
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
-                        "startOffset": 297,
+                        "startOffset": 293,
                         "endColumn": 61,
-                        "endOffset": 354
+                        "endOffset": 350
                     }
                 }
             },
@@ -31,92 +31,6 @@
                 },
                 "from": {
                     "file": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-w480dp\\values-w480dp.xml",
-                    "position": {
-                        "startLine": 7,
-                        "startColumn": 4,
-                        "startOffset": 601,
-                        "endColumn": 71,
-                        "endOffset": 668
-                    }
-                }
-            }
-        ]
-    },
-    {
-        "outputFile": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\values-w480dp-v13\\values-w480dp-v13.xml",
-        "map": [
-            {
-                "to": {
-                    "startLine": 2,
-                    "startColumn": 4,
-                    "startOffset": 55,
-                    "endColumn": 61,
-                    "endOffset": 112
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-w480dp\\values-w480dp.xml",
-                    "position": {
-                        "startLine": 4,
-                        "startColumn": 4,
-                        "startOffset": 293,
-                        "endColumn": 61,
-                        "endOffset": 350
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 3,
-                    "startColumn": 4,
-                    "startOffset": 117,
-                    "endColumn": 71,
-                    "endOffset": 184
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-w480dp\\values-w480dp.xml",
-                    "position": {
-                        "startLine": 7,
-                        "startColumn": 4,
-                        "startOffset": 594,
-                        "endColumn": 71,
-                        "endOffset": 661
-                    }
-                }
-            }
-        ]
-    },
-    {
-        "outputFile": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\values-w480dp-v13\\values-w480dp-v13.xml",
-        "map": [
-            {
-                "to": {
-                    "startLine": 2,
-                    "startColumn": 4,
-                    "startOffset": 55,
-                    "endColumn": 61,
-                    "endOffset": 112
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-w480dp\\values-w480dp.xml",
-                    "position": {
-                        "startLine": 4,
-                        "startColumn": 4,
-                        "startOffset": 293,
-                        "endColumn": 61,
-                        "endOffset": 350
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 3,
-                    "startColumn": 4,
-                    "startOffset": 117,
-                    "endColumn": 71,
-                    "endOffset": 184
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-w480dp\\values-w480dp.xml",
                     "position": {
                         "startLine": 7,
                         "startColumn": 4,

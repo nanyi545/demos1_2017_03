@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<merge xmlns:android="http://schemas.android.com/apk/res/android">
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
 
@@ -16,8 +17,10 @@
     tools:context="com.nanyi545.www.materialdemo.testPullToRefresh.TestPullRefreshActivity4">
 
     <android.support.design.widget.AppBarLayout
+        app:elevation="0dp"
         android:paddingTop="24dp"
         android:id="@+id/appbar"
+        android:elevation="0dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
@@ -26,8 +29,7 @@
         <com.nanyi545.www.materialdemo.collapse_layout.CollapsHolder
             android:id="@+id/collapse_holder1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            >
+            android:layout_height="wrap_content">
 
 
             <RelativeLayout
@@ -166,16 +168,17 @@
 
 
     <android.support.design.widget.AppBarLayout
+        app:elevation="0dp"
         android:visibility="invisible"
         android:id="@+id/fake_appbar"
         android:paddingTop="24dp"
-        android:background="@color/Blue600"
+        android:background="@color/TestT"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
 
         <RelativeLayout
-            android:id="@+id/searchHolder"
+            android:id="@+id/fake_searchHolder"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:layout_below="@id/collapse_holder1" >

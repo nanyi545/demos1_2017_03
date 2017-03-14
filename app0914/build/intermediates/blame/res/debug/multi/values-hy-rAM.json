@@ -1,509 +1,5 @@
 [
     {
-        "outputFile": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\values-hy-rAM\\values-hy-rAM.xml",
-        "map": [
-            {
-                "to": {
-                    "startLine": 2,
-                    "startColumn": 4,
-                    "startOffset": 55,
-                    "endColumn": 102,
-                    "endOffset": 153
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
-                    "position": {
-                        "startLine": 4,
-                        "startColumn": 4,
-                        "startOffset": 295,
-                        "endColumn": 102,
-                        "endOffset": 393
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 3,
-                    "startColumn": 4,
-                    "startOffset": 158,
-                    "endColumn": 100,
-                    "endOffset": 254
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
-                    "position": {
-                        "startLine": 5,
-                        "startColumn": 4,
-                        "startOffset": 398,
-                        "endColumn": 100,
-                        "endOffset": 494
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 4,
-                    "startColumn": 4,
-                    "startOffset": 259,
-                    "endColumn": 109,
-                    "endOffset": 364
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
-                    "position": {
-                        "startLine": 6,
-                        "startColumn": 4,
-                        "startOffset": 499,
-                        "endColumn": 109,
-                        "endOffset": 604
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 5,
-                    "startColumn": 4,
-                    "startOffset": 369,
-                    "endColumn": 89,
-                    "endOffset": 454
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
-                    "position": {
-                        "startLine": 7,
-                        "startColumn": 4,
-                        "startOffset": 609,
-                        "endColumn": 89,
-                        "endOffset": 694
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 6,
-                    "startColumn": 4,
-                    "startOffset": 459,
-                    "endColumn": 105,
-                    "endOffset": 560
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
-                    "position": {
-                        "startLine": 8,
-                        "startColumn": 4,
-                        "startOffset": 699,
-                        "endColumn": 105,
-                        "endOffset": 800
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 7,
-                    "startColumn": 4,
-                    "startOffset": 565,
-                    "endColumn": 114,
-                    "endOffset": 675
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
-                    "position": {
-                        "startLine": 9,
-                        "startColumn": 4,
-                        "startOffset": 805,
-                        "endColumn": 114,
-                        "endOffset": 915
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 8,
-                    "startColumn": 4,
-                    "startOffset": 680,
-                    "endColumn": 106,
-                    "endOffset": 782
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
-                    "position": {
-                        "startLine": 10,
-                        "startColumn": 4,
-                        "startOffset": 920,
-                        "endColumn": 106,
-                        "endOffset": 1022
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 9,
-                    "startColumn": 4,
-                    "startOffset": 787,
-                    "endColumn": 106,
-                    "endOffset": 889
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
-                    "position": {
-                        "startLine": 11,
-                        "startColumn": 4,
-                        "startOffset": 1027,
-                        "endColumn": 106,
-                        "endOffset": 1129
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 10,
-                    "startColumn": 4,
-                    "startOffset": 894,
-                    "endColumn": 98,
-                    "endOffset": 988
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
-                    "position": {
-                        "startLine": 12,
-                        "startColumn": 4,
-                        "startOffset": 1134,
-                        "endColumn": 98,
-                        "endOffset": 1228
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 11,
-                    "startColumn": 4,
-                    "startOffset": 993,
-                    "endColumn": 109,
-                    "endOffset": 1098
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
-                    "position": {
-                        "startLine": 13,
-                        "startColumn": 4,
-                        "startOffset": 1233,
-                        "endColumn": 109,
-                        "endOffset": 1338
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 12,
-                    "startColumn": 4,
-                    "startOffset": 1103,
-                    "endColumn": 106,
-                    "endOffset": 1205
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
-                    "position": {
-                        "startLine": 14,
-                        "startColumn": 4,
-                        "startOffset": 1343,
-                        "endColumn": 106,
-                        "endOffset": 1445
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 13,
-                    "startColumn": 4,
-                    "startOffset": 1210,
-                    "endColumn": 100,
-                    "endOffset": 1306
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
-                    "position": {
-                        "startLine": 15,
-                        "startColumn": 4,
-                        "startOffset": 1450,
-                        "endColumn": 100,
-                        "endOffset": 1546
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 14,
-                    "startColumn": 4,
-                    "startOffset": 1311,
-                    "endColumn": 119,
-                    "endOffset": 1426
-                },
-                "from": {
-                    "file": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
-                    "position": {
-                        "startLine": 16,
-                        "startColumn": 4,
-                        "startOffset": 1551,
-                        "endColumn": 119,
-                        "endOffset": 1666
-                    }
-                }
-            }
-        ]
-    },
-    {
-        "outputFile": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\res\\merged\\debug\\values-hy-rAM\\values-hy-rAM.xml",
-        "map": [
-            {
-                "to": {
-                    "startLine": 2,
-                    "startColumn": 4,
-                    "startOffset": 55,
-                    "endColumn": 102,
-                    "endOffset": 153
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
-                    "position": {
-                        "startLine": 4,
-                        "startColumn": 4,
-                        "startOffset": 295,
-                        "endColumn": 102,
-                        "endOffset": 393
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 3,
-                    "startColumn": 4,
-                    "startOffset": 158,
-                    "endColumn": 100,
-                    "endOffset": 254
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
-                    "position": {
-                        "startLine": 5,
-                        "startColumn": 4,
-                        "startOffset": 398,
-                        "endColumn": 100,
-                        "endOffset": 494
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 4,
-                    "startColumn": 4,
-                    "startOffset": 259,
-                    "endColumn": 109,
-                    "endOffset": 364
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
-                    "position": {
-                        "startLine": 6,
-                        "startColumn": 4,
-                        "startOffset": 499,
-                        "endColumn": 109,
-                        "endOffset": 604
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 5,
-                    "startColumn": 4,
-                    "startOffset": 369,
-                    "endColumn": 89,
-                    "endOffset": 454
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
-                    "position": {
-                        "startLine": 7,
-                        "startColumn": 4,
-                        "startOffset": 609,
-                        "endColumn": 89,
-                        "endOffset": 694
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 6,
-                    "startColumn": 4,
-                    "startOffset": 459,
-                    "endColumn": 105,
-                    "endOffset": 560
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
-                    "position": {
-                        "startLine": 8,
-                        "startColumn": 4,
-                        "startOffset": 699,
-                        "endColumn": 105,
-                        "endOffset": 800
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 7,
-                    "startColumn": 4,
-                    "startOffset": 565,
-                    "endColumn": 114,
-                    "endOffset": 675
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
-                    "position": {
-                        "startLine": 9,
-                        "startColumn": 4,
-                        "startOffset": 805,
-                        "endColumn": 114,
-                        "endOffset": 915
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 8,
-                    "startColumn": 4,
-                    "startOffset": 680,
-                    "endColumn": 106,
-                    "endOffset": 782
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
-                    "position": {
-                        "startLine": 10,
-                        "startColumn": 4,
-                        "startOffset": 920,
-                        "endColumn": 106,
-                        "endOffset": 1022
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 9,
-                    "startColumn": 4,
-                    "startOffset": 787,
-                    "endColumn": 106,
-                    "endOffset": 889
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
-                    "position": {
-                        "startLine": 11,
-                        "startColumn": 4,
-                        "startOffset": 1027,
-                        "endColumn": 106,
-                        "endOffset": 1129
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 10,
-                    "startColumn": 4,
-                    "startOffset": 894,
-                    "endColumn": 98,
-                    "endOffset": 988
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
-                    "position": {
-                        "startLine": 12,
-                        "startColumn": 4,
-                        "startOffset": 1134,
-                        "endColumn": 98,
-                        "endOffset": 1228
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 11,
-                    "startColumn": 4,
-                    "startOffset": 993,
-                    "endColumn": 109,
-                    "endOffset": 1098
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
-                    "position": {
-                        "startLine": 13,
-                        "startColumn": 4,
-                        "startOffset": 1233,
-                        "endColumn": 109,
-                        "endOffset": 1338
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 12,
-                    "startColumn": 4,
-                    "startOffset": 1103,
-                    "endColumn": 106,
-                    "endOffset": 1205
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
-                    "position": {
-                        "startLine": 14,
-                        "startColumn": 4,
-                        "startOffset": 1343,
-                        "endColumn": 106,
-                        "endOffset": 1445
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 13,
-                    "startColumn": 4,
-                    "startOffset": 1210,
-                    "endColumn": 100,
-                    "endOffset": 1306
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
-                    "position": {
-                        "startLine": 15,
-                        "startColumn": 4,
-                        "startOffset": 1450,
-                        "endColumn": 100,
-                        "endOffset": 1546
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 14,
-                    "startColumn": 4,
-                    "startOffset": 1311,
-                    "endColumn": 119,
-                    "endOffset": 1426
-                },
-                "from": {
-                    "file": "D:\\asprojects\\demos\\demos1_2016_10\\app0914\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-hy-rAM\\values-hy-rAM.xml",
-                    "position": {
-                        "startLine": 16,
-                        "startColumn": 4,
-                        "startOffset": 1551,
-                        "endColumn": 119,
-                        "endOffset": 1666
-                    }
-                }
-            }
-        ]
-    },
-    {
         "outputFile": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\values-hy-rAM\\values-hy-rAM.xml",
         "map": [
             {
@@ -519,9 +15,9 @@
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
-                        "startOffset": 299,
+                        "startOffset": 295,
                         "endColumn": 102,
-                        "endOffset": 397
+                        "endOffset": 393
                     }
                 }
             },
@@ -538,9 +34,9 @@
                     "position": {
                         "startLine": 5,
                         "startColumn": 4,
-                        "startOffset": 403,
+                        "startOffset": 398,
                         "endColumn": 100,
-                        "endOffset": 499
+                        "endOffset": 494
                     }
                 }
             },
@@ -557,9 +53,9 @@
                     "position": {
                         "startLine": 6,
                         "startColumn": 4,
-                        "startOffset": 505,
+                        "startOffset": 499,
                         "endColumn": 109,
-                        "endOffset": 610
+                        "endOffset": 604
                     }
                 }
             },
@@ -576,9 +72,9 @@
                     "position": {
                         "startLine": 7,
                         "startColumn": 4,
-                        "startOffset": 616,
+                        "startOffset": 609,
                         "endColumn": 89,
-                        "endOffset": 701
+                        "endOffset": 694
                     }
                 }
             },
@@ -595,9 +91,9 @@
                     "position": {
                         "startLine": 8,
                         "startColumn": 4,
-                        "startOffset": 707,
+                        "startOffset": 699,
                         "endColumn": 105,
-                        "endOffset": 808
+                        "endOffset": 800
                     }
                 }
             },
@@ -614,9 +110,9 @@
                     "position": {
                         "startLine": 9,
                         "startColumn": 4,
-                        "startOffset": 814,
+                        "startOffset": 805,
                         "endColumn": 114,
-                        "endOffset": 924
+                        "endOffset": 915
                     }
                 }
             },
@@ -633,9 +129,9 @@
                     "position": {
                         "startLine": 10,
                         "startColumn": 4,
-                        "startOffset": 930,
+                        "startOffset": 920,
                         "endColumn": 106,
-                        "endOffset": 1032
+                        "endOffset": 1022
                     }
                 }
             },
@@ -652,9 +148,9 @@
                     "position": {
                         "startLine": 11,
                         "startColumn": 4,
-                        "startOffset": 1038,
+                        "startOffset": 1027,
                         "endColumn": 106,
-                        "endOffset": 1140
+                        "endOffset": 1129
                     }
                 }
             },
@@ -671,9 +167,9 @@
                     "position": {
                         "startLine": 12,
                         "startColumn": 4,
-                        "startOffset": 1146,
+                        "startOffset": 1134,
                         "endColumn": 98,
-                        "endOffset": 1240
+                        "endOffset": 1228
                     }
                 }
             },
@@ -690,9 +186,9 @@
                     "position": {
                         "startLine": 13,
                         "startColumn": 4,
-                        "startOffset": 1246,
+                        "startOffset": 1233,
                         "endColumn": 109,
-                        "endOffset": 1351
+                        "endOffset": 1338
                     }
                 }
             },
@@ -709,9 +205,9 @@
                     "position": {
                         "startLine": 14,
                         "startColumn": 4,
-                        "startOffset": 1357,
+                        "startOffset": 1343,
                         "endColumn": 106,
-                        "endOffset": 1459
+                        "endOffset": 1445
                     }
                 }
             },
@@ -728,9 +224,9 @@
                     "position": {
                         "startLine": 15,
                         "startColumn": 4,
-                        "startOffset": 1465,
+                        "startOffset": 1450,
                         "endColumn": 100,
-                        "endOffset": 1561
+                        "endOffset": 1546
                     }
                 }
             },
@@ -747,9 +243,9 @@
                     "position": {
                         "startLine": 16,
                         "startColumn": 4,
-                        "startOffset": 1567,
+                        "startOffset": 1551,
                         "endColumn": 119,
-                        "endOffset": 1682
+                        "endOffset": 1666
                     }
                 }
             }

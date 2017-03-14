@@ -69,5 +69,7 @@
     <color name="Blue_">@color/Blue500</color>
 
 
+    <color name="TestT">#00ffffff</color>
+
 
 </resources>

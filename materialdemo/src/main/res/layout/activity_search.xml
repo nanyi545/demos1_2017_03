@@ -25,7 +25,6 @@
             android:layout_below="@id/collapse_holder1" >
 
 
-
             <EditText
                 android:textSize="14sp"
                 android:textColor="#000000"

@@ -17,6 +17,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+
+
+
 }
 
 dependencies {
@@ -31,5 +35,10 @@ dependencies {
 //    compile 'com.android.support:recyclerview-v7:25.0.0'
 //    compile 'com.android.support:support-v4:25.4.0'
 //    compile 'com.android.support:design:23.4.0' //  23.1.0  CollapsingToolbarLayout/CoordinatorLayout has bugs -->   CollapsingToolbarLayout  does not collapse properly
+
+
+//    debugCompile "com.github.brianPlummer:tinydancer:0.1.1"
+//    releaseCompile "com.github.brianPlummer:tinydancer-noop:0.1.1"
+//    testCompile "com.github.brianPlummer:tinydancer-noop:0.1.1"
 
 }
