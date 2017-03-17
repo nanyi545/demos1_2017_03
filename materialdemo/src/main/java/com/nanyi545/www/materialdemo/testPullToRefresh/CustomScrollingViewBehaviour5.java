@@ -1,22 +1,15 @@
 package com.nanyi545.www.materialdemo.testPullToRefresh;
 
 import android.content.Context;
-import android.os.Build;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.v4.view.ViewConfigurationCompat;
 import android.support.v4.widget.NestedScrollView;
-import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
-import android.view.VelocityTracker;
 import android.view.View;
-import android.view.ViewConfiguration;
-import android.view.ViewTreeObserver;
 
-import com.nanyi545.www.materialdemo.R;
-import com.nanyi545.www.materialdemo.collapse_layout.CollapsHolder;
+import com.nanyi545.www.materialdemo.testPullToRefresh.eleme.TestPullRefreshActivity4;
 
 /**
  * Created by Administrator on 2017/3/9.

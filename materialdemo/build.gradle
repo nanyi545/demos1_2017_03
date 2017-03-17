@@ -1,8 +1,17 @@
 apply plugin: 'com.android.application'
 
+
+configurations {
+    v1DebugCompile
+    v1ReleaseCompile
+    v2DebugCompile
+    v2ReleaseCompile
+}
+
+
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.1"
+    buildToolsVersion '25.0.0'
 
     defaultConfig {
         applicationId "com.nanyi545.www.materialdemo"
@@ -11,13 +20,46 @@ android {
         versionCode 1
         versionName "1.0"
     }
+
+    signingConfigs {
+        sign{
+            keyAlias "aaaaaa"
+            keyPassword  "aaaaaa"
+            storeFile file('aaa.jks')
+            storePassword 'aaaaaa'
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField 'String', 'TMD', '"RELEASE"'
+            signingConfig signingConfigs.sign;
         }
+
+        debug{
+            buildConfigField 'String', 'TMD', '"debug"'
+        }
+
+
     }
 
+    productFlavors{
+
+        v1{
+            minSdkVersion 16
+            targetSdkVersion 23
+            buildConfigField 'String', 'PF', '"V1"'
+
+        }
+
+        v2{
+            buildConfigField 'String', 'PF', '"V2"'
+
+        }
+
+    }
 
 
 
@@ -41,4 +83,19 @@ dependencies {
 //    releaseCompile "com.github.brianPlummer:tinydancer-noop:0.1.1"
 //    testCompile "com.github.brianPlummer:tinydancer-noop:0.1.1"
 
+
+    v1DebugCompile "com.github.brianPlummer:tinydancer:0.1.1"
+    v1ReleaseCompile "com.github.brianPlummer:tinydancer-noop:0.1.1"
+
+
+}
+
+
+
+task printVariantNames(){
+    doLast{
+        android.applicationVariants.all{ variant ->
+            println variant.name
+        }
+    }
 }

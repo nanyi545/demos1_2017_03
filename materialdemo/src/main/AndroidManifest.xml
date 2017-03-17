@@ -58,9 +58,9 @@
             android:name=".testPullToRefresh.TestPullRefreshActivity3"
             android:theme="@style/AppTheme.NoTitle.TransparentSystemBar" />
         <activity
-            android:name=".testPullToRefresh.TestPullRefreshActivity4"
+            android:name=".testPullToRefresh.eleme.TestPullRefreshActivity4"
             android:theme="@style/AppTheme.NoTitle.TransparentSystemBar" />
-        <activity android:name=".testPullToRefresh.TestPullRefreshA4_SearchActivity"
+        <activity android:name=".testPullToRefresh.eleme.TestPullRefreshA4_SearchActivity"
             android:theme="@style/AppTheme.NoTitle.TransparentSystemBar"></activity>
     </application>
 

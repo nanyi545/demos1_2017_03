@@ -1,11 +1,11 @@
 [
     {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\icon_webc.png",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-hdpi\\icon_webc.png"
-    },
-    {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\send_msg_bg.9.png",
         "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-hdpi\\send_msg_bg.9.png"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\icon_webc.png",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-hdpi\\icon_webc.png"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\icon_c_orange.png",
@@ -53,7 +53,7 @@
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ic_launcher.png",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\exploded-aar\\com.github.traex.rippleeffect\\library\\1.2.3\\res\\drawable-hdpi-v4\\ic_launcher.png"
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\a1f073d2b91379c9fc2c7f9444e3ed30c1ecfab9\\output\\res\\drawable-hdpi-v4\\ic_launcher.png"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\icon_right_black.png",

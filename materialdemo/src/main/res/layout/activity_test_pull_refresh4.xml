@@ -14,7 +14,7 @@
     android:id="@+id/activity_test_pull_refresh4"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.nanyi545.www.materialdemo.testPullToRefresh.TestPullRefreshActivity4">
+    tools:context=".testPullToRefresh.eleme.TestPullRefreshActivity4">
 
     <android.support.design.widget.AppBarLayout
         app:elevation="0dp"

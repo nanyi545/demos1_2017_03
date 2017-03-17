@@ -105,23 +105,13 @@ ADDED from D:\asprojects\demos\demos1_2017_03\app0914\src\main\AndroidManifest.x
 		ADDED from D:\asprojects\demos\demos1_2017_03\app0914\src\main\AndroidManifest.xml:34:19-67
 application
 ADDED from D:\asprojects\demos\demos1_2017_03\app0914\src\main\AndroidManifest.xml:37:5-189:19
-MERGED from [com.android.support:support-v4:22.2.1] D:\asprojects\demos\demos1_2017_03\app0914\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:design:22.2.1] D:\asprojects\demos\demos1_2017_03\app0914\build\intermediates\exploded-aar\com.android.support\design\22.2.1\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:appcompat-v7:22.2.1] D:\asprojects\demos\demos1_2017_03\app0914\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.2.1\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:support-v4:22.2.1] D:\asprojects\demos\demos1_2017_03\app0914\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:support-v4:22.2.1] D:\asprojects\demos\demos1_2017_03\app0914\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:palette-v7:22.2.1] D:\asprojects\demos\demos1_2017_03\app0914\build\intermediates\exploded-aar\com.android.support\palette-v7\22.2.1\AndroidManifest.xml:22:5-23:19
-MERGED from [com.android.support:support-v4:22.2.1] D:\asprojects\demos\demos1_2017_03\app0914\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:support-v4:22.2.1] D:\asprojects\demos\demos1_2017_03\app0914\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:appcompat-v7:22.2.1] D:\asprojects\demos\demos1_2017_03\app0914\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.2.1\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:support-v4:22.2.1] D:\asprojects\demos\demos1_2017_03\app0914\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:cardview-v7:22.2.1] D:\asprojects\demos\demos1_2017_03\app0914\build\intermediates\exploded-aar\com.android.support\cardview-v7\22.2.1\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:appcompat-v7:22.2.1] D:\asprojects\demos\demos1_2017_03\app0914\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.2.1\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:support-v4:22.2.1] D:\asprojects\demos\demos1_2017_03\app0914\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\AndroidManifest.xml:22:5-20
-MERGED from [com.lsjwzh:materialloadingprogressbar:0.5.8-RELEASE] D:\asprojects\demos\demos1_2017_03\app0914\build\intermediates\exploded-aar\com.lsjwzh\materialloadingprogressbar\0.5.8-RELEASE\AndroidManifest.xml:11:5-12:19
-MERGED from [com.android.support:appcompat-v7:22.2.1] D:\asprojects\demos\demos1_2017_03\app0914\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.2.1\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:support-v4:22.2.1] D:\asprojects\demos\demos1_2017_03\app0914\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\AndroidManifest.xml:22:5-20
-MERGED from [com.github.traex.rippleeffect:library:1.2.3] D:\asprojects\demos\demos1_2017_03\app0914\build\intermediates\exploded-aar\com.github.traex.rippleeffect\library\1.2.3\AndroidManifest.xml:12:5-20
+MERGED from [com.android.support:design:22.2.1] C:\Users\Administrator\.android\build-cache\a17cca125193d87de83bdce1ec90f978b7c00e20\output\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:palette-v7:22.2.1] C:\Users\Administrator\.android\build-cache\8408b2fcb7e11b8472ceaf72cd70582138995e1c\output\AndroidManifest.xml:22:5-23:19
+MERGED from [com.android.support:cardview-v7:22.2.1] C:\Users\Administrator\.android\build-cache\5206335d5cbb422620625d97353a31c81d4c712a\output\AndroidManifest.xml:22:5-20
+MERGED from [com.lsjwzh:materialloadingprogressbar:0.5.8-RELEASE] C:\Users\Administrator\.android\build-cache\9b8356114393792cd484c8005c60f34538efa6c9\output\AndroidManifest.xml:11:5-12:19
+MERGED from [com.android.support:appcompat-v7:22.2.1] C:\Users\Administrator\.android\build-cache\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\output\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:22.2.1] C:\Users\Administrator\.android\build-cache\d6157cd90e00ff07cbf213857990eb9665948c3c\output\AndroidManifest.xml:22:5-20
+MERGED from [com.github.traex.rippleeffect:library:1.2.3] C:\Users\Administrator\.android\build-cache\a1f073d2b91379c9fc2c7f9444e3ed30c1ecfab9\output\AndroidManifest.xml:12:5-20
 	android:label
 		ADDED from D:\asprojects\demos\demos1_2017_03\app0914\src\main\AndroidManifest.xml:41:9-41
 	android:allowBackup
@@ -314,25 +304,15 @@ ADDED from D:\asprojects\demos\demos1_2017_03\app0914\src\main\AndroidManifest.x
 		ADDED from D:\asprojects\demos\demos1_2017_03\app0914\src\main\AndroidManifest.xml:186:13-83
 uses-sdk
 INJECTED from D:\asprojects\demos\demos1_2017_03\app0914\src\main\AndroidManifest.xml reason: use-sdk injection requested
-MERGED from [com.android.support:recyclerview-v7:22.2.1] D:\asprojects\demos\demos1_2017_03\app0914\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\22.2.1\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:support-v4:22.2.1] D:\asprojects\demos\demos1_2017_03\app0914\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:design:22.2.1] D:\asprojects\demos\demos1_2017_03\app0914\build\intermediates\exploded-aar\com.android.support\design\22.2.1\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:appcompat-v7:22.2.1] D:\asprojects\demos\demos1_2017_03\app0914\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.2.1\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:support-v4:22.2.1] D:\asprojects\demos\demos1_2017_03\app0914\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:support-v4:22.2.1] D:\asprojects\demos\demos1_2017_03\app0914\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:palette-v7:22.2.1] D:\asprojects\demos\demos1_2017_03\app0914\build\intermediates\exploded-aar\com.android.support\palette-v7\22.2.1\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:support-v4:22.2.1] D:\asprojects\demos\demos1_2017_03\app0914\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:support-v4:22.2.1] D:\asprojects\demos\demos1_2017_03\app0914\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:appcompat-v7:22.2.1] D:\asprojects\demos\demos1_2017_03\app0914\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.2.1\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:support-v4:22.2.1] D:\asprojects\demos\demos1_2017_03\app0914\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:cardview-v7:22.2.1] D:\asprojects\demos\demos1_2017_03\app0914\build\intermediates\exploded-aar\com.android.support\cardview-v7\22.2.1\AndroidManifest.xml:20:5-43
-MERGED from [com.rengwuxian.materialedittext:library:2.1.4] D:\asprojects\demos\demos1_2017_03\app0914\build\intermediates\exploded-aar\com.rengwuxian.materialedittext\library\2.1.4\AndroidManifest.xml:6:5-8:41
-MERGED from [com.android.support:appcompat-v7:22.2.1] D:\asprojects\demos\demos1_2017_03\app0914\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.2.1\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:support-v4:22.2.1] D:\asprojects\demos\demos1_2017_03\app0914\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\AndroidManifest.xml:20:5-43
-MERGED from [com.lsjwzh:materialloadingprogressbar:0.5.8-RELEASE] D:\asprojects\demos\demos1_2017_03\app0914\build\intermediates\exploded-aar\com.lsjwzh\materialloadingprogressbar\0.5.8-RELEASE\AndroidManifest.xml:7:5-9:41
-MERGED from [com.android.support:appcompat-v7:22.2.1] D:\asprojects\demos\demos1_2017_03\app0914\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.2.1\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:support-v4:22.2.1] D:\asprojects\demos\demos1_2017_03\app0914\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\AndroidManifest.xml:20:5-43
-MERGED from [com.github.traex.rippleeffect:library:1.2.3] D:\asprojects\demos\demos1_2017_03\app0914\build\intermediates\exploded-aar\com.github.traex.rippleeffect\library\1.2.3\AndroidManifest.xml:8:5-10:41
+MERGED from [com.android.support:recyclerview-v7:22.2.1] C:\Users\Administrator\.android\build-cache\bacf35646445ace348516a850395f25f0a199280\output\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:design:22.2.1] C:\Users\Administrator\.android\build-cache\a17cca125193d87de83bdce1ec90f978b7c00e20\output\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:palette-v7:22.2.1] C:\Users\Administrator\.android\build-cache\8408b2fcb7e11b8472ceaf72cd70582138995e1c\output\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:cardview-v7:22.2.1] C:\Users\Administrator\.android\build-cache\5206335d5cbb422620625d97353a31c81d4c712a\output\AndroidManifest.xml:20:5-43
+MERGED from [com.rengwuxian.materialedittext:library:2.1.4] C:\Users\Administrator\.android\build-cache\393641fd35456f189b604841364e95bdf6134bd4\output\AndroidManifest.xml:6:5-8:41
+MERGED from [com.lsjwzh:materialloadingprogressbar:0.5.8-RELEASE] C:\Users\Administrator\.android\build-cache\9b8356114393792cd484c8005c60f34538efa6c9\output\AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:appcompat-v7:22.2.1] C:\Users\Administrator\.android\build-cache\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\output\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:22.2.1] C:\Users\Administrator\.android\build-cache\d6157cd90e00ff07cbf213857990eb9665948c3c\output\AndroidManifest.xml:20:5-43
+MERGED from [com.github.traex.rippleeffect:library:1.2.3] C:\Users\Administrator\.android\build-cache\a1f073d2b91379c9fc2c7f9444e3ed30c1ecfab9\output\AndroidManifest.xml:8:5-10:41
 	android:targetSdkVersion
 		INJECTED from D:\asprojects\demos\demos1_2017_03\app0914\src\main\AndroidManifest.xml
 		INJECTED from D:\asprojects\demos\demos1_2017_03\app0914\src\main\AndroidManifest.xml
