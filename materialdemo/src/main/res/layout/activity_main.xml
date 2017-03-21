@@ -141,6 +141,13 @@
             android:text="test view drawing process" />
 
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="jumpExploreCustomView"
+            android:text="test fragments---1 simple behaviour tests " />
+
+
 
     </LinearLayout>
 

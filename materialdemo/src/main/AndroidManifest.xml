@@ -60,8 +60,10 @@
         <activity
             android:name=".testPullToRefresh.eleme.TestPullRefreshActivity4"
             android:theme="@style/AppTheme.NoTitle.TransparentSystemBar" />
-        <activity android:name=".testPullToRefresh.eleme.TestPullRefreshA4_SearchActivity"
-            android:theme="@style/AppTheme.NoTitle.TransparentSystemBar"></activity>
+        <activity
+            android:name=".testPullToRefresh.eleme.TestPullRefreshA4_SearchActivity"
+            android:theme="@style/AppTheme.NoTitle.TransparentSystemBar" />
+        <activity android:name=".test_frags.views.TestFragmentActivity"></activity>
     </application>
 
 </manifest>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<merge>
+
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_gravity="bottom"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="100dp">
+
+
+    <TextView
+        android:id="@+id/btn_frag1"
+        android:text="frag1"
+        android:background="@color/Blue400"
+        android:layout_width="60dp"
+        android:layout_height="match_parent">
+    </TextView>
+
+
+    <TextView
+        android:id="@+id/btn_frag2"
+        android:text="frag2"
+        android:background="@color/Red300"
+        android:layout_width="60dp"
+        android:layout_height="match_parent">
+    </TextView>
+
+    <TextView
+        android:id="@+id/btn_frag3"
+        android:text="frag3"
+        android:background="@color/Teal300"
+        android:layout_width="60dp"
+        android:layout_height="match_parent">
+    </TextView>
+
+
+    <TextView
+        android:id="@+id/btn4"
+        android:text="check"
+        android:background="@color/Red400"
+        android:layout_width="60dp"
+        android:layout_height="match_parent">
+    </TextView>
+
+</LinearLayout>
+
+
+
+
+</merge>

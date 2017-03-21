@@ -24,4 +24,6 @@ public class TestCustomViewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_test_custom_view);
     }
 
+
+
 }
