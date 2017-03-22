@@ -44,12 +44,12 @@
         "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable\\selector_delete.xml"
     },
     {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable\\selector_monitor_voice_2.xml",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable\\selector_monitor_voice_2.xml"
-    },
-    {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable\\bg_monitor_controller_b_pressed.xml",
         "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable\\bg_monitor_controller_b_pressed.xml"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable\\selector_monitor_voice_2.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable\\selector_monitor_voice_2.xml"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable\\selector_bg_list_itemm.xml",
@@ -64,12 +64,12 @@
         "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable\\ic_timeline_default_marker.xml"
     },
     {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable\\side_nav_bar.xml",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable\\side_nav_bar.xml"
-    },
-    {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable\\cornered_background.xml",
         "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable\\cornered_background.xml"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable\\side_nav_bar.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable\\side_nav_bar.xml"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_check_material.xml",
@@ -104,16 +104,16 @@
         "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable\\bg_xml_mutual_head_into.xml"
     },
     {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable\\bg_xml_pop_menu.xml",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable\\bg_xml_pop_menu.xml"
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_edit_text_material.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\drawable\\abc_edit_text_material.xml"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_holo_dark.xml",
         "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\drawable\\abc_list_selector_holo_dark.xml"
     },
     {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_edit_text_material.xml",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\drawable\\abc_edit_text_material.xml"
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable\\bg_xml_pop_menu.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable\\bg_xml_pop_menu.xml"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable\\dim_list_item_profile_pressed.xml",
@@ -144,12 +144,12 @@
         "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable\\chatto_bg.xml"
     },
     {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable\\wheel_bg.xml",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable\\wheel_bg.xml"
-    },
-    {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable\\bg_item_device_pressed.xml",
         "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable\\bg_item_device_pressed.xml"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable\\wheel_bg.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable\\wheel_bg.xml"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable\\bg_list_style_1.xml",

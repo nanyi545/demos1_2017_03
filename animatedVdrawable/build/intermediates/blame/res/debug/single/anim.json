@@ -24,11 +24,11 @@
         "source": "D:\\asprojects\\demos\\demos1_2017_03\\animatedVdrawable\\src\\main\\res\\anim\\ic_download_animator.xml"
     },
     {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\animatedVdrawable\\build\\intermediates\\res\\merged\\debug\\anim\\rotation.xml",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\animatedVdrawable\\src\\main\\res\\anim\\rotation.xml"
-    },
-    {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\animatedVdrawable\\build\\intermediates\\res\\merged\\debug\\anim\\minutes_rotation.xml",
         "source": "D:\\asprojects\\demos\\demos1_2017_03\\animatedVdrawable\\src\\main\\res\\anim\\minutes_rotation.xml"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\animatedVdrawable\\build\\intermediates\\res\\merged\\debug\\anim\\rotation.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\animatedVdrawable\\src\\main\\res\\anim\\rotation.xml"
     }
 ]

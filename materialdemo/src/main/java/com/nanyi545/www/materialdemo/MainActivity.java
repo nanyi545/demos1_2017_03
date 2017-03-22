@@ -24,12 +24,24 @@ import com.nanyi545.www.materialdemo.testPullToRefresh.TestPullRefreshActivity;
 import com.nanyi545.www.materialdemo.testPullToRefresh.TestPullRefreshActivity2;
 import com.nanyi545.www.materialdemo.testPullToRefresh.TestPullRefreshActivity3;
 import com.nanyi545.www.materialdemo.testPullToRefresh.eleme.TestPullRefreshActivity4;
+import com.nanyi545.www.materialdemo.test_frags.simple_test.TestFragmentActivity;
 
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {  // this is for API-19
+//            Window window = getWindow();
+//            //设置StatusBar为透明显示,需要在setContentView之前完成操作
+//            window.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
+//                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+//        }
+
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE| View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+
+
         setContentView(R.layout.activity_main);
         delay.sendEmptyMessageDelayed(0,1000);
     }
@@ -124,6 +136,9 @@ public class MainActivity extends AppCompatActivity {
         TestCustomViewActivity.start(this);
     }
 
+    public void jumpFragmentTest1(View v){
+        TestFragmentActivity.start(this);
+    }
 
 
 }

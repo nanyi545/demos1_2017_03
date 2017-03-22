@@ -4,12 +4,12 @@
         "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\layout\\abc_popup_menu_item_layout.xml"
     },
     {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_mode_close_item_material.xml",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\layout\\abc_action_mode_close_item_material.xml"
-    },
-    {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\layout_dialog_time.xml",
         "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\layout\\layout_dialog_time.xml"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_mode_close_item_material.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\layout\\abc_action_mode_close_item_material.xml"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_big_media.xml",
@@ -44,20 +44,20 @@
         "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\layout\\list_item_station_list.xml"
     },
     {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_menu_item_layout.xml",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\layout\\abc_action_menu_item_layout.xml"
-    },
-    {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_dialog_title_material.xml",
         "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\layout\\abc_dialog_title_material.xml"
     },
     {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\rv_drawer_item.xml",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\layout\\rv_drawer_item.xml"
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_menu_item_layout.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\layout\\abc_action_menu_item_layout.xml"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_item_separator.xml",
         "source": "C:\\Users\\Administrator\\.android\\build-cache\\a17cca125193d87de83bdce1ec90f978b7c00e20\\output\\res\\layout\\design_navigation_item_separator.xml"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\rv_drawer_item.xml",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\layout\\rv_drawer_item.xml"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\layout\\abc_search_view.xml",

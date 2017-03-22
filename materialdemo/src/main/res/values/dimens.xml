@@ -8,4 +8,7 @@
     <dimen name="fab_margin">16dp</dimen>
 
 
+    <dimen name="fake_statusbar_height">0dp</dimen>
+
+
 </resources>

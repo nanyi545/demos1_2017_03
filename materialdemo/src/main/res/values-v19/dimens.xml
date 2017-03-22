@@ -1,0 +1,6 @@
+<resources>
+
+    <dimen name="fake_statusbar_height">25dp</dimen>
+
+
+</resources>

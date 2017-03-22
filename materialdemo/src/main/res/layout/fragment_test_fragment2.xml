@@ -1,0 +1,16 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginTop="@dimen/fake_statusbar_height"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/fragment_root"
+    tools:context="com.nanyi545.www.materialdemo.test_frags.simple_test.TestFragment2">
+
+    <TextView
+        android:background="@drawable/side_nav_bar"
+        android:padding="20dp"
+        android:id="@+id/fragment_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</FrameLayout>

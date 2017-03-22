@@ -2,6 +2,15 @@
 
 <merge>
 
+    <FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/fragment_holder"
+        android:layout_marginBottom="100dp"
+        android:background="@color/Blue700"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </FrameLayout>
+
 
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
