@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="test1.nh.com.demos1.activities.vertical_scroll.VerticalScrollActivity">
+
+
+
+    <!--use of ScrollViewContainer class-->
+    <!--<include layout="@layout/test_scroll_view_controller" />-->
+    <!--end of  ScrollViewContainer class-->
+
+
+
+    <!--use of Vertical class-->
+    <test1.nh.com.demos1.activities.vertical_scroll.VerticalScrollViewContainer
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <test1.nh.com.demos1.activities.vertical_scroll.SingleScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ScrollView
+                android:background="@color/Red300"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="1000dp"
+                        android:src="@drawable/grad_img"/>
+                </LinearLayout>
+            </ScrollView>
+
+        </test1.nh.com.demos1.activities.vertical_scroll.SingleScrollView>
+
+        <test1.nh.com.demos1.activities.vertical_scroll.SingleScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ScrollView
+                android:background="@color/Teal300"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="1000dp"
+                        android:src="@drawable/grad_img"/>
+
+                </LinearLayout>
+
+
+            </ScrollView>
+
+        </test1.nh.com.demos1.activities.vertical_scroll.SingleScrollView>
+
+    </test1.nh.com.demos1.activities.vertical_scroll.VerticalScrollViewContainer>
+
+
+
+
+</RelativeLayout>

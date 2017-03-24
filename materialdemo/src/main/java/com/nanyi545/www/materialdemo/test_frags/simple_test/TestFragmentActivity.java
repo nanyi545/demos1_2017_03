@@ -164,7 +164,7 @@ public class TestFragmentActivity extends AppCompatActivity implements TestFragm
 
                     } else getSupportFragmentManager().beginTransaction().add(R.id.fragment_holder,f2,tags[1]).commit();
                 }
-                
+
             }
         });
         TextView btn3= (TextView) findViewById(R.id.btn_frag3);

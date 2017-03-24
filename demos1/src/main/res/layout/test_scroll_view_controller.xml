@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:showIn="@layout/activity_vertical_scroll">
+
+    <test1.nh.com.demos1.activities.vertical_scroll.ScrollViewContainer
+        android:background="@color/Amber200"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:background="@color/Red300"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="300dp"
+                    android:src="@drawable/grad_img" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="300dp"
+                    android:src="@drawable/grad_img" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </test1.nh.com.demos1.activities.vertical_scroll.ScrollViewContainer>
+    <RelativeLayout
+        android:layout_alignParentBottom="true"
+        android:background="@color/Amber200"
+        android:layout_width="50dp"
+        android:layout_height="50dp">s
+    </RelativeLayout>
+
+</merge>

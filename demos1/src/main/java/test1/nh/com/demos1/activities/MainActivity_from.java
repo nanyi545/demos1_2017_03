@@ -50,6 +50,7 @@ import test1.nh.com.demos1.activities.selectTime.SelectTimeActivity;
 import test1.nh.com.demos1.activities.tab_layout_viewpager.TestTabActivity;
 import test1.nh.com.demos1.activities.test3d.Test3dActivity;
 import test1.nh.com.demos1.activities.time_picker.TimePickerActivity;
+import test1.nh.com.demos1.activities.vertical_scroll.VerticalScrollActivity;
 import test1.nh.com.demos1.activityManagerActivity.ActManagerActivity;
 import test1.nh.com.demos1.audioTest.AudioActivity;
 import test1.nh.com.demos1.broadcastReceiverDemo.BCRActivity;
@@ -571,6 +572,9 @@ public class MainActivity_from extends AppCompatActivity {
 
     public void jump_vector(View view){
         VectorDrawableActivity.start(this);}
+
+    public void jump_vertical_scroll(View view){
+        VerticalScrollActivity.start(this);}
 
 
     @Override

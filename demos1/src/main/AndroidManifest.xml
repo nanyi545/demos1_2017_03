@@ -43,7 +43,9 @@
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
+
                 <action android:name="test1.nh.com.demos1.activities.MainActivity_from" />
             </intent-filter>
         </activity>
@@ -223,9 +225,9 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activities.patterns.PatternTestActivity" />
         <activity android:name=".activities.leaksTest.LeakTest2Activity" />
-        <activity android:name=".activities.leaksTest.LeakActivity2"></activity>
+        <activity android:name=".activities.leaksTest.LeakActivity2" />
         <activity android:name=".activities.VectorDrawableActivity" />
-
+        <activity android:name=".activities.vertical_scroll.VerticalScrollActivity"></activity>
     </application>
 
 </manifest>
