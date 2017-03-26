@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>canvas test</title>
+
+
+    <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/canva.css">
+
+    <script type="text/javascript" src="js/canva.js"></script>
+
+
+
+	<script type="text/javascript">
+	        $(document).ready(function() {
+	            initPage();
+	        });
+	</script>
+
+
+</head>
+
+
+    <body>
+        <div class="main_content">
+            <canvas id="myCanvas" width="300" height="300">
+
+            </canvas>
+
+        </div>
+
+        <canvas id="myCanvas1" width="578" height="250"></canvas>
+        <script>
+      var canvas = document.getElementById('myCanvas1');
+      var context = canvas.getContext('2d');
+      var x = canvas.width / 2;
+      var y = canvas.height / 2;
+      var radius = 75;
+      var startAngle = 1.1 * Math.PI;
+      var endAngle = 1.9 * Math.PI;
+      var counterClockwise = false;
+
+      context.beginPath();
+      context.arc(x, y, radius, startAngle, endAngle, counterClockwise);
+      context.lineWidth = 15;
+
+      // line color
+      context.strokeStyle = 'black';
+      context.stroke();
+    </script>
+
+    </body>
+    
+</html>
+
+

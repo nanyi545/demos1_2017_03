@@ -6,7 +6,9 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
+import android.view.VelocityTracker;
 import android.view.View;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.RelativeLayout;
 import android.widget.Scroller;
 
@@ -16,7 +18,7 @@ import java.util.ArrayList;
  * Created by Administrator on 2017/3/24.
  */
 
-public class VerticalScrollViewContainer extends RelativeLayout implements GestureDetector.OnGestureListener {
+public class VerticalScrollViewContainer extends RelativeLayout  {
 
 
     public VerticalScrollViewContainer(Context context) {
@@ -33,7 +35,8 @@ public class VerticalScrollViewContainer extends RelativeLayout implements Gestu
     }
 
     private void init(Context c){
-        gestureDetectorCompat=new GestureDetectorCompat(c,this);
+        mVelocityTracker = VelocityTracker.obtain();
+        transitionScroller=new Scroller(c,new DecelerateInterpolator());
     }
 
 
@@ -76,77 +79,182 @@ public class VerticalScrollViewContainer extends RelativeLayout implements Gestu
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         super.onLayout(changed, l, t, r, b);
         if(scrollViewsFound){
+            viewHeight=getMeasuredHeight();
             layoutScrollViews();
         }
     }
 
-
-    int currentIndex=0;
+    private int currentIndex=0;
+    private int viewHeight;
 
     Scroller transitionScroller;
 
+    /**
+     * called at  ACTION_UP  and  fling velocity is smaller than the threshold  --> "smooth scroll back"
+     */
+    private void smoothScrollToFixedPositionsWhenNoFling(){
+        Log.i("ccc","-----call smoothScrollToFixedPositionsWhenNoFling---currentIndex:"+currentIndex+"    viewHeight:"+viewHeight);
+        int targetIndex=(getScrollY()+viewHeight/2)/viewHeight;
+        if (targetIndex<0){
+            targetIndex=0;
+        }
+        if (targetIndex>scrollViews.size()-1){
+            targetIndex=scrollViews.size()-1;
+        }
+        currentIndex=targetIndex;
+        int targetY=targetIndex*viewHeight;
+        int startY=getScrollY();
+        int dy=targetY-startY;
 
+        Log.i("ccc","-----call smoothScrollToFixedPositionsWhenNoFling---currentIndex:"+currentIndex+"     startY:"+startY+"     targetY:"+targetY+"   dy:"+dy);
+        transitionScroller.startScroll(0,startY,0,dy);
+        invalidate();
+    }
 
+    /**
+     * called at  ACTION_UP  and  fling velocity is larger than the threshold  --> "smooth  scroll to the targeted index"
+     * @param changeIndex  this is change in {@link this.currentIndex}, normally -1 or +1
+     */
+    private void smoothScrollToTargetIndex_UponFling(int changeIndex){
+        Log.i("ccc","-----call smoothScrollToTargetIndex_UponFling---changeIndex:"+changeIndex+"   currentIndex:"+currentIndex+"    viewHeight:"+viewHeight);
+        int targetIndex=currentIndex+changeIndex;
+        if (targetIndex<0){
+            targetIndex=0;
+        }
+        if (targetIndex>scrollViews.size()-1){
+            targetIndex=scrollViews.size()-1;
+        }
+        currentIndex=targetIndex;
+        int targetY=targetIndex*viewHeight;
+        int startY=getScrollY();
+        int dy=targetY-startY;
+        Log.i("ccc","-----call smoothScrollToTargetIndex_UponFling---changeIndex:"+changeIndex+"   currentIndex:"+currentIndex+"    targetY:"+targetY+"    startY:"+startY+"   dy:"+dy);
+        transitionScroller.startScroll(0,startY,0,dy);
+        invalidate();
+    }
 
     @Override
-    public boolean onInterceptTouchEvent(MotionEvent ev) {
-        return true;
+    public void computeScroll() {
+        if (transitionScroller.computeScrollOffset()){
+            int currentY=transitionScroller.getCurrY();
+            Log.i("ccc","currentY:"+currentY);
+            scrollTo(0,currentY);
+            postInvalidate();
+        }
     }
 
 
 
 
+    private static final int TOP_LIMIT=-200;  // top over scroll region = 200px ,  if no  over scroll set to 0
+    private static final int BOTTOM_LIMIT=200;  // bottom over scroll region = 200px ,  if no  over scroll set to 0
+
+    float lastInterceptY;
 
 
     @Override
-    public boolean dispatchTouchEvent(MotionEvent ev) {
-        return super.dispatchTouchEvent(ev);
+    public boolean onInterceptTouchEvent(MotionEvent event) {
+        SingleScrollView currentScrollView=scrollViews.get(currentIndex);
+        float touchY=event.getY();
+        int action = event.getActionMasked();
+        boolean intercept=false;
+        switch (action) {
+            case MotionEvent.ACTION_DOWN:
+                Log.i("ccc","onInterceptTouchEvent:ACTION_DOWN: currentScrollView.isScrollToTop():"+currentScrollView.isScrollToTop()+"    currentScrollView.isScrollToBottom():"+currentScrollView.isScrollToBottom()+"   intercept:"+intercept);
+                break;
+            case MotionEvent.ACTION_MOVE:
+                float deltaY=touchY-lastInterceptY;
+                float distanceY=-deltaY;
+                Log.i("ccc","onInterceptTouchEvent:ACTION_MOVE distanceY:"+distanceY+" currentScrollView.isScrollToTop():"+currentScrollView.isScrollToTop()+"    currentScrollView.isScrollToBottom():"+currentScrollView.isScrollToBottom()+"   intercept:"+intercept);
+
+                if ( distanceY<0 ) {   // scroll down --  finger down
+                    if (currentScrollView.isScrollToTop()){
+                        lastInterceptY=touchY;
+                        intercept=true;
+                    }
+                }
+
+                if ( distanceY>0 ) {  // scroll up   --finger up
+                    if (currentScrollView.isScrollToBottom()){
+                        lastInterceptY=touchY;
+                        intercept=true;
+                    }
+                }
+                break;
+            case MotionEvent.ACTION_UP:
+                Log.i("ccc","onInterceptTouchEvent:ACTION_UP: currentScrollView.isScrollToTop():"+currentScrollView.isScrollToTop()+"    currentScrollView.isScrollToBottom():"+currentScrollView.isScrollToBottom()+"   intercept:"+intercept);
+                intercept = false;
+                break;
+        }
+
+        lastInterceptY=touchY;
+        lastY=touchY;  //  ....    ???
+        return intercept;
     }
 
+
+
+    private VelocityTracker mVelocityTracker;
+
+
+
+    float lastY;
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        Log.i("ccc","--onTouchEvent--");
-        boolean consumed=gestureDetectorCompat.onTouchEvent(event);
-        return (super.onTouchEvent(event)||consumed);
-    }
+        Log.i("ccc","onTouchEvent:  currentIndex:"+currentIndex+"   type:"+event.getActionMasked());
 
+        float touchY=event.getY();
+        mVelocityTracker.addMovement(event);
 
+        int action = event.getActionMasked();
+        switch (action) {
+            case MotionEvent.ACTION_DOWN:
+                break;
+            case MotionEvent.ACTION_MOVE:
+                float deltaY=touchY-lastY;
 
+                float distanceY=-deltaY;
 
-    GestureDetectorCompat gestureDetectorCompat;
+                int currentScroll=getScrollY();
+                if ( distanceY<0 ) {   // reaching top limit
+                    if ((currentScroll+distanceY)<TOP_LIMIT){
+                        scrollTo(0,TOP_LIMIT);
+                        return true;
+                    }
+                }  else {  // reaching bottom limit
+                    int viewBottom=BOTTOM_LIMIT+viewHeight*(scrollViews.size()-1);
+                    if ((currentScroll+distanceY)> viewBottom){
+                        scrollTo(0,viewBottom);
+                        return true;
+                    }
+                }
+                scrollBy(0, (int) distanceY);
+                break;
+            case MotionEvent.ACTION_UP:
+                mVelocityTracker.computeCurrentVelocity(1000);
+                float velocityUponRelease=  mVelocityTracker.getYVelocity();
+                if (Math.abs(velocityUponRelease)<500){
+                    smoothScrollToFixedPositionsWhenNoFling();
+                } else {
+                    if (velocityUponRelease<0){  // fling up
+                        smoothScrollToTargetIndex_UponFling(1);
+                    } else {
+                        smoothScrollToTargetIndex_UponFling(-1);
+                    }
+                }
+                mVelocityTracker.clear();
+                break;
+        }
 
-    @Override
-    public boolean onDown(MotionEvent e) {
+        lastY=touchY;
         return true;
     }
 
-    @Override
-    public void onShowPress(MotionEvent e) {
-
-    }
 
     @Override
-    public boolean onSingleTapUp(MotionEvent e) {
-        return false;
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        mVelocityTracker.recycle();
     }
-
-    @Override
-    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-        Log.i("ccc","-------onScroll---distanceY:"+distanceY);
-        scrollBy(0, (int) distanceY);
-        return true;
-    }
-
-    @Override
-    public void onLongPress(MotionEvent e) {
-
-    }
-
-    @Override
-    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-        return false;
-    }
-
-
 }

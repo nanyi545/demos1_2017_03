@@ -1,0 +1,101 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>canvas test</title>
+
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+
+    <style type="text/css">
+
+
+        *{
+            margin: 0;padding: 0;
+              -webkit-box-sizing: border-box;
+                 -moz-box-sizing: border-box;
+                      box-sizing: border-box;
+        }
+
+        #myCanvas1{
+            background:green;
+            z-index:0;
+        }
+
+        .test{
+            width:100px;
+            height:100px;
+            background-color:blue;
+        }
+
+
+    </style>
+
+
+</head>
+
+
+<body>
+
+
+    <canvas id="myCanvas1">
+
+    </canvas>
+
+
+
+<div class="test" onclick="stopAnimation()">
+    stop
+</div>
+
+
+<script>
+
+var x =  0;
+var y = 15;
+var speed = 1;
+
+
+
+var globalID;
+
+
+function repeatOften() {
+  // Do whatever
+  globalID=requestAnimationFrame(repeatOften);   // this starts the animation
+
+
+    x += speed;
+
+    if(x <= 0 || x >= 475){
+        speed = -speed;
+    }
+
+
+    var canvas  = document.getElementById("myCanvas1");
+    var context = canvas.getContext("2d");
+    canvas.width=500;
+    canvas.height=170;
+
+    context.clearRect(0, 0, 500, 170);
+    context.fillStyle = "#ff00ff";
+    context.fillRect(x, y, 25, 25);
+
+}
+
+requestAnimationFrame(repeatOften);
+
+function stopAnimation(){
+    cancelAnimationFrame(globalID);
+}
+
+
+
+
+</script>
+
+</body>
+
+</html>
+
+

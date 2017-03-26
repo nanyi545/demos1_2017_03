@@ -18,6 +18,9 @@ public class MainActivity extends AppCompatActivity {
         FullWindowWebActivity.start(this);
     }
 
+    public void goto2(View v){
+        NonFullWindowActivity.start(this);
+    }
 
 
 }

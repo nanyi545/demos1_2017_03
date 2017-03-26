@@ -7,14 +7,15 @@
     tools:context="test1.nh.com.demos1.activities.vertical_scroll.VerticalScrollActivity">
 
 
-
     <!--use of ScrollViewContainer class-->
     <!--<include layout="@layout/test_scroll_view_controller" />-->
     <!--end of  ScrollViewContainer class-->
 
 
-
     <!--use of Vertical class-->
+
+
+
     <test1.nh.com.demos1.activities.vertical_scroll.VerticalScrollViewContainer
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -24,18 +25,39 @@
             android:layout_height="match_parent">
 
             <ScrollView
+                android:layout_marginTop="150dp"
+                android:layout_marginBottom="50dp"
                 android:background="@color/Red300"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <LinearLayout
+                    android:orientation="vertical"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
+                    <TextView
+                        android:text="first scroll view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
                     <ImageView
                         android:layout_width="100dp"
                         android:layout_height="1000dp"
                         android:src="@drawable/grad_img"/>
                 </LinearLayout>
             </ScrollView>
+
+            <TextView
+                android:layout_alignParentBottom="true"
+                android:text="bottombar1"
+                android:background="@color/Blue200"
+                android:layout_width="match_parent"
+                android:layout_height="50dp" />
+
+            <TextView
+                android:text="bottombar1"
+                android:background="@color/Blue200"
+                android:layout_width="match_parent"
+                android:layout_height="150dp" />
+
 
         </test1.nh.com.demos1.activities.vertical_scroll.SingleScrollView>
 
@@ -45,11 +67,19 @@
 
             <ScrollView
                 android:background="@color/Teal300"
+                android:layout_marginTop="250dp"
+                android:layout_marginBottom="30dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <LinearLayout
+                    android:orientation="vertical"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="second scroll view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
 
                     <ImageView
                         android:layout_width="100dp"
@@ -58,10 +88,70 @@
 
                 </LinearLayout>
 
+            </ScrollView>
+
+            <TextView
+                android:layout_alignParentBottom="true"
+                android:text="bottombar2"
+                android:background="@color/Red300"
+                android:layout_width="match_parent"
+                android:layout_height="30dp" />
+
+            <TextView
+                android:text="topbar2"
+                android:background="@color/Red300"
+                android:layout_width="match_parent"
+                android:layout_height="250dp" />
+
+        </test1.nh.com.demos1.activities.vertical_scroll.SingleScrollView>
+
+
+
+
+        <test1.nh.com.demos1.activities.vertical_scroll.SingleScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ScrollView
+                android:background="@color/Blue200"
+                android:layout_marginTop="60dp"
+                android:layout_marginBottom="60dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="third scroll view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="1000dp"
+                        android:src="@color/Red400"/>
+
+                </LinearLayout>
 
             </ScrollView>
 
+            <TextView
+                android:layout_alignParentBottom="true"
+                android:text="bottombar3"
+                android:background="@color/Red500"
+                android:layout_width="match_parent"
+                android:layout_height="60dp" />
+            <TextView
+                android:text="topbar3"
+                android:background="@color/Red500"
+                android:layout_width="match_parent"
+                android:layout_height="60dp" />
+
+
         </test1.nh.com.demos1.activities.vertical_scroll.SingleScrollView>
+
 
     </test1.nh.com.demos1.activities.vertical_scroll.VerticalScrollViewContainer>
 
