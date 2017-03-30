@@ -1,0 +1,129 @@
+@charset "UTF-8";
+body{background-color: #eee;}
+.introduce{overflow: hidden;margin-bottom: 2em;}
+
+.clearfix{clear: both;}
+.introduce .head{width: 100%;height: 2em;position: relative;line-height: 3em;padding: .5em 0;font-size: 4vw;color: #000;text-align: center;background-color: #fff;border-bottom: 1px solid #ddd;}
+.introduce .head .left{position: absolute;left: 4%;top: 1em;width: .8em;height: 1.2em;z-index: 1000;background: url("../images/back-icon.png") no-repeat;background-size: 100% 100%;float: left;}
+.introduce .head .center{margin: 0 auto;width: 40%;height: 1.8em;border: 1px solid #f63;border-radius: .2em;color: #f63;}
+.introduce .head .center .item{display: block;color: #f63;width: 50%;float: left;height: 100%;line-height: 2em;overflow: hidden;}
+.introduce .head .center .cur{background-color: #f63;color: #fff;}
+
+.introduce .banner{background: url("../images/banner.png") no-repeat;background-size: 100% 100%;width: 100%;height: 9em;}
+.introduce .banner2{background: url("../images/banner2.png") no-repeat;background-size: 100% 100%;width: 100%;height: 18em;}
+.introduce .banner3{background: url("../images/rangehood/banner3.png") no-repeat;background-size: 100% 100%;width: 100%;height: 9em;}
+.introduce .margin-top{margin-top: .6em;}
+.introduce .area-title{height: 3em;line-height: 3em; width: 100%;background-color: #fff;text-align: center;}
+.introduce .area-detail{height: 2em;line-height: 2em;width: 100%;background-color: #fff;text-align: center; font-size:70% ;position: relative;top:-10px;padding-bottom:20px }
+
+
+.introduce .title{overflow: hidden;height: 3em;line-height: 3em;width: 100%;padding: 0 4%;border-bottom: 0px solid #eee;color: #333;font-size: 3.8vw;background-color: #fff;}
+.introduce .title-more{line-height: 4em;height: 4em;}
+.introduce .title .title-right{display: inline-block;text-indent: 2em;color: #333;font-size: 3.8vw;}
+.introduce .title span{color: #ff6633;}
+.introduce .txt { width: 92%;padding: 5px 4% 5px;border-bottom: 0px solid #eee;color: #333;font-size: 3.4vw;background-color: #fff;line-height:160%;}
+.introduce .txt span{color: #ff6633;}
+
+.introduce .unit{width: 96%;float: left;font-size: 3.8vw;line-height: 2.5em;background-color: #fff;padding-left: 4%;color: #9d9d9d;}
+.introduce .unit span{color: #ff6633;}
+.introduce .divider {height: 1px; width: 4%; background-color: #fff;}
+
+.introduce .service-content{overflow: auto;background-color: #fff;}
+.introduce .service-content-half{width:49.5%;float:left;overflow: hidden;}
+.introduce .service-content-half li{list-style-type: disc; padding: 0;margin-left: 16%;font-size: 80%;margin-top: 6px;margin-bottom: 6px; }
+
+.introduce .standards{ padding:20px 0 20px 0; background-color: #fff;}
+.introduce .standards .standard-item{ overflow: auto; clear: both;
+
+}
+.introduce .standards .standard-item-left{background-color: #ffab34;border-radius: 5px;float:left;width:32%; text-align: center;position: relative;margin: 4px 0% 4px 4%;padding:4px 0 4px 0;color:#fff; font-size: 3.6vw;}
+.introduce .standards .standard-item-right{background-color: #fcf2e8;border-radius: 5px;float:right;width:52%;position: relative;margin: 4px 4% 4px 0%;padding:4px 0 4px 2%; font-size: 3.6vw;}
+
+.introduce .standards .standard-item-left-tail{ 
+	position: absolute;	
+	width:5%;	
+	height:30%;
+	top:0;
+	left:0;
+	background: url("../images/tail.png") no-repeat;   
+	transform: translateX(1995%) translateY(116%);
+	background-size: 100% 100%; 
+}
+
+
+.introduce .price{overflow: hidden;padding: 0% 3% 4% 3%;color: #666;background-color: #fff;}
+.introduce .price .price-item{font-size: 3.5vw;letter-spacing: 1px;width: 18%;float: left;margin: .05em ;height: 2.2em;line-height: 2.2em;text-align: center;background-color: #eee;border-radius: 5px;}
+.introduce .price .price-item.name{color: #222;}
+.introduce .price .price-item-more{width: 21%;}
+
+.introduce .price1{overflow: hidden;padding: 0 3%;color: #333;background-color: #fff;}
+.introduce .price1 .price-item{font-size: 3.5vw;letter-spacing: 1px;width: 49%;float: left;margin: .05em ;height: 2.2em;line-height: 2.2em;text-align: center;background-color: #eee;border-radius: 5px;}
+.introduce .price1 .tips{line-height: 3em;color: #9d9d9d;font-size: 2.5vw;display: block;clear: both;margin: .2em 0;text-align: center;}
+
+.introduce .price2{overflow: hidden;padding: 0 3%;color: #333;background-color: #fff;}
+.introduce .price2 .price-item{font-size: 3.5vw;letter-spacing: 1px;width: 32.5%;float: left;margin: .05em ;height: 2.2em;line-height: 2.2em;text-align: center;background-color: #eee;border-radius: 5px;}
+.introduce .price2 .tips{line-height: 2em;color: #9d9d9d;font-size: 2.5vw;display: block;clear: both;margin: .5em 0;text-align: left;padding-top: .5em;}
+
+.introduce .price .tips{line-height: 3em;color: #9d9d9d;font-size: 2.5vw;display: block;clear: both;margin: .2em 0;text-align: center;}
+.introduce .service{background-color: #fff;overflow: hidden;padding: 1em 0;}
+.introduce .service .service-item{width: 50%;float: left;overflow: hidden;margin: 1.5em 0 3em;position: relative;}
+.introduce .service .service-item .icon1{background: url("../images/glass/img1.png") no-repeat;background-size: 100% 100%;margin-left: 1em;width: 9em;height: 9em;}
+.introduce .service .service-item .icon2{background: url("../images/glass/img2.png") no-repeat;background-size: 100% 100%;margin-left: 1em;width: 9em;height: 9em;}
+.introduce .service .service-item .icon3{background: url("../images/glass/img3.png") no-repeat;background-size: 100% 100%;margin-left: 1em;width: 9em;height: 9em;}
+.introduce .service .service-item .icon4{background: url("../images/aircon/img4.png") no-repeat;background-size: 100% 100%;margin-left: 1em;width: 9em;height: 9em;}
+.introduce .service .service-item .icon5{background: url("../images/aircon/img5.png") no-repeat;background-size: 100% 100%;margin-left: 1em;width: 9em;height: 9em;}
+.introduce .service .service-item .icon6{background: url("../images/aircon/img6.png") no-repeat;background-size: 100% 100%;margin-left: 1em;width: 9em;height: 9em;}
+.introduce .service .service-item .icon7{background: url("../images/rangehood/img7.png") no-repeat;background-size: 100% 100%;margin-left: 1em;width: 9em;height: 9em;}
+.introduce .service .service-item .icon8{background: url("../images/rangehood/img8.png") no-repeat;background-size: 100% 100%;margin-left: 1em;width: 9em;height: 9em;}
+.introduce .service .service-item .icon9{background: url("../images/rangehood/img9.png") no-repeat;background-size: 100% 100%;margin-left: 1em;width: 9em;height: 9em;}
+.introduce .service .service-item .icon10{background: url("../images/rangehood/img10.png") no-repeat;background-size: 100% 100%;margin-left: 1em;width: 9em;height: 9em;}
+.introduce .service .service-item .icon11{background: url("../images/glass/img4.png") no-repeat;background-size: 100% 100%;margin-left: 1em;width: 9em;height: 9em;}
+.introduce .service .service-item .tips{color: #666;font-size: 3vw;line-height: 1.5em;clear: both;display: block;padding: .5em 1em;text-align: center;}
+.introduce .service .center{margin: 0 auto 2em;clear: both;float: none;}
+.introduce .service .service-item .icon-title{height: 1.4em;line-height: 1.4em;position: absolute;top: 10.2em;;text-align: center;color: #666;font-size: 3.5vw;width: 11.5em;}
+.introduce .service .service-item .name{color: #222;font-size: 5vw;padding-left: 2.5em;margin: .5em 0;}
+.introduce .service .service-item .info{color: #666;font-size: 3.8vw;line-height: 2em;padding-left: 1.6em;}
+.introduce .service .service-item .info-less{padding-left: 2em;}
+.introduce .service .time{background-color: #eee;width: 90%;margin: 0 auto 1em;line-height: 3em;overflow: hidden;text-align: center;font-size: 4vw;color: #333;}
+.introduce .service .time .time-detail{color: #666;font-size: 3.5vw;text-align: left;padding: 0 10%;line-height: 1.8em;margin-bottom: 1em;letter-spacing: 1px;}
+.introduce .service .time .time-detail .text-item{overflow: hidden;}
+.introduce .service .time .time-detail .text-item .left{float: left;width: 3%;line-height: 1.4em;color: #666;text-align: justify;font-size: 3.5vw;}
+.introduce .service .time .time-detail .text-item .right{float: left;width: 97%;line-height: 1.4em;color: #666;text-align: justify;font-size: 3.5vw;}
+.introduce .content-detail{color: #666;font-size: 3.9vw;line-height: 1.5em;background-color: #fff;padding: .5em 4%;}
+.introduce .content-detail span{color: #333;font-weight: bold;}
+
+.introduce .time{background-color: #eee;width: 90%;margin: 1.2em auto 0.8em;line-height: 2.4em;overflow: hidden;text-align: center;font-size: 4vw;color: #333;border-radius: 5px;  color: #666}
+
+.introduce .tools{background-color: #fff; padding-left:4%;padding-right: 4%; overflow: auto; }
+.introduce .tools .tool-item{background-color: #fff; float :left; width: 30.5vw;}
+.introduce .tools .tool-item .tool1{ background: url("../images/tool1.png") no-repeat;background-size: 100% 100%; padding:1vw; width: 28vw;height: 28vw;}
+.introduce .tools .tool-item .tool2{ background: url("../images/tool2.png") no-repeat;background-size: 100% 100%; padding:1vw; width: 28vw;height: 28vw;}
+.introduce .tools .tool-item .tool3{ background: url("../images/tool3.png") no-repeat;background-size: 100% 100%; padding:1vw; width: 28vw;height: 28vw;}
+.introduce .tools .tool-item .tool-name{ width:30vw; text-align: center; line-height: 2em; height:2em; font-size: 80%;}
+
+
+.introduce .assure{overflow: hidden;background-color: #fff;}
+.introduce .assure .assure-item{width: 23%;margin: 1em .5%;float: left;}
+.introduce .assure .first{margin-left: 3%;}
+.introduce .assure .assure-item .icon1{width: 2.8em;height: 2.8em;background: url("https://api.nbaljz.com/Public/Api2/images/glass/sure1.png") no-repeat;background-size: 100% 100%;margin: 1em auto 0;}
+.introduce .assure .assure-item .icon2{width: 2.8em;height: 2.8em;background: url("https://api.nbaljz.com/Public/Api2/images/glass/sure2.png") no-repeat;background-size: 100% 100%;margin: 1em auto 0;}
+.introduce .assure .assure-item .icon3{width: 2.8em;height: 2.8em;background: url("https://api.nbaljz.com/Public/Api2/images/glass/sure3.png") no-repeat;background-size: 100% 100%;margin: 1em auto 0;}
+.introduce .assure .assure-item .icon4{width: 2.8em;height: 2.8em;background: url("https://api.nbaljz.com/Public/Api2/images/glass/sure4.png") no-repeat;background-size: 100% 100%;margin: 1em auto 0;}
+.introduce .assure .assure-item .name{color: #666;font-size: 3.8vw;text-align: center;line-height: 2em;}
+.introduce .more-info{background-color: #fff;width: 100%;overflow: hidden;padding: 1em 0 2em;}
+.introduce .more-info .center{overflow: hidden;width: 90%;margin: 0 auto;%;background-color: #eee;padding: 1em 0;border-radius: .4em;}
+.introduce .more-info .name{font-size: 5vw;color: #222;text-align: center;margin: .5em 0;}
+.introduce .more-info .text{padding: 0 5%;}
+.introduce .more-info .text a{color: #1038cb;}
+.introduce .more-info .text .text-item{overflow: hidden;}
+.introduce .more-info .text .text-item .left{float: left;width: 3%;line-height: 1.4em;color: #666;text-align: justify;font-size: 3.5vw;}
+.introduce .more-info .text .text-item .right{float: left;width: 97%;line-height: 1.4em;color: #666;text-align: justify;font-size: 3.5vw;}
+.introduce .intro{overflow: hidden;background-color: #fff;padding: 1em 5%;color: #666;line-height: 1.4em;font-size: 3.8vw;}
+.introduce .appoint{height: 2.8em;line-height: 2.8em;font-size: 4.8vw;text-align: center;color: #fff;background-color: #fff;position: fixed;bottom: 0;width: 100%;border-top: 1px solid #eee;}
+.introduce .appoint .left{width: 50%;float: left;color: #f63;font-size: 3.8vw;text-align: left;text-indent: 1em;}
+.introduce .appoint .left span{font-size: 7vw;font-weight: bold;}
+.introduce .appoint .center{width: 13%;float: right;text-align: center;line-height: 1em;color: #666;font-size: 3vw;display: block;border-left: 1px solid #eee;height: 100%;}
+.introduce .appoint .center .icon{width: 1.5em;height: 1.2em;background: url("https://api.nbaljz.com/Public/Api2/images/glass/icon.png") no-repeat;background-size: 100% 100%;margin: .5em auto .2em;}
+.introduce .appoint .appoint-btn{background-color: #F06520;display: block;width: 28%;float: right;color: #fff;font-size: 4.5vw;letter-spacing: 2px;}
+
+

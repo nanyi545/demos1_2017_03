@@ -20,7 +20,7 @@ import test1.nh.com.demos1.activities.matDesign.adapter_MD.MyVPAdapter;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FragmentFirstPage extends Fragment {
+public class FragmentFirstPage extends android.support.v4.app.Fragment {
 
 
     public FragmentFirstPage() {
@@ -60,7 +60,8 @@ public class FragmentFirstPage extends Fragment {
         indicator= (VpIndicator) v.findViewById(R.id.vp_indicator);
         indicator.resetTotalCounts(4);
         AppCompatActivity host= (AppCompatActivity) getActivity();
-        MyVPAdapter adapter = new MyVPAdapter(host.getSupportFragmentManager(), fragments);
+        MyVPAdapter adapter = new MyVPAdapter(getChildFragmentManager(), fragments);
+
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override

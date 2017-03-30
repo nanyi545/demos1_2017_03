@@ -1,26 +1,21 @@
 package test1.nh.com.demos1.activities.cyclic_galary;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+
 import android.content.Context;
 import android.content.Intent;
-import android.os.Handler;
-import android.os.Message;
-import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
 import android.widget.FrameLayout;
-import android.widget.Toast;
 
 import com.ashokvarma.bottomnavigation.BadgeItem;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.roughike.bottombar.BottomBar;
 
-import java.lang.reflect.Field;
+import java.util.List;
 
 import test1.nh.com.demos1.R;
 
@@ -45,6 +40,15 @@ public class CyclicGalaryActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.i("aaa","activity--onCreate:   savedInstanceState not null:"+(savedInstanceState!=null));
+
+
+        if (savedInstanceState!=null){
+            removeAllFragments();
+            System.exit(0);
+        }
+
+
         setContentView(R.layout.activity_cyclic_galary);
 
 
@@ -58,7 +62,8 @@ public class CyclicGalaryActivity extends AppCompatActivity {
 
         current=fragment1;
 
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
         transaction.add(R.id.home_fragment, fragment1,tags[0]).commit();
 
         initRavBottomNavi();
@@ -71,8 +76,11 @@ public class CyclicGalaryActivity extends AppCompatActivity {
 
 
     private void switchContent( Fragment to, String tag) {
+        List<Fragment> allFragments = getSupportFragmentManager().getFragments();
+        Log.i("aaa","allFragments size:"+allFragments.size());
+
         if (current != to) {
-            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             if (!to.isAdded()) {
                 transaction.hide(current).add(R.id.home_fragment, to,tag).commit(); // 隐藏当前的fragment，add下一个到Activity中
             } else {
@@ -82,8 +90,28 @@ public class CyclicGalaryActivity extends AppCompatActivity {
         }
     }
 
+    private void removeAllFragments(){
+        List<Fragment> allFragments = getSupportFragmentManager().getFragments();
+
+        if (allFragments!=null && allFragments.size()>0){
+            for (Fragment fragment:allFragments)
+            {
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                if (fragment!=null)
+                transaction.remove(fragment).commit();
+            }
+
+        }
+    }
 
 
+
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
 
     private void initRavBottomNavi(){
         BottomNavigationBar bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bottom_navigation);

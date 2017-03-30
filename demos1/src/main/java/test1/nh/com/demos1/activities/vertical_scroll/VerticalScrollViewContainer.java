@@ -73,6 +73,8 @@ public class VerticalScrollViewContainer extends RelativeLayout  {
             findScrollViews();
             scrollViewsFound=true;
         }
+        Log.i("ccc","container-----onMeasure");
+
     }
 
     @Override
@@ -82,7 +84,9 @@ public class VerticalScrollViewContainer extends RelativeLayout  {
             viewHeight=getMeasuredHeight();
             layoutScrollViews();
         }
+        Log.i("ccc","container-----onLayout");
     }
+
 
     private int currentIndex=0;
     private int viewHeight;
@@ -150,12 +154,14 @@ public class VerticalScrollViewContainer extends RelativeLayout  {
     private static final int BOTTOM_LIMIT=200;  // bottom over scroll region = 200px ,  if no  over scroll set to 0
 
     float lastInterceptY;
-
+    float lastInterceptX;
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent event) {
         SingleScrollView currentScrollView=scrollViews.get(currentIndex);
         float touchY=event.getY();
+        float touchX=event.getX();
+
         int action = event.getActionMasked();
         boolean intercept=false;
         switch (action) {
@@ -167,19 +173,28 @@ public class VerticalScrollViewContainer extends RelativeLayout  {
                 float distanceY=-deltaY;
                 Log.i("ccc","onInterceptTouchEvent:ACTION_MOVE distanceY:"+distanceY+" currentScrollView.isScrollToTop():"+currentScrollView.isScrollToTop()+"    currentScrollView.isScrollToBottom():"+currentScrollView.isScrollToBottom()+"   intercept:"+intercept);
 
-                if ( distanceY<0 ) {   // scroll down --  finger down
-                    if (currentScrollView.isScrollToTop()){
-                        lastInterceptY=touchY;
-                        intercept=true;
+                float deltaX=touchX-lastInterceptX;
+
+                if (Math.abs(deltaY)>Math.abs(deltaX)){  // this is a vertical scroll ...
+
+                    if ( distanceY<0 ) {   // scroll down --  finger down
+                        if (currentScrollView.isScrollToTop()){
+                            lastInterceptY=touchY;
+                            intercept=true;
+                        }
                     }
+
+                    if ( distanceY>0 ) {  // scroll up   --finger up
+                        if (currentScrollView.isScrollToBottom()){
+                            lastInterceptY=touchY;
+                            intercept=true;
+                        }
+                    }
+
+                } else {
+                    intercept=false;
                 }
 
-                if ( distanceY>0 ) {  // scroll up   --finger up
-                    if (currentScrollView.isScrollToBottom()){
-                        lastInterceptY=touchY;
-                        intercept=true;
-                    }
-                }
                 break;
             case MotionEvent.ACTION_UP:
                 Log.i("ccc","onInterceptTouchEvent:ACTION_UP: currentScrollView.isScrollToTop():"+currentScrollView.isScrollToTop()+"    currentScrollView.isScrollToBottom():"+currentScrollView.isScrollToBottom()+"   intercept:"+intercept);
@@ -188,7 +203,11 @@ public class VerticalScrollViewContainer extends RelativeLayout  {
         }
 
         lastInterceptY=touchY;
-        lastY=touchY;  //  ....    ???
+        lastY=touchY;  //  ....   !!!!!
+
+        lastInterceptX=touchX;
+        lastX=touchX;  //  ....    ???
+
         return intercept;
     }
 
@@ -199,12 +218,16 @@ public class VerticalScrollViewContainer extends RelativeLayout  {
 
 
     float lastY;
+    float lastX;
+
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         Log.i("ccc","onTouchEvent:  currentIndex:"+currentIndex+"   type:"+event.getActionMasked());
 
         float touchY=event.getY();
+        float touchX=event.getX();
+
         mVelocityTracker.addMovement(event);
 
         int action = event.getActionMasked();
@@ -248,6 +271,8 @@ public class VerticalScrollViewContainer extends RelativeLayout  {
         }
 
         lastY=touchY;
+        lastX=touchX;  //  ....    ???
+
         return true;
     }
 

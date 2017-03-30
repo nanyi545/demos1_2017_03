@@ -12,7 +12,7 @@ import test1.nh.com.demos1.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FragmentSecond extends Fragment {
+public class FragmentSecond extends android.support.v4.app.Fragment {
 
 
     public FragmentSecond() {

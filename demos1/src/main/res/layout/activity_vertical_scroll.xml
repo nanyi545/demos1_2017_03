@@ -17,7 +17,6 @@
 
 
     <test1.nh.com.demos1.activities.vertical_scroll.VerticalScrollViewContainer
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <test1.nh.com.demos1.activities.vertical_scroll.SingleScrollView
@@ -65,43 +64,49 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ScrollView
-                android:background="@color/Teal300"
-                android:layout_marginTop="250dp"
-                android:layout_marginBottom="30dp"
+            <test1.nh.com.demos1.activities.vertical_scroll.TabScrollable
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
 
-                    <TextView
-                        android:text="second scroll view"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+            </test1.nh.com.demos1.activities.vertical_scroll.TabScrollable>
 
-                    <ImageView
-                        android:layout_width="100dp"
-                        android:layout_height="1000dp"
-                        android:src="@drawable/grad_img"/>
+            <!--<ScrollView-->
+                <!--android:background="@color/Teal300"-->
+                <!--android:layout_marginTop="250dp"-->
+                <!--android:layout_marginBottom="30dp"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent">-->
+                <!--<LinearLayout-->
+                    <!--android:orientation="vertical"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content">-->
 
-                </LinearLayout>
+                    <!--<TextView-->
+                        <!--android:text="second scroll view"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content" />-->
 
-            </ScrollView>
+                    <!--<ImageView-->
+                        <!--android:layout_width="100dp"-->
+                        <!--android:layout_height="1000dp"-->
+                        <!--android:src="@drawable/grad_img"/>-->
 
-            <TextView
-                android:layout_alignParentBottom="true"
-                android:text="bottombar2"
-                android:background="@color/Red300"
-                android:layout_width="match_parent"
-                android:layout_height="30dp" />
+                <!--</LinearLayout>-->
 
-            <TextView
-                android:text="topbar2"
-                android:background="@color/Red300"
-                android:layout_width="match_parent"
-                android:layout_height="250dp" />
+            <!--</ScrollView>-->
+
+            <!--<TextView-->
+                <!--android:layout_alignParentBottom="true"-->
+                <!--android:text="bottombar2"-->
+                <!--android:background="@color/Red300"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="30dp" />-->
+
+            <!--<TextView-->
+                <!--android:text="topbar2"-->
+                <!--android:background="@color/Red300"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="250dp" />-->
 
         </test1.nh.com.demos1.activities.vertical_scroll.SingleScrollView>
 
