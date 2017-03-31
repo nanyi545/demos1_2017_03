@@ -1,0 +1,49 @@
+@charset "UTF-8";
+body{background-color: #eee;}
+.introduce{overflow: hidden;margin-bottom: 2em;}
+
+.hidden {display: none;}
+.visible {display:block;}
+
+
+.clearfix{clear: both;}
+.introduce .head{width: 100%;height: 2em;position: relative;line-height: 3em;padding: .5em 0;font-size: 4vw;color: #000;text-align: center;background-color: #fff;border-bottom: 1px solid #ddd;}
+.introduce .head .left{position: absolute;left: 4%;top: 1em;width: .8em;height: 1.2em;z-index: 1000;background: url("../images/back-icon.png") no-repeat;background-size: 100% 100%;float: left;}
+.introduce .head .center{margin: 0 auto;width: 40%;height: 1.8em;border: 1px solid #f63;border-radius: .2em;color: #f63;}
+.introduce .head .center .item{display: block;color: #f63;width: 50%;float: left;height: 100%;line-height: 2em;overflow: hidden;}
+.introduce .head .center .cur{background-color: #f63;color: #fff;}
+
+
+.introduce .margin-top{margin-top: .6em;}
+.introduce .margin-top-small{margin-top: 1px ;}
+
+
+
+.introduce .clean-items-wrapper{ width:100% ; background-color:#fff; overflow: auto;}
+.introduce .clean-item{ width:27vw ; height:2em;line-height: 2em; float:left;text-align:center;margin:0 3vw 8px 3vw; }
+.introduce .clean-item-current {border-bottom:4px solid #ff6633; color:#ff6633;}
+
+
+.introduce .tags-wrapper { overflow: hidden; padding:10px 0  10px 0 ; width:100vw;}
+.introduce .tags-3-1 { border-radius: 12px; width:20vw; font-size: 2.4vw; text-align: center; height:2em;line-height: 2em;  float:left; margin:0 5.5vw 0 5.5vw;  border:1px solid #555;}
+.introduce .tags-2-1 { border-radius: 12px; width:20vw; font-size: 2.4vw; text-align: center; height:2em;line-height: 2em;  float:left; margin:0 13.5vw 0 13.5vw;  border:1px solid #555;}
+
+.introduce .selected {background-color:  DeepSkyBlue;  border:none; color:white ; }
+
+
+.introduce .product-list{  width: 100%; height:1000px;   background-color:white;}
+.introduce .product-item{  width: 100%; height:30vw;  border-bottom:1px solid #eee; padding:4px 0 4px 0; overflow:auto; }
+.introduce .product-item .left-img{ float: left; width: 26vw; height:26vw;  margin-left: 8%;margin-top: 2vw ; background: url("http://img.jrjimg.cn/2014/09/20140903152716110.jpg") no-repeat;background-size: 100% 100%; position:relative;}
+.introduce .product-item .left-img .indicator { position:absolute;  width:2em;height: 2em; line-height: 2em  ; font-size: 3.6vw; text-align: center; border-radius: 1em; color:white ; background-color: red; right:-1em;top:-0.3em; }
+.introduce .product-item .product-txt{ float: left;  height:26vw;  margin-left: 4vw;margin-top: 2vw ;  width:30vw;  background-color:#eee; font-size:3vw;}
+
+.introduce .product-item .right{font-size: 3.6vw;width: 20%;float: right;height: 2em;border-radius: .9em;border: 1px solid #bbb;margin:18vw 4vw 0 0;}
+.introduce .product-item .right .minus{display: block;float: left;font-size: 5vw;color: #f63;width: 30%;line-height: 1.4em;text-align: center;}
+.introduce .product-item .right .num{float: left;width: 35%;line-height: 1.4em;font-size: 3.8vw;height: 1.2em;text-align: center;border: 1px solid #ddd;margin-top: .35em;border-bottom: 0;border-top: 0;}
+.introduce .product-item .right .add{display: block;float: left;width: 30%;font-size: 5vw;color: #f63;line-height: 1.4em;text-align: center;}
+
+.introduce .product-item .right-symble{font-size: 3.6vw;width: 2em;float: right;height: 2em; line-height: 2em  ;text-align: center;border-radius: 1em;border: 1px solid #bbb;margin:18vw 4vw 0 0; color:#f63 ;}
+
+
+
+

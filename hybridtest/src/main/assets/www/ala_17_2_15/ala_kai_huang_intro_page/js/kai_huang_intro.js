@@ -4,38 +4,36 @@ function initPage(){
 
 
 
-	$('div.item2').click(function() {
-        showHint();
+	$('a.left').click(function() {
+        ret();
+    });
+
+    $('a.callphone').click(function() {
+        callPhone()
     });
 
 
-    $('div.exitMsg').click(function() {
-        hideHint();
+    $('a.appoint-btn').click(function() {
+        appointMentNow()
     });
-
-
-	$('div.item1').click(function() {
-        doCleaning();
-    });
-
-
 
 }
 
 
 
 
-function showHint(){
-	$("div.noticeFixed").css('visibility','visible');
+function ret(){
+    alert("return to cell phone ...");
 }
 
 
 
-function hideHint(){
-	$("div.noticeFixed").css('visibility','hidden');
+
+function callPhone(){
+	alert("callPhone:4006-5858-28");
 }
 
+function appointMentNow(){
+    alert("appointMentNow !");
 
-function doCleaning(){
-	alert("cleaning");
 }

@@ -101,6 +101,8 @@ body{background-color: #eee;}
 .introduce .tools .tool-item .tool3{ background: url("../images/tool3.png") no-repeat;background-size: 100% 100%; padding:1vw; width: 28vw;height: 28vw;}
 .introduce .tools .tool-item .tool-name{ width:30vw; text-align: center; line-height: 2em; height:2em; font-size: 80%;}
 
+.introduce .hint-title{height: 3em;line-height: 3em; width: 100%;text-align: center;margin-top: -1em}
+
 
 .introduce .assure{overflow: hidden;background-color: #fff;}
 .introduce .assure .assure-item{width: 23%;margin: 1em .5%;float: left;}
