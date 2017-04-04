@@ -39,7 +39,7 @@ public class FullWindowWebActivity extends AppCompatActivity {
 //        webView.loadUrl("file:///android_asset/www/ala_17_2_15/promo_page/promo.html");
 //        webView.loadUrl("file:///android_asset/www/ala_17_2_15/reg_success_page/reg_success.html");
 //        webView.loadUrl("file:///android_asset/www/ala_17_2_15/wechat_home/wechat_home.html");
-        webView.loadUrl("file:///android_asset/www/ala_17_2_15/ala_kai_huang_intro_page/kai_huang_intro.html");
-
+//        webView.loadUrl("file:///android_asset/www/ala_17_2_15/ala_kai_huang_intro_page/kai_huang_intro.html");
+        webView.loadUrl("file:///android_asset/www/ala_17_2_15/ala_cleaning_intro_page/clean_intro.html");
     }
 }

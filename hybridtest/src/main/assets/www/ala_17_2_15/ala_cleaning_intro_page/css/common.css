@@ -8,7 +8,7 @@ img{border:none;}
 a,a:visited{text-decoration: none;outline:none;border:none;}
 *{margin: 0;padding: 0;}
 input,button{outline: none;border: none;}
-.main-container{min-height: 1em;overflow: hidden;}
+.introduce{min-height: 1em;overflow: hidden;}
 
 
 .mt1{margin-top:1em;}

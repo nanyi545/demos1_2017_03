@@ -1,9 +1,10 @@
 @charset "UTF-8";
 body{background-color: #eee;}
-.introduce{overflow: hidden;margin-bottom: 2em;}
+.introduce{overflow: hidden;margin-bottom: 2.8em;}
 
 .hidden {display: none;}
 .visible {display:block;}
+.mtx1 {margin-top:0.3em;}
 
 
 .clearfix{clear: both;}
@@ -19,31 +20,81 @@ body{background-color: #eee;}
 
 
 
-.introduce .clean-items-wrapper{ width:100% ; background-color:#fff; overflow: auto;}
-.introduce .clean-item{ width:27vw ; height:2em;line-height: 2em; float:left;text-align:center;margin:0 3vw 8px 3vw; }
+.introduce .clean-items-wrapper{ width:100% ; background-color:#fff; overflow: hidden; white-space:nowrap;  }
+.introduce .clean-item{ width:26vw ; height:2em;line-height: 2em; text-align:center;margin:0 3vw 8px 3vw;float:left; }
 .introduce .clean-item-current {border-bottom:4px solid #ff6633; color:#ff6633;}
 
 
 .introduce .tags-wrapper { overflow: hidden; padding:10px 0  10px 0 ; width:100vw;}
-.introduce .tags-3-1 { border-radius: 12px; width:20vw; font-size: 2.4vw; text-align: center; height:2em;line-height: 2em;  float:left; margin:0 5.5vw 0 5.5vw;  border:1px solid #555;}
-.introduce .tags-2-1 { border-radius: 12px; width:20vw; font-size: 2.4vw; text-align: center; height:2em;line-height: 2em;  float:left; margin:0 13.5vw 0 13.5vw;  border:1px solid #555;}
+.introduce .tags-3-1 { border-radius: 1em; width:20vw; font-size: 0.7em; text-align: center; height:2em;line-height: 2em;  float:left; margin:0 5.5vw 0 5.5vw;  border:1px solid #888;color:#888;}
+.introduce .tags-2-1 { border-radius: 1em; width:20vw; font-size: 0.7em; text-align: center; height:2em;line-height: 2em;  float:left; margin:0 13.5vw 0 13.5vw;  border:1px solid #888;color:#888;}
 
 .introduce .selected {background-color:  DeepSkyBlue;  border:none; color:white ; }
 
 
-.introduce .product-list{  width: 100%; height:1000px;   background-color:white;}
-.introduce .product-item{  width: 100%; height:30vw;  border-bottom:1px solid #eee; padding:4px 0 4px 0; overflow:auto; }
-.introduce .product-item .left-img{ float: left; width: 26vw; height:26vw;  margin-left: 8%;margin-top: 2vw ; background: url("http://img.jrjimg.cn/2014/09/20140903152716110.jpg") no-repeat;background-size: 100% 100%; position:relative;}
-.introduce .product-item .left-img .indicator { position:absolute;  width:2em;height: 2em; line-height: 2em  ; font-size: 3.6vw; text-align: center; border-radius: 1em; color:white ; background-color: red; right:-1em;top:-0.3em; }
-.introduce .product-item .product-txt{ float: left;  height:26vw;  margin-left: 4vw;margin-top: 2vw ;  width:30vw;  background-color:#eee; font-size:3vw;}
+.introduce .product-list{  width: 100%;  background-color:white;}
+.introduce .product-item{  width: 100%; height:30vw;  border-bottom:1px solid #eee; padding:4px 0 4px 0; overflow:auto; position:relative;}
+.introduce .product-item .left-img{ float: left; width: 26vw; height:26vw;  margin-left: 8%;margin-top: 2vw ;
+background-size: 100% 100%; position:relative;}
+/** background: url("http://img.jrjimg.cn/2014/09/20140903152716110.jpg") no-repeat;  **/
 
-.introduce .product-item .right{font-size: 3.6vw;width: 20%;float: right;height: 2em;border-radius: .9em;border: 1px solid #bbb;margin:18vw 4vw 0 0;}
-.introduce .product-item .right .minus{display: block;float: left;font-size: 5vw;color: #f63;width: 30%;line-height: 1.4em;text-align: center;}
-.introduce .product-item .right .num{float: left;width: 35%;line-height: 1.4em;font-size: 3.8vw;height: 1.2em;text-align: center;border: 1px solid #ddd;margin-top: .35em;border-bottom: 0;border-top: 0;}
-.introduce .product-item .right .add{display: block;float: left;width: 30%;font-size: 5vw;color: #f63;line-height: 1.4em;text-align: center;}
+.introduce .product-item .left-img .indicator { position:absolute;  width:1.6em;height: 1.6em; line-height: 1.6em  ; font-size: 0.7em; text-align: center; border-radius: 0.8em; color:white ; background-color: red; right:-1em;top:-0.3em; }
+.introduce .product-item .product-txt{ float: left;  height:26vw;  margin-left: 4vw;margin-top: 2vw ;  width:55vw;   }
+.introduce .product-item .product-name{ font-size:90%;  }
+.introduce .product-item .product-description{ font-size:70%;  }
+.introduce .product-item .product-price{ color:red;  }
+.introduce .product-item .product-price span{ color:#f63; border-radius:0.6em; border:1px solid #f63;font-size:50%;padding-left:0.4em;padding-right:0.4em;margin-left: 1em;}
+.introduce .product-item .product-original-price{ color:#777;font-size:70%; text-decoration:line-through  }
 
-.introduce .product-item .right-symble{font-size: 3.6vw;width: 2em;float: right;height: 2em; line-height: 2em  ;text-align: center;border-radius: 1em;border: 1px solid #bbb;margin:18vw 4vw 0 0; color:#f63 ;}
+.introduce .product-item .right{font-size: 0.7em;width: 20%;height: 2em;border-radius: 1em;border: 1px solid #bbb;top:18vw; right: 4vw; position:absolute;}
+.introduce .product-item .right .minus{display: block;float: left;width: 30%;font-size: 1em;color: #f63;line-height:2em;text-align: center;}
+.introduce .product-item .right .num{float: left;width: 35%;line-height: 1.5em;font-size: 1em;height: 1.5em;text-align: center;border: 1px solid #ddd; margin-top: .25em;border-bottom: 0;border-top: 0;}
+.introduce .product-item .right .add{display: block;float: left;width: 30%;font-size: 1em;color: #f63;line-height:2em;text-align: center;}
+
+.introduce .product-item .right-symble{font-size: 0.7em;width: 2em;height: 2em; line-height: 2em  ;text-align: center;border-radius: 1em;border: 1px solid #bbb;top:18vw;right: 4vw; color:#f63 ;position:absolute;}
 
 
 
+.introduce .appoint{height: 2.8em;line-height: 2.8em;font-size: 4.8vw;text-align: center;color: #fff;background-color: #fff;position: fixed;bottom: 0;width: 100%;border-top: 1px solid #eee;}
+.introduce .appoint .left{width: 50%;float: left;color: #f63;font-size: 3.8vw;text-align: left;text-indent: 1em;}
+.introduce .appoint .left span{font-size: 7vw;font-weight: bold;}
+.introduce .appoint .basket{ width:2.4em;height:2.4em;margin:0.2em 0.2em 0.2em 1em; background: url("../images/basket.png") no-repeat;background-size: 100% 100%;float:left; position:relative;cursor: pointer;}
+.introduce .appoint .basket .total-count{position:absolute;  width:1.6em;height: 1.6em; line-height: 1.6em  ; font-size: 0.6em; text-align: center; border-radius: 0.8em; color:white ; background-color: red; right:-1em;top:-0.3em;}
 
+.introduce .appoint .total-price{float:right;width:35vw;height:2.4em;margin-top:0.32em; border-right:1px solid #bbb;}
+.introduce .appoint .total-price .line1 {  height:1.4em; line-height:1.4em; color:red;}
+.introduce .appoint .total-price .line1 span.small {font-size:60%;}
+.introduce .appoint .total-price .line1 span.large {font-size:100%;}
+
+.introduce .appoint .total-price .line2 {  height:1em; line-height:1em; text-align:center;color:#999;}
+.introduce .appoint .total-price .line2 span {font-size:60%;}
+
+.introduce .appoint .center{width: 13%;float: right;text-align: center;line-height: 1em;color: #666;font-size: 3vw;display: block;border-left: 1px solid #eee;height: 100%;}
+.introduce .appoint .center .icon{width: 1.5em;height: 1.2em;background: url("https://api.nbaljz.com/Public/Api2/images/glass/icon.png") no-repeat;background-size: 100% 100%;margin: .5em auto .2em;}
+.introduce .appoint .appoint-btn{background-color: #F06520;display: block;width: 28%;float: right;color: #fff;font-size: 4.5vw;letter-spacing: 2px;}
+
+
+.introduce .popup{ z-index: 10;position: fixed;left:0;bottom:3em;width:100vw;height:100vh;background: rgba(11,11,11,0.5);}
+.introduce .popup .menu { height:16em;width:100vw; background:#fff;position: fixed;left:0;bottom:3em;}
+.introduce .popup .menu .top-actions { height:2em; width:100vw;color:#f63; border-bottom:1px solid #ddd; }
+.introduce .popup .menu .top-actions .left-action { float:left; margin:0.5em 0em 0.5em 0.5em; height:1em;line-height:1em; text-align:center;}
+.introduce .popup .menu .top-actions .right-action{ float:right;margin:0.5em 1.5em 0.5em 0;   height:1em;line-height:1em; text-align:center;}
+.introduce .popup .menu .selection-list {width: 98vw ;height:14em;overflow-y:scroll;overflow-x:hidden;}
+.introduce .popup .menu .selection-item {width: 96vw ;margin:0 auto;height:21vw;}
+
+.introduce .popup .menu .selection-item .selector { float:left; width:7vw;height:7vw; cursor: pointer; margin: 7vw 0 0 3vw;}
+.introduce .popup .menu .selection-item .selected { background: url("../images/select.png") no-repeat;background-size: 100% 100%;}
+.introduce .popup .menu .selection-item .selected-no { background: url("../images/no_select.png") no-repeat;background-size: 100% 100%;}
+
+.introduce .popup .menu .selection-item .selection-content-wrapper{ border-bottom:1px solid #ddd; float:right;  height:21vw; width: 82vw;position:relative; }
+.introduce .popup .menu .selection-item .selection-content-wrapper .selection-img{ width:17vw; height:17vw; margin-top:2vw; border:1px solid #ddd;float:left; }
+.introduce .popup .menu .selection-item .selection-content-wrapper .selection-txt{ float:left; height:7vw;line-height:7vw; margin-top:7vw; text-align:center; margin-left:2vw;}
+.introduce .popup .menu .selection-item .selection-content-wrapper .black-txt{  }
+.introduce .popup .menu .selection-item .selection-content-wrapper .red-txt{ color:red; }
+
+
+.introduce .popup .menu .selection-item .selection-content-wrapper .selection-right{font-size: 0.7em;width: 20%;height: 2em;border-radius: 1em;border: 1px solid #bbb;top:7vw; right: 4vw; position:absolute;}
+.introduce .popup .menu .selection-item .selection-content-wrapper .selection-minus{display: block;float: left;width: 30%;font-size: 1em;color: #f63;line-height:2em;text-align: center;}
+.introduce .popup .menu .selection-item .selection-content-wrapper .selection-num{float: left;width: 35%;line-height: 1.5em;font-size: 1em;height: 1.5em;text-align: center;border: 1px solid #ddd; margin-top: .25em;border-bottom: 0;border-top: 0;}
+.introduce .popup .menu .selection-item .selection-content-wrapper .selection-add{display: block;float: left;width: 30%;font-size: 1em;color: #f63;line-height:2em;text-align: center;}
+.introduce .popup .menu .selection-item .selection-content-wrapper .selection-right-symble{font-size: 0.7em;width: 2em;height: 2em; line-height: 2em  ;text-align: center;border-radius: 1em;border: 1px solid #bbb;top:7vw;right: 4vw; color:#f63 ;position:absolute;}
