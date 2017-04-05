@@ -68,6 +68,7 @@ function initPage(){
 
     //  show the  pop-up basket
     $('div.basket').click(function() {
+        removeItemsInMapper();
         $('div.popup').removeClass('hidden');
         displayBasketList();
     });
@@ -80,10 +81,14 @@ function initPage(){
     });
 
 
-    $('.selector').click(function() {
-        $(this).toggleClass('selected');
-        $(this).toggleClass('selected-no');
+    $('.left-action').click(function(){
+        dispConfirmClear();
     });
+
+    $('.right-action').click(function(){
+        $('div.popup').addClass('hidden');
+    });
+
 
    /******   end of          pop-up basket   *****/
 
@@ -213,21 +218,31 @@ function updateSelectionCallbacks(){
     $('.right-symble').click(function(){
         var tempIndex=$(this).index('.right-symble');
         productList[tempIndex].count+=1;
+        updateMapper(tempIndex);
+
         updateSelectionCounts();
      });
 
     $('.right .add').click(function(){
         var tempIndex=$(this).index('.right .add');
         productList[tempIndex].count+=1;
+        updateMapper(tempIndex);
+
         updateSelectionCounts();
      });
 
     $('.right .minus').click(function(){
         var tempIndex=$(this).index('.right .minus');
         productList[tempIndex].count-=1;
+        
+        if(productList[tempIndex].count>0){
+            updateMapper(tempIndex);
+        } else {
+            removeItemInMapper(tempIndex);
+        }
+
         updateSelectionCounts();
      });
-
 
 }
 
@@ -237,8 +252,6 @@ function updateSelectionCallbacks(){
 
 
 function updateSelectionCounts(){
-
-
 
 
     var productCount=productList.length;
@@ -261,7 +274,6 @@ function updateSelectionCounts(){
 
     	} else if(productList[i].count>0){
 
-    	    updateMapper(i);
 
             $('.indicator').eq(i).removeClass('hidden');
             $('.indicator').eq(i).text(''+productList[i].count);
@@ -338,44 +350,226 @@ function updateMapper(productListIndex){
     if(basketMapper==undefined){
         basketMapper=new Array();
     }
-
     var currentSize=basketMapper.length;
-    console.log('currentSize:'+currentSize);
+    // console.log('currentSize:'+currentSize+'  productListIndex:'+productListIndex);
     var indexAlreadyAdded=false;
-    basketMapper[currentSize]=new Object();
-    basketMapper[currentSize].indexInProductList=productListIndex;
-
-}
-
-
-function mapperContainsIndex(productListIndex){
-    var contained=false;
-    if (basketMapper.length==0) {
-        contained=false;
-        return contained;
-    } else {
-        var totalSize=basketMapper.length;
-
+    if (currentSize==0){     //  当前mapper为空，新加数据在末尾
+        indexAlreadyAdded=false;
+        basketMapper[currentSize]=new Object();
+        basketMapper[currentSize].indexInProductList=productListIndex;
+    } else {  
+        for(var tempIndex=0;tempIndex<currentSize;tempIndex++){
+            if (basketMapper[tempIndex].indexInProductList==productListIndex){
+                indexAlreadyAdded=true;
+                break;
+            }
+        }
+        if (indexAlreadyAdded){  
+            reorderMapper(tempIndex);   //  新加数据已经在mapper中， 找到该数据，移到末尾，  其他数据依次前移
+        } else {
+            basketMapper[currentSize]=new Object();    //  新加数据不在mapper中，加在末尾
+            basketMapper[currentSize].indexInProductList=productListIndex;            
+        }
     }
-    return contained;
+
+    // logMapper('after update');
 }
+
+
+
+function logMapper(tag){
+    var endSize=basketMapper.length;
+    var mapStr=tag+'\n';
+    for (var i=0;i<endSize;i++){
+        mapStr=mapStr+'basketMapper   index:'+i+'   indexInProductList:'+basketMapper[i].indexInProductList+'\n';
+    }
+    console.log(mapStr);
+}
+
+
+function removeItemInMapper(productListIndex){
+    var mapperIndex=0;
+    for (var i=0;i<basketMapper.length;i++){
+        if (basketMapper[i].indexInProductList==productListIndex){
+            mapperIndex=i;
+            break;
+        }
+    }
+    // logMapper('before splice');
+    basketMapper.splice(mapperIndex, 1);
+    // logMapper('after splice');
+}
+
+
+
+
+
+function removeItemsInMapper(){
+
+    var mapperIndex=0;
+    var containsEmptyEntry=false;
+
+    for (var i=0;i<basketMapper.length;i++){
+        if (productList[basketMapper[i].indexInProductList].count==0){
+            mapperIndex=i;
+            containsEmptyEntry=true;
+            break;
+        }
+    }
+
+    if (containsEmptyEntry){
+        basketMapper.splice(mapperIndex, 1);
+        console.log('--removeItemsInMapper remove 1 item in mapper--');
+        removeItemsInMapper();
+    } else {
+        return;
+    }
+
+
+}
+
+
+
+
+function reorderMapper(priorityIndex){
+    var currentSize=basketMapper.length;
+    if (priorityIndex==(currentSize-1)){
+        return;
+    }
+    var tempObject=new Object();
+    tempObject.indexInProductList=basketMapper[priorityIndex].indexInProductList;
+
+    for (var i=priorityIndex;i<currentSize-1;i++){
+        basketMapper[i]=basketMapper[i+1];
+    }
+    basketMapper[currentSize-1]=tempObject;
+}
+
 
 
                             
 
 function displayBasketList(){
-
     $('.selection-list .selection-item').remove();   // remvoe all current .selection-item elements  in .selection-list
+	var mapperCount=basketMapper.length;
 
-
-	var basketItemCount=basketMapper.length;
-    for (var i=0;i<basketItemCount;i++){
-	    displayBasketItem(i,basketMapper[i].indexInProductList);
+    for (var i=mapperCount-1;i>=0;i--){
+        displayBasketItem(mapperCount-1-i , basketMapper[i].indexInProductList);
     }
+
+
+    updateBasketCallbacks();
+
+}
+
+
+function updateBasketCallbacks(){
+
+    $('.selector').click(function() {
+        var tempIndex=$(this).index('.selector');
+        var mapperCount=basketMapper.length;
+        var index=basketMapper[mapperCount-1-tempIndex].indexInProductList;
+        if (productList[index].count==0){
+            productList[index].count=1;
+            $('.selection-right').eq(tempIndex).removeClass('hidden');
+            $('.selection-num-b').eq(tempIndex).text('1');
+            $('.selection-right-symble').eq(tempIndex).addClass('hidden');
+            $(this).addClass('selected').removeClass('selected-no');
+        } else {
+            productList[index].count=0;
+            $('.selection-right').eq(tempIndex).addClass('hidden');
+            $('.selection-right-symble').eq(tempIndex).removeClass('hidden');
+            $(this).addClass('selected-no').removeClass('selected');
+
+        }
+        updateSelectionCounts();
+    });
+
+
+
+    $('.selection-right-symble').click(function(){
+        var tempIndex=$(this).index('.selection-right-symble');
+        var mapperCount=basketMapper.length;
+        productList[basketMapper[mapperCount-1-tempIndex].indexInProductList].count+=1;
+
+        $(this).addClass('hidden');
+
+        $('.selection-right').eq(tempIndex).removeClass('hidden');
+        $('.selector').eq(tempIndex).addClass('selected').removeClass('selected-no');
+        $('.selection-num-b').eq(tempIndex).text(productList[basketMapper[mapperCount-1-tempIndex].indexInProductList].count);
+        updateSelectionCounts();
+
+     });
+
+
+    $('.selection-add').click(function(){
+        var tempIndex=$(this).index('.selection-add');
+        var mapperCount=basketMapper.length;
+        var index=basketMapper[mapperCount-1-tempIndex].indexInProductList;
+
+        productList[index].count+=1;
+        $('.selection-num-b').eq(tempIndex).text(productList[index].count);
+        $('.selector').eq(tempIndex).addClass('selected').removeClass('selected-no');
+        updateSelectionCounts();
+
+     });
+
+
+    $('.selection-minus').click(function(){
+        var tempIndex=$(this).index('.selection-minus');
+        var mapperCount=basketMapper.length;
+        productList[basketMapper[mapperCount-1-tempIndex].indexInProductList].count-=1;
+
+
+        if (productList[basketMapper[mapperCount-1-tempIndex].indexInProductList].count==0){
+            $('.selection-right').eq(tempIndex).addClass('hidden');
+            $('.selection-right-symble').eq(tempIndex).removeClass('hidden');
+            $('.selector').eq(tempIndex).addClass('selected-no').removeClass('selected');
+        }
+
+        $('.selection-num-b').eq(tempIndex).text(productList[basketMapper[mapperCount-1-tempIndex].indexInProductList].count);
+
+        updateSelectionCounts();
+
+     });
+
+
 
 
 
 }
+
+
+
+
+
+function dispConfirmClear(){
+    console.log('---call confirm--');
+
+    var r=confirm("确认清空所有衣物吗？");
+    if(r==true){
+
+        var listCount=productList.length;
+        for (var i=0;i<listCount;i++){
+            productList[i].count=0;
+        }
+        $('div.popup').addClass('hidden');
+        updateSelectionCounts();
+        removeItemsInMapper();
+
+
+    } else {
+
+
+
+    }
+
+
+}
+
+
+
+
 
 
 function displayBasketItem(basketIndex, productListIndex ){
@@ -384,7 +578,16 @@ function displayBasketItem(basketIndex, productListIndex ){
 	    '<div class="selector selected"></div>'+
 		'<div class="selection-content-wrapper">'+
             '<div class="selection-img"></div>'+
-
+            '<div class="selection-txt">'+
+                '<span class="black-txt">'+ productList[productListIndex].name +'</span>'+
+                '<span class="red-txt">¥'+ productList[productListIndex].price.toFixed(2) +'</span>'+
+            '</div>  '+
+            '<div class="selection-right ">'+
+                '<div class="selection-minus"><b>-</b></div>'+
+                '<div class="selection-num"><b class="selection-num-b">'+productList[productListIndex].count+'</b></div>'+
+                '<div class="selection-add"><b>+</b></div>'+
+            '</div>  '+
+            '<div class="selection-right-symble hidden"><b>+</b></div>'+
 		'</div>  '+
 	'</div>').appendTo('.selection-list');
 
@@ -395,6 +598,13 @@ function displayBasketItem(basketIndex, productListIndex ){
         'background-size':'100% 100%'
     });
 
+
+
+
+
+
 }
+
+
 
 

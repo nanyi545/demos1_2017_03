@@ -5,8 +5,16 @@ html,body,form,input,select,textarea,div,p,h1,h2,h3,h4,h5,h6,p,ul,ol,li,form,img
 
 ul,li,ol,dl,dt,dd{list-style:none; }
 img{border:none;}
+
 a,a:visited{text-decoration: none;outline:none;border:none;}
-*{margin: 0;padding: 0;}
+
+*{
+    margin: 0;padding: 0;
+      -webkit-box-sizing: border-box;
+         -moz-box-sizing: border-box;
+              box-sizing: border-box;
+}
+
 input,button{outline: none;border: none;}
 .main-container{min-height: 1em;overflow: hidden;}
 
