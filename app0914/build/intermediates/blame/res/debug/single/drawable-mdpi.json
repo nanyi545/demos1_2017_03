@@ -1,27 +1,23 @@
 [
     {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\pop_icon_logout.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\pop_icon_logout.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_notifi_videoinvite.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_notifi_videoinvite.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_tab_indicator_mtrl_alpha.9.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\c58e3d8548a506aeee0541aacb054b198f6b9608\\output\\res\\drawable-mdpi\\abc_tab_indicator_mtrl_alpha.9.png"
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_ic_menu_paste_mtrl_am_alpha.png",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\drawable-mdpi\\abc_ic_menu_paste_mtrl_am_alpha.png"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_quit.png",
         "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_quit.png"
     },
     {
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\notification_icon.png",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\notification_icon.png"
+    },
+    {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_camera_config_week.png",
         "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_camera_config_week.png"
     },
     {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_ic_menu_share_mtrl_alpha.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\c58e3d8548a506aeee0541aacb054b198f6b9608\\output\\res\\drawable-mdpi\\abc_ic_menu_share_mtrl_alpha.png"
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_mutual_invite_check_a.png",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_mutual_invite_check_a.png"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_ic_search_api_mtrl_alpha.png",
@@ -32,36 +28,20 @@
         "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_camera_config_bottom_bt_b.png"
     },
     {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_camera_config_time.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_camera_config_time.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\ic_highlight_off_black_36dp.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\ic_highlight_off_black_36dp.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_mutual_userlist_bt_closevideo_b.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_mutual_userlist_bt_closevideo_b.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_camera.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_camera.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\ic_close_black_36dp.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\ic_close_black_36dp.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_c_green.png",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_c_green.png"
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_list_longpressed_holo.9.png",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\drawable-mdpi\\abc_list_longpressed_holo.9.png"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_btn_switch_to_on_mtrl_00012.9.png",
         "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\drawable-mdpi\\abc_btn_switch_to_on_mtrl_00012.9.png"
     },
     {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_camera_config_titlepic.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_camera_config_titlepic.png"
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_c_green.png",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_c_green.png"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\pop_icon_chat.png",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\pop_icon_chat.png"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\ic_highlight_off_black_36dp.png",
@@ -70,6 +50,10 @@
     {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_mutual_invite_check_b.png",
         "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_mutual_invite_check_b.png"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_mutual_head_into_a.png",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_mutual_head_into_a.png"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_btn_check_to_on_mtrl_000.png",
@@ -84,594 +68,6 @@
         "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\drawable-mdpi\\abc_ic_commit_search_api_mtrl_alpha.png"
     },
     {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\pop_icon_chat.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\pop_icon_chat.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_c_blue.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_c_blue.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_c_yellow.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_c_yellow.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_alarm_simple.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_alarm_simple.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_login_rememberpwd_checked.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_login_rememberpwd_checked.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_monitor.png",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_monitor.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_list_divider_mtrl_alpha.9.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\c58e3d8548a506aeee0541aacb054b198f6b9608\\output\\res\\drawable-mdpi\\abc_list_divider_mtrl_alpha.9.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_target.png",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_target.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\met_ic_clear.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\393641fd35456f189b604841364e95bdf6134bd4\\output\\res\\drawable-mdpi\\met_ic_clear.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_text_cursor_mtrl_alpha.9.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\c58e3d8548a506aeee0541aacb054b198f6b9608\\output\\res\\drawable-mdpi\\abc_text_cursor_mtrl_alpha.9.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\received_msg_bg.9.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\received_msg_bg.9.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_main_tab_monitoringlist_a.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_main_tab_monitoringlist_a.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_quit.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_quit.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\title_setting.png",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\title_setting.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_c_grey.png",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_c_grey.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_mutual_head_into_b.png",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_mutual_head_into_b.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_ic_menu_copy_mtrl_am_alpha.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\c58e3d8548a506aeee0541aacb054b198f6b9608\\output\\res\\drawable-mdpi\\abc_ic_menu_copy_mtrl_am_alpha.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\ic_exit_to_app_black_36dp.png",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\ic_exit_to_app_black_36dp.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_mutual_userlist_bt_openvideo_b.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_mutual_userlist_bt_openvideo_b.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_radar.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_radar.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_login_bottom.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_login_bottom.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_user_2.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_user_2.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_camera_config_num.png",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_camera_config_num.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_main_tab_alerm_b.png",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_main_tab_alerm_b.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\camera_user_tree_type.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\camera_user_tree_type.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_mutual_head_add_b.png",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_mutual_head_add_b.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_mutual_userlist_bt_openvideo_a.png",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_mutual_userlist_bt_openvideo_a.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\pop_icon_traffic.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\pop_icon_traffic.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_ic_voice_search_api_mtrl_alpha.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\drawable-mdpi\\abc_ic_voice_search_api_mtrl_alpha.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_checkbox_min_b.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_checkbox_min_b.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\camera_tree_type.png",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\camera_tree_type.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_mutual_audio_close.png",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_mutual_audio_close.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_mutual_video_bottom_ll_press.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_mutual_video_bottom_ll_press.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_notifi_alarm.png",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_notifi_alarm.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_main_tabwidget.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_main_tabwidget.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_mutual_audio_open.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_mutual_audio_open.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_camera_monitor_annal_date.png",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_camera_monitor_annal_date.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_tab_indicator_mtrl_alpha.9.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\drawable-mdpi\\abc_tab_indicator_mtrl_alpha.9.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_button_b.png",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_button_b.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_mutual_head_add_a.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_mutual_head_add_a.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_c_grey.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_c_grey.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_mutual_video_bottom_ll_press.png",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_mutual_video_bottom_ll_press.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_ic_go_search_api_mtrl_alpha.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\drawable-mdpi\\abc_ic_go_search_api_mtrl_alpha.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_mutual_head.png",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_mutual_head.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_mutual_video_shutdow.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_mutual_video_shutdow.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_ic_menu_cut_mtrl_alpha.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\drawable-mdpi\\abc_ic_menu_cut_mtrl_alpha.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_login_loginsub_a.png",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_login_loginsub_a.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_login_top.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_login_top.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\drawer_shadow.9.png",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\drawer_shadow.9.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_cab_background_top_mtrl_alpha.9.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\c58e3d8548a506aeee0541aacb054b198f6b9608\\output\\res\\drawable-mdpi\\abc_cab_background_top_mtrl_alpha.9.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_target.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_target.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_login_input.png",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_login_input.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_tab_alarmlist_title_line.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_tab_alarmlist_title_line.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_radar.png",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_radar.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_monitor.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_monitor.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_list_selector_disabled_holo_light.9.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\c58e3d8548a506aeee0541aacb054b198f6b9608\\output\\res\\drawable-mdpi\\abc_list_selector_disabled_holo_light.9.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_mutual_head_back_b.png",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_mutual_head_back_b.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_login_loginsetting_a.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_login_loginsetting_a.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_login_input.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_login_input.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_user.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_user.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_camera_monitor_annal_msgtype.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_camera_monitor_annal_msgtype.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_btn_radio_to_on_mtrl_000.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\c58e3d8548a506aeee0541aacb054b198f6b9608\\output\\res\\drawable-mdpi\\abc_btn_radio_to_on_mtrl_000.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_ic_menu_selectall_mtrl_alpha.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\drawable-mdpi\\abc_ic_menu_selectall_mtrl_alpha.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\notification_icon.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\notification_icon.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_main_tab_monitoringlist_a.png",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_main_tab_monitoringlist_a.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_ic_menu_moreoverflow_mtrl_alpha.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\c58e3d8548a506aeee0541aacb054b198f6b9608\\output\\res\\drawable-mdpi\\abc_ic_menu_moreoverflow_mtrl_alpha.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_spinner_mtrl_am_alpha.9.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\drawable-mdpi\\abc_spinner_mtrl_am_alpha.9.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_c_red.png",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_c_red.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_android_yellow.png",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_android_yellow.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_textfield_activated_mtrl_alpha.9.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\drawable-mdpi\\abc_textfield_activated_mtrl_alpha.9.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_spinner_mtrl_am_alpha.9.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\c58e3d8548a506aeee0541aacb054b198f6b9608\\output\\res\\drawable-mdpi\\abc_spinner_mtrl_am_alpha.9.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\actionbar_more_icon.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\actionbar_more_icon.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_user_2.png",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_user_2.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_mutual_head_back_a.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_mutual_head_back_a.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_button_a.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_button_a.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_ic_menu_copy_mtrl_am_alpha.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\drawable-mdpi\\abc_ic_menu_copy_mtrl_am_alpha.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_ic_clear_mtrl_alpha.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\c58e3d8548a506aeee0541aacb054b198f6b9608\\output\\res\\drawable-mdpi\\abc_ic_clear_mtrl_alpha.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_ic_voice_search_api_mtrl_alpha.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\c58e3d8548a506aeee0541aacb054b198f6b9608\\output\\res\\drawable-mdpi\\abc_ic_voice_search_api_mtrl_alpha.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\ic_settings_black_36dp.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\ic_settings_black_36dp.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_mutual_video_bottom_ll.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_mutual_video_bottom_ll.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_login_loginsub_a.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_login_loginsub_a.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_c_blue.png",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_c_blue.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_shield_green.png",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_shield_green.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_ic_clear_mtrl_alpha.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\drawable-mdpi\\abc_ic_clear_mtrl_alpha.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_ab_share_pack_mtrl_alpha.9.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\c58e3d8548a506aeee0541aacb054b198f6b9608\\output\\res\\drawable-mdpi\\abc_ab_share_pack_mtrl_alpha.9.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\iptv_tree_type.png",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\iptv_tree_type.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_login_rememberpwd_normal.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_login_rememberpwd_normal.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\ic_search_black_36dp.png",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\ic_search_black_36dp.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_chart.png",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_chart.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_login_top.png",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_login_top.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_login_middle.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_login_middle.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_ic_ab_back_mtrl_am_alpha.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\c58e3d8548a506aeee0541aacb054b198f6b9608\\output\\res\\drawable-mdpi\\abc_ic_ab_back_mtrl_am_alpha.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_mutual_video_bottom_ll.png",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_mutual_video_bottom_ll.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\user_tree_type.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\user_tree_type.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_ab_bottom_solid_dark_holo.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\abc_ab_bottom_solid_dark_holo.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_btn_rating_star_on_mtrl_alpha.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\drawable-mdpi\\abc_btn_rating_star_on_mtrl_alpha.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_input_b.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_input_b.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_login_rememberpwd_focus.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_login_rememberpwd_focus.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_login_bottom.png",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_login_bottom.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_checkbox_min_a.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_checkbox_min_a.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_ic_search_api_mtrl_alpha.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\c58e3d8548a506aeee0541aacb054b198f6b9608\\output\\res\\drawable-mdpi\\abc_ic_search_api_mtrl_alpha.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_mutual_main_cursorimg.png",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_mutual_main_cursorimg.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_login_loginsub_b.png",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_login_loginsub_b.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_tab_alarmlist_title.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_tab_alarmlist_title.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\ic_power_settings_new_black_36dp.png",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\ic_power_settings_new_black_36dp.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_switch_track_mtrl_alpha.9.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\drawable-mdpi\\abc_switch_track_mtrl_alpha.9.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_list_selector_disabled_holo_dark.9.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\c58e3d8548a506aeee0541aacb054b198f6b9608\\output\\res\\drawable-mdpi\\abc_list_selector_disabled_holo_dark.9.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_popup_background_mtrl_mult.9.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\c58e3d8548a506aeee0541aacb054b198f6b9608\\output\\res\\drawable-mdpi\\abc_popup_background_mtrl_mult.9.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\logo.png",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\logo.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_textfield_default_mtrl_alpha.9.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\drawable-mdpi\\abc_textfield_default_mtrl_alpha.9.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_mutual_head_into_a.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_mutual_head_into_a.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_btn_switch_to_on_mtrl_00001.9.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\drawable-mdpi\\abc_btn_switch_to_on_mtrl_00001.9.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_list_pressed_holo_dark.9.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\c58e3d8548a506aeee0541aacb054b198f6b9608\\output\\res\\drawable-mdpi\\abc_list_pressed_holo_dark.9.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_user.png",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_user.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_camera.png",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_camera.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_ab_share_pack_mtrl_alpha.9.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\drawable-mdpi\\abc_ab_share_pack_mtrl_alpha.9.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_mutual_head_add_b.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_mutual_head_add_b.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_main_tabwidget.png",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_main_tabwidget.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_btn_check_to_on_mtrl_000.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\c58e3d8548a506aeee0541aacb054b198f6b9608\\output\\res\\drawable-mdpi\\abc_btn_check_to_on_mtrl_000.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_list_pressed_holo_light.9.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\c58e3d8548a506aeee0541aacb054b198f6b9608\\output\\res\\drawable-mdpi\\abc_list_pressed_holo_light.9.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_input.png",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_input.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_c_orange.png",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_c_orange.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_btn_check_to_on_mtrl_015.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\c58e3d8548a506aeee0541aacb054b198f6b9608\\output\\res\\drawable-mdpi\\abc_btn_check_to_on_mtrl_015.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_mutual_head_back_b.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_mutual_head_back_b.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_camera_config_titlepic.png",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_camera_config_titlepic.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_running.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_running.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\send_msg_bg.9.png",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\send_msg_bg.9.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_textfield_search_default_mtrl_alpha.9.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\drawable-mdpi\\abc_textfield_search_default_mtrl_alpha.9.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_btn_rating_star_off_mtrl_alpha.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\drawable-mdpi\\abc_btn_rating_star_off_mtrl_alpha.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_login_middle.png",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_login_middle.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\camera_tree_type.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\camera_tree_type.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\pc_tree_type.png",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\pc_tree_type.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\send_msg_bg.9.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\send_msg_bg.9.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_ic_menu_paste_mtrl_am_alpha.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\drawable-mdpi\\abc_ic_menu_paste_mtrl_am_alpha.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\notification_icon.png",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\notification_icon.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_passwd.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_passwd.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\list_divider_holo_light.9.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\list_divider_holo_light.9.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_mutual_invite_check_a.png",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_mutual_invite_check_a.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_list_longpressed_holo.9.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\drawable-mdpi\\abc_list_longpressed_holo.9.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_list_longpressed_holo.9.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\c58e3d8548a506aeee0541aacb054b198f6b9608\\output\\res\\drawable-mdpi\\abc_list_longpressed_holo.9.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_ic_commit_search_api_mtrl_alpha.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\c58e3d8548a506aeee0541aacb054b198f6b9608\\output\\res\\drawable-mdpi\\abc_ic_commit_search_api_mtrl_alpha.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_menu_hardkey_panel_mtrl_mult.9.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\c58e3d8548a506aeee0541aacb054b198f6b9608\\output\\res\\drawable-mdpi\\abc_menu_hardkey_panel_mtrl_mult.9.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_main_tab_alerm_b.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_main_tab_alerm_b.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_c_orange.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_c_orange.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\pop_icon_chat.png",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\pop_icon_chat.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_mutual_head_into_a.png",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_mutual_head_into_a.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_chip.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_chip.png"
-    },
-    {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_textfield_search_activated_mtrl_alpha.9.png",
         "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\drawable-mdpi\\abc_textfield_search_activated_mtrl_alpha.9.png"
     },
@@ -684,28 +80,28 @@
         "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_camera_monitor_annal_msgtype.png"
     },
     {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_textfield_search_default_mtrl_alpha.9.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\c58e3d8548a506aeee0541aacb054b198f6b9608\\output\\res\\drawable-mdpi\\abc_textfield_search_default_mtrl_alpha.9.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_mutual_userlist_bt_closevideo_a.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_mutual_userlist_bt_closevideo_a.png"
-    },
-    {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_login_rememberpwd_focus.png",
         "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_login_rememberpwd_focus.png"
-    },
-    {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_login_rememberpwd_checked.png",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_login_rememberpwd_checked.png"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_mutual_head_add_a.png",
         "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_mutual_head_add_a.png"
     },
     {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\ic_power_settings_new_black_36dp.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\ic_power_settings_new_black_36dp.png"
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_login_rememberpwd_checked.png",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_login_rememberpwd_checked.png"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_monitor.png",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_monitor.png"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_target.png",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_target.png"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\met_ic_clear.png",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\393641fd35456f189b604841364e95bdf6134bd4\\output\\res\\drawable-mdpi\\met_ic_clear.png"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_camera_config_bottom_bt_a.png",
@@ -714,10 +110,6 @@
     {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_camera_config_time.png",
         "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_camera_config_time.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_ic_menu_selectall_mtrl_alpha.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\c58e3d8548a506aeee0541aacb054b198f6b9608\\output\\res\\drawable-mdpi\\abc_ic_menu_selectall_mtrl_alpha.png"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_chip.png",
@@ -736,12 +128,12 @@
         "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\drawable-mdpi\\abc_list_selector_disabled_holo_dark.9.png"
     },
     {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\drawer_shadow.9.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\drawer_shadow.9.png"
-    },
-    {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_checkbox_min_a.png",
         "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_checkbox_min_a.png"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\title_setting.png",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\title_setting.png"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_shield.png",
@@ -750,6 +142,14 @@
     {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_text_cursor_mtrl_alpha.9.png",
         "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\drawable-mdpi\\abc_text_cursor_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_c_grey.png",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_c_grey.png"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_mutual_head_into_b.png",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_mutual_head_into_b.png"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_startapp.png",
@@ -764,76 +164,72 @@
         "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_c_yellow.png"
     },
     {
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\ic_exit_to_app_black_36dp.png",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\ic_exit_to_app_black_36dp.png"
+    },
+    {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\pop_icon_logout.png",
         "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\pop_icon_logout.png"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_camera_config_num.png",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_camera_config_num.png"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_main_tab_alerm_b.png",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_main_tab_alerm_b.png"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_passwd.png",
         "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_passwd.png"
     },
     {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\ic_delete_white_36dp.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\ic_delete_white_36dp.png"
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_mutual_head_add_b.png",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_mutual_head_add_b.png"
     },
     {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_startapp.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_startapp.png"
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_mutual_userlist_bt_openvideo_a.png",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_mutual_userlist_bt_openvideo_a.png"
     },
     {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_ic_menu_cut_mtrl_alpha.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\c58e3d8548a506aeee0541aacb054b198f6b9608\\output\\res\\drawable-mdpi\\abc_ic_menu_cut_mtrl_alpha.png"
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_ic_voice_search_api_mtrl_alpha.png",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\drawable-mdpi\\abc_ic_voice_search_api_mtrl_alpha.png"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\camera_tree_type.png",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\camera_tree_type.png"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_mutual_audio_close.png",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_mutual_audio_close.png"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_main_tab_alerm_a.png",
         "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_main_tab_alerm_a.png"
     },
     {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_camera_monitor_annal_title.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_camera_monitor_annal_title.png"
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_notifi_alarm.png",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_notifi_alarm.png"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_menu_hardkey_panel_mtrl_mult.9.png",
         "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\drawable-mdpi\\abc_menu_hardkey_panel_mtrl_mult.9.png"
     },
     {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_mutual_userlist_bt_openvideo_a.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_mutual_userlist_bt_openvideo_a.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_list_focused_holo.9.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\c58e3d8548a506aeee0541aacb054b198f6b9608\\output\\res\\drawable-mdpi\\abc_list_focused_holo.9.png"
-    },
-    {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_alarm_simple.png",
         "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_alarm_simple.png"
     },
     {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_mutual_audio_close.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_mutual_audio_close.png"
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_camera_monitor_annal_date.png",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_camera_monitor_annal_date.png"
     },
     {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_mutual_head_into_b.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_mutual_head_into_b.png"
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_tab_indicator_mtrl_alpha.9.png",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\drawable-mdpi\\abc_tab_indicator_mtrl_alpha.9.png"
     },
     {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\met_ic_clear.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\487f1c827576c03c99997e8035ad0f58f1f9cda3\\output\\res\\drawable-mdpi\\met_ic_clear.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_switch_track_mtrl_alpha.9.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\c58e3d8548a506aeee0541aacb054b198f6b9608\\output\\res\\drawable-mdpi\\abc_switch_track_mtrl_alpha.9.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_host.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_host.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\iptv_tree_type.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\iptv_tree_type.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_shield.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_shield.png"
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_button_b.png",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_button_b.png"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_btn_check_to_on_mtrl_015.png",
@@ -842,6 +238,18 @@
     {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_checkbox_min_c.png",
         "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_checkbox_min_c.png"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_mutual_video_bottom_ll_press.png",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_mutual_video_bottom_ll_press.png"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_mutual_head.png",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_mutual_head.png"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_ic_go_search_api_mtrl_alpha.png",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\drawable-mdpi\\abc_ic_go_search_api_mtrl_alpha.png"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_tab_alarmlist_resolve.png",
@@ -856,32 +264,20 @@
         "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_mutual_audio_open.png"
     },
     {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_login_settingdiv_input.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_login_settingdiv_input.png"
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_ic_menu_cut_mtrl_alpha.png",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\drawable-mdpi\\abc_ic_menu_cut_mtrl_alpha.png"
     },
     {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_mutual_main_cursorimg.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_mutual_main_cursorimg.png"
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_login_loginsub_a.png",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_login_loginsub_a.png"
     },
     {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_mutual_invite_check_a.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_mutual_invite_check_a.png"
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\drawer_shadow.9.png",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\drawer_shadow.9.png"
     },
     {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\logo.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\logo.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_ic_go_search_api_mtrl_alpha.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\c58e3d8548a506aeee0541aacb054b198f6b9608\\output\\res\\drawable-mdpi\\abc_ic_go_search_api_mtrl_alpha.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_android_yellow.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_android_yellow.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_btn_radio_to_on_mtrl_015.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\c58e3d8548a506aeee0541aacb054b198f6b9608\\output\\res\\drawable-mdpi\\abc_btn_radio_to_on_mtrl_015.png"
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_login_input.png",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_login_input.png"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_mutual_head_back_a.png",
@@ -896,6 +292,10 @@
         "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_webc.png"
     },
     {
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_radar.png",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_radar.png"
+    },
+    {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_mutual_userlist_bt_closevideo_a.png",
         "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_mutual_userlist_bt_closevideo_a.png"
     },
@@ -904,20 +304,12 @@
         "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\drawable-mdpi\\abc_list_pressed_holo_light.9.png"
     },
     {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_camera_config_week.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_camera_config_week.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\ic_search_black_36dp.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\ic_search_black_36dp.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_camera_config_bottom_bt_b.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_camera_config_bottom_bt_b.png"
-    },
-    {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_login_loginsetting_a.png",
         "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_login_loginsetting_a.png"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_mutual_head_back_b.png",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_mutual_head_back_b.png"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_main_tab_monitoringlist_b.png",
@@ -928,68 +320,60 @@
         "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\ic_settings_black_36dp.png"
     },
     {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_camera_monitor_annal_date.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_camera_monitor_annal_date.png"
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_ic_menu_selectall_mtrl_alpha.png",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\drawable-mdpi\\abc_ic_menu_selectall_mtrl_alpha.png"
     },
     {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_input.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_input.png"
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_main_tab_monitoringlist_a.png",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_main_tab_monitoringlist_a.png"
     },
     {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_login_loginsetting_b.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_login_loginsetting_b.png"
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_spinner_mtrl_am_alpha.9.png",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\drawable-mdpi\\abc_spinner_mtrl_am_alpha.9.png"
     },
     {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_login_loginsub_b.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_login_loginsub_b.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_btn_rating_star_off_mtrl_alpha.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\c58e3d8548a506aeee0541aacb054b198f6b9608\\output\\res\\drawable-mdpi\\abc_btn_rating_star_off_mtrl_alpha.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\phone_tree_type.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\phone_tree_type.png"
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_c_red.png",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_c_red.png"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_main_tab_newalarmnum.png",
         "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_main_tab_newalarmnum.png"
     },
     {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_list_pressed_holo_dark.9.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\drawable-mdpi\\abc_list_pressed_holo_dark.9.png"
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_android_yellow.png",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_android_yellow.png"
     },
     {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\actionbar_search_icon.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\actionbar_search_icon.png"
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_textfield_activated_mtrl_alpha.9.png",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\drawable-mdpi\\abc_textfield_activated_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_list_pressed_holo_dark.9.png",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\drawable-mdpi\\abc_list_pressed_holo_dark.9.png"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_login_loginsetting_b.png",
         "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_login_loginsetting_b.png"
     },
     {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\received_msg_bg.9.png",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\received_msg_bg.9.png"
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_user_2.png",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_user_2.png"
     },
     {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_textfield_search_activated_mtrl_alpha.9.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\c58e3d8548a506aeee0541aacb054b198f6b9608\\output\\res\\drawable-mdpi\\abc_textfield_search_activated_mtrl_alpha.9.png"
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_ic_menu_copy_mtrl_am_alpha.png",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\drawable-mdpi\\abc_ic_menu_copy_mtrl_am_alpha.png"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\received_msg_bg.9.png",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\received_msg_bg.9.png"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_mutual_userlist_bt_openvideo_b.png",
         "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_mutual_userlist_bt_openvideo_b.png"
     },
     {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_btn_rating_star_on_mtrl_alpha.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\c58e3d8548a506aeee0541aacb054b198f6b9608\\output\\res\\drawable-mdpi\\abc_btn_rating_star_on_mtrl_alpha.png"
-    },
-    {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_input_b.png",
         "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_input_b.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_main_tab_newalarmnum.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_main_tab_newalarmnum.png"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_list_divider_mtrl_alpha.9.png",
@@ -1004,80 +388,92 @@
         "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_login_rememberpwd_normal.png"
     },
     {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\ic_ab_back_holo_dark.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\ic_ab_back_holo_dark.png"
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_c_blue.png",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_c_blue.png"
     },
     {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_camera_config_bottom_bt_a.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_camera_config_bottom_bt_a.png"
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_shield_green.png",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_shield_green.png"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_ic_clear_mtrl_alpha.png",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\drawable-mdpi\\abc_ic_clear_mtrl_alpha.png"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\iptv_tree_type.png",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\iptv_tree_type.png"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\ic_search_black_36dp.png",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\ic_search_black_36dp.png"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_chart.png",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_chart.png"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_ic_ab_back_mtrl_am_alpha.png",
         "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\drawable-mdpi\\abc_ic_ab_back_mtrl_am_alpha.png"
     },
     {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_ic_menu_paste_mtrl_am_alpha.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\c58e3d8548a506aeee0541aacb054b198f6b9608\\output\\res\\drawable-mdpi\\abc_ic_menu_paste_mtrl_am_alpha.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_button_b.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_button_b.png"
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_login_top.png",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_login_top.png"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_popup_background_mtrl_mult.9.png",
         "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\drawable-mdpi\\abc_popup_background_mtrl_mult.9.png"
     },
     {
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_mutual_video_bottom_ll.png",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_mutual_video_bottom_ll.png"
+    },
+    {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_cab_background_top_mtrl_alpha.9.png",
         "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\drawable-mdpi\\abc_cab_background_top_mtrl_alpha.9.png"
     },
     {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_webc.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_webc.png"
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_btn_rating_star_on_mtrl_alpha.png",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\drawable-mdpi\\abc_btn_rating_star_on_mtrl_alpha.png"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\list_divider_holo_light.9.png",
         "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\list_divider_holo_light.9.png"
     },
     {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_textfield_default_mtrl_alpha.9.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\c58e3d8548a506aeee0541aacb054b198f6b9608\\output\\res\\drawable-mdpi\\abc_textfield_default_mtrl_alpha.9.png"
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_login_bottom.png",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_login_bottom.png"
     },
     {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_c_red.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_c_red.png"
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_mutual_main_cursorimg.png",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_mutual_main_cursorimg.png"
     },
     {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_chart.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_chart.png"
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_login_loginsub_b.png",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_login_loginsub_b.png"
     },
     {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_mutual_invite_check_b.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_mutual_invite_check_b.png"
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\ic_power_settings_new_black_36dp.png",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\ic_power_settings_new_black_36dp.png"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_switch_track_mtrl_alpha.9.png",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\drawable-mdpi\\abc_switch_track_mtrl_alpha.9.png"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_btn_radio_to_on_mtrl_000.png",
         "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\drawable-mdpi\\abc_btn_radio_to_on_mtrl_000.png"
     },
     {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_camera_config_num.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_camera_config_num.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\title_setting.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\title_setting.png"
-    },
-    {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\ic_delete_white_36dp.png",
         "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\ic_delete_white_36dp.png"
     },
     {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\ic_warning_black_48dp.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\ic_warning_black_48dp.png"
-    },
-    {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_list_focused_holo.9.png",
         "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\drawable-mdpi\\abc_list_focused_holo.9.png"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\logo.png",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\logo.png"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\actionbar_more_icon.png",
@@ -1088,20 +484,20 @@
         "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\drawable-mdpi\\abc_ic_menu_share_mtrl_alpha.png"
     },
     {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_ic_menu_moreoverflow_mtrl_alpha.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\drawable-mdpi\\abc_ic_menu_moreoverflow_mtrl_alpha.png"
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_textfield_default_mtrl_alpha.9.png",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\drawable-mdpi\\abc_textfield_default_mtrl_alpha.9.png"
     },
     {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_mutual_invite_check_c.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_mutual_invite_check_c.png"
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_ic_menu_moreoverflow_mtrl_alpha.png",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\drawable-mdpi\\abc_ic_menu_moreoverflow_mtrl_alpha.png"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_running.png",
         "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_running.png"
     },
     {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_shield_green.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_shield_green.png"
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_btn_switch_to_on_mtrl_00001.9.png",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\drawable-mdpi\\abc_btn_switch_to_on_mtrl_00001.9.png"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_mutual_userlist_bt_closevideo_b.png",
@@ -1112,32 +508,24 @@
         "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\ic_close_black_36dp.png"
     },
     {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_checkbox_min_c.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_checkbox_min_c.png"
-    },
-    {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_checkbox_min_b.png",
         "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_checkbox_min_b.png"
     },
     {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\pc_tree_type.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\pc_tree_type.png"
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_user.png",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_user.png"
     },
     {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_main_tab_monitoringlist_b.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_main_tab_monitoringlist_b.png"
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_camera.png",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_camera.png"
     },
     {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_mutual_head.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_mutual_head.png"
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_ab_share_pack_mtrl_alpha.9.png",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\drawable-mdpi\\abc_ab_share_pack_mtrl_alpha.9.png"
     },
     {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_notifi_alarm.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_notifi_alarm.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_textfield_activated_mtrl_alpha.9.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\c58e3d8548a506aeee0541aacb054b198f6b9608\\output\\res\\drawable-mdpi\\abc_textfield_activated_mtrl_alpha.9.png"
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_main_tabwidget.png",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_main_tabwidget.png"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_tab_alarmlist_title_line.png",
@@ -1148,56 +536,64 @@
         "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_mutual_video_shutdow.png"
     },
     {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_main_tab_alerm_a.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_main_tab_alerm_a.png"
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_input.png",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_input.png"
     },
     {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_c_green.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_c_green.png"
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_c_orange.png",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_c_orange.png"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_camera_monitor_annal_title.png",
         "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_camera_monitor_annal_title.png"
     },
     {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\ic_exit_to_app_black_36dp.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\ic_exit_to_app_black_36dp.png"
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_camera_config_titlepic.png",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_camera_config_titlepic.png"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\send_msg_bg.9.png",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\send_msg_bg.9.png"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_login_settingdiv_input.png",
         "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_login_settingdiv_input.png"
     },
     {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\user_tree_type.png",
-        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\user_tree_type.png"
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_textfield_search_default_mtrl_alpha.9.png",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\drawable-mdpi\\abc_textfield_search_default_mtrl_alpha.9.png"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_list_selector_disabled_holo_light.9.png",
         "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\drawable-mdpi\\abc_list_selector_disabled_holo_light.9.png"
     },
     {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_btn_switch_to_on_mtrl_00001.9.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\c58e3d8548a506aeee0541aacb054b198f6b9608\\output\\res\\drawable-mdpi\\abc_btn_switch_to_on_mtrl_00001.9.png"
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\user_tree_type.png",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\user_tree_type.png"
     },
     {
-        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_btn_radio_to_on_mtrl_015.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\drawable-mdpi\\abc_btn_radio_to_on_mtrl_015.png"
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_btn_rating_star_off_mtrl_alpha.png",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\drawable-mdpi\\abc_btn_rating_star_off_mtrl_alpha.png"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_button_a.png",
         "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_button_a.png"
     },
     {
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_login_middle.png",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_login_middle.png"
+    },
+    {
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_btn_radio_to_on_mtrl_015.png",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\86b5fe485d61c1c058d5ea6ccc9858a7ea62e591\\output\\res\\drawable-mdpi\\abc_btn_radio_to_on_mtrl_015.png"
+    },
+    {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon_notifi_videoinvite.png",
         "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\icon_notifi_videoinvite.png"
     },
     {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_btn_switch_to_on_mtrl_00012.9.png",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\c58e3d8548a506aeee0541aacb054b198f6b9608\\output\\res\\drawable-mdpi\\abc_btn_switch_to_on_mtrl_00012.9.png"
-    },
-    {
-        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_tab_alarmlist_resolve.png",
-        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\bg_tab_alarmlist_resolve.png"
+        "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\pc_tree_type.png",
+        "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\pc_tree_type.png"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\bg_tab_alarmlist_title.png",

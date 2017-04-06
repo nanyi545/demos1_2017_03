@@ -18,6 +18,11 @@
 
 
 	<script type="text/javascript">
+
+	    function logInAndroid(info) {
+        	Android.log(info);
+    	}
+
         $(document).ready(function() {
         	initPage();
         });
@@ -30,14 +35,14 @@
 
     	<div class="main-content">
 
-                <div class="head">
+                <div class="head" id='header'>
                     <a class="left" href="javascript:"></a>
                     <b>全部服务</b>
                 </div>
 
 
 
-                <div class='left-navigation'>
+                <div class='left-navigation' id='nav-menu'>
 
                 	<a class='navigation-item navigation-item-current' href="#item1" >保洁服务</a>
                 	<a class='navigation-item' href="#item2">清洗服务</a>
@@ -47,11 +52,10 @@
                 	<a class='navigation-item' href="#item6">家庭维修</a>
                 	<a class='navigation-item' href="#item7">其他服务</a>
 
-                
                 </div>
 
 
-                <div class='service-list'>
+                <div class='service-list' id='list'>
                 	
 
                 	<div class='service-item' id='item1'>
@@ -243,6 +247,15 @@
                 			<div class='sub-item-line2'>针对性养护，春意盎然</div>
                 		</div>
                 	</div>
+
+
+                	<div class='bottom-space'>
+                		
+
+                	</div>
+
+
+
 
 
 

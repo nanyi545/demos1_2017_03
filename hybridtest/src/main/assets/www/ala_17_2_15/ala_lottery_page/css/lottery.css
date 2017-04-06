@@ -1,0 +1,14 @@
+.main_content{width:100vw; height:100vh; overflow-x:hidden; overflow-y: scroll;  background-color:#ffd401; }
+
+
+.main_content .banner{ width:100vw; height: 53vw;  background: url("../images/banner.jpg") no-repeat;background-size: 100% 100%; }
+
+
+
+.main_content .hint { width: 44vw; height: 9.6vw; margin: 3vw auto;  background: url("../images/hint.png") no-repeat;background-size: 100% 100%; }
+
+
+.main_content .center { width: 83vw; height: 92vw; margin: 3vw auto;  background: url("../images/center.png") no-repeat;background-size: 100% 100%; }
+
+
+.main_content .bottom { width: 100vw; height: 50vw; margin: 3vw auto 0 auto;  background: url("../images/bottom.png") no-repeat;background-size: 100% 100%; }
