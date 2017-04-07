@@ -1,5 +1,6 @@
 
 /**
+大分类
 currentItemIndex=0 --> 日常洗衣
 currentItemIndex=1 --> 鞋靴清洗
 currentItemIndex=2 --> 家具家纺  
@@ -8,9 +9,10 @@ var currentItemIndex=0;
 
 
 /**
-when currentItemIndex=0   , currentTagIndex =0,1,2
-when currentItemIndex=1   , currentTagIndex =0,1
-when currentItemIndex=2   , currentTagIndex =0,1,2
+小分类
+when currentItemIndex=0   
+when currentItemIndex=1   
+when currentItemIndex=2   
 **/
 var currentTagIndex=0;
 
@@ -44,6 +46,7 @@ function initPage(){
 
         currentItemIndex = $(this).index();
         currentTagIndex=0;
+
         displayTagsBasedOnItemIndex();
     });
 
@@ -62,6 +65,9 @@ function initPage(){
         displayTagsBasedOnItemIndex();
     });
 
+
+    getBasketFromRemote();
+
     displayTagsBasedOnItemIndex();
 
 
@@ -70,9 +76,12 @@ function initPage(){
 
     //  show the  pop-up basket
     $('div.basket').click(function() {
-        removeItemsInMapper();
+
         $('div.popup').removeClass('hidden');
+
+        getBasketFromRemote();
         displayBasketList();
+
     });
 
     // close the pop-up basket
@@ -123,9 +132,11 @@ function displayTagsBasedOnItemIndex(){
 
 //    console.log('currentItemIndex:'+currentItemIndex+'   currentTagIndex:'+currentTagIndex);
 
-    createList();
+    getListFromRemote();
+
+
+
 	displayList();
-    initMapper();
 
 }
 
@@ -154,6 +165,12 @@ data for the displaying list
 **/
 var productList;
 
+
+/**
+购物车数据 
+**/
+var basketList;
+
 /**
 number of items selected
 **/
@@ -165,27 +182,21 @@ price of all selected items
 var totalPrice=0;
 
 
-/**
-this data keeps info on  :  which items in the  [productList]  should be displayed in the pop-up basket
-**/
-var basketMapper;
 
 
 
-function createList(){
-	var productCount=4;
-	productList=new Array(productCount);
-
-	productList[0]=createItem(1,'大内裤','圆领t恤，薄衬衫,1234567,呵呵',10,'8.10折','原价¥108.00元','http://img10.360buyimg.com/n0/g5/M00/02/1E/rBEDik_Wv5YIAAAAAAJTszqAQOgAAAk0wNssiMAAlPL588.jpg');
-	productList[1]=createItem(2,'中内裤','红色内裤',67,'8.20折','原价¥108.00元','http://p3.vanclimg.com/product/6/2/2/6220204/big/2008_10_21_18_28_31_4904.jpg');
-	productList[2]=createItem(3,'小内裤','black 内裤',140,'8.30折','原价¥108.00元','http://b.img.youboy.com/20108/13/g2_4992337.jpg');
-    productList[3]=createItem(4,'小内裤','小的内裤',1000,'8.30折','原价¥108.00元','http://b.img.youboy.com/20108/13/g2_4992337.jpg');
-
+function getListFromRemote(){
+	productList=new Array();
+	productList[0]=createItem(1,'大内裤','圆领t恤，薄衬衫,1234567,呵呵',10,'8.10折','原价¥108.00元','http://img10.360buyimg.com/n0/g5/M00/02/1E/rBEDik_Wv5YIAAAAAAJTszqAQOgAAAk0wNssiMAAlPL588.jpg',2);
+	productList[1]=createItem(2,'中内裤','红色内裤',67,'8.20折','原价¥108.00元','http://p3.vanclimg.com/product/6/2/2/6220204/big/2008_10_21_18_28_31_4904.jpg',3);
+	productList[2]=createItem(3,'小内裤','black 内裤',140,'8.30折','原价¥108.00元','http://b.img.youboy.com/20108/13/g2_4992337.jpg',3);
+    productList[3]=createItem(4,'小内裤','小的内裤',1000,'8.30折','原价¥108.00元','http://b.img.youboy.com/20108/13/g2_4992337.jpg',1);
 }
 
 
-function createItem(productId,name,description,price,discount,originalPrice,imgUrl){
 
+
+function createItem(productId,name,description,price,discount,originalPrice,imgUrl,initialCount){
     var item=new Object();
     item.id=productId;
     item.name=name;
@@ -193,55 +204,48 @@ function createItem(productId,name,description,price,discount,originalPrice,imgU
     item.price=price;
     item.discount=discount;
     item.originalPrice=originalPrice;
-    item.count=0;
+    item.count=initialCount;
     item.url=imgUrl;
-
     return item;
 }
 
 
-function displayList(){
 
+
+function displayList(){
     $('.product-list .product-item').remove();   // remvoe all current .product-item elements  in .product-list
 	var productCount=productList.length;
     for (var i=0;i<productCount;i++){
 	    displayItem(i);
     }
-
-
     updateSelectionCallbacks();
     updateSelectionCounts();
-
 }
 
-function updateSelectionCallbacks(){
 
+
+function updateSelectionCallbacks(){
     $('.right-symble').click(function(){
         var tempIndex=$(this).index('.right-symble');
-        productList[tempIndex].count+=1;
-        updateMapper(tempIndex);
 
+        productList[tempIndex].count +=1;
+        changeProductCount(tempIndex,productList[tempIndex].count);
         updateSelectionCounts();
      });
 
     $('.right .add').click(function(){
         var tempIndex=$(this).index('.right .add');
-        productList[tempIndex].count+=1;
-        updateMapper(tempIndex);
 
+        productList[tempIndex].count +=1;
+        changeProductCount(tempIndex,productList[tempIndex].count);
         updateSelectionCounts();
      });
 
     $('.right .minus').click(function(){
         var tempIndex=$(this).index('.right .minus');
-        productList[tempIndex].count-=1;
-        
-        if(productList[tempIndex].count>0){
-            updateMapper(tempIndex);
-        } else {
-            removeItemInMapper(tempIndex);
-        }
 
+        productList[tempIndex].count +=-1;
+        changeProductCount(tempIndex,productList[tempIndex].count);
         updateSelectionCounts();
      });
 
@@ -250,42 +254,66 @@ function updateSelectionCallbacks(){
 
 
 
+/**
+主页面中  改变商品数量
+**/
+function changeProductCount(productIndex, newCount){
+    productCountInterface(productList[productIndex].id,newCount);
+}
+
+
+/**
+改变商品数量接口
+
+**/
+
+function productCountInterface(productID,newCount){
+    console.log("   productID:"+productID+"   newCount:"+newCount);
+
+
+}
+
+
+
+
+/**
+
+根据当前商品数量，更新数量指示
+
+**/
 
 
 function updateSelectionCounts(){
 
-
     var productCount=productList.length;
-
-    totalCount=0;
-    totalPrice=0;
-
 
     for (var i=0;i<productCount;i++){
 
-//        console.log('i:'+i+'  count:'+productList[i].count);
-
     	if (productList[i].count==0){
-
             $('.indicator').eq(i).addClass('hidden');
             $('.indicator').eq(i).text('0');
             $('.right').eq(i).addClass('hidden');
             $('.right-symble').eq(i).removeClass('hidden');
-
-
     	} else if(productList[i].count>0){
-
-
             $('.indicator').eq(i).removeClass('hidden');
             $('.indicator').eq(i).text(''+productList[i].count);
             $('.num').eq(i).text(''+productList[i].count);
             $('.right').eq(i).removeClass('hidden');
             $('.right-symble').eq(i).addClass('hidden');
-
-            totalCount+=productList[i].count;
-            totalPrice+=productList[i].count*productList[i].price;
     	}
     }
+
+
+    totalCount=0;
+    totalPrice=0;
+
+    for(var j=0;j<basketList.length;j++){
+        totalCount+=basketList[j].count;
+        totalPrice+=basketList[j].count*basketList[j].price;
+    }
+
+
+
 
     if (totalCount==0){
         $('.introduce .appoint .basket .total-count').addClass('hidden');
@@ -306,6 +334,8 @@ function updateSelectionCounts(){
 
 
 }
+
+
 
 
 
@@ -343,141 +373,81 @@ function displayItem(index){
 }
 
 
-function initMapper(){
-    basketMapper=new Array();
+
+
+
+function getBasketFromRemote(){
+    basketList=new Array();
+    basketList[0]=createItem(1,'大内裤','圆领t恤，薄衬衫,1234567,呵呵',10,'8.10折','原价¥108.00元','http://img10.360buyimg.com/n0/g5/M00/02/1E/rBEDik_Wv5YIAAAAAAJTszqAQOgAAAk0wNssiMAAlPL588.jpg',2);
+    basketList[1]=createItem(2,'中内裤','红色内裤',67,'8.20折','原价¥108.00元','http://p3.vanclimg.com/product/6/2/2/6220204/big/2008_10_21_18_28_31_4904.jpg',3);
+    basketList[2]=createItem(3,'小内裤','black 内裤',140,'8.30折','原价¥108.00元','http://b.img.youboy.com/20108/13/g2_4992337.jpg',3);
+    basketList[3]=createItem(4,'小内裤','小的内裤',1000,'8.30折','原价¥108.00元','http://b.img.youboy.com/20108/13/g2_4992337.jpg',1);
 }
-
-function updateMapper(productListIndex){
-    if(basketMapper==undefined){
-        basketMapper=new Array();
-    }
-    var currentSize=basketMapper.length;
-    // console.log('currentSize:'+currentSize+'  productListIndex:'+productListIndex);
-    var indexAlreadyAdded=false;
-    if (currentSize==0){     //  当前mapper为空，新加数据在末尾
-        indexAlreadyAdded=false;
-        basketMapper[currentSize]=new Object();
-        basketMapper[currentSize].indexInProductList=productListIndex;
-    } else {  
-        for(var tempIndex=0;tempIndex<currentSize;tempIndex++){
-            if (basketMapper[tempIndex].indexInProductList==productListIndex){
-                indexAlreadyAdded=true;
-                break;
-            }
-        }
-        if (indexAlreadyAdded){  
-            reorderMapper(tempIndex);   //  新加数据已经在mapper中， 找到该数据，移到末尾，  其他数据依次前移
-        } else {
-            basketMapper[currentSize]=new Object();    //  新加数据不在mapper中，加在末尾
-            basketMapper[currentSize].indexInProductList=productListIndex;            
-        }
-    }
-
-    // logMapper('after update');
-}
-
-
-
-function logMapper(tag){
-    var endSize=basketMapper.length;
-    var mapStr=tag+'\n';
-    for (var i=0;i<endSize;i++){
-        mapStr=mapStr+'basketMapper   index:'+i+'   indexInProductList:'+basketMapper[i].indexInProductList+'\n';
-    }
-    console.log(mapStr);
-}
-
-
-function removeItemInMapper(productListIndex){
-    var mapperIndex=0;
-    for (var i=0;i<basketMapper.length;i++){
-        if (basketMapper[i].indexInProductList==productListIndex){
-            mapperIndex=i;
-            break;
-        }
-    }
-    // logMapper('before splice');
-    basketMapper.splice(mapperIndex, 1);
-    // logMapper('after splice');
-}
-
-
-
-
-
-function removeItemsInMapper(){
-
-    var mapperIndex=0;
-    var containsEmptyEntry=false;
-
-    for (var i=0;i<basketMapper.length;i++){
-        if (productList[basketMapper[i].indexInProductList].count==0){
-            mapperIndex=i;
-            containsEmptyEntry=true;
-            break;
-        }
-    }
-
-    if (containsEmptyEntry){
-        basketMapper.splice(mapperIndex, 1);
-        console.log('--removeItemsInMapper remove 1 item in mapper--');
-        removeItemsInMapper();
-    } else {
-        return;
-    }
-
-
-}
-
-
-
-
-function reorderMapper(priorityIndex){
-    var currentSize=basketMapper.length;
-    if (priorityIndex==(currentSize-1)){
-        return;
-    }
-    var tempObject=new Object();
-    tempObject.indexInProductList=basketMapper[priorityIndex].indexInProductList;
-
-    for (var i=priorityIndex;i<currentSize-1;i++){
-        basketMapper[i]=basketMapper[i+1];
-    }
-    basketMapper[currentSize-1]=tempObject;
-}
-
 
 
                             
 
 function displayBasketList(){
     $('.selection-list .selection-item').remove();   // remvoe all current .selection-item elements  in .selection-list
-	var mapperCount=basketMapper.length;
 
-    for (var i=mapperCount-1;i>=0;i--){
-        displayBasketItem(mapperCount-1-i , basketMapper[i].indexInProductList);
+    for (var i=0; i<basketList.length;i++){
+        displayBasketItem(i);
     }
-
 
     updateBasketCallbacks();
 
 }
 
 
+/**
+购物车中  改变商品数量
+**/
+function changeProductCountInBasket(basketIndex,newCount){
+
+
+    var basketItemId=basketList[basketIndex].id;
+    var basketItemInCurrentPage=false;
+    var productIndex=-1;
+
+    for (var i=0;i<productList.length;i++){
+        if(productList[i].id==basketItemId){
+            productIndex=i;
+            basketItemInCurrentPage=true;
+        }
+    }
+
+    if (basketItemInCurrentPage){   /** 如果购物车中商品  ，同时也在当前页面，需要 同时更新productList[]的count **/
+        productList[productIndex].count=newCount;
+        updateSelectionCounts();
+    } 
+
+
+    basketList[basketIndex].count=newCount;
+    productCountInterface(basketList[basketIndex].id,newCount);
+
+} 
+
+
+
+
+
 function updateBasketCallbacks(){
 
     $('.selector').click(function() {
         var tempIndex=$(this).index('.selector');
-        var mapperCount=basketMapper.length;
-        var index=basketMapper[mapperCount-1-tempIndex].indexInProductList;
-        if (productList[index].count==0){
-            productList[index].count=1;
+
+        if (basketList[tempIndex].count==0){
+            basketList[tempIndex].count=1;
+            changeProductCountInBasket(tempIndex,basketList[tempIndex].count);
+
             $('.selection-right').eq(tempIndex).removeClass('hidden');
             $('.selection-num-b').eq(tempIndex).text('1');
             $('.selection-right-symble').eq(tempIndex).addClass('hidden');
             $(this).addClass('selected').removeClass('selected-no');
         } else {
-            productList[index].count=0;
+            basketList[tempIndex].count=0;
+            changeProductCountInBasket(tempIndex,basketList[tempIndex].count);
+
             $('.selection-right').eq(tempIndex).addClass('hidden');
             $('.selection-right-symble').eq(tempIndex).removeClass('hidden');
             $(this).addClass('selected-no').removeClass('selected');
@@ -490,8 +460,9 @@ function updateBasketCallbacks(){
 
     $('.selection-right-symble').click(function(){
         var tempIndex=$(this).index('.selection-right-symble');
-        var mapperCount=basketMapper.length;
-        productList[basketMapper[mapperCount-1-tempIndex].indexInProductList].count+=1;
+
+        basketList[tempIndex].count+=1;
+        changeProductCountInBasket(tempIndex,basketList[tempIndex].count);
 
         $(this).addClass('hidden');
 
@@ -505,10 +476,11 @@ function updateBasketCallbacks(){
 
     $('.selection-add').click(function(){
         var tempIndex=$(this).index('.selection-add');
-        var mapperCount=basketMapper.length;
-        var index=basketMapper[mapperCount-1-tempIndex].indexInProductList;
 
-        productList[index].count+=1;
+        basketList[tempIndex].count+=1;
+        changeProductCountInBasket(tempIndex,basketList[tempIndex].count);
+
+
         $('.selection-num-b').eq(tempIndex).text(productList[index].count);
         $('.selector').eq(tempIndex).addClass('selected').removeClass('selected-no');
         updateSelectionCounts();
@@ -518,9 +490,9 @@ function updateBasketCallbacks(){
 
     $('.selection-minus').click(function(){
         var tempIndex=$(this).index('.selection-minus');
-        var mapperCount=basketMapper.length;
-        productList[basketMapper[mapperCount-1-tempIndex].indexInProductList].count-=1;
 
+        basketList[tempIndex].count-=1;
+        changeProductCountInBasket(tempIndex,basketList[tempIndex].count);
 
         if (productList[basketMapper[mapperCount-1-tempIndex].indexInProductList].count==0){
             $('.selection-right').eq(tempIndex).addClass('hidden');
@@ -536,8 +508,6 @@ function updateBasketCallbacks(){
 
 
 
-
-
 }
 
 
@@ -550,18 +520,9 @@ function dispConfirmClear(){
     var r=confirm("确认清空所有衣物吗？");
     if(r==true){
 
-        var listCount=productList.length;
-        for (var i=0;i<listCount;i++){
-            productList[i].count=0;
-        }
         $('div.popup').addClass('hidden');
-        updateSelectionCounts();
-        removeItemsInMapper();
-
 
     } else {
-
-
 
     }
 
@@ -573,19 +534,19 @@ function dispConfirmClear(){
 
 
 
-function displayBasketItem(basketIndex, productListIndex ){
+function displayBasketItem(basketIndex){
 
 	$('<div class="selection-item">'+
 	    '<div class="selector selected"></div>'+
 		'<div class="selection-content-wrapper">'+
             '<div class="selection-img"></div>'+
             '<div class="selection-txt">'+
-                '<span class="black-txt">'+ productList[productListIndex].name +'</span>'+
-                '<span class="red-txt">¥'+ productList[productListIndex].price.toFixed(2) +'</span>'+
+                '<span class="black-txt">'+ basketList[basketIndex].name +'</span>'+
+                '<span class="red-txt">¥'+ basketList[basketIndex].price.toFixed(2) +'</span>'+
             '</div>  '+
             '<div class="selection-right ">'+
                 '<div class="selection-minus"><b>-</b></div>'+
-                '<div class="selection-num"><b class="selection-num-b">'+productList[productListIndex].count+'</b></div>'+
+                '<div class="selection-num"><b class="selection-num-b">'+basketList[basketIndex].count+'</b></div>'+
                 '<div class="selection-add"><b>+</b></div>'+
             '</div>  '+
             '<div class="selection-right-symble hidden"><b>+</b></div>'+
@@ -595,13 +556,9 @@ function displayBasketItem(basketIndex, productListIndex ){
 
     //   set product img ...
     $('.selection-img').eq(basketIndex).css({
-        'background':'url('+productList[productListIndex].url+') no-repeat',
+        'background':'url('+basketList[basketIndex].url+') no-repeat',
         'background-size':'100% 100%'
     });
-
-
-
-
 
 
 }

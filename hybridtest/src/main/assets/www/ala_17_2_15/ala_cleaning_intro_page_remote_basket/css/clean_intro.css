@@ -20,8 +20,8 @@ body{background-color: #eee;}
 
 
 
-.introduce .clean-items-wrapper{ width:100% ; background-color:#fff; overflow: hidden; white-space:nowrap;  }
-.introduce .clean-item{ width:26vw ; height:2em;line-height: 2em; text-align:center;margin:0 3vw 8px 3vw;float:left; }
+.introduce .clean-items-wrapper{ width:100% ; background-color:#fff; overflow-x: hidden;overflow-y: hidden; white-space:nowrap;  }
+.introduce .clean-item{ width:25vw ; height:2em;line-height: 2em; text-align:center;margin:0 3vw 8px 3vw;float:left; }
 .introduce .clean-item-current {border-bottom:4px solid #ff6633; color:#ff6633;}
 
 
