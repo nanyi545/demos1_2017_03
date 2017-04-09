@@ -57,13 +57,18 @@
 
 
 <script>
+
+
     var canvas = document.getElementById('myCanvas1');
     var context = canvas.getContext('2d');
+    var canvasWidth;
+    var canvasHeight;
 
     var holder= document.getElementById('canvasHolder');
 
     resetCanvasSize();
-
+    animateThis();
+    //drawArc(0.7);
 
     function showAlert(){
         alert("---width:"+holder.clientWidth+"---height:"+holder.clientHeight);
@@ -72,27 +77,51 @@
 
     window.onresize = function(event) {
         resetCanvasSize();
+        drawArc(1.44);
     };
 
     function resetCanvasSize(){
-        canvas.width  = holder.clientHeight;    // has to set width and size of canvas like this ... other wise  the x/y ratio is not zero
+        canvas.width  = holder.clientHeight;    // has to set width and size of canvas like this ... other wise  the x/y ratio is not 1
         canvas.height = holder.clientHeight;
+        canvasWidth=canvas.width;
+        canvasHeight=canvas.height;
+    }
 
+    function drawArc( endAngInPI ){
         var x = canvas.width / 2;
         var y = canvas.height / 2;
         var radius = canvas.width / 2.5;
         var startAngle = 0 * Math.PI;
-        var endAngle = 1.9 * Math.PI;
+        var endAngle = endAngInPI * Math.PI;
         var counterClockwise = false;
 
         context.beginPath();
-        context.arc(x, y, radius, startAngle, endAngle, counterClockwise);
+        context.arc( x, y, radius, startAngle, endAngle, counterClockwise );
         context.lineWidth = 15;
 
         // line color
         context.strokeStyle = 'black';
         context.stroke();
     }
+
+    var globalID;
+    var currentAngleInPi=0;
+    var angleStep=0.01;
+
+    function animateThis(){
+
+        globalID=requestAnimationFrame(animateThis);
+
+        if (currentAngleInPi>=2){
+            cancelAnimationFrame(globalID);
+        } else {
+            currentAngleInPi+=angleStep;
+        }
+        context.clearRect(0, 0, canvasWidth, canvasHeight);
+        drawArc(currentAngleInPi);
+
+    }
+
 
 
 </script>

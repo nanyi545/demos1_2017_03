@@ -28,6 +28,16 @@
             background-color:blue;
         }
 
+        .yard-stick{
+            z-index:-100;
+            width:100vw;
+            height:100vh;
+            position:fixed;
+            top:0;
+            left:0;
+            background: rgba(200, 54, 54, 0.3);
+        }
+
 
     </style>
 
@@ -44,9 +54,12 @@
 
 
 
-<div class="test" onclick="stopAnimation()">
-    stop
-</div>
+    <div class="test" onclick="stopAnimation()">
+        stop
+    </div>
+
+
+    <div class="yard-stick" id="yard-stick"></div>
 
 
 <script>
@@ -54,34 +67,49 @@
 var x =  0;
 var y = 15;
 var speed = 1;
+var width=-1;
+var height=-1;
+var cursorSize=25;
 
+var resetSize=false;
 
 
 var globalID;
 
-
 function repeatOften() {
+
   // Do whatever
   globalID=requestAnimationFrame(repeatOften);   // this starts the animation
 
 
-    x += speed;
+   var canvas  = document.getElementById("myCanvas1");
+   var context = canvas.getContext("2d");
 
-    if(x <= 0 || x >= 475){
-        speed = -speed;
+
+    if (!resetSize){
+        var screenSizer=document.getElementById("yard-stick");
+        width=screenSizer.clientWidth/2;
+        height=screenSizer.clientHeight/2;
+        // width=300;
+        // height=300;
+        console.log("width:"+width+"   height:"+height );
+        canvas.width=width;   // has to reset canvas size ....
+        canvas.height=height;
+        resetSize=true;
     }
 
+   x += speed;
 
-    var canvas  = document.getElementById("myCanvas1");
-    var context = canvas.getContext("2d");
-    canvas.width=500;
-    canvas.height=170;
+   if(x <= 0 || x >= width-cursorSize){
+       speed = -speed;
+   }
 
-    context.clearRect(0, 0, 500, 170);
-    context.fillStyle = "#ff00ff";
-    context.fillRect(x, y, 25, 25);
+   context.clearRect(0, 0, width, height);
+   context.fillStyle = "#ff00ff";
+   context.fillRect(x, y, cursorSize, cursorSize);
 
 }
+
 
 requestAnimationFrame(repeatOften);
 

@@ -64,13 +64,12 @@ background-size: 100% 100%; position:relative;}
 .introduce .appoint .left{width: 50%;float: left;color: #f63;font-size: 3.8vw;text-align: left;text-indent: 1em;}
 .introduce .appoint .left span{font-size: 7vw;font-weight: bold;}
 .introduce .appoint .basket{ width:2.4em;height:2.4em;margin:0.2em 0.2em 0.2em 1em; background: url("../images/basket.png") no-repeat;background-size: 100% 100%;float:left; position:relative;cursor: pointer;}
-.introduce .appoint .basket .total-count{position:absolute;  width:1.6em;height: 1.6em; line-height: 1.6em  ; font-size: 0.6em; text-align: center; border-radius: 0.8em; color:white ; background-color: red; right:-1em;top:-0.3em;}
+.introduce .appoint .basket .total-count{position:absolute;  width:1.6em;height: 1.6em; line-height: 1.6em  ; font-size: 0.7em; text-align: center; border-radius: 0.8em; color:white ; background-color: red; right:-1em;top:-0.3em;}
 
-.introduce .appoint .total-price{float:right;width:35vw;height:2.4em;margin-top:0.32em; border-right:1px solid #bbb;}
+.introduce .appoint .total-price{float:right;width:35vw;height:2.4em;margin-top:0.32em; }
 .introduce .appoint .total-price .line1 {  height:1.4em; line-height:1.4em; color:red;}
 .introduce .appoint .total-price .line1 span.small {font-size:60%;}
 .introduce .appoint .total-price .line1 span.large {font-size:100%;}
-
 .introduce .appoint .total-price .line2 {  height:1em; line-height:1em; text-align:center;color:#999;}
 .introduce .appoint .total-price .line2 span {font-size:60%;}
 

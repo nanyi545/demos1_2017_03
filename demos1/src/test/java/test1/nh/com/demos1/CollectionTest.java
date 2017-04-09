@@ -2,10 +2,13 @@ package test1.nh.com.demos1;
 
 import org.junit.Test;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
@@ -81,6 +84,41 @@ public class CollectionTest {
         System.out.println("poll1:"+queueA.poll()+"  poll2:"+queueA.poll()+"  poll3:"+queueA.poll()+"  poll4"+queueA.poll());
 
     }
+
+
+    @Test
+    public void mapTest1(){
+        HashMap<String ,String > map1=new HashMap();
+        map1.put("a","1");
+        map1.put("b","2");
+        map1.put("c","3");
+        map1.put("d","4");
+        map1.put("dd","4");
+        map1.put("dddd","4");
+        map1.put("dddddd","4");
+        map1.put("ddddddddd","4");
+
+        try {
+            Field tableField=HashMap.class.getDeclaredField("table");
+            tableField.setAccessible(true);
+            Map.Entry[] table= (Map.Entry[]) tableField.get(map1);
+
+            int size=table.length;
+            for (int i=0;i<size;i++){
+                System.out.println("i:"+i+"    "+table[i]+"   "+(table[i]!=null?table[i].getClass().getName():"null"));
+            }
+
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+
+
 
 
 

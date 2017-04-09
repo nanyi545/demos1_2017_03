@@ -42,12 +42,17 @@ public class FullWindowWebActivity extends AppCompatActivity {
 //        webView.loadUrl("file:///android_asset/www/ala_17_2_15/reg_success_page/reg_success.html");
 //        webView.loadUrl("file:///android_asset/www/ala_17_2_15/wechat_home/wechat_home.html");
 //        webView.loadUrl("file:///android_asset/www/ala_17_2_15/ala_kai_huang_intro_page/kai_huang_intro.html");
-        webView.loadUrl("file:///android_asset/www/ala_17_2_15/ala_cleaning_intro_page/clean_intro.html");
+//        webView.loadUrl("file:///android_asset/www/ala_17_2_15/ala_cleaning_intro_page/clean_intro.html");
+//        webView.loadUrl("file:///android_asset/www/ala_17_2_15/ala_cleaning_intro_page_remote_basket/clean_intro.html");
 //        webView.loadUrl("file:///android_asset/www/ala_17_2_15/ala_all_service_page/all_service.html");
 //        webView.loadUrl("file:///android_asset/www/ala_17_2_15/ala_all_service_page_no_href/all_service.html");
 //        webView.loadUrl("file:///android_asset/www/ala_17_2_15/ala_lottery_page/lottery.html");
 
 //        webView.loadUrl("http://www.xiaojilicai.com/Wechat2/Activity/activity0901?from=singlemessage#item2");  //  page with a tags
+
+        //  ...  canvas  tests ....
+//        webView.loadUrl("file:///android_asset/www/canvas_test_page/canvas_test4_animation1.html");
+        webView.loadUrl("file:///android_asset/www/canvas_test_page/canvas_test3_revise.html");
 
     }
 

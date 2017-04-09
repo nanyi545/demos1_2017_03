@@ -34,6 +34,7 @@ import java.util.TimeZone;
 
 import test1.nh.com.demos1.R;
 import test1.nh.com.demos1.activities.bessel.BesselActivity;
+import test1.nh.com.demos1.activities.collection_activity.TestCollectionActivity;
 import test1.nh.com.demos1.activities.cyclic_galary.CyclicGalaryActivity;
 import test1.nh.com.demos1.activities.fling_test.FlingTestActivity;
 import test1.nh.com.demos1.activities.generic_test.GenericTestActivity;
@@ -575,6 +576,9 @@ public class MainActivity_from extends AppCompatActivity {
 
     public void jump_vertical_scroll(View view){
         VerticalScrollActivity.start(this);}
+
+    public void jump_collections(View view){
+        TestCollectionActivity.start(this);}
 
 
     @Override

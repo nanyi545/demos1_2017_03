@@ -227,7 +227,8 @@
         <activity android:name=".activities.leaksTest.LeakTest2Activity" />
         <activity android:name=".activities.leaksTest.LeakActivity2" />
         <activity android:name=".activities.VectorDrawableActivity" />
-        <activity android:name=".activities.vertical_scroll.VerticalScrollActivity"></activity>
+        <activity android:name=".activities.vertical_scroll.VerticalScrollActivity" />
+        <activity android:name=".activities.collection_activity.TestCollectionActivity"></activity>
     </application>
 
 </manifest>

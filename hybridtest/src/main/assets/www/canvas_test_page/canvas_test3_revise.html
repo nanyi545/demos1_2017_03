@@ -1,0 +1,181 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>canvas test</title>
+
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+
+    <style type="text/css">
+
+
+        *{
+            margin: 0;padding: 0;
+              -webkit-box-sizing: border-box;
+                 -moz-box-sizing: border-box;
+                      box-sizing: border-box;
+        }
+
+        #myCanvas1{
+            background:#aaa;
+            z-index:0;
+        }
+
+        #canvasHolder{
+            background:green;
+            width:100vw;
+            height:40vw;
+        }
+
+        .test{
+            width:100px;
+            height:100px;
+            background-color:blue;
+        }
+
+
+    </style>
+
+
+</head>
+
+
+<body>
+
+<div id="canvasHolder">
+
+    <canvas id="myCanvas1">
+
+    </canvas>
+
+</div>
+
+<div class="test" onclick="showAlert()">
+    hello
+</div>
+
+
+<script>
+
+
+    var canvas = document.getElementById('myCanvas1');
+    var context = canvas.getContext('2d');
+    var canvasWidth;
+    var canvasHeight;
+
+    var percentages;  //  percentages of the chart
+    var colors;       //  colors of the chart
+
+    function initChartData(){
+
+        percentages=new Array();
+        percentages[0]=20;
+        percentages[1]=50;
+        percentages[2]=75;
+        percentages[3]=100;
+
+        colors=new Array();
+        colors[0]='rgba(255,0,0,1)';
+        colors[1]='rgba(0,255,0,1)';
+        colors[2]='rgba(0,0,255,1)';
+        colors[3]='rgba(255,96,48,1)';
+
+    }
+
+    initChartData();
+
+    var holder= document.getElementById('canvasHolder');
+
+
+
+    resetCanvasSize();
+    animateThis();
+    // drawArc(40);
+
+    function showAlert(){
+        // alert("---width:"+holder.clientWidth+"---height:"+holder.clientHeight);
+        animateThis();
+    }
+
+
+    window.onresize = function(event) {
+        resetCanvasSize();
+        drawArc(50);
+    };
+
+    function resetCanvasSize(){
+        canvas.width  = holder.clientHeight;    // has to set width and size of canvas like this ... other wise  the x/y ratio is not 1
+        canvas.height = holder.clientHeight;
+        canvasWidth=canvas.width;
+        canvasHeight=canvas.height;
+    }
+
+    function drawArc( currentPercent  ){
+
+        var x = canvas.width / 2;
+        var y = canvas.height / 2;
+        var radius = canvas.width / 2.5;
+        var counterClockwise = false;
+
+        var comesToEnd=false;
+
+        for (var i=0;i<percentages.length;i++){
+            var startAngle=0;
+            var endAngle=0;
+            if (i==0){
+                startAngle=0;
+            } else {
+                startAngle=percentages[i-1]/100*2*Math.PI;
+            }
+
+            if (currentPercent>=percentages[i] ){
+                endAngle=percentages[i]/100*2*Math.PI;
+            } else {
+                endAngle=currentPercent/100*2*Math.PI;
+                comesToEnd=true;
+            }
+
+            context.beginPath();
+            context.arc( x, y, radius, startAngle, endAngle, counterClockwise );
+            context.lineWidth = 15;
+
+            // line color
+            context.strokeStyle =colors[i];
+            context.stroke();
+
+            console.log("draw i:"+i);
+            if (comesToEnd) break;
+        }
+
+    }
+
+
+
+    var globalID;
+    var currentPercentage = 0;
+    var percentStep=1;
+
+    function animateThis(){
+        globalID=requestAnimationFrame(animateThis);
+        if (currentPercentage>=100){
+            currentPercentage=0;
+            cancelAnimationFrame(globalID);
+        } else {
+            currentPercentage+=percentStep;
+            console.log("currentPercentage:"+currentPercentage);
+            context.clearRect(0, 0, canvasWidth, canvasHeight);
+            drawArc(currentPercentage);
+
+        }
+    }
+
+
+
+</script>
+
+</body>
+
+</html>
+
+

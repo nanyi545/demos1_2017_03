@@ -1,11 +1,23 @@
 [
     {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\background_shadow_trans.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\background_shadow_trans.xml"
+    },
+    {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\ic_launcher.png",
         "source": "C:\\Users\\Administrator\\.android\\build-cache\\a1f073d2b91379c9fc2c7f9444e3ed30c1ecfab9\\output\\res\\drawable-mdpi-v4\\ic_launcher.png"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\background_shadow.xml",
         "source": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\background_shadow.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\background_shadow.xml",
+        "source": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\src\\main\\res\\drawable-mdpi\\background_shadow.xml"
+    },
+    {
+        "merged": "D:\\ASprojects\\station_2_23\\demo_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\ic_launcher.png",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\a5ecf64f8f6567d50ede6143e20584994d6f09d2\\output\\res\\drawable-mdpi-v4\\ic_launcher.png"
     },
     {
         "merged": "D:\\asprojects\\demos\\demos1_2017_03\\app0914\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\background_shadow_trans.xml",

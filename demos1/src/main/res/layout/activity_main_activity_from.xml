@@ -554,6 +554,19 @@
             android:onClick="jump_vertical_scroll"
             android:text="vertical scroll 测试"/>
 
+
+        <Button
+            android:id="@+id/button68"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/button67"
+            android:onClick="jump_collections"
+            android:text="集合 测试"/>
+
+
+
+
+
     </RelativeLayout>
 
 </ScrollView>
