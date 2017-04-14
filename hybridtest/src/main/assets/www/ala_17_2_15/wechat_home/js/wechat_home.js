@@ -20,6 +20,17 @@ function initPage(){
 
 
 
+
+	var testArray=new Array();
+	console.log("-----var testArray=new Array()----- size:"+testArray.length);
+	testArray[0] = new Object(); 
+	console.log("-----testArray[0] = new Object()----- size:"+testArray.length);
+	testArray[1] = new Object(); 
+	console.log("-----testArray[1] = new Object()----- size:"+testArray.length);
+	testArray=testArray.slice(0, -1); 
+	console.log("-----testArray=testArray.slice(0, -1)----- size:"+testArray.length);
+
+
 }
 
 

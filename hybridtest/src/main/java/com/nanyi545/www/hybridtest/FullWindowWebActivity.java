@@ -32,7 +32,8 @@ public class FullWindowWebActivity extends AppCompatActivity {
         // ----  enable JS
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
-        webView.addJavascriptInterface(new JSInterface(this), "Android");
+//        webView.addJavascriptInterface(new JSInterface(this), "Android");
+        webView.addJavascriptInterface(new PieChartInterface(webView), "Android");
 
 //        webView.loadUrl("file:///android_asset/www/jqm2_transition.html");
 //        webView.loadUrl("file:///android_asset/www/svg5.html");
@@ -52,7 +53,8 @@ public class FullWindowWebActivity extends AppCompatActivity {
 
         //  ...  canvas  tests ....
 //        webView.loadUrl("file:///android_asset/www/canvas_test_page/canvas_test4_animation1.html");
-        webView.loadUrl("file:///android_asset/www/canvas_test_page/canvas_test3_revise.html");
+//        webView.loadUrl("file:///android_asset/www/canvas_test_page/canvas_test3_revise.html");
+        webView.loadUrl("file:///android_asset/www/canvas_test_page/canvas_pie_chart.html");
 
     }
 

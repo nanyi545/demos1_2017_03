@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -31,9 +32,22 @@ public class NonFullWindowActivity extends AppCompatActivity {
         // ----  enable JS
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
+        pieChartInterface=new PieChartInterface(webView);
 
+        webView.addJavascriptInterface(pieChartInterface, "Android");
 
-        webView.loadUrl("file:///android_asset/www/canvas_test_page/canvas_test.html");
+        webView.loadUrl("file:///android_asset/www/canvas_test_page/canvas_pie_chart.html");
+//        webView.loadUrl("file:///android_asset/www/canvas_test_page/canvas_test2.html");
+
 
     }
+
+
+    PieChartInterface pieChartInterface;
+    public void restartWebview(View v){
+        pieChartInterface.log("click--1");
+        pieChartInterface.restartAnimation();
+        pieChartInterface.log("click--2");
+    }
+
 }

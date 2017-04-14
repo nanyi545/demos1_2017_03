@@ -311,9 +311,7 @@ function updateSelectionCounts(){
 
     /**----根据productList  更新商品列表部分  数量指示---**/
     var productCount=productList.length;
-
     for (var i=0;i<productCount;i++){
-
     	if (productList[i].count==0){
             $('.indicator').eq(i).addClass('hidden');
             $('.indicator').eq(i).text('0');
@@ -329,13 +327,12 @@ function updateSelectionCounts(){
     }
 
     /**----根据basketList   更新底部购物车总数/总价格显示， ---**/
-    totalCount=0;
-    totalPrice=0;
-
-    for(var j=0;j<basketList.length;j++){
-        totalCount+=basketList[j].count;
-        totalPrice+=basketList[j].count*basketList[j].price;
-    }
+        totalCount=0;
+        totalPrice=0;
+        for(var j=0;j<basketList.length;j++){
+            totalCount+=basketList[j].count;
+            totalPrice+=basketList[j].count*basketList[j].price;
+        }
 
 
     if (totalCount==0){
@@ -345,16 +342,12 @@ function updateSelectionCounts(){
         $('.introduce .appoint .basket .total-count').removeClass('hidden');
         $('.introduce .appoint .basket .total-count').text(''+totalCount);
     }
-
-
     $('div.line1 .large').text(''+totalPrice.toFixed(2));
-
     if(totalPrice>29){
         $('div.line2 span').text('免运费');
     } else {
         $('div.line2 span').text('运费¥15，满29元免运费');
     }
-
 
 }
 

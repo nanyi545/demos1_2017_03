@@ -3,15 +3,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorAccent"
+    android:orientation="vertical"
     tools:context="com.nanyi545.www.hybridtest.NonFullWindowActivity">
 
     <WebView
         android:id="@+id/my_web_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
-
     </WebView>
+
+    <Button
+        android:text="start"
+        android:onClick="restartWebview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 
 </LinearLayout>

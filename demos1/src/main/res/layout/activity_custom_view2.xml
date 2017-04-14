@@ -44,14 +44,23 @@
 
 
     <test1.nh.com.demos1.customView.StageView
+        android:id="@+id/hehe_stage"
         android:layout_below="@+id/loadview_compare"
         custom:selected="true"
         custom:upperText="hehe"
         custom:lowerText="nima"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"></test1.nh.com.demos1.customView.StageView>
+        android:layout_height="wrap_content">
+
+    </test1.nh.com.demos1.customView.StageView>
 
 
+
+    <test1.nh.com.demos1.customView.PieChart
+        android:id="@+id/test_pie"
+        android:layout_below="@+id/hehe_stage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 
 

@@ -71,6 +71,13 @@ public class StringTest1 {
         System.out.println(formatter.format(4));
     }
 
+    @Test
+    public void test7(){
+        System.out.println(String.format("%.2f", 12312.9913f)+"元");
+        System.out.println(String.format("%.2f元", 12312.9913f));
+    }
+
+
 
 
 }

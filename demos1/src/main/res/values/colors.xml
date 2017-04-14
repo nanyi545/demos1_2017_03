@@ -246,5 +246,14 @@
     <color name="color_bn_close_defence_pressed">#FF4768eb</color>
 
 
+    <!-- customview piechart  -->
+    <color name="pie_chart0">#ffbe00</color>
+    <color name="pie_chart1">#bdd1e3</color>
+    <color name="pie_chart2">#fbd8ab</color>
+    <color name="pie_chart3">#f9b7b7</color>
+    <color name="pie_chart4">#ec779b</color>
+    <color name="pie_chart5">#88d2cb</color>
+    <color name="pie_chart6">#d5a4ca</color>
+
 
 </resources>
