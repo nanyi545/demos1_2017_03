@@ -69,6 +69,17 @@
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:statusBarColor">@color/Blue600</item>
     </style>
+
+    <style name="AppTheme.NoActionBar.UnderStatusBar">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar.UnderStatusBar.FullScreenAlert">
+        <item name="android:windowBackground">@color/Transparent</item><!--背景透明-->
+    </style>
+
+
+
     <!--<item name="android:statusBarColor">@android:color/transparent</item>-->
 
 </resources>

@@ -563,6 +563,14 @@
             android:onClick="jump_collections"
             android:text="集合 测试"/>
 
+        <Button
+            android:id="@+id/button69"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/button68"
+            android:onClick="jump"
+            android:text="draw under statusbar 测试"/>
+
 
 
 

@@ -76,6 +76,33 @@ public class MathTest1 {
         System.out.println("length:"+v2.getLength()+"   "+v2);
     }
 
+    @Test
+    public void test7(){
+        int int1 = (int) (Math.log10(1)/Math.log10(1024));
+        int int2 = (int) (Math.log10(200)/Math.log10(1024));
+        int int3 = (int) (Math.log10(500)/Math.log10(1024));
+        int int4 = (int) (Math.log10(1023)/Math.log10(1024));
+        int int5 = (int) (Math.log10(1024)/Math.log10(1024));
+        int int6 = (int) (Math.log10(1500)/Math.log10(1024));
+        int int7 = (int) (Math.log10(2048)/Math.log10(1024));
+        int int8 = (int) (Math.log10(1024*1024)/Math.log10(1024));
+        int int9 = (int) (Math.log10(1024*1024*1024)/Math.log10(1024));
+
+        System.out.println("int1:"+int1);
+        System.out.println("int2:"+int2);
+        System.out.println("int3:"+int3);
+        System.out.println("int4:"+int4);
+        System.out.println("int5:"+int5);
+        System.out.println("int6:"+int6);
+        System.out.println("int7:"+int7);
+        System.out.println("int8:"+int8);
+        System.out.println("int9:"+int9);
+
+
+    }
+
+
+
 
 
 }

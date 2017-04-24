@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
+import android.widget.FrameLayout;
 
 import test1.nh.com.demos1.R;
 
@@ -15,7 +16,6 @@ import test1.nh.com.demos1.R;
  * Created by Administrator on 16-7-30.
  */
 public class WaveView extends View {
-
 
 
     public WaveView(Context context, AttributeSet attrs) {

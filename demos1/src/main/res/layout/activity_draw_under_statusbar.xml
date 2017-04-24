@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/holder"
+    tools:context="test1.nh.com.demos1.activities.draw_under_statusbar.DrawUnderStatusbarActivity">
+
+
+    <ImageView
+        android:id="@+id/anchor"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/cpb_red"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:src="@color/Amber200"
+        />
+
+
+    <Button
+        android:id="@+id/show_alert"
+        android:text="full screen alert"
+        android:onClick="click"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/show_pop"
+        android:text="full screen popup window"
+        android:onClick="click"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <Button
+        android:id="@+id/show_pop_inflator"
+        android:text="full screen popup view"
+        android:onClick="click"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

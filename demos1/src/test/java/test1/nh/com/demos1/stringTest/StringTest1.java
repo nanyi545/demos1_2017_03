@@ -79,5 +79,13 @@ public class StringTest1 {
 
 
 
+    @Test
+    public void test8(){
+        float max=100f;
+        float progress=1.333f;
+        System.out.println(String.format("%.2f/%.2f", progress, max));
+    }
+
+
 
 }
