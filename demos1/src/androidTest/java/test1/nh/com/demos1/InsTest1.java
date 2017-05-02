@@ -41,8 +41,8 @@ public class InsTest1 {
     public void test1(){
         testObj1.talk();
         assertEquals(10,testObj1.getLength());
-
     }
+
 
     @Test
     public void test2(){

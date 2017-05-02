@@ -165,9 +165,6 @@ dependencies {
     //butter knife
     compile 'com.jakewharton:butterknife:7.0.1'
 
-
-
-
     // below 2 are need to use mockito in code ...
     compile 'org.mockito:mockito-core:1.9.5'
     compile 'org.hamcrest:hamcrest-library:1.3'

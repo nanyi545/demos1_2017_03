@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.nanyi545.www.materialdemo">
 
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW" />
+
     <application
         android:name=".MyApp"
         android:allowBackup="true"
@@ -9,7 +12,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".MainActivity"
             android:theme="@style/AppTheme.NoTitle.TransparentSystemBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -63,8 +67,14 @@
         <activity
             android:name=".testPullToRefresh.eleme.TestPullRefreshA4_SearchActivity"
             android:theme="@style/AppTheme.NoTitle.TransparentSystemBar" />
-        <activity android:name=".test_frags.simple_test.TestFragmentActivity"
-            android:theme="@style/AppTheme.NoTitle.TransparentSystemBar"></activity>
+        <activity
+            android:name=".test_frags.simple_test.TestFragmentActivity"
+            android:theme="@style/AppTheme.NoTitle.TransparentSystemBar" />
+        <activity android:name=".full_screen.FullScreenActivity"
+            android:theme="@style/AppTheme.NoTitle.TransparentSystemBar"
+            ></activity>
+
+
     </application>
 
 </manifest>

@@ -148,6 +148,11 @@
             android:onClick="jumpFragmentTest1"
             android:text="test fragments---1 simple behaviour tests " />
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="jumpFullScreen"
+            android:text="test full screen " />
 
 
     </LinearLayout>

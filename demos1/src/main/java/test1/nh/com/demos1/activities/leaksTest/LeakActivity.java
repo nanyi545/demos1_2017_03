@@ -3,6 +3,7 @@ package test1.nh.com.demos1.activities.leaksTest;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
 import android.widget.TextView;
@@ -108,4 +109,6 @@ public class LeakActivity extends Activity {
 //        leak_int_array=null;
         super.onPause();
     }
+
+
 }

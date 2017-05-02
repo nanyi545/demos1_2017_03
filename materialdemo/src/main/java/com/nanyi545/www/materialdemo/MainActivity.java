@@ -1,11 +1,14 @@
 package com.nanyi545.www.materialdemo;
 
+import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 
 import com.nanyi545.www.materialdemo.behaviour2.BehaviourActivity2;
@@ -14,6 +17,7 @@ import com.nanyi545.www.materialdemo.coordinatorWithoutAppbarLO.CoordinatorWitho
 import com.nanyi545.www.materialdemo.coordinatorWithoutAppbarLO.CoordinatorWithoutCollapTLOActivity3;
 import com.nanyi545.www.materialdemo.coordinatorWithoutAppbarLO.CoordinatorWithoutCollapsingTLOActivity;
 import com.nanyi545.www.materialdemo.customView.TestCustomViewActivity;
+import com.nanyi545.www.materialdemo.full_screen.FullScreenActivity;
 import com.nanyi545.www.materialdemo.nestedScroll.TestNestedScrollActivity;
 import com.nanyi545.www.materialdemo.nestedScroll.TestNestedScrollActivity2;
 import com.nanyi545.www.materialdemo.nestedScroll.no_coordinator_test.testWithCostumView.NoCoorNestedScrollTestActivity;
@@ -35,11 +39,10 @@ public class MainActivity extends AppCompatActivity {
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {  // this is for API-19
 //            Window window = getWindow();
 //            //设置StatusBar为透明显示,需要在setContentView之前完成操作
-//            window.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
-//                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+//            window.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 //        }
 
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE| View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+//        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE| View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
 
 
         setContentView(R.layout.activity_main);
@@ -125,8 +128,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-
     public void jumpCollapsLayout(View v){
         TestCollapseLayoutActivity.start(this);
     }
@@ -138,6 +139,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void jumpFragmentTest1(View v){
         TestFragmentActivity.start(this);
+    }
+
+    public void jumpFullScreen(View v){
+        FullScreenActivity.start(this);
     }
 
 
