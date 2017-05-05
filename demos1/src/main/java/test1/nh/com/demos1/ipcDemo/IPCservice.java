@@ -13,6 +13,9 @@ import test1.nh.com.demos1.utils.OsUtils;
  */
 public class IPCservice extends Service {
 
+
+
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -21,9 +24,17 @@ public class IPCservice extends Service {
         Log.i("ipc", "service on create:" + processName + "   process ID:" + android.os.Process.myPid());
     }
 
+
+
+
+
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
         return new WorkerBinder();
     }
+
+
+
+
 }

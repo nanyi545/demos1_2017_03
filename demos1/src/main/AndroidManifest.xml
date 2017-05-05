@@ -232,10 +232,15 @@
         <activity
             android:name=".activities.transparent_activity.TransparentActivity"
             android:theme="@style/Transparent" />
-        <activity android:name=".activities.draw_under_statusbar.DrawUnderStatusbarActivity"
-            android:theme="@style/AppTheme.NoActionBar.UnderStatusBar"></activity>
+        <activity
+            android:name=".activities.draw_under_statusbar.DrawUnderStatusbarActivity"
+            android:theme="@style/AppTheme.NoActionBar.UnderStatusBar" />
+        <activity android:name=".activities.gravity_test.TestGravityActivity" />
 
-
+        <service
+            android:name=".ipcDemo.TestBoundService"
+            android:enabled="true"
+            android:exported="false"></service>
     </application>
 
 </manifest>

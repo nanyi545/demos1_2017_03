@@ -49,12 +49,28 @@ public class IPCactivity extends AppCompatActivity {
         }
     };
 
+
+    private TestBoundService.TestBinder mBinder3;
+    private ServiceConnection conn3=new ServiceConnection(){
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            mBinder3 = (TestBoundService.TestBinder) service;
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+        }
+    };
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ipcactivity);
         bindService(new Intent(this,IPCservice.class),conn,BIND_AUTO_CREATE);
         bindService(new Intent(this,IPCservice2.class),conn2,BIND_AUTO_CREATE);
+        bindService(new Intent(this,TestBoundService.class),conn3,BIND_AUTO_CREATE);
     }
 
     @Override
@@ -62,6 +78,7 @@ public class IPCactivity extends AppCompatActivity {
         super.onDestroy();
         unbindService(conn);
         unbindService(conn2);
+        unbindService(conn3);
     }
 
 
@@ -88,5 +105,47 @@ public class IPCactivity extends AppCompatActivity {
         String processName = OsUtils.getProcessName(this.getApplicationContext(), android.os.Process.myPid());
         Log.i("ipc", "activity onclick in:" + processName + "   process ID:" + android.os.Process.myPid());
     }
+
+
+
+
+    public void testBinder(View v) {
+        if(mBinder3!=null){
+            mBinder3.sendMsg(1);
+            mBinder3.performAction(new Runnable() {
+                @Override
+                public void run() {
+                    Log.i("ipc","non-ipc action!!  in thread:"+Thread.currentThread().getName());
+                }
+            });
+
+            TestBoundService.TestBinder.Task<String,String> task1=new TestBoundService.TestBinder.Task<String, String>() {
+                @Override
+                public String executeTask(String s) {
+                    Log.i("ipc","executeTask!!  in thread:"+Thread.currentThread().getName());
+                    try {
+                        Thread.sleep(3000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    return s+"---hehe--";
+                }
+
+                @Override
+                public void onCompleted(String s) {
+                    Log.i("ipc","onCompleted:ret"+s+" in thread:"+Thread.currentThread().getName());
+                }
+            };
+
+            mBinder3.executeTask(task1,"input");
+
+        }
+    }
+
+
+
+
+
+
 
 }

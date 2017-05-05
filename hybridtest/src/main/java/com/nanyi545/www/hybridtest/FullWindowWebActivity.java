@@ -55,6 +55,7 @@ public class FullWindowWebActivity extends AppCompatActivity {
 //        webView.loadUrl("file:///android_asset/www/canvas_test_page/canvas_test4_animation1.html");
 //        webView.loadUrl("file:///android_asset/www/canvas_test_page/canvas_test3_revise.html");
         webView.loadUrl("file:///android_asset/www/canvas_test_page/canvas_pie_chart.html");
+//        webView.loadUrl("https://dev.xiaojilicai.cc/wechat2/app/p_list?id=2406");
 
     }
 

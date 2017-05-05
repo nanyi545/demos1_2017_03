@@ -40,6 +40,7 @@ import test1.nh.com.demos1.activities.draw_under_statusbar.DrawUnderStatusbarAct
 import test1.nh.com.demos1.activities.fling_test.FlingTestActivity;
 import test1.nh.com.demos1.activities.generic_test.GenericTestActivity;
 import test1.nh.com.demos1.activities.gesture_pass.GesturePassWordActivity;
+import test1.nh.com.demos1.activities.gravity_test.TestGravityActivity;
 import test1.nh.com.demos1.activities.horizontalScroll.HorizontalScrollActivity;
 import test1.nh.com.demos1.activities.hybrid_test.WebViewActivity;
 import test1.nh.com.demos1.activities.hybrid_test.WebViewActivity2;
@@ -588,6 +589,10 @@ public class MainActivity_from extends AppCompatActivity {
             case R.id.button69:
                 DrawUnderStatusbarActivity.start(MainActivity_from.this);
                 break;
+            case R.id.button70:
+                TestGravityActivity.start(MainActivity_from.this);
+                break;
+
             default:
                 break;
         }

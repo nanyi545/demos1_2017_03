@@ -173,15 +173,11 @@ public class TestPullRefreshActivity4 extends AppCompatActivity {
 
 
             if(ViewCompat.isLaidOut(fakeAppBarLo)){
-
                 startTransitionAnimation(appBarHeight,toolBarMarginTop,toolBarMarginLeft,eTpaddingLeft);
-
             } else {
-
                 fakeAppBarLo.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
                     @Override
                     public void onGlobalLayout() {
-
                         if(fakeAppBarLo.getViewTreeObserver().isAlive()){
                             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
                                 fakeAppBarLo.getViewTreeObserver().removeGlobalOnLayoutListener(this);
@@ -189,10 +185,7 @@ public class TestPullRefreshActivity4 extends AppCompatActivity {
                                 fakeAppBarLo.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                             }
                         }
-
                         startTransitionAnimation(appBarHeight,toolBarMarginTop,toolBarMarginLeft,eTpaddingLeft);
-
-
                     }
 
                 });

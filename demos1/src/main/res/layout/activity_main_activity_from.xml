@@ -571,9 +571,13 @@
             android:onClick="jump"
             android:text="draw under statusbar 测试"/>
 
-
-
-
+        <Button
+            android:id="@+id/button70"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/button69"
+            android:onClick="jump"
+            android:text="Gravity 测试"/>
 
     </RelativeLayout>
 
