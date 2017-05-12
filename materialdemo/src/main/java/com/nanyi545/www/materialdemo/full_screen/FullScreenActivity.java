@@ -73,9 +73,9 @@ public class FullScreenActivity extends AppCompatActivity {
                 | WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS
         ;
 
+
         mWindowParams.dimAmount=0.4f;
         mWindowParams.format = PixelFormat.TRANSLUCENT;
-
 
         final View added=getLayoutInflater().inflate(R.layout.test_layout,null);
 //        added.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE

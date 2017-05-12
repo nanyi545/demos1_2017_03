@@ -8,10 +8,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 
 import test1.nh.com.demos1.R;
+import test1.nh.com.demos1.activities.bessel.NumIndicator;
 
 public class TestGravityActivity extends AppCompatActivity {
 
@@ -19,6 +21,30 @@ public class TestGravityActivity extends AppCompatActivity {
         Intent i=new Intent(c,TestGravityActivity.class);
         c.startActivity(i);
     }
+
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if(event.getAction()==MotionEvent.ACTION_DOWN){
+
+            if (indicator.getCount()==0){
+                indicator.setCount(1000);
+            } else if (indicator.getCount()==1000){
+                indicator.setCount(100);
+            } else if (indicator.getCount()==100){
+                indicator.setCount(10);
+            } else if (indicator.getCount()==10){
+                indicator.setCount(0);
+            }
+
+
+        }
+
+        return super.onTouchEvent(event);
+
+    }
+
+    NumIndicator indicator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +56,7 @@ public class TestGravityActivity extends AppCompatActivity {
                     + "   config:" +getResources().getConfiguration().getLayoutDirection());    // this is language direction , there are languages RTL(right to left)       //  script specific gravity
         }
 
+        indicator= (NumIndicator) findViewById(R.id.test_ind);
     }
 
     Toast toast;
