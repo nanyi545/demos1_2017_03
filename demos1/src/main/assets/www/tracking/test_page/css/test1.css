@@ -1,0 +1,62 @@
+
+.main_content{
+    height:320px;
+    width:1000px;
+    background:LightCyan;
+}
+
+.modifier{
+    float:left;
+    padding:3px 15px;
+    margin:0px 10px;
+    background:#f08080;
+}
+
+.display_region{
+    clear:both;
+    height:250px;
+    width:1000px;
+    overflow:hidden;
+}
+
+.display_region .vertical_indicator{
+    float:left;
+    height:250px;
+    width:100px;
+    border:solid 1px red;
+    overflow:hidden;
+}
+
+
+.display_region .time_zone{
+    float:left;
+    height:250px;
+    width:900px;
+    border:solid 1px red;
+    overflow-x:scroll;
+    overflow-Y:hidden;
+}
+
+
+.display_region .time_zone .time_indicator{
+    height:50px;
+    width:900px;
+    border:solid 1px red;
+}
+
+.display_region .time_zone .view_item_holder{
+    position:relative;
+    height:48px;
+    width:900px;
+    border:solid 1px green;
+}
+
+
+.view_item{
+    position:absolute;
+    height:30%;
+    width:10%;
+    background:#00bfff;
+    border:solid 1px red;
+    font-size:10px;
+}

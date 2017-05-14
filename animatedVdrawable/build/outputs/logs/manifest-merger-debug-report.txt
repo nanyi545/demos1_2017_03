@@ -1,85 +1,85 @@
 -- Merging decision tree log ---
 manifest
-ADDED from D:\asprojects\demos\demos1_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:2:1-38:12
+ADDED from D:\ASprojects\station_2_23\demo_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:2:1-38:12
 	package
-		ADDED from D:\asprojects\demos\demos1_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:3:5-60
-		INJECTED from D:\asprojects\demos\demos1_2017_03\animatedVdrawable\src\main\AndroidManifest.xml
-		INJECTED from D:\asprojects\demos\demos1_2017_03\animatedVdrawable\src\main\AndroidManifest.xml
+		ADDED from D:\ASprojects\station_2_23\demo_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:3:5-60
+		INJECTED from D:\ASprojects\station_2_23\demo_2017_03\animatedVdrawable\src\main\AndroidManifest.xml
+		INJECTED from D:\ASprojects\station_2_23\demo_2017_03\animatedVdrawable\src\main\AndroidManifest.xml
 	android:versionName
-		INJECTED from D:\asprojects\demos\demos1_2017_03\animatedVdrawable\src\main\AndroidManifest.xml
-		INJECTED from D:\asprojects\demos\demos1_2017_03\animatedVdrawable\src\main\AndroidManifest.xml
+		INJECTED from D:\ASprojects\station_2_23\demo_2017_03\animatedVdrawable\src\main\AndroidManifest.xml
+		INJECTED from D:\ASprojects\station_2_23\demo_2017_03\animatedVdrawable\src\main\AndroidManifest.xml
 	xmlns:android
-		ADDED from D:\asprojects\demos\demos1_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:2:11-69
+		ADDED from D:\ASprojects\station_2_23\demo_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:2:11-69
 	android:versionCode
-		INJECTED from D:\asprojects\demos\demos1_2017_03\animatedVdrawable\src\main\AndroidManifest.xml
-		INJECTED from D:\asprojects\demos\demos1_2017_03\animatedVdrawable\src\main\AndroidManifest.xml
+		INJECTED from D:\ASprojects\station_2_23\demo_2017_03\animatedVdrawable\src\main\AndroidManifest.xml
+		INJECTED from D:\ASprojects\station_2_23\demo_2017_03\animatedVdrawable\src\main\AndroidManifest.xml
 application
-ADDED from D:\asprojects\demos\demos1_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:5:5-36:19
+ADDED from D:\ASprojects\station_2_23\demo_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:5:5-36:19
 	android:label
-		ADDED from D:\asprojects\demos\demos1_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:8:9-41
+		ADDED from D:\ASprojects\station_2_23\demo_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:8:9-41
 	android:allowBackup
-		ADDED from D:\asprojects\demos\demos1_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:6:9-35
+		ADDED from D:\ASprojects\station_2_23\demo_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:6:9-35
 	android:icon
-		ADDED from D:\asprojects\demos\demos1_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:7:9-45
+		ADDED from D:\ASprojects\station_2_23\demo_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:7:9-45
 	android:theme
-		ADDED from D:\asprojects\demos\demos1_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:9:9-40
+		ADDED from D:\ASprojects\station_2_23\demo_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:9:9-40
 activity#com.sqisland.android.animated_vector_drawable.MainActivity
-ADDED from D:\asprojects\demos\demos1_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:10:9-18:20
+ADDED from D:\ASprojects\station_2_23\demo_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:10:9-18:20
 	android:label
-		ADDED from D:\asprojects\demos\demos1_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:12:13-45
+		ADDED from D:\ASprojects\station_2_23\demo_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:12:13-45
 	android:name
-		ADDED from D:\asprojects\demos\demos1_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:11:13-41
+		ADDED from D:\ASprojects\station_2_23\demo_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:11:13-41
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from D:\asprojects\demos\demos1_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:13:13-17:29
+ADDED from D:\ASprojects\station_2_23\demo_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:13:13-17:29
 action#android.intent.action.MAIN
-ADDED from D:\asprojects\demos\demos1_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:14:17-69
+ADDED from D:\ASprojects\station_2_23\demo_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:14:17-69
 	android:name
-		ADDED from D:\asprojects\demos\demos1_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:14:25-66
+		ADDED from D:\ASprojects\station_2_23\demo_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:14:25-66
 category#android.intent.category.LAUNCHER
-ADDED from D:\asprojects\demos\demos1_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:16:17-77
+ADDED from D:\ASprojects\station_2_23\demo_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:16:17-77
 	android:name
-		ADDED from D:\asprojects\demos\demos1_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:16:27-74
+		ADDED from D:\ASprojects\station_2_23\demo_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:16:27-74
 activity#com.sqisland.android.animated_vector_drawable.ExampleActivity
-ADDED from D:\asprojects\demos\demos1_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:19:9-22:58
+ADDED from D:\ASprojects\station_2_23\demo_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:19:9-22:58
 	android:label
-		ADDED from D:\asprojects\demos\demos1_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:21:13-63
+		ADDED from D:\ASprojects\station_2_23\demo_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:21:13-63
 	android:parentActivityName
-		ADDED from D:\asprojects\demos\demos1_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:22:13-55
+		ADDED from D:\ASprojects\station_2_23\demo_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:22:13-55
 	android:name
-		ADDED from D:\asprojects\demos\demos1_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:20:13-44
+		ADDED from D:\ASprojects\station_2_23\demo_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:20:13-44
 activity#com.sqisland.android.animated_vector_drawable.RotateActivity
-ADDED from D:\asprojects\demos\demos1_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:23:9-26:58
+ADDED from D:\ASprojects\station_2_23\demo_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:23:9-26:58
 	android:label
-		ADDED from D:\asprojects\demos\demos1_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:25:13-42
+		ADDED from D:\ASprojects\station_2_23\demo_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:25:13-42
 	android:parentActivityName
-		ADDED from D:\asprojects\demos\demos1_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:26:13-55
+		ADDED from D:\ASprojects\station_2_23\demo_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:26:13-55
 	android:name
-		ADDED from D:\asprojects\demos\demos1_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:24:13-43
+		ADDED from D:\ASprojects\station_2_23\demo_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:24:13-43
 activity#com.sqisland.android.animated_vector_drawable.PathMorphActivity
-ADDED from D:\asprojects\demos\demos1_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:27:9-30:58
+ADDED from D:\ASprojects\station_2_23\demo_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:27:9-30:58
 	android:label
-		ADDED from D:\asprojects\demos\demos1_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:29:13-49
+		ADDED from D:\ASprojects\station_2_23\demo_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:29:13-49
 	android:parentActivityName
-		ADDED from D:\asprojects\demos\demos1_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:30:13-55
+		ADDED from D:\ASprojects\station_2_23\demo_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:30:13-55
 	android:name
-		ADDED from D:\asprojects\demos\demos1_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:28:13-46
+		ADDED from D:\ASprojects\station_2_23\demo_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:28:13-46
 activity#com.sqisland.android.animated_vector_drawable.FillInHeartActivity
-ADDED from D:\asprojects\demos\demos1_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:31:9-34:58
+ADDED from D:\ASprojects\station_2_23\demo_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:31:9-34:58
 	android:label
-		ADDED from D:\asprojects\demos\demos1_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:33:13-50
+		ADDED from D:\ASprojects\station_2_23\demo_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:33:13-50
 	android:parentActivityName
-		ADDED from D:\asprojects\demos\demos1_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:34:13-55
+		ADDED from D:\ASprojects\station_2_23\demo_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:34:13-55
 	android:name
-		ADDED from D:\asprojects\demos\demos1_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:32:13-48
+		ADDED from D:\ASprojects\station_2_23\demo_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:32:13-48
 activity#com.sqisland.android.animated_vector_drawable.DowloadActivity
-ADDED from D:\asprojects\demos\demos1_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:35:9-62
+ADDED from D:\ASprojects\station_2_23\demo_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:35:9-62
 	android:name
-		ADDED from D:\asprojects\demos\demos1_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:35:19-50
+		ADDED from D:\ASprojects\station_2_23\demo_2017_03\animatedVdrawable\src\main\AndroidManifest.xml:35:19-50
 uses-sdk
-INJECTED from D:\asprojects\demos\demos1_2017_03\animatedVdrawable\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from D:\ASprojects\station_2_23\demo_2017_03\animatedVdrawable\src\main\AndroidManifest.xml reason: use-sdk injection requested
 	android:targetSdkVersion
-		INJECTED from D:\asprojects\demos\demos1_2017_03\animatedVdrawable\src\main\AndroidManifest.xml
-		INJECTED from D:\asprojects\demos\demos1_2017_03\animatedVdrawable\src\main\AndroidManifest.xml
+		INJECTED from D:\ASprojects\station_2_23\demo_2017_03\animatedVdrawable\src\main\AndroidManifest.xml
+		INJECTED from D:\ASprojects\station_2_23\demo_2017_03\animatedVdrawable\src\main\AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from D:\asprojects\demos\demos1_2017_03\animatedVdrawable\src\main\AndroidManifest.xml
-		INJECTED from D:\asprojects\demos\demos1_2017_03\animatedVdrawable\src\main\AndroidManifest.xml
+		INJECTED from D:\ASprojects\station_2_23\demo_2017_03\animatedVdrawable\src\main\AndroidManifest.xml
+		INJECTED from D:\ASprojects\station_2_23\demo_2017_03\animatedVdrawable\src\main\AndroidManifest.xml

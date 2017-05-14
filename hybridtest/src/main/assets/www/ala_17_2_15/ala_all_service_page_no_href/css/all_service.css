@@ -8,7 +8,7 @@
 a { color: #000;  text-decoration: none;}
 
 
-.main-content .left-navigation{ float:left;  background-color:#bbb; width:28vw; padding-top:5vh;
+.main-content .left-navigation{ float:left;  background-color:#bbb; width:20vw; padding-top:5vh;
 	/* Firefox */
 	height: -moz-calc(100vh - 12vw);
 	/* WebKit */

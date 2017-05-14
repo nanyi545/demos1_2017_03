@@ -49,6 +49,7 @@ public class TestMeasureView extends View {
 
 
     public int measureDimension(int defaultSize, int measureSpec,String type) {
+
         int result=0;
 
         int specMode = MeasureSpec.getMode(measureSpec);
@@ -71,8 +72,6 @@ public class TestMeasureView extends View {
                 result=specSize;   // spec Size is   in unit px  !!!
                 break;
         }
-
-        Log.i("eee",type+"   specMode:"+specModeStr+"   specSize:"+specSize+"   measured size:"+result);   // spec Size in px
         return result;
     }
 
