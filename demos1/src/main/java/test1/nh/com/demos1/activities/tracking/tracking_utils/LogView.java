@@ -6,15 +6,8 @@ package test1.nh.com.demos1.activities.tracking.tracking_utils;
 
 public class LogView extends LogItem {
 
-
-    private boolean enter;
-
-    public LogView(boolean isEnter,String ViewName) {
-        super(LogType.VIEW_CHANGE,ViewName);
-        enter=isEnter;
+    public LogView(String ViewName) {
+        super(LogItem.VIEW_CHANGE,ViewName);
     }
-
-
-
 
 }

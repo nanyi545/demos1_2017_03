@@ -10,6 +10,11 @@ import android.util.Log;
 import com.baidu.apistore.sdk.ApiStoreSDK;
 import com.codemonkeylabs.fpslibrary.TinyDancer;
 
+import test1.nh.com.demos1.activities.tracking.tracking_utils.LogItem;
+import test1.nh.com.demos1.activities.tracking.tracking_utils.LogNetIO;
+import test1.nh.com.demos1.activities.tracking.tracking_utils.LogUserAction;
+import test1.nh.com.demos1.activities.tracking.tracking_utils.LogView;
+import test1.nh.com.demos1.activities.tracking.tracking_utils.TrackingManager;
 import test1.nh.com.demos1.dependencyInjection.di1.components.DaggerDiComponent;
 import test1.nh.com.demos1.dependencyInjection.di1.components.DiComponent;
 import test1.nh.com.demos1.dependencyInjection.di3.components.DaggerDi3Component;
@@ -43,6 +48,7 @@ public class DMapplication extends Application {
     };
 
 
+    public static final String DEM0_APP="DEM0_APP";
 
 
     @Override
@@ -64,13 +70,14 @@ public class DMapplication extends Application {
         else if (level < ComponentCallbacks2.TRIM_MEMORY_COMPLETE)
             memory_state = "60-80:TRIM_MEMORY_COMPLETE";
 
-        Log.i("CCC", "memory_state:"+memory_state);
+        Log.i(DEM0_APP, "onTrimMemory   memory_state:"+memory_state);
     }
 
 
     @Override
     public void onLowMemory() {
         super.onLowMemory();
+        Log.i(DEM0_APP, "onTrimMemory   onLowMemory");
     }
 
     private static DMapplication me;
@@ -122,7 +129,44 @@ public class DMapplication extends Application {
 
     @Override
     public void onCreate() {
-        Log.i("CCC", "ONCREATE");
+        Log.i(DEM0_APP, "ONCREATE");
+        final TrackingManager manager=TrackingManager.getInstance(this);
+        manager.uploadPreviousSession();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                LogItem log1=new LogView("haha");
+
+                manager.addTrackingLog(new LogUserAction("button1"));
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                log1.setEndTime();
+                manager.addTrackingLog(log1);
+
+                LogItem log2=new LogView("hehe");
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                log2.setEndTime();
+                manager.addTrackingLog(log2);
+                manager.addTrackingLog(new LogUserAction("button2"));
+                LogItem log3=new LogNetIO("api1");
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                log3.setSuccess(true);
+                manager.addTrackingLog(log3);
+                manager.addTrackingLog(new LogUserAction("exit"));
+            }
+        }).start();
 
 
         TinyDancer.create().show(this); //  FPS checker...

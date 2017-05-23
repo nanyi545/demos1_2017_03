@@ -1,10 +1,18 @@
 package test1.nh.com.demos1.stringTest;
 
+import com.google.gson.Gson;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import test1.nh.com.demos1.activities.horizontalScroll.ItemPicker;
+import test1.nh.com.demos1.activities.tracking.tracking_utils.LogItem;
+import test1.nh.com.demos1.activities.tracking.tracking_utils.LogUserAction;
+import test1.nh.com.demos1.activities.tracking.tracking_utils.LogView;
 
 /**
  * Created by Administrator on 15-12-30.
@@ -84,6 +92,22 @@ public class StringTest1 {
         float max=100f;
         float progress=1.333f;
         System.out.println(String.format("%.2f/%.2f", progress, max));
+    }
+
+    @Test
+    public void test9(){
+        LogView view1=new LogView("heheview");
+        Gson gson = new Gson();
+        System.out.println(gson.toJson(view1));
+    }
+
+    @Test
+    public void test10(){
+        List<LogItem> session=new ArrayList();
+        session.add(new LogView("hahaView"));
+        session.add(new LogUserAction("button_click"));
+        Gson gson = new Gson();
+        System.out.println(gson.toJson(session));
     }
 
 

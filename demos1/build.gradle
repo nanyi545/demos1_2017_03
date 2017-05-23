@@ -49,9 +49,9 @@ android {
     }
 
 
-    dexOptions {
-        javaMaxHeapSize "4g"
-    }
+//    dexOptions {
+//        javaMaxHeapSize "4g"
+//    }
 
 }
 
@@ -203,5 +203,7 @@ dependencies {
     compile 'com.pixplicity.sharp:library:1.0.2@aar'   // this does not work with animation ...
     compile 'com.eftimoff:android-pathview:1.0.8@aar'// this works with animation ...  ???? not working ....
 
+    compile 'com.google.code.gson:gson:2.3.1'
+    testCompile 'com.google.code.gson:gson:2.3.1'
 
 }

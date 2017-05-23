@@ -28,6 +28,32 @@
 }
 
 
+.display_region .vertical_indicator .time{
+    float:left;
+    height:50px;
+    width:100px;
+    border:solid 1px red;
+    line-height: 50px;
+    text-align: center;
+}
+.display_region .vertical_indicator .indicator_item{
+    float:left;
+    height:48px;
+    width:100px;
+    border:solid 1px green;
+    line-height: 48px;
+    text-align: center;
+}
+.display_region .vertical_indicator .indicator_item2{
+    float:left;
+    height:20px;
+    width:100px;
+    border:solid 1px green;
+    line-height: 20px;
+    text-align: center;
+}
+
+
 .display_region .time_zone{
     float:left;
     height:250px;
@@ -52,11 +78,60 @@
 }
 
 
-.view_item{
+.display_region .time_zone .view_item_holder .view_item{
     position:absolute;
     height:30%;
     width:10%;
     background:#00bfff;
     border:solid 1px red;
+    font-size:10px;
+}
+
+
+
+.display_region .time_zone .net_item_holder{
+    position:relative;
+    height:48px;
+    width:900px;
+    border:solid 1px red;
+}
+
+
+.display_region .time_zone .net_item_holder .net_item{
+    position:absolute;
+    height:30%;
+    width:10%;
+    font-size:10px;
+}
+
+
+
+
+.display_region .time_zone .act_item_holder{
+    position:relative;
+    height:48px;
+    width:900px;
+    border:solid 1px red;
+}
+
+.display_region .time_zone .act_item_holder .act_item{
+    position:absolute;
+    height:30%;
+    width:10%;
+    font-size:10px;
+}
+
+
+.display_region .time_zone .err_item_holder{
+    position:relative;
+    height:20px;
+    width:900px;
+    border:solid 1px red;
+}
+
+.display_region .time_zone .err_item_holder .err_item{
+    position:absolute;
+    height:100%;
+    width:10%;
     font-size:10px;
 }
