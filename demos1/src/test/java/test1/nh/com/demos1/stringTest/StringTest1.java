@@ -111,5 +111,15 @@ public class StringTest1 {
     }
 
 
+    @Test
+    public void test11(){
+        String str="a.".toLowerCase();
+        System.out.println(str.replaceAll("\\W",""));
+    }
+
+
+
+
+
 
 }

@@ -106,16 +106,12 @@ public class TestPullRefreshA4_SearchActivity extends AppCompatActivity {
                 CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) appbar.getLayoutParams();
                 appbarEndHeight=appbar.getHeight();
 
-
                 params.height=appBarHeight;
                 appbarStartHeight=appBarHeight;
-
-
 
                 Log.i(TAG,"appbarStartHeight:"+appbarStartHeight+"  appbarEndHeight:"+appbarEndHeight);
 
                 appbar.setLayoutParams(params);
-
 
                 LinearLayout.LayoutParams params1 = (LinearLayout.LayoutParams) searchHolder.getLayoutParams();
                 params1.setMargins(0,toolBarMarginTop,0,0);
@@ -123,18 +119,15 @@ public class TestPullRefreshA4_SearchActivity extends AppCompatActivity {
                 holderMarginTopStart=toolBarMarginTop;
                 holderMarginTopEnd=0;
 
-
                 RelativeLayout.LayoutParams params2= (RelativeLayout.LayoutParams) searcher.getLayoutParams();
                 marginLeftStart = params2.leftMargin;
                 marginLeftEnd = 200 ;
                 paddingLeftStart = searcher.getPaddingLeft();
                 paddingLeftEnd = 20;
 
-
                 paddingTop =searcher.getPaddingTop();
                 paddingBottom =searcher.getPaddingBottom();
                 paddingRight =searcher.getPaddingRight();
-
 
                 if(appbar.getViewTreeObserver().isAlive()){
                     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
@@ -143,12 +136,8 @@ public class TestPullRefreshA4_SearchActivity extends AppCompatActivity {
                         appbar.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                     }
                 }
-
-
                 final ObjectAnimator animator1 = ObjectAnimator.ofInt(appbar,"layout_height",appBarHeight, (int)appbarEndHeight );
                 final ObjectAnimator animator2 = ObjectAnimator.ofInt(searchHolder,"layout_marginTop",toolBarMarginTop, 0 );
-
-
                 animator.startScroll(0,0,1000,0,500);
                 animateHandler.sendEmptyMessage(0);
             }

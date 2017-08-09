@@ -5,6 +5,7 @@ import org.junit.Test;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -114,6 +115,68 @@ public class CollectionTest {
             e.printStackTrace();
         }
 
+    }
+
+
+    @Test
+    public void setTest1(){
+        HashSet set=new HashSet();
+        Object a1=new Object();
+        Object a2=new Object();
+        Object a3=new Object();
+        Object a4=new Object();
+        set.add(a1);
+        set.add(a2);
+        set.add(a3);
+        System.out.println("a4:"+set.remove(a4) );
+    }
+
+
+
+
+
+    @Test
+    public void test2(){
+        generate(2);
+    }
+
+
+    public List<List<Integer>> generate(int numRows) {
+
+
+        List<List<Integer>> ret=new ArrayList();
+        if (numRows==0) return ret;
+
+        List<Integer> l0=new ArrayList();
+        l0.add(1);
+        ret.add(l0);
+
+        if (numRows==1) return ret;
+        else {
+
+
+            for (int i=1;i<numRows;i++){
+                ret.add(add1(ret.get(i-1)));
+            }
+
+        }
+        return ret;
+
+    }
+
+
+    List<Integer> add1(List<Integer> list) {
+
+        List<Integer> ret=new ArrayList(list.size()+1);
+        ret.add(1);
+
+        if (list.size()==0) return ret;
+        if (list.size()>1) {
+            for (int i=0;i<list.size()-1;i++) ret.add(list.get(i)+list.get(i+1));
+        }
+        ret.add(1);
+
+        return ret;
 
     }
 

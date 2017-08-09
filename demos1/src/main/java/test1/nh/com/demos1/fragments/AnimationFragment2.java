@@ -97,8 +97,7 @@ public class AnimationFragment2 extends Fragment {
         iv4_rotate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                iv4.startAnimation(
-                        AnimationUtils.loadAnimation(getActivity(), R.anim.rotate_indefinitely));
+                iv4.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.rotate_indefinitely));
             }
         });
 

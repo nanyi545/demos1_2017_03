@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.webkit.JavascriptInterface;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -33,6 +35,7 @@ public class WebViewActivity2 extends AppCompatActivity {
         // ----  enable JS
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
+        webView.addJavascriptInterface(this,"Android");
 
 //        webView.loadUrl("file:///android_asset/www/jqm2_transition.html");
 //        webView.loadUrl("file:///android_asset/www/svg5.html");
@@ -41,5 +44,33 @@ public class WebViewActivity2 extends AppCompatActivity {
 //        webView.loadUrl("file:///android_asset/www/ala_17_2_15/promo_page/promo.html");
 //        webView.loadUrl("file:///android_asset/www/ala_17_2_15/reg_success_page/reg_success.html");
         webView.loadUrl("file:///android_asset/www/ala_17_2_15/wechat_home/wechat_home.html");
+
+
+        webView.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                webView.loadUrl("javascript:Android.onLoaded(typeof showHint)");  //  android call JS  -->  js call android again to get return return value !!!
+            }
+        },5000);
+
     }
+
+
+
+
+
+    @JavascriptInterface
+    public void onLoaded(String result) {
+        Log.i("aaa","onLoaded:"+result);
+        if (result.equals("function")) {
+            // defined
+        } else {
+            // not defined  --> undefined ...
+        }
+    }
+
+
+
+
+
 }

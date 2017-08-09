@@ -24,8 +24,6 @@
         android:text="getUser2"
         android:onClick="showUser2"/>
 
-
-
     <Button
         android:id="@+id/button3"
         android:layout_below="@id/ipc_button2"

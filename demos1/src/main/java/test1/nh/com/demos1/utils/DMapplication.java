@@ -1,17 +1,23 @@
 package test1.nh.com.demos1.utils;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.Application;
+import android.content.ComponentCallbacks;
 import android.content.ComponentCallbacks2;
 import android.content.Context;
+import android.content.res.Configuration;
+import android.os.Bundle;
 import android.util.Log;
 
 import com.baidu.apistore.sdk.ApiStoreSDK;
 import com.codemonkeylabs.fpslibrary.TinyDancer;
 
+import test1.nh.com.demos1.activities.tracking.tracking_utils.CrashHandler;
 import test1.nh.com.demos1.activities.tracking.tracking_utils.LogItem;
 import test1.nh.com.demos1.activities.tracking.tracking_utils.LogNetIO;
+import test1.nh.com.demos1.activities.tracking.tracking_utils.LogSession;
 import test1.nh.com.demos1.activities.tracking.tracking_utils.LogUserAction;
 import test1.nh.com.demos1.activities.tracking.tracking_utils.LogView;
 import test1.nh.com.demos1.activities.tracking.tracking_utils.TrackingManager;
@@ -129,45 +135,46 @@ public class DMapplication extends Application {
 
     @Override
     public void onCreate() {
+        CrashHandler handler=CrashHandler.getInstance(this);  //  init a crash handler
+
         Log.i(DEM0_APP, "ONCREATE");
-        final TrackingManager manager=TrackingManager.getInstance(this);
+        TrackingManager manager=TrackingManager.getInstance(this);
         manager.uploadPreviousSession();
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                LogItem log1=new LogView("haha");
-
-                manager.addTrackingLog(new LogUserAction("button1"));
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                log1.setEndTime();
-                manager.addTrackingLog(log1);
-
-                LogItem log2=new LogView("hehe");
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                log2.setEndTime();
-                manager.addTrackingLog(log2);
-                manager.addTrackingLog(new LogUserAction("button2"));
-                LogItem log3=new LogNetIO("api1");
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                log3.setSuccess(true);
-                manager.addTrackingLog(log3);
-                manager.addTrackingLog(new LogUserAction("exit"));
-            }
-        }).start();
-
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                LogItem log1=new LogView("haha");
+//
+//                manager.addTrackingLog(new LogUserAction("button1"));
+//                try {
+//                    Thread.sleep(1000);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//                log1.setEndTime();
+//                manager.addTrackingLog(log1);
+//
+//                LogItem log2=new LogView("hehe");
+//                try {
+//                    Thread.sleep(1000);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//                log2.setEndTime();
+//                manager.addTrackingLog(log2);
+//                manager.addTrackingLog(new LogUserAction("button2"));
+//                LogItem log3=new LogNetIO("api1");
+//                try {
+//                    Thread.sleep(1000);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//                log3.setSuccess(true);
+//                manager.addTrackingLog(log3);
+//                manager.addTrackingLog(new LogUserAction("exit"));
+//            }
+//        }).start();
 
         TinyDancer.create().show(this); //  FPS checker...
 
@@ -189,5 +196,60 @@ public class DMapplication extends Application {
         // @component中设置了几个module 就需要设置几个module
         component1 = DaggerDi3Component.builder().build();
         componentData = DaggerDataComponent.builder().build(); // 测试unit test with DI
+
+
+
+        registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
+            @Override
+            public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
+                Log.i("bbb","onActivityCreated:"+activity.toString());
+            }
+
+            @Override
+            public void onActivityStarted(Activity activity) {
+                Log.i("bbb","onActivityStarted:"+activity.toString());
+            }
+
+            @Override
+            public void onActivityResumed(Activity activity) {
+                Log.i("bbb","onActivityResumed:"+activity.toString());
+            }
+
+            @Override
+            public void onActivityPaused(Activity activity) {
+                Log.i("bbb","onActivityPaused:"+activity.toString());
+            }
+
+            @Override
+            public void onActivityStopped(Activity activity) {
+                Log.i("bbb","onActivityStopped:"+activity.toString());
+            }
+
+            @Override
+            public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
+                Log.i("bbb","onActivitySaveInstanceState:"+activity.toString());
+            }
+
+            @Override
+            public void onActivityDestroyed(Activity activity) {
+                Log.i("bbb","onActivityDestroyed:"+activity.toString());
+            }
+        });
+
+        registerComponentCallbacks(new ComponentCallbacks() {
+            @Override
+            public void onConfigurationChanged(Configuration newConfig) {
+
+            }
+
+            @Override
+            public void onLowMemory() {
+
+            }
+        });
+
+
+
+
     }
 }

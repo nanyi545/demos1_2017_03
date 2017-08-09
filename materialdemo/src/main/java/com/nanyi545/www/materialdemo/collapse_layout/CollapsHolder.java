@@ -109,7 +109,6 @@ public class CollapsHolder extends RelativeLayout implements GestureDetector.OnG
         bundle.putParcelable("superState", super.onSaveInstanceState());
         bundle.putInt(CURRENT_SHIFT_KEY, this.currentShift); // ... save stuff
         bundle.putInt(INIT_HEIGHT_KEY, this.initialHeight); // ... save stuff
-
         return bundle;
     }
 

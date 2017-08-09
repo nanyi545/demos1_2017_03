@@ -4,6 +4,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -145,7 +146,11 @@ public class UnitTest1 {
     @Test
     public void testHttp(){
 
-        
+        int a=2147483647;
+        System.out.println("a:"+a+"   Integer.MAX_VALUE:"+Integer.MAX_VALUE);
+        System.out.println(a<Integer.MAX_VALUE);
+        System.out.println(a>Integer.MIN_VALUE);
+
 
     }
 
@@ -153,8 +158,95 @@ public class UnitTest1 {
 
 
 
+    @Test
+    public void testFindPeak(){
+        int[] arr=new int[] {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,16,15};
+        System.out.println(findPeakElement(arr));
+
+    }
 
 
+
+    public int findPeakElement(int[] nums) {
+        if(nums.length==1) return nums[0];
+        if(nums[0]>nums[1]) return nums[0];
+        if(nums[nums.length-1]>nums[nums.length-2]) return nums[nums.length-1];
+        return findP(nums,0,nums.length-1);
+    }
+
+
+    public int findP(int[] nums, int lo, int hi){
+
+        int length=hi-lo+1;
+        if( length>=3 &&  length <=5 ) {
+            for (int i=lo+1;i<=hi-1;i++){
+                if(nums[i]>nums[i-1] && nums[i]>nums[i+1]) {
+                    return i;
+                }
+            }
+            return -1;
+        }  else {
+
+            int l1=length/2+length%2+lo;
+            int l2=l1-1;
+
+            System.out.println("lo:"+lo+"  hi:"+hi+"  l1:"+l1+"  l2:"+l2);
+            int ret1=findP (nums,lo,l1);
+            if (ret1>0) {
+                return ret1;
+            }  else {
+                int ret2=findP(nums,l2,hi);
+                return ret2;
+            }
+        }
+    }
+
+
+
+
+
+    @Test
+    public void testMaxP(){
+        int[] arr=new int[] {1,12,-3,1,2,6,2};
+        System.out.println(maxProduct(arr));
+
+    }
+
+    /**
+     *
+     *
+     i:1    val:12    max:12     min:12    result:12
+     i:2    val:-3    max:-3     min:-36    result:12
+     i:3    val:1    max:1     min:-36    result:12
+     i:4    val:2    max:2     min:-72    result:12
+     i:5    val:6    max:12     min:-432    result:12
+     i:6    val:2    max:24     min:-864    result:24
+     24
+
+     */
+    public int maxProduct(int[] A) {
+        if (A == null || A.length == 0) {
+            return 0;
+        }
+        int max = A[0], min = A[0], result = A[0];
+        for (int i = 1; i < A.length; i++) {
+            int temp = max;
+            max = Math.max(Math.max(max * A[i], min * A[i]), A[i]);
+            min = Math.min(Math.min(temp * A[i], min * A[i]), A[i]);
+            if (max > result) {
+                result = max;
+            }
+            System.out.println( "i:"+i+"    val:"+A[i]+"    max:"+max+"     min:"+min+"    result:"+result);
+        }
+        return result;
+    }
+
+
+
+    @Test
+    public void testR(){
+        System.out.println(Math.random());
+    }
 
 
 }

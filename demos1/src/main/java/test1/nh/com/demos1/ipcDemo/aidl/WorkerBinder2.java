@@ -21,6 +21,7 @@ public class WorkerBinder2 extends IMyAidlInterface.Stub{
 
     @Override
     public String getUser(int id) throws RemoteException {
-        return processInfo;
+        Log.i("ipc","get user in WorkerBinder2: "+processInfo);
+        return "a user";
     }
 }

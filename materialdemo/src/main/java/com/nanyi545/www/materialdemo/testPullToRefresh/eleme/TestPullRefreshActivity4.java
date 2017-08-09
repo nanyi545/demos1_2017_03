@@ -10,6 +10,7 @@ import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.EditText;
@@ -41,6 +42,7 @@ public class TestPullRefreshActivity4 extends AppCompatActivity {
     AppBarLayout appBarLo,fakeAppBarLo;
     RelativeLayout fakeSearchHolder,searchHolder;
     EditText fakeSearcher,searcher;
+
 
 
     @Override

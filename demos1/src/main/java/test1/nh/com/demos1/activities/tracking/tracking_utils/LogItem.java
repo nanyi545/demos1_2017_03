@@ -17,9 +17,10 @@ public class LogItem {
     private int type;
 
     /**
-     * only for {@link #IO_NETWORK}   :  api name
+     * only for {@link #IO_NETWORK} :
      */
     private boolean success;
+
 
     /**
      * for {@link #VIEW_CHANGE}  :  View name

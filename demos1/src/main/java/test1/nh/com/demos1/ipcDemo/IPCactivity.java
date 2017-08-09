@@ -41,6 +41,7 @@ public class IPCactivity extends AppCompatActivity {
     private ServiceConnection conn2=new ServiceConnection(){
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
+            Log.i("ipc","onServiceConnected   service:"+service.getClass().getName());
             mBinder2= IMyAidlInterface.Stub.asInterface(service)  ;
         }
 
@@ -93,8 +94,8 @@ public class IPCactivity extends AppCompatActivity {
 
 
     public void showUser2(View view){
+        String str= null;
         if(mBinder2!=null){
-            String str= null;
             try {
                 str = mBinder2.getUser(10);
             } catch (RemoteException e) {
@@ -103,7 +104,7 @@ public class IPCactivity extends AppCompatActivity {
             Log.i("ipc","show user---"+str);
         }
         String processName = OsUtils.getProcessName(this.getApplicationContext(), android.os.Process.myPid());
-        Log.i("ipc", "activity onclick in:" + processName + "   process ID:" + android.os.Process.myPid());
+        Log.i("ipc", "activity onclick in:" + processName + "   process ID:" + android.os.Process.myPid()+"      get user---"+str);
     }
 
 

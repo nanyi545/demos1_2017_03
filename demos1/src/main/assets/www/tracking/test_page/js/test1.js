@@ -9,7 +9,7 @@ endTime=1000*60*10;
 
 
 // ----------create view logs --------------
-viewLogs;
+viewLogs=new Array();
 
 function createViewLogs(){
     viewLogs=new Array();
@@ -50,7 +50,7 @@ function showViewLogs(){
 
 
 // ----------create net-IO logs --------------
-netLogs;
+netLogs=new Array();
 
 function createNetLogs(){
     netLogs=new Array();
@@ -95,7 +95,7 @@ function showNetLogs(){
 
 
 // ----------create action logs --------------
-actLogs;
+actLogs=new Array();
 
 function createActLogs(){
     actLogs=new Array();
@@ -133,7 +133,7 @@ function showActionLogs(){
 
 
 // ----------create error logs --------------
-errLogs;
+errLogs=new Array();
 
 function createErrLogs(){
     errLogs=new Array();
@@ -141,7 +141,6 @@ function createErrLogs(){
         errLogs[i]=createErrLog((i+7.6)*1000*60);
     }
 }
-
 
 function createErrLog(start){
     var errLog=new Object();
@@ -187,7 +186,6 @@ function getStartPercent(start){
 function getWidthPercent(start, end){
     return (end- start)/(endTime-startTime)*100;
 }
-
 
 
 function regiser(){
@@ -251,7 +249,6 @@ function initPage(){
         errLogs=session.errorLogs;
 
         updateLogs();
-
     }
 
     reader.readAsText(files[0]);

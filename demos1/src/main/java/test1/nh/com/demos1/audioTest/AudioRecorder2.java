@@ -211,7 +211,7 @@ public class AudioRecorder2 {
             try{
                 while(isRecording){
                     length = mAudioRecord.read(buffer, 0, bufferSize);
-//                    Log.i("BBB","RecordThread--length:"+length);   //-----92
+                    Log.i("BBB","RecordThread--length:"+length);
                     //--如何搞出音量？？
                     execute(buffer, length);    // TODO-----recording length???
                 }

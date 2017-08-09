@@ -38,6 +38,13 @@ public class CustomViewActivity extends AppCompatActivity {
     private TextView animateTV;
 
 
+    int test1;
+
+    static class MyRunnable implements Runnable{
+        @Override
+        public void run() {
+        }
+    }
 
 
     @Override
@@ -50,6 +57,7 @@ public class CustomViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_folder_tab);
+
 
         Resources res = getResources();
 

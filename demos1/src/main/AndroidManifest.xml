@@ -240,7 +240,19 @@
         <service
             android:name=".ipcDemo.TestBoundService"
             android:enabled="true"
-            android:exported="false"></service>
+            android:exported="false" />
+
+        <activity android:name=".activities.tracking.TrackingHomeActivity" />
+        <activity android:name=".activities.tracking.Track1Activity" />
+        <activity android:name=".activities.post_file.TestPostActivity" />
+        <activity android:name=".fundamental.ClassLoaderTestActivity" />
+        <activity android:name=".fundamental.hook.binderhook.TestBinderHookActivity" />
+        <activity android:name=".fundamental.hook.amshook.AmsPmsHookActivity" />
+        <activity android:name=".fundamental.hook.fox_ams.StubActivity" />
+        <activity android:name=".fundamental.hook.fox_ams.FoxAmsActivity" />
+        <activity android:name=".activities.pull_load.TestPullLoadActivity" />
+        <activity android:name=".activities.staggered_lo.StaggeredRvActivity" />
+        <activity android:name=".activities.state_pattern.StatePatternActivity"></activity>
     </application>
 
 </manifest>

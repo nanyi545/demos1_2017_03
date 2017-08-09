@@ -18,12 +18,12 @@ public class LeakActivity extends Activity {
 
     private int[] leak_int_array=new int[1024*1024*2];
 
-//    private final Handler mLeakyHandler = new Handler() {
-//        @Override
-//        public void handleMessage(Message msg) {
-//            Log.i("LEAK","receive message in leak activity");
-//        }
-//    };
+    private final Handler mLeakyHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            Log.i("LEAK","receive message in leak activity");
+        }
+    };
 
 
     //---- non-leak Handler -----
@@ -92,12 +92,13 @@ public class LeakActivity extends Activity {
 
 //        mLeakyHandler.sendEmptyMessage(1);
 ////------cause memory leak within 1 minute--->beyond 1 minute GC can restore the memory
-//        mLeakyHandler.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                Log.i("LEAK", "send message");
-//            }
-//        }, 1000 * 60*1);
+        mLeakyHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Log.i("LEAK", "send message");
+                LeakActivity.this.onPause();
+            }
+        }, 1000 * 60*1);
 
         // Go back to the previous Activity.
 //        finish();

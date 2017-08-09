@@ -27,6 +27,14 @@ public class StoppableScrollView extends NestedScrollView {
     }
 
 
+    /**
+     *   this way the StoppableScrollView  is not scrollable by itself
+     *
+     *   only in coordinator layout
+     *   -->
+     *   assigning it a behaviour   {@link CustomScrollingViewBehaviour5 }  so that the scroll is handled/distributed  in coordinator layout
+     *
+     */
     private boolean scrollable=false;
 
     @Override

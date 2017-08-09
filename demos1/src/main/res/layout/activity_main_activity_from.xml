@@ -579,6 +579,50 @@
             android:onClick="jump"
             android:text="Gravity 测试"/>
 
+        <Button
+            android:id="@+id/button71"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/button70"
+            android:onClick="jump"
+            android:text="tracking 测试"/>
+
+        <Button
+            android:id="@+id/button72"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/button71"
+            android:onClick="jump"
+            android:text="upload 测试"/>
+        <Button
+            android:id="@+id/button73"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/button72"
+            android:onClick="jump"
+            android:text="class loader 测试"/>
+        <Button
+            android:id="@+id/button74"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/button73"
+            android:onClick="jump"
+            android:text="上下拉 测试"/>
+        <Button
+            android:id="@+id/button75"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/button74"
+            android:onClick="jump"
+            android:text="瀑布流 测试"/>
+        <Button
+            android:id="@+id/button76"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/button75"
+            android:onClick="jump"
+            android:text="state pattern 测试"/>
+
     </RelativeLayout>
 
 </ScrollView>

@@ -22,11 +22,12 @@ public class CustomScrollingViewBehaviour5 extends AppBarLayout.ScrollingViewBeh
 
     @Override
     public boolean onInterceptTouchEvent(CoordinatorLayout parent, View child, MotionEvent ev) {
-        Log.i("kkk", "CustomScrollingViewBehaviour4   onInterceptTouchEvent->child:" + child.getClass().getName());
+        boolean ret=super.onInterceptTouchEvent(parent, child, ev);
+        Log.i("zzz", "CustomScrollingViewBehaviour4   onInterceptTouchEvent->child:" + child.getClass().getName()+"   return:"+ret);
 //        if (parent instanceof CoordinatorPullToRefresh2) {
 //            return ((CoordinatorPullToRefresh2) parent).shouldIntercept();
 //        }
-        return super.onInterceptTouchEvent(parent, child, ev);
+        return ret;
     }
 
 
@@ -47,7 +48,7 @@ public class CustomScrollingViewBehaviour5 extends AppBarLayout.ScrollingViewBeh
     @Override
     public boolean layoutDependsOn(CoordinatorLayout parent, View child, View dependency) {
         boolean ret = super.layoutDependsOn(parent, child, dependency);
-
+        Log.i("zzz", "layoutDependsOn  :" + ret);
         return ret;
     }
 

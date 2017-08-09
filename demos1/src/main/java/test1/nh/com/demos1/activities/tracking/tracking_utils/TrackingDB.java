@@ -80,7 +80,7 @@ public class TrackingDB extends SQLiteOpenHelper {
 
 
 
-    public String restorePrevSession(){
+    public TrackingManager.UploaderPact restorePrevSession(){
         SQLiteDatabase db = this.getWritableDatabase();
         LogSession prevSession=new LogSession();
         Cursor res =  db.rawQuery( "select * from "+TABLE_NAME, null );
@@ -103,10 +103,12 @@ public class TrackingDB extends SQLiteOpenHelper {
             }
             res.moveToNext();
         }
-        prevSession.computeDuration();
+        long[] duration = prevSession.computeDuration();
         Gson gson=new Gson();
         db.delete(TABLE_NAME,null,null);
-        return gson.toJson(prevSession);
+        Log.i(DMapplication.DEM0_APP,"prevSession json str:"+gson.toJson(prevSession));
+        TrackingManager.UploaderPact pact=new TrackingManager.UploaderPact(duration,prevSession,prevSession.getDeviceType(),prevSession.getDeviceInfo());
+        return pact;
     }
 
 

@@ -7,6 +7,8 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -141,5 +143,67 @@ public class UnitTest2 {
 
 
 
+    void printNode(ListNode node){
+        while(node!=null){
+            System.out.print("|"+node.val);
+            node=node.next;
+        }
+    }
+
+
+    @Test
+    public void test3(){
+
+        ListNode l1=new ListNode(1);
+
+        ListNode l2=new ListNode(9);
+        ListNode last=l2;
+        last.next=new ListNode(9);
+        for (int i=0;i<4;i++){
+            last=last.next;
+            last.next=new ListNode(9);
+        }
+
+        printNode(addTwoNumbers(l1,l2));
+
+    }
+
+
+
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        ListNode c1 = l1;
+        ListNode c2 = l2;
+        ListNode sentinel = new ListNode(0);
+        ListNode d = sentinel;
+        int sum = 0;
+        while (c1 != null || c2 != null) {
+            sum /= 10;
+            if (c1 != null) {
+                sum += c1.val;
+                c1 = c1.next;
+            }
+            if (c2 != null) {
+                sum += c2.val;
+                c2 = c2.next;
+            }
+            d.next = new ListNode(sum % 10);
+            d = d.next;
+        }
+        if (sum / 10 == 1)
+            d.next = new ListNode(1);
+        return sentinel.next;
+    }
+
+
+
+
+    public class ListNode {
+        int val;
+        ListNode next;
+
+        ListNode(int x) {
+            val = x;
+        }
+    }
 
 }

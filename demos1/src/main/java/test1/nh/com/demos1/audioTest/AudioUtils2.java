@@ -5,6 +5,7 @@ import android.media.AudioManager;
 import android.media.AudioTrack;
 import android.media.MediaRecorder;
 import android.os.Environment;
+import android.util.Log;
 
 import java.io.File;
 
@@ -24,12 +25,12 @@ public class AudioUtils2 {
     /** 音频获取源设备 */
     public static final int AUDIO_SOURCE = MediaRecorder.AudioSource.MIC;
     /** 设置音频采样率 */
-    public static final int SAMEPLE_RATE_HZ = 16000;   //
+    public static final int SAMEPLE_RATE_HZ = 4000;   //   min 4000...       original ..  16000Hz
     /** 设置音频录制的声道   **CHANNEL_IN_STEREO为双声道，CHANNEL_IN_MONO为单声道*/
     public static final int CHANNEL_CONFIG = AudioFormat.CHANNEL_IN_STEREO;
 
     /** 音频数据格式  **PCM 16位每个样本 */
-    public static final int AUDIO_FORMAT = AudioFormat.ENCODING_PCM_16BIT;   //ENCODING_PCM_16BIT ---9-21
+    public static final int AUDIO_FORMAT = AudioFormat.ENCODING_PCM_16BIT;   //ENCODING_PCM_16BIT
     /** 音频流的类型 */
     public static final int STREAM_TYPE = AudioManager.STREAM_MUSIC;
     /** Track模式 */
@@ -68,6 +69,7 @@ public class AudioUtils2 {
         if (!dir.exists()) {
             dir.mkdirs();
         }
+        Log.i("bbb","file path:"+FILEPATH);
     }
 
         /* ------------ public --------------- */

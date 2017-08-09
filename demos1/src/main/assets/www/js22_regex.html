@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<meta http-equiv="Content-Language" content="zh-cn" />
+</head>
+
+<body>
+
+<p>regex</p>
+
+<script>
+    var s1='1234----1234****1234**8**---5678--********';
+    console.log('pre-replace'+s1);
+
+    var s2=s1.replace(/-{2,4}/g,'\n');
+    console.log('after-replace'+s2);
+
+</script>
+
+<p>
+</p>
+
+</body>
+</html>

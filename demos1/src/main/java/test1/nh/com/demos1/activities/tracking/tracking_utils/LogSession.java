@@ -1,5 +1,9 @@
 package test1.nh.com.demos1.activities.tracking.tracking_utils;
 
+import android.os.Build;
+
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,7 +11,7 @@ import java.util.List;
  * Created by Administrator on 2017/5/21.
  */
 
-class LogSession {
+public class LogSession {
 
     protected List<LogItem> viewLogs,netIoLogs,userActionLogs,errorLogs;
 
@@ -18,10 +22,9 @@ class LogSession {
         this.errorLogs =  new ArrayList<>();
     }
 
-    protected long sessionStart,sessionEnd;
 
 
-    protected void computeDuration(){
+    protected long[] computeDuration(){
         long min=System.currentTimeMillis(),max=0;
         List<LogItem> totalList=new ArrayList();
         totalList.addAll(viewLogs);
@@ -36,8 +39,25 @@ class LogSession {
                 max=item.getStartTime();
             }
         }
-        sessionStart=min;
-        sessionEnd=max+5000;  // give room to show last item
+        long[] duration=new long[2];
+        duration[0]=min;
+        duration[1]=max+5000;  // give room to show last item
+        return duration;
     }
+
+
+    @Override
+    public String toString() {
+        Gson gson=new Gson();
+        return gson.toJson(LogSession.this);
+    }
+
+    protected int getDeviceType(){return 1;}  //  android:1, ios:2,   web:3
+    protected String getDeviceInfo(){
+        return "MANUFACTURER:"+ Build.MANUFACTURER+" model:"+android.os.Build.MODEL+" sdk:"+android.os.Build.VERSION.SDK_INT;
+    }
+
+
+
 
 }

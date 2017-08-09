@@ -48,15 +48,21 @@ import test1.nh.com.demos1.activities.interactive_chart.InteractiveActivity;
 import test1.nh.com.demos1.activities.leaksTest.LeakActivity;
 import test1.nh.com.demos1.activities.leaksTest.LeakTest2Activity;
 import test1.nh.com.demos1.activities.matDesign.MatDesignPanelActivity;
+import test1.nh.com.demos1.activities.post_file.TestPostActivity;
+import test1.nh.com.demos1.activities.pull_load.TestPullLoadActivity;
 import test1.nh.com.demos1.activities.range_seek.RangeSeekbarMainActivity;
 import test1.nh.com.demos1.activities.selectTime.SelectTimeActivity;
+import test1.nh.com.demos1.activities.staggered_lo.StaggeredRvActivity;
+import test1.nh.com.demos1.activities.state_pattern.StatePatternActivity;
 import test1.nh.com.demos1.activities.tab_layout_viewpager.TestTabActivity;
 import test1.nh.com.demos1.activities.test3d.Test3dActivity;
 import test1.nh.com.demos1.activities.time_picker.TimePickerActivity;
+import test1.nh.com.demos1.activities.tracking.TrackingHomeActivity;
 import test1.nh.com.demos1.activities.vertical_scroll.VerticalScrollActivity;
 import test1.nh.com.demos1.activityManagerActivity.ActManagerActivity;
 import test1.nh.com.demos1.audioTest.AudioActivity;
 import test1.nh.com.demos1.broadcastReceiverDemo.BCRActivity;
+import test1.nh.com.demos1.fundamental.ClassLoaderTestActivity;
 import test1.nh.com.demos1.guavaDest.GuavaTestActivity;
 import test1.nh.com.demos1.ipcDemo.IPCactivity;
 import test1.nh.com.demos1.launchMode.LaunchModeActivity;
@@ -591,6 +597,24 @@ public class MainActivity_from extends AppCompatActivity {
                 break;
             case R.id.button70:
                 TestGravityActivity.start(MainActivity_from.this);
+                break;
+            case R.id.button71:
+                TrackingHomeActivity.start(MainActivity_from.this);
+                break;
+            case R.id.button72:
+                TestPostActivity.start(MainActivity_from.this);
+                break;
+            case R.id.button73:
+                ClassLoaderTestActivity.start(MainActivity_from.this);
+                break;
+            case R.id.button74:
+                TestPullLoadActivity.start(MainActivity_from.this);
+                break;
+            case R.id.button75:
+                StaggeredRvActivity.start(MainActivity_from.this);
+                break;
+            case R.id.button76:
+                StatePatternActivity.start(MainActivity_from.this);
                 break;
 
             default:
